@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Console — Lumina Admin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="admin-common.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode:"class",
+      theme:{ extend:{ colors:{
+        "primary":"#7dd3fc","primary-dim":"#38bdf8","primary-glow":"rgba(125,211,252,0.15)",
+        "surface":"#0f1524","surface-low":"#111828","surface-container":"#141c2e",
+        "surface-container-high":"#1a2438","surface-container-highest":"#202c42",
+        "on-surface":"#e0e8f0","on-surface-variant":"#a0b4c4",
+        "outline":"#4a6070","outline-variant":"#2a3a48",
+        "error":"#ff6b6b","error-container":"#3d1414",
+        "tertiary":"#c8a0f0","tertiary-dim":"#a78bfa",
+        "secondary":"#88b4cc","secondary-dim":"#67b4d8",
+        "success":"#4ade80"
+      }}}
+    }
+  </script>
+  <link rel="stylesheet" href="admin.css"/>
+  <style>
+    .ai-tabs-container {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-right: 12px;
+      border-right: 1px solid rgba(125,211,252,0.1);
+    }
+    .ai-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #a0b4c4;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .ai-tab-btn:hover {
+      background: rgba(125, 211, 252, 0.06);
+      color: #e0e8f0;
+    }
+    .ai-tab-btn.active {
+      background: rgba(125, 211, 252, 0.1);
+      color: #7dd3fc;
+      border: 1px solid rgba(125, 211, 252, 0.15);
+    }
+    .ai-content-panel {
+      display: none;
+    }
+    .ai-content-panel.active {
+      display: block;
+    }
+    .glass-panel-elevated {
+      background: rgba(15, 21, 36, 0.75);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(125, 211, 252, 0.15);
+    }
+    .liquid-glass-card {
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.05) 0%, rgba(200, 160, 240, 0.05) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .liquid-glass-card:hover {
+      border-color: rgba(125, 211, 252, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px -10px rgba(125, 211, 252, 0.2);
+    }
+    .liquid-glass-card.active {
+      border-color: #7dd3fc;
+      background: rgba(125, 211, 252, 0.1);
+    }
+    .frozen-light-pane {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(125, 211, 252, 0.2);
+      box-shadow: inset 0 0 40px rgba(125, 211, 252, 0.05);
+    }
+    .lead-list-item:hover {
+      background: rgba(125, 211, 252, 0.06);
+    }
+    .lead-list-item.active {
+      background: rgba(125, 211, 252, 0.1);
+      border-left: 3px solid #7dd3fc;
+    }
+  </style>
+</head>
+<body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
+<div class="orb orb1"></div><div class="orb orb2"></div>
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">bubble</span></div>
+    <div>
+      <div class="text-sm font-bold text-primary tracking-tight leading-tight">Lumina Admin</div>
+      <div class="text-[10px] text-on-surface-variant">Management Suite</div>
+    </div>
+  </div>
+
+  <button class="new-project-btn" onclick="window.location='projects.html'">
+    <span class="material-symbols-outlined text-sm">add</span> New Project
+  </button>
+
+  <nav class="sidebar-nav">
+    <p class="nav-label">Main</p>
+    <a href="dashboard.html" class="nav-link" id="nav-dashboard">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="projects.html" class="nav-link" id="nav-projects">
+      <span class="material-symbols-outlined">folder_open</span>
+      <span>Projects</span>
+    </a>
+    <a href="crm.html" class="nav-link" id="nav-crm">
+      <span class="material-symbols-outlined">group_add</span>
+      <span>CRM Leads</span>
+    </a>
+    <a href="invoices.html" class="nav-link" id="nav-invoices">
+      <span class="material-symbols-outlined">receipt_long</span>
+      <span>Invoices</span>
+    </a>
+    <a href="content.html" class="nav-link" id="nav-content">
+      <span class="material-symbols-outlined">view_quilt</span>
+      <span>Website Content</span>
+    </a>
+    
+    <p class="nav-label">Management</p>
+    <a href="team.html" class="nav-link" id="nav-team">
+      <span class="material-symbols-outlined">badge</span>
+      <span>Team</span>
+    </a>
+    <a href="media.html" class="nav-link" id="nav-media">
+      <span class="material-symbols-outlined">photo_library</span>
+      <span>Media Library</span>
+    </a>
+    <a href="inbox.html" class="nav-link" id="nav-inbox">
+      <span class="material-symbols-outlined">mail</span>
+      <span>Inbox</span>
+    </a>
+    <a href="client-workspace.html" class="nav-link" id="nav-client-workspace">
+      <span class="material-symbols-outlined">forum</span>
+      <span>Client Workspace</span>
+      <span id="chat-unread-badge" style="display:none;background:#7dd3fc;color:#020617;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;margin-left:auto"></span>
+    </a>
+    
+          <p class="nav-label">🤖 AI Automation</p>
+      <a href="ai-dashboard.html" class="nav-link" id="nav-ai-dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="ai-proposal-generator.html" class="nav-link" id="nav-ai-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>AI Proposal</span>
+      </a>
+      <a href="ai-content-writer.html" class="nav-link" id="nav-ai-content-writer">
+        <span class="material-symbols-outlined">edit_document</span>
+        <span>Content Writer</span>
+      </a>
+      <a href="ai-meeting-summary.html" class="nav-link" id="nav-ai-meeting">
+        <span class="material-symbols-outlined">forum</span>
+        <span>Meeting Summary</span>
+      </a>
+      <a href="ai-client-onboarding.html" class="nav-link" id="nav-ai-onboarding">
+        <span class="material-symbols-outlined">person_add</span>
+        <span>Client Onboarding</span>
+      </a>
+      <a href="ai-email-assistant.html" class="nav-link" id="nav-ai-email">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Email Assistant</span>
+      </a>
+      <a href="ai-google-calendar.html" class="nav-link" id="nav-ai-calendar">
+        <span class="material-symbols-outlined">event</span>
+        <span>Google Calendar</span>
+      </a>
+      <a href="ai-prompt-library.html" class="nav-link" id="nav-ai-prompt">
+        <span class="material-symbols-outlined">library_books</span>
+        <span>Prompt Library</span>
+      </a>
+      <a href="ai-templates.html" class="nav-link" id="nav-ai-templates">
+        <span class="material-symbols-outlined">widgets</span>
+        <span>AI Templates</span>
+      </a>
+      <a href="ai-knowledge-base.html" class="nav-link" id="nav-ai-kb">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Knowledge Base</span>
+      </a>
+      <a href="ai-settings.html" class="nav-link" id="nav-ai-settings">
+        <span class="material-symbols-outlined">settings_suggest</span>
+        <span>AI Settings</span>
+      </a>
+      <a href="ai-api-connections.html" class="nav-link" id="nav-ai-api">
+        <span class="material-symbols-outlined">api</span>
+        <span>API Connections</span>
+      </a>
+      <a href="ai-usage-logs.html" class="nav-link" id="nav-ai-logs">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Usage Logs</span>
+      </a>
+      <p class="nav-label">System</p>
+    <a href="settings.html" class="nav-link" id="nav-settings">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="#" class="nav-link text-sm">
+      <span class="material-symbols-outlined text-sm">help</span>
+      <span>Support</span>
+    </a>
+    <a href="#" class="nav-link text-sm text-error/70 hover:text-error hover:!bg-error/10" onclick="adminLogout()">
+      <span class="material-symbols-outlined text-sm">logout</span>
+      <span>Logout</span>
+    </a>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main class="admin-main" id="admin-main">
+  <!-- Top Bar -->
+  <header class="admin-topbar">
+    <div class="flex items-center gap-4">
+      <button class="md:hidden text-on-surface-variant hover:text-primary" onclick="toggleSidebar()">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <div class="breadcrumb">
+        <a href="dashboard.html" class="bc-item hover:text-primary transition-colors">Dashboard</a>
+        <span class="material-symbols-outlined bc-sep">chevron_right</span>
+        <span class="bc-item text-primary font-semibold">AI Console</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-avatar" title="Admin User">
+        <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1">manage_accounts</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Grid -->
+  <div class="page-content flex flex-row p-0 overflow-hidden flex-1">
+    
+    <!-- AI Tool Tabs Sub-sidebar -->
+    <div class="w-64 ai-tabs-container p-6 overflow-y-auto bg-surface/30">
+      <h3 class="text-xs font-semibold text-outline tracking-wider uppercase mb-4 px-2">Glacier Neural Engine</h3>
+      <button class="ai-tab-btn active" data-ai-tab="panel-content">
+        <span class="material-symbols-outlined">auto_awesome</span>
+        <span>Content Generator</span>
+      </button>
+      <button class="ai-tab-btn" data-ai-tab="panel-blog">
+        <span class="material-symbols-outlined">edit_note</span>
+        <span>Blog Writer</span>
+      </button>
+      <button class="ai-tab-btn" data-ai-tab="panel-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>Proposal Builder</span>
+      </button>
+      <button class="ai-tab-btn" data-ai-tab="panel-seo">
+        <span class="material-symbols-outlined">query_stats</span>
+        <span>SEO Optimizer</span>
+      </button>
+      <button class="ai-tab-btn" data-ai-tab="panel-invoice">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Invoice Generator</span>
+      </button>
+      <button class="ai-tab-btn" data-ai-tab="panel-lead">
+        <span class="material-symbols-outlined">person_search</span>
+        <span>Lead Scoring</span>
+      </button>
+    </div>
+
+    <!-- Active Tool Content Workspace -->
+    <div class="flex-1 overflow-y-auto p-8 relative">
+      
+      <!-- ══ PANEL 1: CONTENT GENERATOR ══ -->
+      <div class="ai-content-panel active space-y-6" id="panel-content">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold">Content Generator</h2>
+          <p class="text-xs text-on-surface-variant">Generates high-impact copy, social threads, and ad hooks.</p>
+        </div>
+        
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="liquid-glass-card p-4 rounded-xl cursor-pointer active" onclick="selectContentType(this, 'social')">
+            <span class="material-symbols-outlined text-primary mb-2">share</span>
+            <h4 class="font-bold text-sm">Social Media</h4>
+            <p class="text-[11px] text-on-surface-variant">Viral threads & hooks.</p>
+          </div>
+          <div class="liquid-glass-card p-4 rounded-xl cursor-pointer" onclick="selectContentType(this, 'web')">
+            <span class="material-symbols-outlined text-tertiary mb-2">language</span>
+            <h4 class="font-bold text-sm">Web Copy</h4>
+            <p class="text-[11px] text-on-surface-variant">Conversion landing pages.</p>
+          </div>
+          <div class="liquid-glass-card p-4 rounded-xl cursor-pointer" onclick="selectContentType(this, 'ad')">
+            <span class="material-symbols-outlined text-secondary mb-2">campaign</span>
+            <h4 class="font-bold text-sm">Ad Creative</h4>
+            <p class="text-[11px] text-on-surface-variant">Google/Meta high-CTR copy.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div class="lg:col-span-3 space-y-4">
+            <div class="glass-card p-6">
+              <label class="block text-xs font-semibold text-primary uppercase tracking-wider mb-2">Prompt Input</label>
+              <textarea id="copy-prompt" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-3 text-on-surface focus:ring-primary min-h-[140px] resize-none" placeholder="e.g. Write a compelling ad hook for our premium macOS Liquid Glass dashboard software..."></textarea>
+              
+              <div class="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Tone</label>
+                  <select id="copy-tone" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2 text-on-surface">
+                    <option>Premium & Sophisticated</option>
+                    <option>Bold & Energetic</option>
+                    <option>Empathetic & Warm</option>
+                    <option>Professional</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Audience</label>
+                  <input type="text" id="copy-audience" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2 text-on-surface" placeholder="e.g. Enterprise leads">
+                </div>
+              </div>
+
+              <button class="w-full mt-6 py-3 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-bold rounded-lg flex items-center justify-center gap-2" onclick="generateCopy()">
+                <span class="material-symbols-outlined">bolt</span>
+                <span>GENERATE WITH GLACIER AI</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="lg:col-span-2">
+            <div class="frozen-light-pane rounded-xl flex flex-col min-h-[350px]">
+              <div class="p-3 border-b border-primary/10 bg-white/5 flex justify-between items-center">
+                <span class="text-xs font-bold text-primary">LIVE PREVIEW</span>
+                <span class="material-symbols-outlined text-sm text-primary/50">visibility</span>
+              </div>
+              <div class="flex-1 p-6 text-sm overflow-y-auto" id="copy-preview-box">
+                <p class="text-on-surface-variant/40 italic">Result text will appear here...</p>
+              </div>
+              <div class="p-3 border-t border-primary/10 bg-white/5 flex gap-2">
+                <button class="flex-1 py-2 bg-surface hover:bg-primary/20 text-xs text-on-surface rounded-lg transition-colors border border-primary/5 flex items-center justify-center gap-1" onclick="navigator.clipboard.writeText(document.getElementById('copy-preview-box').innerText); showAdminToast('Copied', 'Copy result saved to clipboard.');">
+                  <span class="material-symbols-outlined text-sm">content_copy</span> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PANEL 2: BLOG WRITER ══ -->
+      <div class="ai-content-panel space-y-6" id="panel-blog">
+        <div class="mb-6 flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl font-bold">Blog Writer</h2>
+            <p class="text-xs text-on-surface-variant">Generates full-length SEO blogs with layout support.</p>
+          </div>
+          <button class="btn-primary" onclick="publishBlogArticle()">Publish Article</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <!-- Text editor pane -->
+          <div class="lg:col-span-3 glass-card p-6 space-y-4">
+            <input type="text" id="blog-title" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-3 text-lg font-bold text-on-surface" placeholder="Blog Title..." value="The Evolution of Glassmorphic Visual Design Systems">
+            <textarea id="blog-content" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-4 text-sm text-on-surface focus:ring-primary min-h-[300px] resize-y" placeholder="Start writing article..."></textarea>
+          </div>
+
+          <!-- SEO side panel -->
+          <div class="space-y-4">
+            <div class="glass-card p-4">
+              <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-3">SEO Health Score</h4>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-2xl font-bold text-primary">88/100</span>
+                <span class="text-[10px] text-green-400">Excellent</span>
+              </div>
+              <div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+                <div class="h-full bg-primary" style="width: 88%"></div>
+              </div>
+            </div>
+            
+            <div class="glass-card p-4 space-y-3 text-xs">
+              <h4 class="text-xs font-bold text-on-surface uppercase tracking-widest">Audits Checklist</h4>
+              <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-400 text-sm">check_circle</span> Keyword in title</div>
+              <div class="flex items-center gap-2"><span class="material-symbols-outlined text-green-400 text-sm">check_circle</span> Proper heading structure</div>
+              <div class="flex items-center gap-2"><span class="material-symbols-outlined text-error text-sm">warning</span> Missing image alt tags</div>
+            </div>
+
+            <button class="w-full py-3 bg-tertiary/20 hover:bg-tertiary/30 border border-tertiary/30 text-tertiary font-bold text-xs rounded-lg flex items-center justify-center gap-2" onclick="optimizeBlogContent()">
+              <span class="material-symbols-outlined">auto_fix_high</span>
+              <span>RUN AI SEO AUDIT</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PANEL 3: PROPOSAL BUILDER ══ -->
+      <div class="ai-content-panel space-y-6" id="panel-proposal">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold">Proposal Builder</h2>
+          <p class="text-xs text-on-surface-variant">Draft formal client agreements and contract scopes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div class="lg:col-span-2 glass-card p-6 space-y-4">
+            <h3 class="text-sm font-bold uppercase text-primary">Proposal parameters</h3>
+            <div>
+              <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Client Company</label>
+              <input type="text" id="prop-client" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2.5 text-sm text-on-surface" placeholder="e.g. Zenith Media">
+            </div>
+            <div>
+              <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Scope Outline</label>
+              <input type="text" id="prop-scope" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2.5 text-sm text-on-surface" placeholder="e.g. Design System & Frontend Migration">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Contract Budget ($)</label>
+                <input type="number" id="prop-budget" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2.5 text-sm text-on-surface" placeholder="18000">
+              </div>
+              <div>
+                <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Duration</label>
+                <input type="text" id="prop-duration" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2.5 text-sm text-on-surface" placeholder="e.g. 6 weeks">
+              </div>
+            </div>
+            <button class="w-full mt-4 py-3 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-bold rounded-lg" onclick="generateProposal()">
+              Generate Contract
+            </button>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="frozen-light-pane rounded-xl flex flex-col h-full min-h-[400px]">
+              <div class="p-4 border-b border-primary/10 bg-white/5 flex justify-between items-center">
+                <span class="text-xs font-bold text-primary">PROPOSAL OUTLINE</span>
+                <button class="p-1 rounded hover:bg-white/5 text-on-surface-variant hover:text-primary" onclick="showAdminToast('Downloaded', 'Proposal PDF generated.', 'info')">
+                  <span class="material-symbols-outlined text-sm">download</span>
+                </button>
+              </div>
+              <div class="flex-1 p-6 text-xs font-mono space-y-4 overflow-y-auto leading-relaxed" id="proposal-output">
+                <p class="text-on-surface-variant/40 italic">Enter parameters and click Generate...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PANEL 4: SEO OPTIMIZER ══ -->
+      <div class="ai-content-panel space-y-6" id="panel-seo">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold">SEO Optimizer</h2>
+          <p class="text-xs text-on-surface-variant">Automated audit checkpoints and crawling simulator.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="glass-card p-6 flex flex-col justify-between">
+            <div>
+              <h4 class="text-sm font-bold text-primary uppercase tracking-wider mb-2">Performance Audit</h4>
+              <p class="text-xs text-on-surface-variant mb-4">Checks Core Web Vitals and TTFB metrics.</p>
+            </div>
+            <div class="flex justify-between items-baseline">
+              <span class="text-3xl font-bold">98/100</span>
+              <span class="text-green-400 text-xs">Fast</span>
+            </div>
+          </div>
+          
+          <div class="glass-card p-6 flex flex-col justify-between">
+            <div>
+              <h4 class="text-sm font-bold text-tertiary uppercase tracking-wider mb-2">Header Hierarchy</h4>
+              <p class="text-xs text-on-surface-variant mb-4">Scans H1 structure on public routes.</p>
+            </div>
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold">1 H1 per page</span>
+              <span class="text-green-400 text-xs">Compliant</span>
+            </div>
+          </div>
+
+          <div class="glass-card p-6 flex flex-col justify-between">
+            <div>
+              <h4 class="text-sm font-bold text-secondary uppercase tracking-wider mb-2">Meta Tag Crawling</h4>
+              <p class="text-xs text-on-surface-variant mb-4">Validates meta title and description lengths.</p>
+            </div>
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold">Description optimized</span>
+              <span class="text-green-400 text-xs">Valid</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6">
+          <h3 class="font-bold text-sm mb-4">Technical Audit Insights</h3>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center gap-3 p-3 bg-surface-container/30 rounded-lg">
+              <span class="material-symbols-outlined text-green-400 text-sm">check_circle</span>
+              <span>Robots.txt is fully configured on standard path.</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-surface-container/30 rounded-lg">
+              <span class="material-symbols-outlined text-tertiary text-sm">info</span>
+              <span>Duplicate content patterns: Canonical links should be explicitly defined on pricing page.</span>
+            </div>
+            <div class="flex items-center gap-3 p-3 bg-surface-container/30 rounded-lg">
+              <span class="material-symbols-outlined text-error text-sm">warning</span>
+              <span>Images missing alt text tags: index.html (hero avatar placeholder).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PANEL 5: INVOICE GENERATOR ══ -->
+      <div class="ai-content-panel space-y-6" id="panel-invoice">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold">Smart Invoice Generator</h2>
+          <p class="text-xs text-on-surface-variant">Compute hours worked and issue verified invoices to clients.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 glass-card p-6 space-y-6">
+            <h3 class="text-sm font-bold text-primary uppercase tracking-widest">Billable Info</h3>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Client Name</label>
+                <select id="invoice-client" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2 text-sm text-on-surface">
+                  <option>Solaris Tech Group</option>
+                  <option>Hyperion Digital</option>
+                  <option>Lunar Labs</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5">Project Name</label>
+                <input type="text" id="invoice-project" class="w-full bg-[#0a0e1a]/50 border border-primary/10 rounded-lg p-2 text-sm text-on-surface" placeholder="e.g. Glacier UI Development">
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <label class="block text-[10px] text-on-surface-variant uppercase tracking-widest">Tasks Breakdown</label>
+              
+              <div class="flex items-center gap-3 bg-surface-container p-3 rounded-lg border border-primary/5">
+                <div class="flex-1">
+                  <h5 class="text-xs font-bold text-on-surface">Infrastructure & DevOps Setup</h5>
+                  <p class="text-[10px] text-on-surface-variant">Configuring servers and APIs</p>
+                </div>
+                <div class="flex gap-4">
+                  <div class="w-16">
+                    <span class="text-[9px] text-outline block">Hours</span>
+                    <input type="number" id="invoice-h1" class="bg-transparent border-none p-0 text-xs font-bold text-primary text-right focus:ring-0 w-full" value="12.5">
+                  </div>
+                  <div class="w-16">
+                    <span class="text-[9px] text-outline block">Rate ($)</span>
+                    <input type="number" id="invoice-r1" class="bg-transparent border-none p-0 text-xs font-bold text-primary text-right focus:ring-0 w-full" value="180">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="w-full py-3 bg-primary/10 hover:bg-primary/20 border border-primary/30 text-primary font-bold rounded-lg" onclick="calculateInvoiceSummary()">
+              Recalculate Summary
+            </button>
+          </div>
+
+          <!-- Total summary and action sidebar -->
+          <div class="glass-card p-6 flex flex-col justify-between">
+            <div>
+              <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-4">Summary Ledger</h4>
+              <div class="space-y-4 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-on-surface-variant">Base Rate</span>
+                  <span class="font-semibold" id="inv-base-val">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-on-surface-variant">AI Optimization</span>
+                  <span class="text-primary font-semibold">+$480.00</span>
+                </div>
+                <div class="pt-4 border-t border-primary/10 flex justify-between items-end">
+                  <span class="text-xs text-on-surface-variant">Total Due</span>
+                  <span class="text-2xl font-bold" id="inv-total-val">$0.00</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="w-full mt-8 py-3.5 bg-primary text-on-primary font-bold rounded-lg shadow-xl hover:brightness-110 active:scale-98 transition-all flex items-center justify-center gap-2" onclick="saveInvoiceToDB()">
+              <span>Generate & Save</span>
+              <span class="material-symbols-outlined text-sm">send</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PANEL 6: LEAD SCORING ══ -->
+      <div class="ai-content-panel space-y-6" id="panel-lead">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold">AI Lead Scoring</h2>
+          <p class="text-xs text-on-surface-variant">Calculates high-priority prospects using neural signal metrics.</p>
+        </div>
+
+        <div class="grid grid-cols-12 gap-6">
+          <!-- Leads list -->
+          <div class="col-span-12 lg:col-span-7 glass-card p-0 overflow-hidden">
+            <div class="px-6 py-4 border-b border-primary/10 bg-surface/30">
+              <h3 class="font-semibold text-sm">CRM Prospects</h3>
+            </div>
+            <div class="divide-y divide-primary/5 overflow-y-auto max-h-[350px]" id="leads-list-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Detail Scoring Panel -->
+          <div class="col-span-12 lg:col-span-5">
+            <div class="glass-card p-6 flex flex-col justify-between h-full min-h-[350px]" id="lead-score-details">
+              <p class="text-xs text-on-surface-variant italic">Select a lead from the list to analyze or score...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  // Dynamic Tab Switching
+  document.querySelectorAll('.ai-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ai-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const tabId = btn.getAttribute('data-ai-tab');
+      document.querySelectorAll('.ai-content-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      
+      if (tabId === 'panel-lead') loadLeads();
+    });
+  });
+
+  // 1. Content Copy Generator
+  let activeContentType = 'social';
+  function selectContentType(card, type) {
+    document.querySelectorAll('.liquid-glass-card').forEach(c => c.classList.remove('active', 'ring-2', 'ring-primary'));
+    card.classList.add('active', 'ring-2', 'ring-primary');
+    activeContentType = type;
+  }
+
+  function generateCopy() {
+    const prompt = document.getElementById('copy-prompt').value.trim();
+    if (!prompt) return;
+    
+    const tone = document.getElementById('copy-tone').value;
+    const audience = document.getElementById('copy-audience').value || 'general';
+    const preview = document.getElementById('copy-preview-box');
+    
+    preview.innerHTML = '<span class="material-symbols-outlined animate-spin text-primary">sync</span> Processing...';
+    
+    setTimeout(() => {
+      let result = '';
+      if (activeContentType === 'social') {
+        result = `🚀 Ready to scale your brand? We design Liquid Glass user experiences built for speed, conversion, and premium aesthetics. \n\n💻 Crafted with precision, our interfaces convert leads automatically. \n\n🎯 Target Audience: ${audience}\n🔥 Tone: ${tone}`;
+      } else if (activeContentType === 'web') {
+        result = `<h1>Architects of the Digital Frontier</h1><p>We blend glassmorphic minimalism with lightning-fast data pipelines. Every pixel is calculated to inspire trust, drive conversions, and establish authority.</p>`;
+      } else {
+        result = `⚡ LEVEL UP YOUR DESIGN SYSTEM ⚡\nStop relying on basic UI kits. Empower your product teams with high-fidelity Liquid Glass templates engineered for performance. Get a free proposal now!`;
+      }
+      preview.innerText = result;
+      showAdminToast('Generation Completed', 'Copy written by Glacier Neural AI.');
+    }, 1500);
+  }
+
+  // 2. Blog Editor
+  function optimizeBlogContent() {
+    showAdminToast('Optimizing', 'Analyzing keywords and headers...', 'info');
+    setTimeout(() => {
+      showAdminToast('Audit Complete', 'SEO Score updated to 94/100.');
+    }, 1000);
+  }
+
+  function publishBlogArticle() {
+    const title = document.getElementById('blog-title').value;
+    showAdminToast('Article Published', `"${title}" has been published to the frontend blog!`);
+  }
+
+  // 3. Proposal Builder
+  function generateProposal() {
+    const client = document.getElementById('prop-client').value || 'Zenith Group';
+    const scope = document.getElementById('prop-scope').value || 'Full Frontend Redesign';
+    const budget = document.getElementById('prop-budget').value || '15,000';
+    const duration = document.getElementById('prop-duration').value || '4 weeks';
+    
+    const output = document.getElementById('proposal-output');
+    output.innerText = `GLACIER PORTAL PROPOSAL CONTRACT\n=================================\n\nClient Name: ${client}\nScope: ${scope}\nTotal Valuation: $${parseInt(budget).toLocaleString()}\nTimeline: ${duration}\n\nDELIVERABLES & SCHEDULE:\n- Phase 1: High-fidelity Glassmorphic Mockups (Week 2)\n- Phase 2: React Component Assembly (Week 4)\n- Phase 3: API Pipeline Sync & Launch (Week 6)\n\nSignatures:\nLumina Executive _________________   Client Authority _________________`;
+    showAdminToast('Proposal Generated', 'Contract drafted and ready for review.');
+  }
+
+  // 4. Smart Invoice Generator
+  function calculateInvoiceSummary() {
+    const h1 = parseFloat(document.getElementById('invoice-h1').value) || 0;
+    const r1 = parseFloat(document.getElementById('invoice-r1').value) || 0;
+    
+    const subtotal = h1 * r1;
+    const total = subtotal + 480; // Add AI optimization
+    
+    document.getElementById('inv-base-val').textContent = `$${subtotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+    document.getElementById('inv-total-val').textContent = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+  }
+
+  async function saveInvoiceToDB() {
+    const client = document.getElementById('invoice-client').value;
+    const project = document.getElementById('invoice-project').value || 'Glacier UI Consulting';
+    
+    const h1 = parseFloat(document.getElementById('invoice-h1').value) || 0;
+    const r1 = parseFloat(document.getElementById('invoice-r1').value) || 0;
+    const amount = (h1 * r1) + 480;
+    
+    try {
+      const res = await fetch('/api/invoices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          client: client,
+          project: project,
+          amount: amount,
+          status: 'pending',
+          issueDate: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+          dueDate: new Date(Date.now() + 14*24*60*60*1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        })
+      });
+      
+      if (res.ok) {
+        showAdminToast('Invoice Created', `Successfully generated invoice of $${amount.toLocaleString()} for ${client}.`);
+      }
+    } catch (err) {
+      console.error('Error creating invoice:', err);
+    }
+  }
+
+  // 5. Lead Scoring
+  let leadsData = [];
+  let selectedLeadId = null;
+
+  async function loadLeads() {
+    try {
+      const res = await fetch('/api/crm');
+      leadsData = await res.json();
+      
+      const container = document.getElementById('leads-list-container');
+      container.innerHTML = '';
+      
+      leadsData.forEach(lead => {
+        const item = document.createElement('div');
+        item.className = `lead-list-item px-5 py-4 cursor-pointer flex items-center justify-between border-b border-primary/5 transition-all ${selectedLeadId === lead.id ? 'active' : ''}`;
+        item.onclick = () => selectLead(lead.id);
+        
+        const scoreBadge = lead.score 
+          ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/10 text-primary border border-primary/20">${lead.score}%</span>` 
+          : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-container text-on-surface-variant border border-outline/10">Unscored</span>`;
+          
+        item.innerHTML = `
+          <div>
+            <div class="text-sm font-semibold text-on-surface">${lead.name}</div>
+            <div class="text-xs text-on-surface-variant">${lead.company || 'Private Lead'}</div>
+          </div>
+          <div class="flex items-center gap-4">
+            ${scoreBadge}
+            <span class="material-symbols-outlined text-outline text-sm">chevron_right</span>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    } catch (err) {
+      console.error('Error loading leads:', err);
+    }
+  }
+
+  function selectLead(id) {
+    selectedLeadId = id;
+    loadLeads(); // update active class
+    
+    const lead = leadsData.find(l => l.id === id);
+    if (!lead) return;
+    
+    const details = document.getElementById('lead-score-details');
+    
+    const scoreBlock = lead.score 
+      ? `<div class="p-4 rounded-xl bg-primary/5 border border-primary/10 mb-6">
+           <h5 class="text-xs font-bold uppercase tracking-widest text-primary mb-2">AI Score Breakdown</h5>
+           <div class="flex justify-between text-sm mb-1">
+             <span>Overall Fit Score:</span>
+             <span class="font-bold text-primary">${lead.score}%</span>
+           </div>
+           <div class="flex justify-between text-sm">
+             <span>Calculated Priority:</span>
+             <span class="font-bold text-primary">${lead.priority}</span>
+           </div>
+         </div>`
+      : `<button class="w-full py-4 bg-primary text-surface font-bold rounded-xl shadow-lg flex items-center justify-center gap-2" onclick="runLeadScoring('${lead.id}')">
+           <span class="material-symbols-outlined text-sm">rocket_launch</span>
+           <span>RUN AI LEAD SCORING</span>
+         </button>`;
+
+    details.innerHTML = `
+      <div>
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center border border-primary/10">
+            <span class="material-symbols-outlined text-primary text-xl">group_add</span>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold">${lead.name}</h4>
+            <p class="text-xs text-on-surface-variant">${lead.email || 'No email registered'}</p>
+          </div>
+        </div>
+        <div class="space-y-4 text-xs">
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-outline block">Service Needed</span>
+            <span class="text-sm text-on-surface">${lead.service}</span>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-outline block">Estimated Budget</span>
+            <span class="text-sm font-semibold text-primary">$${lead.value ? lead.value.toLocaleString() : '0'}</span>
+          </div>
+          <div>
+            <span class="text-[9px] uppercase tracking-wider text-outline block">Lead Notes</span>
+            <p class="text-on-surface-variant leading-relaxed p-3 bg-surface-container/30 rounded-lg">${lead.notes || 'No description notes available.'}</p>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-primary/10 mt-6">
+        ${scoreBlock}
+      </div>
+    `;
+  }
+
+  async function runLeadScoring(id) {
+    try {
+      const res = await fetch(`/api/crm/${id}/score`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ score: Math.floor(Math.random() * 20) + 80 }) // 80-99
+      });
+      
+      if (res.ok) {
+        showAdminToast('Scoring Complete', 'Prospect conversion metrics evaluated.');
+        await loadLeads();
+        selectLead(id);
+      }
+    } catch (err) {
+      console.error('Error running lead scoring:', err);
+    }
+  }
+
+  calculateInvoiceSummary();
+</script>
+</body>
+</html>

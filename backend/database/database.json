@@ -1,0 +1,2472 @@
+{
+  "ai_settings": {},
+  "ai_api_connections": [],
+  "ai_prompts": [],
+  "ai_templates": [],
+  "ai_knowledge_base": [],
+  "ai_usage_logs": [],
+  "ai_generated_documents": [],
+  "ai_email_history": [],
+  "ai_meeting_history": [],
+  "ai_content_history": [],
+  "ai_proposal_history": [],
+  "settings": {
+    "agencyName": "Lumina Verified Agency",
+    "websiteUrl": "https://lumina.digital",
+    "supportEmail": "hello@lumina.digital",
+    "phone": "+1 (555) 999-8888",
+    "currency": "BDT (৳)",
+    "timezone": "UTC+6 (Dhaka)",
+    "maintenanceMode": false,
+    "tagline": "Advanced Digital Infrastructure",
+    "address": "100 Frost Avenue, Suite 400, Seattle, WA 98101",
+    "language": "en",
+    "googleAnalyticsId": "G-LUM774AB95",
+    "facebookPixelId": "FB-9928172635",
+    "googleTagManagerId": "GTM-KB8827S",
+    "hubspotPortalId": "HS-28192837",
+    "smtpHost": "smtp.lumina.digital",
+    "smtpPort": "587",
+    "smtpUser": "noreply@lumina.digital",
+    "smtpPass": "••••••••",
+    "smtpEncryption": "TLS",
+    "socialLinkedin": "https://linkedin.com/company/lumina-digital",
+    "socialTwitter": "https://twitter.com/lumina_digital",
+    "socialDribbble": "https://dribbble.com/lumina_digital",
+    "socialFacebook": "https://facebook.com/lumina_digital",
+    "socialInstagram": "https://instagram.com/lumina_digital",
+    "shortName": "Lumina Digital Agency",
+    "googleAnalyticsActive": true,
+    "facebookPixelActive": true,
+    "googleTagManagerActive": false,
+    "hubspotPortalActive": false,
+    "socialLinkedinActive": true,
+    "socialTwitterActive": true,
+    "socialDribbbleActive": true,
+    "socialFacebookActive": true,
+    "socialInstagramActive": true
+  },
+  "team": [
+    {
+      "id": "elena",
+      "name": "Elena Rostova",
+      "role": "CEO & Creative Director",
+      "status": "Active",
+      "email": "elena@lumina.digital",
+      "bio": "Elena has spent over 15 years guiding visual narratives for world-class luxury brands. She believes that visual design is not just a coat of paint, but a fundamental pillar of user experience and brand integrity.",
+      "specialty": "Creative Direction, Design System Strategy, Luxury Branding",
+      "github": "",
+      "linkedin": "https://linkedin.com/in/elena-rostova",
+      "twitter": "https://twitter.com/elena_rostova",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBP9HdPA83IJQULUKeQowPp8wCeDu-_ttUoMJPEujp8Cn_a6LY2l1NogLXg9-ZIT1M_xf0KSY3NGMozRasyShvYJ9cPj9qkkD0NfGF5J5NBOia-cB1-C0h0CZ7_rw0OB_uY0X1nHH5gy5mbuuficKSOsfQHOibDlaTK7eODvnl-6YisrwiyQeavXmrqs1Qqmc4EPY5NkFcnKfxzE28YRlhcf7COQwQb2IoVQOMhw_risB5JShVXO4n-nomg7KD57uUOR4n-3rqU"
+    },
+    {
+      "id": "marcus",
+      "name": "Marcus Chen",
+      "role": "Head of Engineering",
+      "status": "Active",
+      "email": "marcus@lumina.digital",
+      "bio": "Marcus is a full-stack engineer specializing in sub-millisecond data pipelines and headless architecture. Prior to Lumina, he scaled web platforms for key financial corporations in Silicon Valley.",
+      "specialty": "Next.js Engine Optimization, Canvas Pipelines, GraphQL Specs",
+      "github": "https://github.com/marcuschen",
+      "linkedin": "https://linkedin.com/in/marcuschen",
+      "twitter": "",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDnY8qAyXynYJkJwx6bELLoLFZO7YcYuwc1sFq3yvQMCO9D71FDJ0I7QKSHTXpNpWjhUmLIBwkYoV5-DuUzRM0MNXhVXT1gfD99Uol744l_AEz1_YRSKaKvHUt9UM1hLz_agBB1TbZbEdeHFLg4vmXc17qIhTh3nYfmtvNtKsmkwAgkAYFfB3YWZpRIjxEQ0KQA6N9206do0Sy1mIzXVMUjnOjJNyDiBbx6K__OGIPecZbPmK3kCInuFrYvSzlLCpBWkxWO-GwA"
+    },
+    {
+      "id": "jordan",
+      "name": "Jordan Vance",
+      "role": "Lead UX/UI Designer",
+      "status": "Active",
+      "email": "jordan@lumina.digital",
+      "bio": "Jordan focuses on the micro-interactions that make interfaces feel responsive and alive. With background in cognitive sciences and visual arts, they design layouts that reduce cognitive load and delight users.",
+      "specialty": "Interactive Prototyping, Glassmorphism Aesthetics, Micro-animations",
+      "github": "",
+      "linkedin": "https://linkedin.com/in/jordanvance",
+      "twitter": "https://twitter.com/jordanvance",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBbWGs7K4nauyFFNvpgycXZaaLG6yc4CLVaqgCi-SSLj5fjtvzZ_-p13xKwn6XQfNl2yH44Yp49kpl7X55kf-xghjovJ5mV9LUpWrvN2e8574lcX35f81x6mTPIkYlR-y83F-PKSG39HdxbBoagUh7bPc--HUgV8UufXCg_d0mGiq18M-sw9Ko07kw-krGHA3PRpqNxPKisqjOBQGL4AeihWkGLIAI-3_FUBnKXWsju6c_NMb0vmTWRd4BO9XBd_a9cy0BwdJF8"
+    },
+    {
+      "id": "david",
+      "name": "David Alistair",
+      "role": "SEO Strategist",
+      "status": "Active",
+      "email": "david@lumina.digital",
+      "bio": "David turns search query metrics into operational acquisition funnels. He combines rigorous technical site auditing with rich semantic strategy to build organic visibility that sustains year-over-year growth.",
+      "specialty": "Technical Site Audits, Keyword Strategies, Structured Schema Implementation",
+      "github": "",
+      "linkedin": "https://linkedin.com/in/davidalistair",
+      "twitter": "",
+      "avatar": ""
+    },
+    {
+      "id": "sarah",
+      "name": "Sarah Jenkins",
+      "role": "Head of Marketing",
+      "status": "Away",
+      "email": "sarah@lumina.digital",
+      "bio": "Sarah aligns product positioning with high-performance digital campaigns. She coordinates paid media and automated funnel campaigns that convert visitors into active institutional partners.",
+      "specialty": "Paid Advertising (PPC) Funnels, Lifecycle Automation, Campaign ROI Optimization",
+      "github": "",
+      "linkedin": "https://linkedin.com/in/sarahjenkins",
+      "twitter": "",
+      "avatar": ""
+    },
+    {
+      "id": "mem-1782301403916",
+      "name": "Ferdous",
+      "role": "Creative Manager",
+      "status": "Active",
+      "email": "ferdous07@gmail.com",
+      "bio": "Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer Software Engineer vSoftware Engineer",
+      "specialty": "Software Engineer",
+      "github": "",
+      "linkedin": "",
+      "twitter": "",
+      "avatar": ""
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-1",
+      "name": "Glacier UI",
+      "client": "IndieShop Co.",
+      "stage": "Development",
+      "progress": 70,
+      "team": [
+        "marcus",
+        "david"
+      ],
+      "value": 18000,
+      "date": "2026-06-10"
+    },
+    {
+      "id": "proj-2",
+      "name": "Nexus Brand",
+      "client": "Nexus Corp.",
+      "stage": "Review",
+      "progress": 90,
+      "team": [
+        "elena",
+        "jordan"
+      ],
+      "value": 22000,
+      "date": "2026-05-20"
+    },
+    {
+      "id": "proj-3",
+      "name": "Horizon Portal",
+      "client": "Horizon Labs",
+      "stage": "Design",
+      "progress": 40,
+      "team": [
+        "jordan",
+        "sarah"
+      ],
+      "value": 16500,
+      "date": "2026-06-15"
+    },
+    {
+      "id": "proj-98035",
+      "name": "Brand Development & Architecture",
+      "client": "Test Company LLC",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-758582",
+      "name": "Brand Development & Architecture",
+      "client": "Verify Co",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-63394",
+      "name": "Brand Development & Architecture",
+      "client": "Gemini Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-905039",
+      "name": "Brand Development & Architecture",
+      "client": "IPv6 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-473708",
+      "name": "Brand Development & Architecture",
+      "client": "127_2 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-143976",
+      "name": "Brand Development & Architecture",
+      "client": "127_3 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-965700",
+      "name": "Brand Development & Architecture",
+      "client": "127_4 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-487971",
+      "name": "Brand Development & Architecture",
+      "client": "127_6 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-523882",
+      "name": "Brand Development & Architecture",
+      "client": "127_7 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-64821",
+      "name": "Brand Development & Architecture",
+      "client": "127_8 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-408481",
+      "name": "Brand Development & Architecture",
+      "client": "127_9 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    },
+    {
+      "id": "proj-333314",
+      "name": "Brand Development & Architecture",
+      "client": "127_10 Corp",
+      "stage": "Design",
+      "progress": 15,
+      "team": [
+        "sarah",
+        "jordan"
+      ],
+      "value": 7500,
+      "date": "2026-07-01"
+    }
+  ],
+  "crm": [
+    {
+      "id": "lead-1",
+      "name": "Sarah Jenkins",
+      "company": "IndieShop Co.",
+      "service": "E-commerce Redesign",
+      "stage": "New",
+      "value": 18000,
+      "email": "sarah@indieshop.co",
+      "phone": "+1 555 1234",
+      "source": "Contact Page",
+      "date": "Jun 21, 2024",
+      "notes": "We need a complete redesign of our Shopify store using headless Shopify and Next.js.\n[AI Lead Score: 93% - Priority: Extreme]",
+      "score": 93,
+      "priority": "Extreme"
+    },
+    {
+      "id": "lead-2",
+      "name": "Marcus Lee",
+      "company": "LocalBiz",
+      "service": "SEO Campaign",
+      "stage": "New",
+      "value": 4500,
+      "email": "marcus@localbiz.co",
+      "phone": "",
+      "source": "Referral",
+      "date": "Jun 21, 2024",
+      "notes": "We need to optimize our local search rankings to drive more foot traffic.\n[AI Lead Score: 84% - Priority: High]",
+      "score": 84,
+      "priority": "High"
+    },
+    {
+      "id": "lead-3",
+      "name": "Priya Sharma",
+      "company": "AppLab",
+      "service": "Mobile App MVP",
+      "stage": "New",
+      "value": 35000,
+      "email": "priya@applab.in",
+      "phone": "+91 98765 43210",
+      "source": "Google Ads",
+      "date": "Jun 20, 2024",
+      "notes": "Wants to build a cross-platform Flutter app for local service booking.\n[AI Lead Score: 97% - Priority: Extreme]",
+      "score": 97,
+      "priority": "Extreme"
+    },
+    {
+      "id": "lead-4",
+      "name": "Nexus Corp.",
+      "company": "Nexus Corp.",
+      "service": "Brand Overhaul",
+      "stage": "Contacted",
+      "value": 22000,
+      "email": "contact@nexus.co",
+      "phone": "",
+      "source": "LinkedIn",
+      "date": "Jun 18, 2024",
+      "notes": "Spoke on the phone, very interested in brand identity system.\n[AI Lead Score: 90% - Priority: Extreme]",
+      "score": 90,
+      "priority": "Extreme"
+    },
+    {
+      "id": "lead-5",
+      "name": "Horizon Labs",
+      "company": "Horizon Labs",
+      "service": "Dashboard SaaS",
+      "stage": "Contacted",
+      "value": 16500,
+      "email": "dev@horizon.io",
+      "phone": "",
+      "source": "Google Ads",
+      "date": "Jun 15, 2024",
+      "notes": "Requires design of clean React SaaS dashboard templates.\n[AI Lead Score: 90% - Priority: Extreme]",
+      "score": 90,
+      "priority": "Extreme"
+    },
+    {
+      "id": "lead-6",
+      "name": "Apex Digital",
+      "company": "Apex Digital",
+      "service": "Full Website Rebuild",
+      "stage": "Proposal",
+      "value": 45000,
+      "email": "ceo@apex.io",
+      "phone": "",
+      "source": "LinkedIn",
+      "date": "Jun 12, 2024",
+      "notes": "Proposal sent for multi-page Gatsby.js static agency website."
+    },
+    {
+      "id": "lead-7",
+      "name": "Prism Studio",
+      "company": "Prism Studio",
+      "service": "Content Strategy",
+      "stage": "Proposal",
+      "value": 8800,
+      "email": "hello@prism.studio",
+      "phone": "",
+      "source": "Referral",
+      "date": "Jun 10, 2024",
+      "notes": "Needs copy for all services and case studies."
+    },
+    {
+      "id": "lead-8",
+      "name": "DataHub Inc.",
+      "company": "DataHub",
+      "service": "Analytics Platform",
+      "stage": "Negotiation",
+      "value": 28000,
+      "email": "info@datahub.net",
+      "phone": "",
+      "source": "Google Ads",
+      "date": "Jun 08, 2024",
+      "notes": "Currently negotiating price. Offered 10% discount on dev scope."
+    },
+    {
+      "id": "lead-9",
+      "name": "Lumen Corp",
+      "company": "Lumen Corp",
+      "service": "CMS Migration",
+      "stage": "Won",
+      "value": 12000,
+      "email": "admin@lumencorp.org",
+      "phone": "",
+      "source": "Cold Outreach",
+      "date": "Jun 05, 2024",
+      "notes": "Closed. Switched from WordPress to Strapi headless CMS."
+    },
+    {
+      "id": "lead-10",
+      "name": "ZeroPoint",
+      "company": "ZeroPoint",
+      "service": "SEO Campaign",
+      "stage": "Won",
+      "value": 3200,
+      "email": "contacts@zeropoint.xyz",
+      "phone": "",
+      "source": "Google Search",
+      "date": "Jun 01, 2024",
+      "notes": "Closed and paid."
+    },
+    {
+      "id": "lead-1782821243219",
+      "name": "ferdous",
+      "company": "",
+      "service": "SEO & Growth",
+      "stage": "New",
+      "value": 8000,
+      "email": "your@gmail.com",
+      "phone": "",
+      "source": "Consultation Form",
+      "date": "Jun 30, 2026",
+      "notes": "fasoaerfjdasfjoaejrfodasfafsaf (Time: 10:30 AM)"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "INV-2024-091",
+      "client": "Nexus Corp",
+      "project": "Brand Overhaul",
+      "issueDate": "Jun 01, 2024",
+      "dueDate": "Jun 15, 2024",
+      "amount": 6200,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2024-090",
+      "client": "Prism Studio",
+      "project": "Content Strategy",
+      "issueDate": "Jun 05, 2024",
+      "dueDate": "Jun 20, 2024",
+      "amount": 3800,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2024-089",
+      "client": "Apex Digital",
+      "project": "E-commerce Platform",
+      "issueDate": "May 28, 2024",
+      "dueDate": "Jun 12, 2024",
+      "amount": 4500,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2024-088",
+      "client": "Horizon Labs",
+      "project": "Dashboard SaaS",
+      "issueDate": "May 15, 2024",
+      "dueDate": "May 30, 2024",
+      "amount": 9100,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2024-087",
+      "client": "Lumen Corp",
+      "project": "CMS Migration",
+      "issueDate": "May 10, 2024",
+      "dueDate": "May 25, 2024",
+      "amount": 12000,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2026-334",
+      "client": "Solaris Tech Group",
+      "project": "AI UI Design System Migration",
+      "issueDate": "Jun 22, 2026",
+      "dueDate": "Jul 06, 2026",
+      "amount": 2730,
+      "status": "paid",
+      "amountPaid": 2730,
+      "remainingDue": 0,
+      "paymentHistory": [
+        {
+          "amount": 500,
+          "date": "Jul 1, 2026",
+          "method": "Card",
+          "transactionId": "TXN-1782890716251-247"
+        },
+        {
+          "amount": 1230,
+          "date": "Jul 1, 2026",
+          "method": "Card",
+          "transactionId": "TXN-1782890722996-628"
+        }
+      ]
+    },
+    {
+      "id": "INV-2026-980",
+      "client": "Hyperion Digital",
+      "project": "web design",
+      "issueDate": "Jun 24, 2026",
+      "dueDate": "Jul 8, 2026",
+      "amount": 1980,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2026-472",
+      "client": "Hyperion Digital",
+      "project": "web design",
+      "issueDate": "Jun 24, 2026",
+      "dueDate": "Jul 8, 2026",
+      "amount": 1980,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2026-201",
+      "client": "Hyperion Digital",
+      "project": "web design",
+      "issueDate": "Jun 24, 2026",
+      "dueDate": "Jul 8, 2026",
+      "amount": 3605,
+      "status": "paid"
+    },
+    {
+      "id": "INV-2026-563",
+      "client": "Hyperion Digital",
+      "project": "Glacier UI Consulting",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2730,
+      "status": "partially paid",
+      "amountPaid": 2500,
+      "remainingDue": 230,
+      "paymentHistory": [
+        {
+          "amount": 2500,
+          "date": "Jul 1, 2026",
+          "method": "Card",
+          "transactionId": "TXN-1782891330970-205"
+        }
+      ]
+    },
+    {
+      "id": "INV-2026-729",
+      "client": "Test Company LLC",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "paid",
+      "clientEmail": "test@company.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 2500,
+      "remainingDue": 0,
+      "paymentHistory": [
+        {
+          "amount": 2500,
+          "date": "Jul 1, 2026",
+          "method": "Card",
+          "transactionId": "TXN-1782901626834-401"
+        }
+      ]
+    },
+    {
+      "id": "INV-2026-408",
+      "client": "Verify Co",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "verify@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-525",
+      "client": "Gemini Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "gemini.test.1040@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-855",
+      "client": "IPv6 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "ipv6@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-537",
+      "client": "127_2 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_2@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-520",
+      "client": "127_3 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_3@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-253",
+      "client": "127_4 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_4@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-282",
+      "client": "127_6 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_6@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-970",
+      "client": "127_7 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_7@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-232",
+      "client": "127_8 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_8@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-520",
+      "client": "127_9 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_9@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    },
+    {
+      "id": "INV-2026-436",
+      "client": "127_10 Corp",
+      "project": "Design & Kickoff Retainer",
+      "issueDate": "Jul 1, 2026",
+      "dueDate": "Jul 15, 2026",
+      "amount": 2500,
+      "status": "pending",
+      "clientEmail": "test_127_10@test.com",
+      "clientAddress": "Client Headquarters",
+      "items": [
+        {
+          "description": "Design & Kickoff Retainer",
+          "quantity": 1,
+          "unitPrice": 2500,
+          "amount": 2500
+        }
+      ],
+      "tax": 0,
+      "discount": 0,
+      "amountPaid": 0,
+      "remainingDue": 2500,
+      "paymentHistory": []
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg-1",
+      "name": "Sarah Jenkins",
+      "email": "sarah@indieshop.co",
+      "subject": "E-commerce Redesign",
+      "budget": "growth",
+      "details": "We need a complete redesign of our Shopify store using headless Shopify and Next.js.",
+      "type": "contact",
+      "status": "New",
+      "date": "Jun 21, 2024"
+    },
+    {
+      "id": "msg-2",
+      "name": "Marcus Lee",
+      "email": "marcus@localbiz.co",
+      "subject": "SEO Campaign",
+      "budget": "startup",
+      "details": "We need to optimize our local search rankings to drive more foot traffic.",
+      "type": "contact",
+      "status": "Replied",
+      "date": "Jun 21, 2024"
+    },
+    {
+      "id": "msg-3",
+      "name": "Priya Sharma",
+      "email": "priya@applab.in",
+      "subject": "App MVP Development",
+      "budget": "enterprise",
+      "details": "Wants to build a cross-platform Flutter app for local service booking.",
+      "type": "contact",
+      "status": "New",
+      "date": "Jun 20, 2024"
+    },
+    {
+      "id": "tkt-1",
+      "idNum": "TKT-1002",
+      "client": "Nexus Corp",
+      "subject": "SVG Logo assets corrupt",
+      "details": "The exported SVG logo vectors have clipped bounds. We need re-exports.",
+      "type": "support",
+      "priority": "High",
+      "status": "Replied",
+      "date": "Jun 21, 2024"
+    },
+    {
+      "id": "tkt-2",
+      "idNum": "TKT-1001",
+      "client": "Horizon Labs",
+      "subject": "SSL Certificate Renewal",
+      "details": "Staging server showing SSL warning. Need Let's Encrypt auto-renewal setup.",
+      "type": "support",
+      "priority": "Medium",
+      "status": "Resolved",
+      "date": "Jun 19, 2024"
+    },
+    {
+      "id": "tkt-1782885508677",
+      "idNum": "TKT-1005",
+      "client": "Acme Corp",
+      "subject": "fdafdas",
+      "details": "fasfasfasfdfas",
+      "type": "support",
+      "priority": "High",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782893807678",
+      "idNum": "TKT-1006",
+      "client": "Test Company LLC",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782896096227",
+      "idNum": "TKT-1007",
+      "client": "Verify Co",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782902461110",
+      "idNum": "TKT-1008",
+      "client": "Gemini Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782902616276",
+      "idNum": "TKT-1009",
+      "client": "IPv6 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782902700535",
+      "idNum": "TKT-1010",
+      "client": "127_2 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782902808559",
+      "idNum": "TKT-1011",
+      "client": "127_3 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782902898147",
+      "idNum": "TKT-1012",
+      "client": "127_4 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782903222639",
+      "idNum": "TKT-1013",
+      "client": "127_6 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782903335789",
+      "idNum": "TKT-1014",
+      "client": "127_7 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782903462672",
+      "idNum": "TKT-1015",
+      "client": "127_8 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782903838699",
+      "idNum": "TKT-1016",
+      "client": "127_9 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    },
+    {
+      "id": "tkt-1782903921571",
+      "idNum": "TKT-1017",
+      "client": "127_10 Corp",
+      "subject": "Welcome to your Workspace Portal",
+      "details": "This support ticket has been opened automatically. If you need any technical assistance with your workspace billing, project assets, or communication channels, reply directly here.",
+      "type": "support",
+      "priority": "Low",
+      "status": "Open",
+      "date": "Jul 1, 2026"
+    }
+  ],
+  "newsletter": [
+    {
+      "email": "sub1@example.com",
+      "date": "Jun 18, 2024",
+      "status": "active"
+    },
+    {
+      "email": "sub2@example.com",
+      "date": "Jun 19, 2024",
+      "status": "active"
+    },
+    {
+      "email": "sub3@example.com",
+      "date": "Jun 21, 2024",
+      "status": "active"
+    }
+  ],
+  "apiKeys": [
+    {
+      "id": "key-1",
+      "name": "Production Frontend",
+      "prefix": "lum_live_92f3...",
+      "created": "Jun 10, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "key-2",
+      "name": "Zapier Webhooks integration",
+      "prefix": "lum_zap_2a8c...",
+      "created": "Jun 12, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "key-1782114318356",
+      "name": "NextJS Website",
+      "prefix": "lum_live_cffb...",
+      "created": "Jun 22, 2026",
+      "status": "Active"
+    },
+    {
+      "id": "key-1782115154924",
+      "name": "text",
+      "prefix": "lum_live_a0bc...",
+      "created": "Jun 22, 2026",
+      "status": "Active"
+    }
+  ],
+  "activeSessions": [
+    {
+      "id": "sess-1",
+      "device": "MacBook Pro - Chrome (Seattle, US)",
+      "ip": "192.168.1.15",
+      "current": true,
+      "lastActive": "Just now"
+    },
+    {
+      "id": "sess-2",
+      "device": "iPhone 15 - Safari (Seattle, US)",
+      "ip": "172.56.21.84",
+      "current": false,
+      "lastActive": "2 hours ago"
+    }
+  ],
+  "backups": [
+    {
+      "id": "bk-1",
+      "name": "Backup_2026-06-20_0400.zip",
+      "size": "4.2 MB",
+      "date": "Jun 20, 2026 04:00 AM"
+    },
+    {
+      "id": "bk-2",
+      "name": "Backup_2026-06-21_0400.zip",
+      "size": "4.3 MB",
+      "date": "Jun 21, 2026 04:00 AM"
+    },
+    {
+      "id": "bk-1782114884723",
+      "name": "Backup_2026-06-22_4940.zip",
+      "size": "3.1 MB",
+      "date": "Jun 22, 2026 01:54 PM"
+    },
+    {
+      "id": "bk-1782115099227",
+      "name": "Backup_2026-06-22_5668.zip",
+      "size": "3.4 MB",
+      "date": "Jun 22, 2026 01:58 PM"
+    },
+    {
+      "id": "bk-1782115290943",
+      "name": "Backup_2026-06-22_4963.zip",
+      "size": "4.9 MB",
+      "date": "Jun 22, 2026 02:01 PM"
+    },
+    {
+      "id": "bk-1782115296823",
+      "name": "Backup_2026-06-22_3227.zip",
+      "size": "4.9 MB",
+      "date": "Jun 22, 2026 02:01 PM"
+    }
+  ],
+  "systemLogs": [
+    {
+      "id": "log-1",
+      "level": "INFO",
+      "message": "System started successfully. Environment: PRODUCTION",
+      "timestamp": "Jun 22, 2026 12:00:00 PM"
+    },
+    {
+      "id": "log-2",
+      "level": "INFO",
+      "message": "Cron job completed successfully: Backup schedule run",
+      "timestamp": "Jun 22, 2026 12:15:32 PM"
+    },
+    {
+      "id": "log-3",
+      "level": "WARNING",
+      "message": "SMTP connection failed: Host unreachable. Retrying...",
+      "timestamp": "Jun 22, 2026 12:20:11 PM"
+    },
+    {
+      "id": "log-4",
+      "level": "INFO",
+      "message": "Database synchronized with server cache",
+      "timestamp": "Jun 22, 2026 12:22:45 PM"
+    },
+    {
+      "id": "log-5",
+      "level": "ERROR",
+      "message": "Unauthorized API access attempt block on endpoint: /api/invoices",
+      "timestamp": "Jun 22, 2026 12:35:10 PM"
+    },
+    {
+      "id": "log-1782114884723",
+      "level": "INFO",
+      "message": "Manual backup triggered: Created file Backup_2026-06-22_4940.zip",
+      "timestamp": "Jun 22, 2026 01:54 PM"
+    },
+    {
+      "id": "log-1782115096427",
+      "level": "INFO",
+      "message": "System cache cleared manually by admin",
+      "timestamp": "Jun 22, 2026 01:58 PM"
+    },
+    {
+      "id": "log-1782115099227",
+      "level": "INFO",
+      "message": "Manual backup triggered: Created file Backup_2026-06-22_5668.zip",
+      "timestamp": "Jun 22, 2026 01:58 PM"
+    },
+    {
+      "id": "log-1782115290943",
+      "level": "INFO",
+      "message": "Manual backup triggered: Created file Backup_2026-06-22_4963.zip",
+      "timestamp": "Jun 22, 2026 02:01 PM"
+    },
+    {
+      "id": "log-1782115296823",
+      "level": "INFO",
+      "message": "Manual backup triggered: Created file Backup_2026-06-22_3227.zip",
+      "timestamp": "Jun 22, 2026 02:01 PM"
+    },
+    {
+      "id": "log-1782902309322",
+      "level": "INFO",
+      "message": "System cache cleared manually by admin",
+      "timestamp": "Jul 1, 2026 04:38 PM"
+    }
+  ],
+  "files": [
+    {
+      "id": "file-1",
+      "name": "Logo_Final_Dark.png",
+      "size": "2.4 MB",
+      "folder": "Brand Assets",
+      "date": "Jun 22, 2026",
+      "type": "PNG"
+    },
+    {
+      "id": "file-2",
+      "name": "Q3_Brand_Guidelines.pdf",
+      "size": "18 MB",
+      "folder": "Brand Assets",
+      "date": "Jun 21, 2026",
+      "type": "PDF"
+    },
+    {
+      "id": "file-3",
+      "name": "Project_Scope_v2.docx",
+      "size": "45 KB",
+      "folder": "Wireframes",
+      "date": "Jun 12, 2026",
+      "type": "DOCX"
+    },
+    {
+      "id": "file-4",
+      "name": "Homepage_Animation.mp4",
+      "size": "142 MB",
+      "folder": "Final Deliverables",
+      "date": "Jun 10, 2026",
+      "type": "MP4"
+    },
+    {
+      "id": "file-1782133625628",
+      "name": "Design_Specs_v4.png",
+      "size": "1.8 MB",
+      "folder": "Brand Assets",
+      "date": "Jun 22, 2026",
+      "type": "PNG"
+    },
+    {
+      "id": "file-1782302158359",
+      "name": "Gemini_Generated_Image_8l8x0x8l8x0x8l8x.png",
+      "size": "6.5 MB",
+      "folder": "Brand Assets",
+      "date": "Jun 24, 2026",
+      "type": "PNG"
+    },
+    {
+      "id": "file-1782901706709",
+      "name": "road-to-monument-valley-in-arizona-amar-guillen-photographer-artist.jpg",
+      "size": "0.1 MB",
+      "folder": "Brand Assets",
+      "date": "Jul 1, 2026",
+      "type": "JPG",
+      "client": "Internal"
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "chat-seed-1",
+      "sender": "John Doe",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "Hi Lumina Team, I wanted to follow up on our design milestones for the brand assets.",
+      "timestamp": "10:15 AM",
+      "date": "Jun 30, 2026",
+      "isClient": true
+    },
+    {
+      "id": "chat-seed-2",
+      "sender": "Admin",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "Hi John! We have uploaded the initial wireframes in your portal under brand assets. Let us know what you think.",
+      "timestamp": "10:30 AM",
+      "date": "Jun 30, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-seed-3",
+      "sender": "John Doe",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "Those look amazing! Thanks for the quick turnaround. Can we schedule a brief consultation to review it tomorrow?",
+      "timestamp": "11:05 AM",
+      "date": "Jun 30, 2026",
+      "isClient": true
+    },
+    {
+      "id": "chat-1782893807678",
+      "sender": "Sarah Jenkins",
+      "senderRole": "Test Company LLC",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test Representative! Welcome to Lumina Digital. We have initialized your client portal workspace for Test Company LLC. Let us know if you have any questions!",
+      "timestamp": "02:16 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782896096227",
+      "sender": "Sarah Jenkins",
+      "senderRole": "Verify Co",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Verify User! Welcome to Lumina Digital. We have initialized your client portal workspace for Verify Co. Let us know if you have any questions!",
+      "timestamp": "02:54 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782896182132",
+      "sender": "Admin",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "hi",
+      "timestamp": "02:56 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782896190010",
+      "sender": "Admin",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "hi",
+      "timestamp": "02:56 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782896219576",
+      "sender": "Client User",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "hello, how are you",
+      "timestamp": "02:56 PM",
+      "date": "Jul 1, 2026",
+      "isClient": true
+    },
+    {
+      "id": "chat-1782896232361",
+      "sender": "Admin",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "i'm fine",
+      "timestamp": "02:57 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782896242994",
+      "sender": "Admin",
+      "senderRole": "Acme Corp",
+      "avatar": "",
+      "text": "what about you",
+      "timestamp": "02:57 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782902461119",
+      "sender": "Sarah Jenkins",
+      "senderRole": "Gemini Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Gemini Test! Welcome to Lumina Digital. We have initialized your client portal workspace for Gemini Corp. Let us know if you have any questions!",
+      "timestamp": "04:41 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782902616277",
+      "sender": "Sarah Jenkins",
+      "senderRole": "IPv6 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi IPv6 Test! Welcome to Lumina Digital. We have initialized your client portal workspace for IPv6 Corp. Let us know if you have any questions!",
+      "timestamp": "04:43 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782902700538",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_2 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_2! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_2 Corp. Let us know if you have any questions!",
+      "timestamp": "04:45 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782902808559",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_3 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_3! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_3 Corp. Let us know if you have any questions!",
+      "timestamp": "04:46 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782902898147",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_4 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_4! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_4 Corp. Let us know if you have any questions!",
+      "timestamp": "04:48 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782903222639",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_6 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_6! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_6 Corp. Let us know if you have any questions!",
+      "timestamp": "04:53 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782903335790",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_7 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_7! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_7 Corp. Let us know if you have any questions!",
+      "timestamp": "04:55 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782903462672",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_8 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_8! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_8 Corp. Let us know if you have any questions!",
+      "timestamp": "04:57 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782903838703",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_9 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_9! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_9 Corp. Let us know if you have any questions!",
+      "timestamp": "05:03 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    },
+    {
+      "id": "chat-1782903921573",
+      "sender": "Sarah Jenkins",
+      "senderRole": "127_10 Corp",
+      "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA",
+      "text": "Hi Test 127_10! Welcome to Lumina Digital. We have initialized your client portal workspace for 127_10 Corp. Let us know if you have any questions!",
+      "timestamp": "05:05 PM",
+      "date": "Jul 1, 2026",
+      "isClient": false
+    }
+  ],
+  "websiteContent": {
+    "Homepage": {
+      "hero": {
+        "title": "Crafting Premium Glassmorphic Experiences",
+        "subtitle": "We engineer high-end digital experiences that sit at the intersection of stunning aesthetics and enterprise-level reliability.",
+        "ctaText": "Start Your Project",
+        "active": true
+      },
+      "services": {
+        "title": "Our Core Services",
+        "subtitle": "Comprehensive digital solutions built to drive enterprise growth.",
+        "active": true
+      },
+      "testimonials": {
+        "title": "Client Testimonials",
+        "subtitle": "What our clients say about us",
+        "active": true,
+        "reviews": [
+          {
+            "author": "Sarah Jenkins",
+            "company": "IndieShop Co.",
+            "text": "Absolutely stunning work. The design exceeded all our expectations."
+          },
+          {
+            "author": "Marcus Lee",
+            "company": "LocalBiz",
+            "text": "The performance is incredible. Our conversion rate increased by 40%."
+          }
+        ]
+      },
+      "stats": {
+        "title": "Statistics Counter",
+        "active": true,
+        "items": [
+          {
+            "label": "Projects Completed",
+            "value": "150+"
+          },
+          {
+            "label": "Happy Clients",
+            "value": "99%"
+          },
+          {
+            "label": "Retention Rate",
+            "value": "95%"
+          }
+        ]
+      },
+      "ctaBanner": {
+        "title": "Ready to scale your digital presence?",
+        "subtitle": "Get in touch with our experts today and start your journey.",
+        "ctaText": "Start Your Project",
+        "active": true
+      }
+    },
+    "About Us": {
+      "hero": {
+        "title": "Architects of the Digital Frontier",
+        "subtitle": "We are a team of engineers, designers, and thinkers dedicated to visual excellence.",
+        "active": true
+      },
+      "story": {
+        "title": "Our Story",
+        "text": "Founded in 2024, Lumina was born from a desire to combine luxury visual design with ultra-fast web infrastructure. We believe that software should be both a utility and a work of art.",
+        "active": true
+      },
+      "values": {
+        "title": "Core Values",
+        "active": true,
+        "items": [
+          {
+            "title": "Precision",
+            "desc": "Every pixel and line of code is written with absolute intent."
+          },
+          {
+            "title": "Aesthetics",
+            "desc": "Stunning visuals that leave a lasting impression of quality."
+          },
+          {
+            "title": "Performance",
+            "desc": "Optimized execution times for sub-millisecond response."
+          }
+        ]
+      }
+    },
+    "Services": {
+      "hero": {
+        "title": "Lumina Services",
+        "subtitle": "Comprehensive digital solutions engineered for modern enterprises. We craft precision-driven experiences that elevate your brand.",
+        "active": true
+      },
+      "features": {
+        "title": "Core Offerings",
+        "active": true,
+        "items": [
+          {
+            "title": "Web Design",
+            "desc": "Immersive, user-centric interfaces designed with pixel-perfect precision and functional luxury."
+          },
+          {
+            "title": "Web Engineering",
+            "desc": "Robust, scalable, and high-performance digital architectures built on modern technology stacks."
+          },
+          {
+            "title": "SEO & Growth",
+            "desc": "Data-driven search engine optimization to maximize your organic visibility and drive targeted traffic."
+          },
+          {
+            "title": "Digital Marketing",
+            "desc": "Strategic campaigns that engage your audience and drive measurable conversions across channels."
+          },
+          {
+            "title": "AI & ML Consulting",
+            "desc": "Transforming operations with advanced models.\n- Large Language Model tuning\n- Predictive modeling\n- Intelligent automation"
+          }
+        ]
+      },
+      "test": {
+        "title": "Updated Test Title",
+        "text": "Updated description text.",
+        "active": true
+      }
+    },
+    "Portfolio": {
+      "hero": {
+        "title": "Featured Work",
+        "subtitle": "A curated collection of design systems, web platforms, and brand strategies crafted for industry leaders.",
+        "active": true
+      },
+      "showcase": {
+        "title": "Projects Showcase",
+        "subtitle": "Explore our creative engineering feats.",
+        "active": true
+      }
+    },
+    "Pricing": {
+      "hero": {
+        "title": "Transparent Pricing",
+        "subtitle": "Simple, value-driven plans customized to fit your growth stage.",
+        "active": true
+      },
+      "packages": {
+        "title": "Flexible Packages",
+        "active": true,
+        "items": [
+          {
+            "name": "Startup Core",
+            "price": "$3,200",
+            "desc": "Perfect for emerging brands needing a high-performance landing page."
+          },
+          {
+            "name": "Enterprise Growth",
+            "price": "$12,000",
+            "desc": "Complete custom Next.js site, CMS integration, and SEO launch."
+          },
+          {
+            "name": "Enterprise Ultimate",
+            "price": "$4,999",
+            "desc": "Ultimate package for global enterprises.\n- Dedicated Solutions Architect\n- 24/7 Priority SLA Response\n- Unlimited Custom Integrations\n- Standard AI Assistant Suite"
+          }
+        ]
+      }
+    },
+    "Contact": {
+      "hero": {
+        "title": "Get in Touch",
+        "subtitle": "Have a project in mind? Let's build something extraordinary together.",
+        "active": true
+      },
+      "form": {
+        "title": "Project Inquiry",
+        "subtitle": "Tell us about your objectives and budget.",
+        "active": true
+      }
+    },
+    "Blog": {
+      "hero": {
+        "title": "Digital Insights",
+        "subtitle": "Articles and thoughts on design systems, web performance, and search visibility.",
+        "active": true
+      }
+    }
+  },
+  "clients": [
+    {
+      "id": "client-seed-1",
+      "username": "client",
+      "company": "Acme Corp",
+      "email": "billing@acme.com",
+      "name": "Client User",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$07864751344ef0ec2017fc5a22f71b64$d075c0b740ec291a908cd5c8e9f3bad38e010a80392ff042267d8c70985e8e982942c55798b57dfc5afbd25f8b7c52d2f147e9f4c61ffd6dca28445b054d10af"
+    },
+    {
+      "id": "client-1782893807627",
+      "username": "testcompany",
+      "company": "Test Company LLC",
+      "name": "Test Representative",
+      "email": "test@company.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$47df93103049bb9e981134faf6ce7772$4eb584bed4f0c84bd32d40f8764b8fabbee0adc001ab1204e2ca4892e267864ba63cd00923cdfec7e0ec20a596d3edca6e5174a2e06238e9480899b1745f4543"
+    },
+    {
+      "id": "client-1782896096225",
+      "username": "verifyuser",
+      "company": "Verify Co",
+      "name": "Verify User",
+      "email": "verify@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$f9f332001bc6ef9745f2faf07272cf55$39525d5a8d974856e6064707160d3b073be02ec2adf93d927ffa1af1d5c727cd1256046a93f4b08913945788f58652b64d2e88228c10650bba72efd479f5327c"
+    },
+    {
+      "id": "client-1782902461088",
+      "username": "testuser_gemini",
+      "company": "Gemini Corp",
+      "name": "Gemini Test",
+      "email": "gemini.test.1040@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$7086b6e4a841ee1e42c14dde5a472ba8$fc5194e846135c04a768b5fc0a0216a2f9d22107243749cac7e6f5a088adb651dd48128091ec268957fe0784a0bee3d016fa71fd8f11b322c49a5850ee9123e9"
+    },
+    {
+      "id": "client-1782902616263",
+      "username": "testuser_ipv6",
+      "company": "IPv6 Corp",
+      "name": "IPv6 Test",
+      "email": "ipv6@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$e1814b28fc161f08b998fe1916fb8711$737fd4498096dbd0d2ebf50f5be81368069b2c8f44bd348b1e1e2494caf6a4f85d5cf12bdef5dcb92682858120a7f02ecf76996612097fad98f7323c07350fda"
+    },
+    {
+      "id": "client-1782902700520",
+      "username": "testuser_127_2",
+      "company": "127_2 Corp",
+      "name": "Test 127_2",
+      "email": "test_127_2@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$24e8d536666774d8cbbf7ecf70861c0c$f5e1a51074e74a5b795efa2b41f74e16d7b48d79ea295d7f4d5e48f44df3cfa2730b1b0e43f4462b7bebc8f094553f6211eb46dafd006210f1a2d3d2e1cc80c6"
+    },
+    {
+      "id": "client-1782902808556",
+      "username": "testuser_127_3",
+      "company": "127_3 Corp",
+      "name": "Test 127_3",
+      "email": "test_127_3@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$0e978cf44e7270399a58ac9342eb1285$4c4d36f1d9e8519a0388a5c988c1e22dac248b20b5ee2a798669187843ea107dac602fb85bb4ac687af05f38c3b297d049440ac6fd617b35b961201462e3a943"
+    },
+    {
+      "id": "client-1782902898146",
+      "username": "testuser_127_4",
+      "company": "127_4 Corp",
+      "name": "Test 127_4",
+      "email": "test_127_4@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$8bcd8ffeefa17681671c2f366ab0d5c2$352f95f265333641436e46eff2f3d82d7772cf287b5423f04560f57c872f5029a3fe27555e0926369fe74f503eff7082a5062822d5409505d197391c03eb8c16"
+    },
+    {
+      "id": "client-1782903222638",
+      "username": "testuser_127_6",
+      "company": "127_6 Corp",
+      "name": "Test 127_6",
+      "email": "test_127_6@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$4ebca934c16e5e18b501450cb4cb7445$4b4a6d5a092af2c843cf92ca68fa805da8365fa37b739992a91ab1e62beeb01fe895a159f083e0a3d7963e50eb1f99d9af6df072d6f1e6e887ad9bc988fb8cb6"
+    },
+    {
+      "id": "client-1782903335758",
+      "username": "testuser_127_7",
+      "company": "127_7 Corp",
+      "name": "Test 127_7",
+      "email": "test_127_7@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$e419a717fcd897836c64c6f4f4bcdd9a$2d3009163c08dc2ced4334818f41e713e5b0ef49bea7dee3741aeee3ed25abd505e8e5461ef585caa2f5d9d61e9a010cc9ba9f62f37cb4d8c3600234b8f34cab"
+    },
+    {
+      "id": "client-1782903462670",
+      "username": "testuser_127_8",
+      "company": "127_8 Corp",
+      "name": "Test 127_8",
+      "email": "test_127_8@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$1b28e8b4e1e18f94be2de5ee866013ba$a0aaa41091303ebd4e4973e91b9af619f4ee576ef900bb65de05448e40a009427b7388018fe842aced17177f274b5b4c2f40f2373e3d8557c1d25f3b61eabe9b"
+    },
+    {
+      "id": "client-1782903838668",
+      "username": "testuser_127_9",
+      "company": "127_9 Corp",
+      "name": "Test 127_9",
+      "email": "test_127_9@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$5fe5544494abff065e0481e96995870b$40f30b04668723da26ea948be5744cbf8fb23796ad2532d34f2d10c4fa327aea9dc9c35ac090cec520d91bd30e6c8748924ed579d0ff7e1dfe6b1d71729cedae"
+    },
+    {
+      "id": "client-1782903921566",
+      "username": "testuser_127_10",
+      "company": "127_10 Corp",
+      "name": "Test 127_10",
+      "email": "test_127_10@test.com",
+      "avatar": "",
+      "createdAt": "Jul 1, 2026",
+      "status": "active",
+      "passwordHash": "120000$7e528af013b11f7080cc7334a26a6d4d$c69a8e0e735cafab502cdd2b6f3723ca47da007af60ded6c19f6d1cbf7de086a3a48c4d0262f15b15c2ef941eae7c59e2d3de7b5d00b83523f8dac3a003aa212"
+    }
+  ],
+  "activityLog": [
+    {
+      "id": "act-1782893807679",
+      "username": "testcompany",
+      "eventType": "registration",
+      "timestamp": "02:16 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test Representative (Test Company LLC)."
+    },
+    {
+      "id": "act-1782896085151",
+      "username": "client",
+      "eventType": "login",
+      "timestamp": "02:54 PM",
+      "date": "Jul 1, 2026",
+      "details": "Client User (Acme Corp) logged in successfully."
+    },
+    {
+      "id": "act-1782896096227",
+      "username": "verifyuser",
+      "eventType": "registration",
+      "timestamp": "02:54 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Verify User (Verify Co)."
+    },
+    {
+      "id": "act-1782901145316",
+      "username": "client",
+      "eventType": "login",
+      "timestamp": "04:19 PM",
+      "date": "Jul 1, 2026",
+      "details": "Client User (Acme Corp) logged in successfully."
+    },
+    {
+      "id": "act-1782901145343",
+      "username": "client",
+      "eventType": "logout",
+      "timestamp": "04:19 PM",
+      "date": "Jul 1, 2026",
+      "details": "client logged out."
+    },
+    {
+      "id": "act-1782902461123",
+      "username": "testuser_gemini",
+      "eventType": "registration",
+      "timestamp": "04:41 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Gemini Test (Gemini Corp)."
+    },
+    {
+      "id": "act-1782902616325",
+      "username": "testuser_ipv6",
+      "eventType": "registration",
+      "timestamp": "04:43 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: IPv6 Test (IPv6 Corp)."
+    },
+    {
+      "id": "act-1782902700541",
+      "username": "testuser_127_2",
+      "eventType": "registration",
+      "timestamp": "04:45 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_2 (127_2 Corp)."
+    },
+    {
+      "id": "act-1782902808559",
+      "username": "testuser_127_3",
+      "eventType": "registration",
+      "timestamp": "04:46 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_3 (127_3 Corp)."
+    },
+    {
+      "id": "act-1782902898147",
+      "username": "testuser_127_4",
+      "eventType": "registration",
+      "timestamp": "04:48 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_4 (127_4 Corp)."
+    },
+    {
+      "id": "act-1782903222640",
+      "username": "testuser_127_6",
+      "eventType": "registration",
+      "timestamp": "04:53 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_6 (127_6 Corp)."
+    },
+    {
+      "id": "act-1782903335791",
+      "username": "testuser_127_7",
+      "eventType": "registration",
+      "timestamp": "04:55 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_7 (127_7 Corp)."
+    },
+    {
+      "id": "act-1782903462673",
+      "username": "testuser_127_8",
+      "eventType": "registration",
+      "timestamp": "04:57 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_8 (127_8 Corp)."
+    },
+    {
+      "id": "act-1782903838707",
+      "username": "testuser_127_9",
+      "eventType": "registration",
+      "timestamp": "05:03 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_9 (127_9 Corp)."
+    },
+    {
+      "id": "act-1782903921574",
+      "username": "testuser_127_10",
+      "eventType": "registration",
+      "timestamp": "05:05 PM",
+      "date": "Jul 1, 2026",
+      "details": "New client account registered: Test 127_10 (127_10 Corp)."
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-1782893807678",
+      "username": "testcompany",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "02:16 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782896096227",
+      "username": "verifyuser",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "02:54 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782896182137-client",
+      "username": "client",
+      "text": "New message from Lumina Team",
+      "date": "Jul 1, 2026",
+      "time": "02:56 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782896190011-client",
+      "username": "client",
+      "text": "New message from Lumina Team",
+      "date": "Jul 1, 2026",
+      "time": "02:56 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782896219577",
+      "username": "admin",
+      "text": "New chat message from Client User (Acme Corp)",
+      "date": "Jul 1, 2026",
+      "time": "02:56 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782896232362-client",
+      "username": "client",
+      "text": "New message from Lumina Team",
+      "date": "Jul 1, 2026",
+      "time": "02:57 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782896242994-client",
+      "username": "client",
+      "text": "New message from Lumina Team",
+      "date": "Jul 1, 2026",
+      "time": "02:57 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782902461120",
+      "username": "testuser_gemini",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:41 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782902616291",
+      "username": "testuser_ipv6",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:43 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782902700541",
+      "username": "testuser_127_2",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:45 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782902808559",
+      "username": "testuser_127_3",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:46 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782902898147",
+      "username": "testuser_127_4",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:48 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782903222640",
+      "username": "testuser_127_6",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:53 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782903335790",
+      "username": "testuser_127_7",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:55 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782903462673",
+      "username": "testuser_127_8",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "04:57 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782903838707",
+      "username": "testuser_127_9",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "05:03 PM",
+      "read": false
+    },
+    {
+      "id": "notif-1782903921574",
+      "username": "testuser_127_10",
+      "text": "Welcome to Lumina Client Portal. Your workspace has been initialized successfully.",
+      "date": "Jul 1, 2026",
+      "time": "05:05 PM",
+      "read": false
+    }
+  ],
+  "authSessions": [
+    {
+      "id": "sess_1782977248180_a2d037656b83",
+      "userId": "admin",
+      "role": "admin",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4Mjk3NzI0ODE4MF9hMmQwMzc2NTZiODMiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgyOTc4MTQ4fQ.b-HI_88k-skh96mjkRhsUj7-ROacsCVSNBeSBWPDiBo",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4Mjk3NzI0ODE4MF9hMmQwMzc2NTZiODMiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzU4MjA0OH0._SZpc_czmJxJ-MnVGIAPKPk5T_l0duwsr9dFWxVT6xY",
+      "createdAt": "2026-07-02T07:27:28.180Z",
+      "expiresAt": "2026-07-02T07:42:28.180Z",
+      "refreshExpiresAt": "2026-07-09T07:27:28.180Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "admin",
+        "email": "admin@luminadigital.com",
+        "fullName": "Lumina Admin",
+        "companyName": "Lumina Digital Agency",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "sess_1782977901412_e02e6cde0696",
+      "userId": "admin",
+      "role": "admin",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4Mjk3NzkwMTQxMl9lMDJlNmNkZTA2OTYiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgyOTc4ODAxfQ.Tez5tBQ3F3w6THu021s0Xwh8Vr3bhmUSJ4f_Yd9Udbo",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4Mjk3NzkwMTQxMl9lMDJlNmNkZTA2OTYiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzU4MjcwMX0.QBJ4U8kAqaOpTa3-Ph1Aui68a2TDxrVlGxqbMfWtd5o",
+      "createdAt": "2026-07-02T07:38:21.412Z",
+      "expiresAt": "2026-07-02T07:53:21.413Z",
+      "refreshExpiresAt": "2026-07-09T07:38:21.413Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "admin",
+        "email": "admin@luminadigital.com",
+        "fullName": "Lumina Admin",
+        "companyName": "Lumina Digital Agency",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "sess_1782978158744_bc331882d7cd",
+      "userId": "admin",
+      "role": "admin",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4Mjk3ODE1ODc0NF9iYzMzMTg4MmQ3Y2QiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgyOTc5MDU4fQ.9Kh1tHJhth-i3EeneeaOxJLAqLhwk-Rl4WE2de1w48Y",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4Mjk3ODE1ODc0NF9iYzMzMTg4MmQ3Y2QiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzU4Mjk1OH0.oyBkegmWRy75eFJhfSq7gmOYU0VD9Rs8smAvhAN1XFA",
+      "createdAt": "2026-07-02T07:42:38.744Z",
+      "expiresAt": "2026-07-02T07:57:38.744Z",
+      "refreshExpiresAt": "2026-07-09T07:42:38.744Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "fingerprint": "::ffff:127.0.0.1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "admin",
+        "email": "admin@luminadigital.com",
+        "fullName": "Lumina Admin",
+        "companyName": "Lumina Digital Agency",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "sess_1783023469218_87b484ab791f",
+      "userId": "admin",
+      "role": "admin",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4MzAyMzQ2OTIxOF84N2I0ODRhYjc5MWYiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgzMDI0MzY5fQ.dAW4DbcktnPJ11RScQIrnFEL2C71pRTG0BRLdN2ZgEA",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4MzAyMzQ2OTIxOF84N2I0ODRhYjc5MWYiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzYyODI2OX0.FIRl6g34GilfCQwNtHTzt2l1l7TWuCBq28vF9qwXl98",
+      "createdAt": "2026-07-02T20:17:49.218Z",
+      "expiresAt": "2026-07-02T20:32:49.219Z",
+      "refreshExpiresAt": "2026-07-09T20:17:49.219Z",
+      "userAgent": "unknown",
+      "fingerprint": "::1:unknown",
+      "active": true,
+      "user": {
+        "id": "admin",
+        "email": "admin@luminadigital.com",
+        "fullName": "Lumina Admin",
+        "companyName": "Lumina Digital Agency",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "sess_1783071092910_a0d2d26c329d",
+      "userId": "client-seed-1",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtc2VlZC0xIiwicm9sZSI6ImNsaWVudCIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MTA5MjkxMF9hMGQyZDI2YzMyOWQiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgzMDcxOTkyfQ.qxbruhx1v1u5qMyMBzHtsozKVapTsGCwN5Jgv0q_9H0",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtc2VlZC0xIiwicm9sZSI6ImNsaWVudCIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MTA5MjkxMF9hMGQyZDI2YzMyOWQiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzY3NTg5Mn0.T_ylTzzTPZb4rIBFxQ-_zRmrl92sRYnssPoakPFku54",
+      "createdAt": "2026-07-03T09:31:32.911Z",
+      "expiresAt": "2026-07-03T09:46:32.911Z",
+      "refreshExpiresAt": "2026-07-10T09:31:32.911Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "client-seed-1",
+        "email": "billing@acme.com",
+        "fullName": "Client User",
+        "companyName": "Acme Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783072224262_0e0068e181a7",
+      "userId": "client-1782893807627",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtMTc4Mjg5MzgwNzYyNyIsInJvbGUiOiJjbGllbnQiLCJzZXNzaW9uSWQiOiJzZXNzXzE3ODMwNzIyMjQyNjJfMGUwMDY4ZTE4MWE3IiwidHlwZSI6ImFjY2VzcyIsImV4cCI6MTc4MzA3MzEyNH0.YiBOipXTltWw7zY6IT3RH3qNBDN-17LDootbEGB_r7c",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtMTc4Mjg5MzgwNzYyNyIsInJvbGUiOiJjbGllbnQiLCJzZXNzaW9uSWQiOiJzZXNzXzE3ODMwNzIyMjQyNjJfMGUwMDY4ZTE4MWE3IiwidHlwZSI6InJlZnJlc2giLCJleHAiOjE3ODM2NzcwMjR9.kCwZ8yr00QE8TjKquzwQzQhq6aD59F25Oyn2WDrKgnA",
+      "createdAt": "2026-07-03T09:50:24.263Z",
+      "expiresAt": "2026-07-03T10:05:24.263Z",
+      "refreshExpiresAt": "2026-07-10T09:50:24.263Z",
+      "userAgent": "unknown",
+      "fingerprint": "::1:unknown",
+      "active": true,
+      "user": {
+        "id": "client-1782893807627",
+        "email": "test@company.com",
+        "fullName": "Test Representative",
+        "companyName": "Test Company LLC",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783072238802_22a8a98a1bba",
+      "userId": "client-1782893807627",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtMTc4Mjg5MzgwNzYyNyIsInJvbGUiOiJjbGllbnQiLCJzZXNzaW9uSWQiOiJzZXNzXzE3ODMwNzIyMzg4MDJfMjJhOGE5OGExYmJhIiwidHlwZSI6ImFjY2VzcyIsImV4cCI6MTc4MzA3MzEzOH0.TpvrDSh8oCmlOAkTNCqUtCuT0_MZmV3DzRqF2ofcd1Q",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtMTc4Mjg5MzgwNzYyNyIsInJvbGUiOiJjbGllbnQiLCJzZXNzaW9uSWQiOiJzZXNzXzE3ODMwNzIyMzg4MDJfMjJhOGE5OGExYmJhIiwidHlwZSI6InJlZnJlc2giLCJleHAiOjE3ODM2NzcwMzh9.a2Qoc6WscR6Use89b3pU_kQF7c04_UH4m0oPkI6ToCM",
+      "createdAt": "2026-07-03T09:50:38.802Z",
+      "expiresAt": "2026-07-03T10:05:38.802Z",
+      "refreshExpiresAt": "2026-07-10T09:50:38.802Z",
+      "userAgent": "unknown",
+      "fingerprint": "::1:unknown",
+      "active": true,
+      "user": {
+        "id": "client-1782893807627",
+        "email": "test@company.com",
+        "fullName": "Test Representative",
+        "companyName": "Test Company LLC",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783072238846_b8e7344c2c08",
+      "userId": "admin",
+      "role": "admin",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MjIzODg0Nl9iOGU3MzQ0YzJjMDgiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgzMDczMTM4fQ.mCkC2xzOrEKOoCtJ3XxU_TDgSoDtCB7WsAwxyoc4SoI",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MjIzODg0Nl9iOGU3MzQ0YzJjMDgiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzY3NzAzOH0.vZuSzjdoyNgNoLgVdA_iIXF_Fbl6VWfyH0fusO7YP9o",
+      "createdAt": "2026-07-03T09:50:38.846Z",
+      "expiresAt": "2026-07-03T10:05:38.846Z",
+      "refreshExpiresAt": "2026-07-10T09:50:38.846Z",
+      "userAgent": "unknown",
+      "fingerprint": "::1:unknown",
+      "active": true,
+      "user": {
+        "id": "admin",
+        "email": "admin@luminadigital.com",
+        "fullName": "Lumina Admin",
+        "companyName": "Lumina Digital Agency",
+        "role": "admin"
+      }
+    },
+    {
+      "id": "sess_1783072325004_4b79f0867f61",
+      "userId": "client-seed-1",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtc2VlZC0xIiwicm9sZSI6ImNsaWVudCIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MjMyNTAwNF80Yjc5ZjA4NjdmNjEiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgzMDczMjI1fQ.HE9dnnh25feUroyUmS4V7xEuO6p7YogIEYS55onLYKQ",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtc2VlZC0xIiwicm9sZSI6ImNsaWVudCIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MjMyNTAwNF80Yjc5ZjA4NjdmNjEiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzY3NzEyNX0.MtaZ49XS07cbQIB2WywhvK5oHiIA_faC9ZVKAsfJbt8",
+      "createdAt": "2026-07-03T09:52:05.004Z",
+      "expiresAt": "2026-07-03T10:07:05.004Z",
+      "refreshExpiresAt": "2026-07-10T09:52:05.004Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "client-seed-1",
+        "email": "billing@acme.com",
+        "fullName": "Client User",
+        "companyName": "Acme Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783072379270_038958f86dba",
+      "userId": "admin",
+      "role": "admin",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MjM3OTI3MF8wMzg5NThmODZkYmEiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgzMDczMjc5fQ.hbtxZyCiOICB1i8MeOJOgpf033_cUbTW1U5WQbSAMT8",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6InNlc3NfMTc4MzA3MjM3OTI3MF8wMzg5NThmODZkYmEiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4MzY3NzE3OX0.EkF9jyBLgorHZjOYoq3fgGBAIQUXGdN8URmuudiVCUk",
+      "createdAt": "2026-07-03T09:52:59.271Z",
+      "expiresAt": "2026-07-03T10:07:59.271Z",
+      "refreshExpiresAt": "2026-07-10T09:52:59.271Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "admin",
+        "email": "admin@luminadigital.com",
+        "fullName": "Lumina Admin",
+        "companyName": "Lumina Digital Agency",
+        "role": "admin"
+      }
+    }
+  ],
+  "authUsers": [
+    {
+      "id": "client-seed-1",
+      "fullName": "Client User",
+      "companyName": "Acme Corp",
+      "email": "billing@acme.com",
+      "passwordHash": "120000$07864751344ef0ec2017fc5a22f71b64$d075c0b740ec291a908cd5c8e9f3bad38e010a80392ff042267d8c70985e8e982942c55798b57dfc5afbd25f8b7c52d2f147e9f4c61ffd6dca28445b054d10af",
+      "salt": "07864751344ef0ec2017fc5a22f71b64",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:58.459Z",
+      "updatedAt": "2026-07-03T09:28:58.461Z"
+    },
+    {
+      "id": "client-1782893807627",
+      "fullName": "Test Representative",
+      "companyName": "Test Company LLC",
+      "email": "test@company.com",
+      "passwordHash": "120000$47df93103049bb9e981134faf6ce7772$4eb584bed4f0c84bd32d40f8764b8fabbee0adc001ab1204e2ca4892e267864ba63cd00923cdfec7e0ec20a596d3edca6e5174a2e06238e9480899b1745f4543",
+      "salt": "47df93103049bb9e981134faf6ce7772",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:58.585Z",
+      "updatedAt": "2026-07-03T09:28:58.585Z"
+    },
+    {
+      "id": "client-1782896096225",
+      "fullName": "Verify User",
+      "companyName": "Verify Co",
+      "email": "verify@test.com",
+      "passwordHash": "120000$f9f332001bc6ef9745f2faf07272cf55$39525d5a8d974856e6064707160d3b073be02ec2adf93d927ffa1af1d5c727cd1256046a93f4b08913945788f58652b64d2e88228c10650bba72efd479f5327c",
+      "salt": "f9f332001bc6ef9745f2faf07272cf55",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:58.688Z",
+      "updatedAt": "2026-07-03T09:28:58.688Z"
+    },
+    {
+      "id": "client-1782902461088",
+      "fullName": "Gemini Test",
+      "companyName": "Gemini Corp",
+      "email": "gemini.test.1040@test.com",
+      "passwordHash": "120000$7086b6e4a841ee1e42c14dde5a472ba8$fc5194e846135c04a768b5fc0a0216a2f9d22107243749cac7e6f5a088adb651dd48128091ec268957fe0784a0bee3d016fa71fd8f11b322c49a5850ee9123e9",
+      "salt": "7086b6e4a841ee1e42c14dde5a472ba8",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:58.779Z",
+      "updatedAt": "2026-07-03T09:28:58.779Z"
+    },
+    {
+      "id": "client-1782902616263",
+      "fullName": "IPv6 Test",
+      "companyName": "IPv6 Corp",
+      "email": "ipv6@test.com",
+      "passwordHash": "120000$e1814b28fc161f08b998fe1916fb8711$737fd4498096dbd0d2ebf50f5be81368069b2c8f44bd348b1e1e2494caf6a4f85d5cf12bdef5dcb92682858120a7f02ecf76996612097fad98f7323c07350fda",
+      "salt": "e1814b28fc161f08b998fe1916fb8711",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:58.883Z",
+      "updatedAt": "2026-07-03T09:28:58.883Z"
+    },
+    {
+      "id": "client-1782902700520",
+      "fullName": "Test 127_2",
+      "companyName": "127_2 Corp",
+      "email": "test_127_2@test.com",
+      "passwordHash": "120000$24e8d536666774d8cbbf7ecf70861c0c$f5e1a51074e74a5b795efa2b41f74e16d7b48d79ea295d7f4d5e48f44df3cfa2730b1b0e43f4462b7bebc8f094553f6211eb46dafd006210f1a2d3d2e1cc80c6",
+      "salt": "24e8d536666774d8cbbf7ecf70861c0c",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:58.976Z",
+      "updatedAt": "2026-07-03T09:28:58.976Z"
+    },
+    {
+      "id": "client-1782902808556",
+      "fullName": "Test 127_3",
+      "companyName": "127_3 Corp",
+      "email": "test_127_3@test.com",
+      "passwordHash": "120000$0e978cf44e7270399a58ac9342eb1285$4c4d36f1d9e8519a0388a5c988c1e22dac248b20b5ee2a798669187843ea107dac602fb85bb4ac687af05f38c3b297d049440ac6fd617b35b961201462e3a943",
+      "salt": "0e978cf44e7270399a58ac9342eb1285",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.094Z",
+      "updatedAt": "2026-07-03T09:28:59.094Z"
+    },
+    {
+      "id": "client-1782902898146",
+      "fullName": "Test 127_4",
+      "companyName": "127_4 Corp",
+      "email": "test_127_4@test.com",
+      "passwordHash": "120000$8bcd8ffeefa17681671c2f366ab0d5c2$352f95f265333641436e46eff2f3d82d7772cf287b5423f04560f57c872f5029a3fe27555e0926369fe74f503eff7082a5062822d5409505d197391c03eb8c16",
+      "salt": "8bcd8ffeefa17681671c2f366ab0d5c2",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.216Z",
+      "updatedAt": "2026-07-03T09:28:59.216Z"
+    },
+    {
+      "id": "client-1782903222638",
+      "fullName": "Test 127_6",
+      "companyName": "127_6 Corp",
+      "email": "test_127_6@test.com",
+      "passwordHash": "120000$4ebca934c16e5e18b501450cb4cb7445$4b4a6d5a092af2c843cf92ca68fa805da8365fa37b739992a91ab1e62beeb01fe895a159f083e0a3d7963e50eb1f99d9af6df072d6f1e6e887ad9bc988fb8cb6",
+      "salt": "4ebca934c16e5e18b501450cb4cb7445",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.377Z",
+      "updatedAt": "2026-07-03T09:28:59.377Z"
+    },
+    {
+      "id": "client-1782903335758",
+      "fullName": "Test 127_7",
+      "companyName": "127_7 Corp",
+      "email": "test_127_7@test.com",
+      "passwordHash": "120000$e419a717fcd897836c64c6f4f4bcdd9a$2d3009163c08dc2ced4334818f41e713e5b0ef49bea7dee3741aeee3ed25abd505e8e5461ef585caa2f5d9d61e9a010cc9ba9f62f37cb4d8c3600234b8f34cab",
+      "salt": "e419a717fcd897836c64c6f4f4bcdd9a",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.495Z",
+      "updatedAt": "2026-07-03T09:28:59.495Z"
+    },
+    {
+      "id": "client-1782903462670",
+      "fullName": "Test 127_8",
+      "companyName": "127_8 Corp",
+      "email": "test_127_8@test.com",
+      "passwordHash": "120000$1b28e8b4e1e18f94be2de5ee866013ba$a0aaa41091303ebd4e4973e91b9af619f4ee576ef900bb65de05448e40a009427b7388018fe842aced17177f274b5b4c2f40f2373e3d8557c1d25f3b61eabe9b",
+      "salt": "1b28e8b4e1e18f94be2de5ee866013ba",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.601Z",
+      "updatedAt": "2026-07-03T09:28:59.601Z"
+    },
+    {
+      "id": "client-1782903838668",
+      "fullName": "Test 127_9",
+      "companyName": "127_9 Corp",
+      "email": "test_127_9@test.com",
+      "passwordHash": "120000$5fe5544494abff065e0481e96995870b$40f30b04668723da26ea948be5744cbf8fb23796ad2532d34f2d10c4fa327aea9dc9c35ac090cec520d91bd30e6c8748924ed579d0ff7e1dfe6b1d71729cedae",
+      "salt": "5fe5544494abff065e0481e96995870b",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.687Z",
+      "updatedAt": "2026-07-03T09:28:59.687Z"
+    },
+    {
+      "id": "client-1782903921566",
+      "fullName": "Test 127_10",
+      "companyName": "127_10 Corp",
+      "email": "test_127_10@test.com",
+      "passwordHash": "120000$7e528af013b11f7080cc7334a26a6d4d$c69a8e0e735cafab502cdd2b6f3723ca47da007af60ded6c19f6d1cbf7de086a3a48c4d0262f15b15c2ef941eae7c59e2d3de7b5d00b83523f8dac3a003aa212",
+      "salt": "7e528af013b11f7080cc7334a26a6d4d",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-03T09:28:59.795Z",
+      "updatedAt": "2026-07-03T09:28:59.795Z"
+    }
+  ]
+}

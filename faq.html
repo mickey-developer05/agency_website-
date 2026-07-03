@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>FAQ | Lumina Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Sora:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Local CSS link -->
+    <link rel="stylesheet" href="css/styles.css?v=1.2">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7dd3fc",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "display-lg-mobile": ["Sora"],
+                        "subheading-lg": ["Outfit"],
+                        "headline-lg": ["Sora"],
+                        "headline-xl": ["Sora"],
+                        "label-md": ["Outfit"],
+                        "label-sm": ["Outfit"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "subheading-sm": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "subheading-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "subheading-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased overflow-x-hidden bg-pattern selection:bg-sky-500/30">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
+        <div class="flex items-center justify-between max-w-container-max mx-auto px-gutter py-3 gap-4">
+
+            <!-- Logo -->
+            <a href="index.html" class="flex-shrink-0 font-display-lg text-display-lg-mobile md:text-2xl font-bold tracking-tight text-white hover:text-sky-300 transition-colors">
+                Lumina Digital
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="services.html" class="text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm whitespace-nowrap">Services</a>
+
+                <!-- More dropdown trigger -->
+                <div class="relative">
+                    <button id="more-dropdown-btn" class="flex items-center gap-1 text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Explore
+                        <span id="more-dropdown-icon" class="material-symbols-outlined transition-transform duration-200 leading-none" style="font-size:18px">expand_more</span>
+                    </button>
+
+                    <!-- Dropdown panel -->
+                    <div id="more-dropdown-panel"
+                         class="hidden absolute left-1/2 -translate-x-1/2 w-[420px] opacity-0 translate-y-2 pointer-events-none transition-all duration-200 z-50"
+                         style="top: calc(100% + 12px)"
+                         role="menu">
+                        <div class="bg-slate-900/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-3 relative">
+                            <!-- Arrow pointer -->
+                            <div class="absolute -top-[7px] left-1/2 -translate-x-1/2 w-[14px] h-[14px] bg-slate-900 border-t border-l border-white/10 rotate-45 rounded-sm"></div>
+                            <div class="grid grid-cols-2 gap-1">
+                                <a href="portfolio.html"    role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">grid_view</span><div><div class="font-semibold text-white text-sm">Portfolio</div><div class="text-slate-500 text-xs mt-0.5">Our best work</div></div></a>
+                                <a href="case-studies.html" role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">analytics</span><div><div class="font-semibold text-white text-sm">Case Studies</div><div class="text-slate-500 text-xs mt-0.5">Deep-dive results</div></div></a>
+                                <a href="team.html"         role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">group</span><div><div class="font-semibold text-white text-sm">Team</div><div class="text-slate-500 text-xs mt-0.5">Meet the creators</div></div></a>
+                                <a href="process.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">alt_route</span><div><div class="font-semibold text-white text-sm">Process</div><div class="text-slate-500 text-xs mt-0.5">How we work</div></div></a>
+                                <a href="pricing.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">payments</span><div><div class="font-semibold text-white text-sm">Pricing</div><div class="text-slate-500 text-xs mt-0.5">Transparent plans</div></div></a>
+                                <a href="blog.html"         role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">article</span><div><div class="font-semibold text-white text-sm">Blog</div><div class="text-slate-500 text-xs mt-0.5">Digital insights</div></div></a>
+                                <a href="faq.html"          role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">help_outline</span><div><div class="font-semibold text-white text-sm">FAQ</div><div class="text-slate-500 text-xs mt-0.5">Common questions</div></div></a>
+                                <a href="contact.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">mail</span><div><div class="font-semibold text-white text-sm">Contact</div><div class="text-slate-500 text-xs mt-0.5">Get in touch</div></div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="careers.html" class="text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm whitespace-nowrap">Careers</a>
+            </div>
+
+            <!-- Right side: CTA + Mobile burger -->
+            <div class="flex items-center gap-3">
+                <a href="book-consultation.html" class="hidden sm:inline-flex items-center bg-sky-400/10 text-sky-300 border border-sky-400/30 px-5 py-2 rounded-full text-sm font-semibold hover:bg-sky-400/20 hover:scale-105 transition-all shadow-glow whitespace-nowrap">
+                    Book Consultation
+                </a>
+                <!-- Mobile only burger -->
+                <button id="mobile-menu-btn" class="flex md:hidden p-2 text-slate-300 hover:text-white transition-colors focus:outline-none" aria-label="Open menu">
+                    <span class="material-symbols-outlined" style="font-size:26px">menu</span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Dropdown styles -->
+    <style>
+        .nav-dropdown-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:12px; transition:background 0.15s; text-decoration:none; cursor:pointer; }
+        .nav-dropdown-item:hover { background:rgba(125,211,252,0.08); }
+        .nav-dropdown-item:hover .material-symbols-outlined { color:#7dd3fc; }
+    </style>
+
+    <main class="pt-[100px]">
+        <!-- Hero Section -->
+        <section class="relative pt-xl pb-lg overflow-hidden">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="max-w-container-max mx-auto px-gutter relative z-10 text-center">
+                <div class="inline-flex items-center gap-xs liquid-glass px-sm py-xs rounded-full w-max mb-md">
+                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                    <span class="font-label-sm text-label-sm text-slate-300 uppercase tracking-wider">Help Center</span>
+                </div>
+                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-sm">
+                    Frequently Asked <span class="text-gradient">Questions</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-slate-400 max-w-2xl mx-auto mb-lg">
+                    Find answers to common questions about our capabilities, process timelines, client retrial models, and support parameters.
+                </p>
+
+                <!-- Real-time Search Box -->
+                <div class="max-w-xl mx-auto relative mt-md">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+                    <input id="faq-search" type="text" placeholder="Search FAQs by keywords..." class="w-full pl-12 pr-4 py-3 bg-slate-900/60 border border-white/10 rounded-full focus:outline-none focus:border-sky-400 text-slate-200 placeholder-slate-500 font-body-md transition-all focus:ring-1 focus:ring-sky-400/30 shadow-inner">
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filters & Accordion List -->
+        <section class="pb-xl relative z-10">
+            <div class="max-w-3xl mx-auto px-gutter">
+                <!-- Filters -->
+                <div class="flex flex-wrap justify-center gap-sm mb-lg">
+                    <button class="faq-filter-btn px-md py-xs rounded-full border border-sky-400/30 bg-sky-400/10 text-sky-300 font-label-md text-label-md font-semibold transition-all active-filter" data-category="all">All Questions</button>
+                    <button class="faq-filter-btn px-md py-xs rounded-full border border-white/5 bg-slate-900/40 text-slate-400 hover:text-white hover:border-white/20 font-label-md text-label-md transition-all" data-category="services">Services</button>
+                    <button class="faq-filter-btn px-md py-xs rounded-full border border-white/5 bg-slate-900/40 text-slate-400 hover:text-white hover:border-white/20 font-label-md text-label-md transition-all" data-category="process">Process</button>
+                    <button class="faq-filter-btn px-md py-xs rounded-full border border-white/5 bg-slate-900/40 text-slate-400 hover:text-white hover:border-white/20 font-label-md text-label-md transition-all" data-category="pricing">Pricing</button>
+                </div>
+
+                <!-- FAQ Accordion Container -->
+                <div id="faq-accordion-list" class="flex flex-col gap-sm">
+                    
+                    <!-- Item 1 -->
+                    <div class="faq-item liquid-glass rounded-xl overflow-hidden" data-category="services">
+                        <button class="w-full flex justify-between items-center p-md text-left font-subheading-sm text-subheading-sm text-white hover:bg-white/5 transition-colors focus:outline-none faq-trigger">
+                            <span class="faq-question">What services does Lumina Digital specialize in?</span>
+                            <span class="material-symbols-outlined text-sky-300 transition-transform">expand_more</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-950/40">
+                            <div class="p-md text-slate-400 font-body-md border-t border-white/5 faq-answer">
+                                We specialize in bespoke Web Design, full-stack Engineering (Next.js, Tailwind, Node.js), Search Engine Optimization (SEO), growth hacking, and premium corporate branding.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="faq-item liquid-glass rounded-xl overflow-hidden" data-category="process">
+                        <button class="w-full flex justify-between items-center p-md text-left font-subheading-sm text-subheading-sm text-white hover:bg-white/5 transition-colors focus:outline-none faq-trigger">
+                            <span class="faq-question">How long does a typical project take?</span>
+                            <span class="material-symbols-outlined text-sky-300 transition-transform">expand_more</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-950/40">
+                            <div class="p-md text-slate-400 font-body-md border-t border-white/5 faq-answer">
+                                An average end-to-end design and engineering project takes between 6 to 12 weeks, depending on complexity. Small marketing landing pages can take as little as 2 weeks, while larger enterprise dashboards are scoped modularly.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="faq-item liquid-glass rounded-xl overflow-hidden" data-category="pricing">
+                        <button class="w-full flex justify-between items-center p-md text-left font-subheading-sm text-subheading-sm text-white hover:bg-white/5 transition-colors focus:outline-none faq-trigger">
+                            <span class="faq-question">Do you work on a retainer or fixed-project model?</span>
+                            <span class="material-symbols-outlined text-sky-300 transition-transform">expand_more</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-950/40">
+                            <div class="p-md text-slate-400 font-body-md border-t border-white/5 faq-answer">
+                                We offer both. Our Startup, Growth, and Enterprise plans offer predictable monthly retainers (billed annually or monthly), while custom digital products can be quoted on a fixed-bid scope.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="faq-item liquid-glass rounded-xl overflow-hidden" data-category="services">
+                        <button class="w-full flex justify-between items-center p-md text-left font-subheading-sm text-subheading-sm text-white hover:bg-white/5 transition-colors focus:outline-none faq-trigger">
+                            <span class="faq-question">Can you migrate our existing legacy stack?</span>
+                            <span class="material-symbols-outlined text-sky-300 transition-transform">expand_more</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-950/40">
+                            <div class="p-md text-slate-400 font-body-md border-t border-white/5 faq-answer">
+                                Yes, we specialize in migrating legacy monolithic stacks to serverless, headless, and edge architectures (such as Next.js, headless Shopify, and cloudless edge APIs) for maximum performance.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="faq-item liquid-glass rounded-xl overflow-hidden" data-category="pricing">
+                        <button class="w-full flex justify-between items-center p-md text-left font-subheading-sm text-subheading-sm text-white hover:bg-white/5 transition-colors focus:outline-none faq-trigger">
+                            <span class="faq-question">Are there any hidden fees in your pricing packages?</span>
+                            <span class="material-symbols-outlined text-sky-300 transition-transform">expand_more</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-950/40">
+                            <div class="p-md text-slate-400 font-body-md border-t border-white/5 faq-answer">
+                                None. All hosting recommendations, third-party API limits, and monthly maintenance hours are explicitly detailed in our contracts before we start development.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="faq-item liquid-glass rounded-xl overflow-hidden" data-category="process">
+                        <button class="w-full flex justify-between items-center p-md text-left font-subheading-sm text-subheading-sm text-white hover:bg-white/5 transition-colors focus:outline-none faq-trigger">
+                            <span class="faq-question">Will we have a dedicated project lead?</span>
+                            <span class="material-symbols-outlined text-sky-300 transition-transform">expand_more</span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-slate-950/40">
+                            <div class="p-md text-slate-400 font-body-md border-t border-white/5 faq-answer">
+                                Yes, every client is assigned a dedicated Product Manager and Lead Engineer who conduct weekly syncs, provide Slack channels for quick coordination, and prepare interactive staging environments.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Empty State -->
+                <div id="faq-empty-state" class="hidden text-center py-xl text-slate-500">
+                    <span class="material-symbols-outlined text-4xl mb-sm block text-slate-600">search_off</span>
+                    No questions found matching your search term.
+                </div>
+            </div>
+        </section>
+
+        <!-- Need Help Section -->
+        <section class="py-xl glass-panel relative border-t border-white/5">
+            <div class="max-w-container-max mx-auto px-gutter text-center relative z-10">
+                <h2 class="font-headline-xl text-headline-xl text-white mb-sm">Still have questions?</h2>
+                <p class="font-body-lg text-body-lg text-slate-400 max-w-xl mx-auto mb-lg">We are here to help. Reach out to our team directly, and we will get back to you within 24 hours.</p>
+                <div class="flex flex-wrap justify-center gap-sm">
+                    <a href="contact.html" class="bg-sky-300 text-slate-950 px-md py-sm rounded-[24px] font-label-md text-label-md font-semibold hover:bg-sky-200 hover:scale-105 transition-all shadow-glow">Contact Support</a>
+                    <a href="book-consultation.html" class="liquid-glass text-slate-200 px-md py-sm rounded-[24px] font-label-md text-label-md hover:bg-white/10 hover:scale-105 transition-all">Schedule a Call</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer id="site-footer" class="relative z-10 mt-20 bg-[#05080f] border-t border-white/5 overflow-hidden">
+
+        <!-- Ambient glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-sky-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <!-- Top band -->
+        <div class="max-w-container-max mx-auto px-gutter pt-16 pb-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+                <!-- Brand column (4/12) -->
+                <div class="md:col-span-4 flex flex-col gap-5">
+                    <div>
+                        <a href="index.html" class="inline-block">
+                            <span class="text-3xl font-bold tracking-tight text-white drop-shadow-[0_0_14px_rgba(125,211,252,0.25)]">Lumina<span class="text-sky-400">.</span></span>
+                        </a>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed max-w-xs">
+                            We craft premium digital experiences at the intersection of stunning aesthetics and enterprise reliability.
+                        </p>
+                    </div>
+
+                    <!-- Social row -->
+                    <div class="flex items-center gap-3 mt-1">
+                        <a href="mailto:hello@luminadigital.com" class="footer-social-btn" title="Email us">
+                            <span class="material-symbols-outlined" style="font-size:18px">mail</span>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="LinkedIn">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.97 0-1.75-.79-1.75-1.76S5.53 3.2 6.5 3.2s1.75.79 1.75 1.77-.78 1.76-1.75 1.76zM20 19h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V19h-3V8h2.88v1.51h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59V19z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="Twitter / X">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.743l7.73-8.835L1.254 2.25H8.08l4.261 5.633 5.903-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="Dribbble">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm7.369 5.297a10.01 10.01 0 0 1 2.24 5.703c-1.118-.24-3.37-.609-5.64-.264-.126-.303-.245-.608-.375-.91-.325-.773-.681-1.536-1.059-2.278 2.535-.941 4.343-2.39 4.834-3.251zm-1.396-1.278c-.427.774-2.089 2.167-4.508 3.025C12.186 5.126 10.814 3.356 9.7 1.858A10.1 10.1 0 0 1 12 1.6c2.19 0 4.21.706 5.973 1.419zM8.005 2.467c1.14 1.489 2.535 3.254 3.27 5.131-3.064.863-6.22.863-7.063.863a10.09 10.09 0 0 1 3.793-5.994zM1.6 12c0-.063 0-.126.002-.189.756.016 4.704.046 8.063-.929.226.443.436.892.641 1.339C6.98 13.24 4.48 15.98 3.126 18.236A10.03 10.03 0 0 1 1.6 12zm2.937 7.401c1.271-2.165 3.658-4.79 6.924-5.927.931 2.413 1.438 4.737 1.57 5.981A10.065 10.065 0 0 1 12 19.6a9.996 9.996 0 0 1-7.463-3.199zm9.195 2.09c-.153-1.192-.64-3.41-1.525-5.759 2.138-.32 4.134.187 5.285.481-.518 2.378-1.895 4.426-3.76 5.278z"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- CTA mini pill -->
+                    <a href="book-consultation.html" class="mt-2 inline-flex items-center gap-2 bg-sky-400/10 text-sky-300 border border-sky-400/25 px-4 py-2 rounded-full text-sm font-semibold hover:bg-sky-400/20 hover:scale-105 transition-all w-max shadow-[0_0_18px_rgba(125,211,252,0.15)]">
+                        <span class="material-symbols-outlined" style="font-size:16px">calendar_month</span>
+                        Book a Consultation
+                    </a>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-1"></div>
+
+                <!-- Work column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Work</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Studio column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Studio</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="process.html" class="footer-process-link">Our Process</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="book-consultation.html">Book Consultation</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="max-w-container-max mx-auto px-gutter py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-xs text-slate-600">© 2026 Lumina Digital Agency. All rights reserved.</p>
+            <div class="flex items-center gap-4 text-xs text-slate-600">
+                <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <span class="text-white/10">|</span>
+                <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                <span class="text-white/10">|</span>
+                <span class="text-sky-600">Crafted with precision ✦</span>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Footer styles -->
+    <style>
+        .footer-heading {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+        .footer-link-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .footer-link-list a {
+            font-size: 14px;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.15s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .footer-link-list a:hover { color: #7dd3fc; transform: translateX(3px); }
+        .footer-social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            color: #64748b;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .footer-social-btn:hover {
+            color: #7dd3fc;
+            border-color: rgba(125,211,252,0.3);
+            background: rgba(125,211,252,0.07);
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <!-- Shared Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Page Specific Script for Accordions and Real-time Filter/Search -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const triggers = document.querySelectorAll(".faq-trigger");
+            const filterBtns = document.querySelectorAll(".faq-filter-btn");
+            const searchInput = document.getElementById("faq-search");
+            const faqItems = document.querySelectorAll(".faq-item");
+            const emptyState = document.getElementById("faq-empty-state");
+
+            let currentCategory = "all";
+            let searchQuery = "";
+
+            // Accordion Toggle
+            triggers.forEach(trigger => {
+                trigger.addEventListener("click", () => {
+                    const content = trigger.nextElementSibling;
+                    const icon = trigger.querySelector(".material-symbols-outlined");
+
+                    // Check if already open
+                    const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+                    // Close all FAQs first for clean single accordion behavior
+                    triggers.forEach(t => {
+                        const c = t.nextElementSibling;
+                        const i = t.querySelector(".material-symbols-outlined");
+                        c.style.maxHeight = "0px";
+                        i.style.transform = "rotate(0deg)";
+                    });
+
+                    if (!isOpen) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = "rotate(180deg)";
+                    }
+                });
+            });
+
+            // Filter and Search Master Logic
+            function applyFilters() {
+                let matchesCount = 0;
+
+                faqItems.forEach(item => {
+                    const category = item.getAttribute("data-category");
+                    const question = item.querySelector(".faq-question").textContent.toLowerCase();
+                    const answer = item.querySelector(".faq-answer").textContent.toLowerCase();
+
+                    const categoryMatch = (currentCategory === "all" || category === currentCategory);
+                    const searchMatch = (searchQuery === "" || question.includes(searchQuery) || answer.includes(searchQuery));
+
+                    if (categoryMatch && searchMatch) {
+                        item.classList.remove("hidden");
+                        matchesCount++;
+                    } else {
+                        item.classList.add("hidden");
+                        // Also make sure it is collapsed if hidden
+                        const content = item.querySelector(".faq-content");
+                        const icon = item.querySelector(".faq-trigger .material-symbols-outlined");
+                        content.style.maxHeight = "0px";
+                        icon.style.transform = "rotate(0deg)";
+                    }
+                });
+
+                if (matchesCount === 0) {
+                    emptyState.classList.remove("hidden");
+                } else {
+                    emptyState.classList.add("hidden");
+                }
+            }
+
+            // Category Tab Click
+            filterBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove("border-sky-400/30", "bg-sky-400/10", "text-sky-300", "active-filter");
+                        b.classList.add("border-white/5", "bg-slate-900/40", "text-slate-400");
+                    });
+
+                    btn.classList.remove("border-white/5", "bg-slate-900/40", "text-slate-400");
+                    btn.classList.add("border-sky-400/30", "bg-sky-400/10", "text-sky-300", "active-filter");
+
+                    currentCategory = btn.getAttribute("data-category");
+                    applyFilters();
+                });
+            });
+
+            // Search Keyup
+            searchInput.addEventListener("input", (e) => {
+                searchQuery = e.target.value.toLowerCase().trim();
+                applyFilters();
+            });
+        });
+    </script>
+</body>
+</html>

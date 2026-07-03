@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lumina Admin — Login</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
+        colors: {
+          "primary": "#7dd3fc",
+          "primary-dim": "#38bdf8",
+          "surface": "#0f1524",
+          "surface-container": "#141c2e",
+          "surface-container-high": "#1a2438",
+          "on-surface": "#e0e8f0",
+          "on-surface-variant": "#a0b4c4",
+          "outline": "#4a6070",
+          "outline-variant": "#2a3a48",
+          "error": "#ff6b6b",
+          "tertiary": "#c8a0f0",
+          "secondary": "#88b4cc"
+        }
+      }}
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #020617;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+    }
+    .orb1 { top: -15%; left: -10%; width: 55vw; height: 55vw; background: radial-gradient(circle, rgba(125,211,252,0.07) 0%, transparent 70%); }
+    .orb2 { bottom: -20%; right: -10%; width: 45vw; height: 45vw; background: radial-gradient(circle, rgba(200,160,240,0.06) 0%, transparent 70%); }
+    .orb3 { top: 40%; left: 40%; width: 30vw; height: 30vw; background: radial-gradient(circle, rgba(56,189,248,0.04) 0%, transparent 70%); }
+
+    .login-card {
+      background: rgba(15, 21, 36, 0.7);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      border: 1px solid rgba(125, 211, 252, 0.15);
+      box-shadow: 0 0 60px rgba(125, 211, 252, 0.06), 0 32px 64px rgba(0,0,0,0.5);
+    }
+    .glass-input {
+      background: rgba(10, 14, 26, 0.5);
+      border: 1px solid rgba(125, 211, 252, 0.15);
+      color: #e0e8f0;
+      transition: all 0.3s;
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+    }
+    .glass-input:focus {
+      border-color: rgba(125, 211, 252, 0.5);
+      box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.1);
+      background: rgba(10, 14, 26, 0.7);
+    }
+    .glass-input::placeholder { color: #4a6070; }
+    .btn-login {
+      background: linear-gradient(135deg, rgba(125,211,252,0.25) 0%, rgba(56,189,248,0.2) 100%);
+      border: 1px solid rgba(125, 211, 252, 0.4);
+      color: #7dd3fc;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 11px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-login:hover {
+      background: linear-gradient(135deg, rgba(125,211,252,0.35) 0%, rgba(56,189,248,0.3) 100%);
+      box-shadow: 0 0 25px rgba(125, 211, 252, 0.25);
+      transform: translateY(-1px);
+    }
+    .btn-login:active { transform: translateY(0); }
+    .logo-glow {
+      box-shadow: 0 0 30px rgba(125,211,252,0.2);
+    }
+    .error-msg {
+      display: none;
+      background: rgba(255,107,107,0.1);
+      border: 1px solid rgba(255,107,107,0.3);
+      color: #ff6b6b;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      align-items: center;
+      gap: 6px;
+    }
+    .shake { animation: shake 0.4s ease; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+    .input-icon-wrap { position: relative; }
+    .input-icon {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      color: #4a6070; font-size: 18px; pointer-events: none;
+    }
+    .input-icon-wrap .glass-input { padding-left: 38px; }
+
+    .toggle-pw {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      color: #4a6070; cursor: pointer; font-size: 18px; user-select: none;
+      transition: color 0.2s;
+    }
+    .toggle-pw:hover { color: #7dd3fc; }
+
+    .back-link {
+      color: #4a6070; font-size: 12px; text-decoration: none;
+      transition: color 0.2s;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .back-link:hover { color: #7dd3fc; }
+
+    .loading-dots {
+      display: none;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+    }
+    .loading-dots span {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #7dd3fc;
+      animation: bounce 1.2s infinite;
+    }
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%,80%,100% { transform: scale(0.8); opacity: 0.5; }
+      40% { transform: scale(1.2); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background Orbs -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <!-- Login Card -->
+  <div class="login-card rounded-2xl p-8 w-full max-w-sm mx-4 relative z-10" id="login-card">
+    <!-- Logo + Brand -->
+    <div class="flex flex-col items-center mb-7">
+      <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/25 flex items-center justify-center mb-4 logo-glow">
+        <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings:'FILL' 1;">bubble</span>
+      </div>
+      <h1 class="text-xl font-bold text-on-surface tracking-tight">Lumina Admin</h1>
+      <p class="text-xs text-on-surface-variant mt-1">Secure Management Console</p>
+    </div>
+
+    <!-- WP-style URL badge -->
+    <div class="flex items-center justify-center mb-6">
+      <span class="text-[10px] text-outline bg-surface-container border border-outline-variant px-3 py-1 rounded-full font-mono">lumina.digital/admin</span>
+    </div>
+
+    <!-- Error Message -->
+    <div class="error-msg mb-4" id="error-msg">
+      <span class="material-symbols-outlined text-sm">error</span>
+      <span id="error-text">Invalid username or password.</span>
+    </div>
+
+    <!-- Form -->
+    <form id="login-form" autocomplete="on" class="space-y-4">
+      <div>
+        <label class="block text-xs font-medium text-on-surface-variant mb-1.5" for="username">Username</label>
+        <div class="input-icon-wrap">
+          <span class="material-symbols-outlined input-icon">person</span>
+          <input id="username" name="username" type="text" autocomplete="username"
+            placeholder="admin" class="glass-input" required/>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-on-surface-variant mb-1.5" for="password">Password</label>
+        <div class="input-icon-wrap" style="position:relative">
+          <span class="material-symbols-outlined input-icon">lock</span>
+          <input id="password" name="password" type="password" autocomplete="current-password"
+            placeholder="••••••••" class="glass-input" style="padding-right:42px;" required/>
+          <span class="material-symbols-outlined toggle-pw" id="toggle-pw" onclick="togglePw()">visibility_off</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-1">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="remember-me" class="w-3.5 h-3.5 rounded accent-sky-400"/>
+          <span class="text-xs text-on-surface-variant">Remember me</span>
+        </label>
+        <a href="#" class="text-xs text-primary/70 hover:text-primary transition-colors">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login mt-2" id="login-btn">
+        <span id="btn-label">Log In</span>
+        <div class="loading-dots" id="loading-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="mt-6 pt-5 border-t border-outline-variant/40 flex items-center justify-between">
+      <a href="../index.html" class="back-link">
+        <span class="material-symbols-outlined text-sm">arrow_back</span>
+        Back to Website
+      </a>
+      <span class="text-[10px] text-outline">v2.4.1</span>
+    </div>
+  </div>
+
+  <script>
+    // Demo credentials
+    const CREDENTIALS = { username: 'admin', password: 'admin123' };
+
+    function togglePw() {
+      const pw = document.getElementById('password');
+      const icon = document.getElementById('toggle-pw');
+      if (pw.type === 'password') {
+        pw.type = 'text';
+        icon.textContent = 'visibility';
+      } else {
+        pw.type = 'password';
+        icon.textContent = 'visibility_off';
+      }
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      document.getElementById('error-text').textContent = msg;
+      el.style.display = 'flex';
+      document.getElementById('login-card').classList.add('shake');
+      setTimeout(() => document.getElementById('login-card').classList.remove('shake'), 400);
+    }
+
+    function setLoading(val) {
+      const btn = document.getElementById('login-btn');
+      const label = document.getElementById('btn-label');
+      const dots = document.getElementById('loading-dots');
+      btn.disabled = val;
+      label.style.display = val ? 'none' : 'block';
+      dots.style.display = val ? 'flex' : 'none';
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      document.getElementById('error-msg').style.display = 'none';
+      const u = document.getElementById('username').value.trim();
+      const p = document.getElementById('password').value;
+      setLoading(true);
+
+      try {
+        const res = await fetch('/api/admin/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: u, password: p })
+        });
+        
+        if (res.ok) {
+          sessionStorage.setItem('lumina_admin_auth', 'true');
+          sessionStorage.setItem('lumina_admin_user', u);
+          window.location.href = 'dashboard.html';
+          return;
+        } else {
+          setLoading(false);
+          showError('ERROR: Invalid username or password. Please try again.');
+          return;
+        }
+      } catch (err) {
+        console.warn('Backend login API unavailable. Falling back to local credentials.');
+      }
+
+      // Fallback
+      await new Promise(r => setTimeout(r, 600));
+      if (u === CREDENTIALS.username && p === CREDENTIALS.password) {
+        sessionStorage.setItem('lumina_admin_auth', 'true');
+        sessionStorage.setItem('lumina_admin_user', u);
+        window.location.href = 'dashboard.html';
+      } else {
+        setLoading(false);
+        showError('ERROR: Invalid username or password. Please try again.');
+      }
+    });
+
+    // Auto redirect if already logged in
+    if (sessionStorage.getItem('lumina_admin_auth') === 'true') {
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+</html>

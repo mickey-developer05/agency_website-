@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Library — AI Automation Hub</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&family=Outfit:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="admin-common.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#7dd3fc", "primary-dim": "#38bdf8", "primary-glow": "rgba(125,211,252,0.15)",
+            "surface": "#0f1524", "surface-low": "#111828", "surface-container": "#141c2e",
+            "surface-container-high": "#1a2438", "surface-container-highest": "#202c42",
+            "on-surface": "#e0e8f0", "on-surface-variant": "#a0b4c4",
+            "outline": "#4a6070", "outline-variant": "#2a3a48",
+            "error": "#ff6b6b", "error-container": "#3d1414",
+            "tertiary": "#c8a0f0", "tertiary-dim": "#a78bfa",
+            "secondary": "#88b4cc", "secondary-dim": "#67b4d8",
+            "success": "#4ade80"
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon"><span class="material-symbols-outlined"
+          style="font-variation-settings:'FILL' 1">bubble</span></div>
+      <div>
+        <div class="text-sm font-bold text-primary tracking-tight leading-tight">Lumina Admin</div>
+        <div class="text-[10px] text-on-surface-variant">Management Suite</div>
+      </div>
+    </div>
+
+    <button class="new-project-btn" onclick="window.location='projects.html'">
+      <span class="material-symbols-outlined text-sm">add</span> New Project
+    </button>
+
+    <nav class="sidebar-nav">
+      <p class="nav-label">Main</p>
+      <a href="dashboard.html" class="nav-link" id="nav-dashboard">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="projects.html" class="nav-link" id="nav-projects">
+        <span class="material-symbols-outlined">folder_open</span>
+        <span>Projects</span>
+      </a>
+      <a href="crm.html" class="nav-link" id="nav-crm">
+        <span class="material-symbols-outlined">group_add</span>
+        <span>CRM Leads</span>
+      </a>
+      <a href="invoices.html" class="nav-link" id="nav-invoices">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Invoices</span>
+      </a>
+      <a href="content.html" class="nav-link" id="nav-content">
+        <span class="material-symbols-outlined">view_quilt</span>
+        <span>Website Content</span>
+      </a>
+      <p class="nav-label">Management</p>
+      <a href="team.html" class="nav-link" id="nav-team">
+        <span class="material-symbols-outlined">badge</span>
+        <span>Team</span>
+      </a>
+      <a href="media.html" class="nav-link" id="nav-media">
+        <span class="material-symbols-outlined">photo_library</span>
+        <span>Media Library</span>
+      </a>
+      <a href="inbox.html" class="nav-link" id="nav-inbox">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Inbox</span>
+      </a>
+      <a href="client-workspace.html" class="nav-link" id="nav-client-workspace">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">forum</span>
+        <span>Client Workspace</span>
+        <span id="chat-unread-badge" style="display:none;background:#7dd3fc;color:#020617;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;margin-left:auto"></span>
+      </a>
+      <p class="nav-label">🤖 AI Automation</p>
+      <a href="ai-dashboard.html" class="nav-link" id="nav-ai-dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="ai-proposal-generator.html" class="nav-link" id="nav-ai-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>AI Proposal</span>
+      </a>
+      <a href="ai-content-writer.html" class="nav-link" id="nav-ai-content-writer">
+        <span class="material-symbols-outlined">edit_document</span>
+        <span>Content Writer</span>
+      </a>
+      <a href="ai-meeting-summary.html" class="nav-link" id="nav-ai-meeting">
+        <span class="material-symbols-outlined">forum</span>
+        <span>Meeting Summary</span>
+      </a>
+      <a href="ai-client-onboarding.html" class="nav-link" id="nav-ai-onboarding">
+        <span class="material-symbols-outlined">person_add</span>
+        <span>Client Onboarding</span>
+      </a>
+      <a href="ai-email-assistant.html" class="nav-link" id="nav-ai-email">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Email Assistant</span>
+      </a>
+      <a href="ai-google-calendar.html" class="nav-link" id="nav-ai-calendar">
+        <span class="material-symbols-outlined">event</span>
+        <span>Google Calendar</span>
+      </a>
+      <a href="ai-prompt-library.html" class="nav-link" id="nav-ai-prompt">
+        <span class="material-symbols-outlined">library_books</span>
+        <span>Prompt Library</span>
+      </a>
+      <a href="ai-templates.html" class="nav-link" id="nav-ai-templates">
+        <span class="material-symbols-outlined">widgets</span>
+        <span>AI Templates</span>
+      </a>
+      <a href="ai-knowledge-base.html" class="nav-link" id="nav-ai-kb">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Knowledge Base</span>
+      </a>
+      <a href="ai-settings.html" class="nav-link" id="nav-ai-settings">
+        <span class="material-symbols-outlined">settings_suggest</span>
+        <span>AI Settings</span>
+      </a>
+      <a href="ai-api-connections.html" class="nav-link" id="nav-ai-api">
+        <span class="material-symbols-outlined">api</span>
+        <span>API Connections</span>
+      </a>
+      <a href="ai-usage-logs.html" class="nav-link" id="nav-ai-logs">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Usage Logs</span>
+      </a>
+      <p class="nav-label">System</p>
+      <a href="settings.html" class="nav-link" id="nav-settings">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="#" class="nav-link text-sm">
+        <span class="material-symbols-outlined text-sm">help</span>
+        <span>Support</span>
+      </a>
+      <a href="#" class="nav-link text-sm text-error/70 hover:text-error hover:!bg-error/10" onclick="adminLogout()">
+        <span class="material-symbols-outlined text-sm">logout</span>
+        <span>Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="admin-main" id="admin-main">
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="flex items-center gap-4">
+        <button class="md:hidden text-on-surface-variant hover:text-primary" onclick="toggleSidebar()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="breadcrumb">
+          <span class="bc-item active">Dashboard</span>
+          <span class="material-symbols-outlined bc-sep">chevron_right</span>
+          <span class="bc-item text-primary font-semibold">Prompt Library</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-wrap">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input type="text" placeholder="Search..." class="topbar-search" />
+        </div>
+        <button class="topbar-icon-btn" title="Notifications">
+          <span class="material-symbols-outlined">notifications</span>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="topbar-icon-btn" title="Apps">
+          <span class="material-symbols-outlined">apps</span>
+        </button>
+        <div class="topbar-avatar" title="Admin User">
+          <span class="material-symbols-outlined text-primary text-[18px]"
+            style="font-variation-settings:'FILL' 1">manage_accounts</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Prompt Library</h2>
+          <p class="page-subtitle">AI Automation Hub module.</p>
+        </div>
+        <div class="flex gap-3">
+          <button class="btn-primary"><span class="material-symbols-outlined text-sm">library_books</span> Actions</button>
+        </div>
+      </div>
+    
+        <div class="glass-card">
+           <div class="card-header flex justify-between items-center">
+              <h3 class="card-title">Saved Prompts</h3>
+              <button class="btn-primary text-sm py-1.5 px-3">Add Prompt</button>
+           </div>
+           <div class="table-container">
+             <table class="data-table">
+               <thead>
+                 <tr>
+                   <th>Title</th>
+                   <th>Category</th>
+                   <th>Date Added</th>
+                   <th>Actions</th>
+                 </tr>
+               </thead>
+               <tbody id="prompts-body">
+                 <tr><td colspan="4" class="text-center text-sm py-6 text-on-surface-variant">No prompts found. Create one to get started.</td></tr>
+               </tbody>
+             </table>
+           </div>
+        </div>
+        <script>
+           fetch('/api/admin/ai/prompts').then(res => res.json()).then(data => {
+               if(data.success && data.data.length > 0) {
+                   const tbody = document.getElementById('prompts-body');
+                   tbody.innerHTML = '';
+                   data.data.forEach(p => {
+                       tbody.innerHTML += `<tr>
+                         <td>${p.title}</td>
+                         <td><span class="status-badge status-active">${p.category || 'Custom'}</span></td>
+                         <td>${new Date(p.createdAt).toLocaleDateString()}</td>
+                         <td><button class="text-primary hover:underline text-xs">Edit</button></td>
+                       </tr>`;
+                   });
+               }
+           });
+        </script>
+        
+    </div>
+  </main>
+
+  <script>
+    setActiveNav('nav-dashboard');
+    document.getElementById('admin-name').textContent = sessionStorage.getItem('lumina_admin_user') || 'Admin';
+
+    // ── Load Recent Client Messages Widget ──
+    async function loadClientMessagesWidget() {
+      try {
+        const res = await fetch('/api/chat/messages');
+        if (!res.ok) throw new Error('API error');
+        const msgs = await res.json();
+        const list = document.getElementById('widget-messages-list');
+        list.innerHTML = '';
+
+        if (!msgs || msgs.length === 0) {
+          list.innerHTML = '<div style="padding:20px;text-align:center;color:#4a6070;font-size:12px"><span class="material-symbols-outlined" style="font-size:24px;display:block;margin-bottom:4px;opacity:0.35">forum</span>No messages yet</div>';
+          return;
+        }
+
+        const last5 = msgs.slice(-5).reverse();
+        const clientMsgs = msgs.filter(m => m.isClient);
+        const unreadCount = clientMsgs.length;
+
+        if (unreadCount > 0) {
+          const badge = document.getElementById('widget-unread');
+          badge.style.display = 'inline';
+          badge.textContent = unreadCount + ' messages';
+          const navBadge = document.getElementById('chat-unread-badge');
+          if (navBadge) { navBadge.style.display = 'inline'; navBadge.textContent = unreadCount; }
+        }
+
+        last5.forEach(m => {
+          const row = document.createElement('div');
+          row.style.cssText = 'display:flex;align-items:flex-start;gap:10px;padding:10px 0';
+          const isAdmin = !m.isClient;
+          const avatarHtml = m.avatar
+            ? `<img src="${m.avatar}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>`
+            : `<div style="width:32px;height:32px;border-radius:50%;background:rgba(125,211,252,0.1);border:1px solid rgba(125,211,252,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span class="material-symbols-outlined" style="font-size:14px;color:${isAdmin ? '#7dd3fc' : '#a0b4c4'}">${isAdmin ? 'manage_accounts' : 'person'}</span></div>`;
+          row.innerHTML = `
+            ${avatarHtml}
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                <span style="font-size:12px;font-weight:600;color:${isAdmin ? '#7dd3fc' : '#e0e8f0'}">${m.sender}${isAdmin ? ' (You)' : ''}</span>
+                <span style="font-size:10px;color:#4a6070;flex-shrink:0">${m.timestamp}</span>
+              </div>
+              <p style="font-size:12px;color:#a0b4c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px">${m.text}</p>
+            </div>
+          `;
+          list.appendChild(row);
+        });
+      } catch (err) {
+        document.getElementById('widget-messages-list').innerHTML = '<div style="padding:20px;text-align:center;color:#4a6070;font-size:12px">Could not load messages</div>';
+      }
+    }
+
+    // Load presence and activity events in real-time
+    async function loadMonitoringData() {
+      try {
+        // 1. Fetch Presence
+        const presenceRes = await fetch('/api/presence');
+        if (presenceRes.ok) {
+          const presenceList = await presenceRes.json();
+          const listContainer = document.getElementById('monitoring-presence-list');
+          listContainer.innerHTML = '';
+          
+          if (presenceList.length === 0) {
+            listContainer.innerHTML = `<div class="text-[10px] text-slate-500 py-4 text-center">No registered clients.</div>`;
+          } else {
+            presenceList.forEach(p => {
+              const div = document.createElement('div');
+              div.className = 'flex items-center justify-between p-1.5 rounded bg-surface/50 border border-outline-variant/15';
+              div.innerHTML = `
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="w-1.5 h-1.5 rounded-full flex-shrink-0 ${p.isOnline ? 'bg-success shadow-[0_0_8px_#4ade80]' : 'bg-slate-500'}"></span>
+                  <div class="flex flex-col min-w-0">
+                    <span class="text-[11px] font-semibold text-on-surface truncate leading-tight">${p.name}</span>
+                    <span class="text-[8px] text-on-surface-variant truncate leading-none">${p.company}</span>
+                  </div>
+                </div>
+                <span class="text-[8px] ${p.isOnline ? 'text-success font-medium' : 'text-slate-500'} flex-shrink-0">${p.isOnline ? 'Online' : p.lastSeen}</span>
+              `;
+              listContainer.appendChild(div);
+            });
+          }
+        }
+        
+        // 2. Fetch Activity log
+        const logRes = await fetch('/api/activity-log');
+        if (logRes.ok) {
+          const logList = await logRes.json();
+          const logContainer = document.getElementById('monitoring-security-log');
+          logContainer.innerHTML = '';
+          
+          if (logList.length === 0) {
+            logContainer.innerHTML = `<div class="text-[10px] text-slate-500 py-4 text-center">No events.</div>`;
+          } else {
+            logList.slice(-6).reverse().forEach(log => {
+              const div = document.createElement('div');
+              div.className = 'text-[9px] text-on-surface-variant flex flex-col gap-0.5 border-l-2 border-primary/20 pl-1.5 py-0.5';
+              div.innerHTML = `
+                <div class="flex items-center justify-between text-[8px] text-slate-500">
+                  <span class="uppercase font-bold text-primary/70">${log.eventType}</span>
+                  <span>${log.timestamp}</span>
+                </div>
+                <p class="text-slate-300 leading-none truncate">${log.details}</p>
+              `;
+              logContainer.appendChild(div);
+            });
+          }
+        }
+      } catch (err) {
+        console.error('Error loading monitoring data:', err);
+      }
+    }
+
+    loadClientMessagesWidget();
+    loadMonitoringData();
+    setInterval(loadMonitoringData, 5000);
+    setInterval(loadClientMessagesWidget, 5000);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Client Workspace - Glacier Portal</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "secondary-fixed-dim": "#88b4cc",
+            "inverse-surface": "#e0e8f0",
+            "on-surface-variant": "#a0b4c4",
+            "on-tertiary-fixed": "#1a002e",
+            "on-tertiary-container": "#e8d0ff",
+            "tertiary": "#c8a0f0",
+            "on-primary": "#001f2e",
+            "on-error-container": "#ffb3b3",
+            "surface-container-low": "#111828",
+            "on-tertiary-fixed-variant": "#4d2a73",
+            "on-primary-fixed-variant": "#004d73",
+            "secondary": "#88b4cc",
+            "on-tertiary": "#1a002e",
+            "error-container": "#3d1414",
+            "surface-variant": "#1a2438",
+            "surface-bright": "#1a2438",
+            "on-error": "#1a0000",
+            "on-primary-fixed": "#001f2e",
+            "surface-container-highest": "#202c42",
+            "on-secondary-fixed-variant": "#2a4a5e",
+            "background": "#0a0e1a",
+            "surface-container": "#141c2e",
+            "primary-fixed-dim": "#7dd3fc",
+            "error": "#ff6b6b",
+            "secondary-container": "#1a3a4e",
+            "primary-container": "#0e4d6e",
+            "surface-container-lowest": "#0a0e1a",
+            "primary-fixed": "#c8eaff",
+            "inverse-on-surface": "#0a0e1a",
+            "outline": "#4a6070",
+            "on-secondary-container": "#c0d8e8",
+            "secondary-fixed": "#c0d8e8",
+            "on-primary-container": "#c8eaff",
+            "surface": "#0f1524",
+            "surface-container-high": "#1a2438",
+            "tertiary-fixed-dim": "#c8a0f0",
+            "on-secondary-fixed": "#0d1f2b",
+            "on-surface": "#e0e8f0",
+            "on-background": "#e0e8f0",
+            "tertiary-container": "#3d2060",
+            "inverse-primary": "#0a4c6e",
+            "on-secondary": "#001f2e",
+            "surface-tint": "#7dd3fc",
+            "tertiary-fixed": "#e8d0ff",
+            "surface-dim": "#0f1524",
+            "primary": "#7dd3fc",
+            "outline-variant": "#2a3a48"
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Inter", "sans-serif"],
+            display: ["Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            label: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e1a;
+      color: #e0e8f0;
+      background-image: radial-gradient(circle at top right, rgba(125, 211, 252, 0.04) 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(200, 160, 240, 0.03) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+    .glass-panel {
+      background: rgba(15, 21, 36, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(125, 211, 252, 0.1);
+    }
+    .glass-elevated {
+      background: rgba(15, 21, 36, 0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(125, 211, 252, 0.15);
+      box-shadow: 0 0 30px rgba(125, 211, 252, 0.05);
+    }
+    .liquid-glass-track {
+      background: rgba(26, 36, 56, 0.5);
+      border: 1px solid rgba(125, 211, 252, 0.05);
+      border-radius: 9999px;
+      overflow: hidden;
+      position: relative;
+    }
+    .liquid-glass-fill {
+      background: linear-gradient(90deg, rgba(125,211,252,0.4) 0%, rgba(125,211,252,0.8) 100%);
+      box-shadow: 0 0 15px rgba(125, 211, 252, 0.3);
+      border-radius: 9999px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      100% { left: 200%; }
+    }
+    .glow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #7dd3fc;
+      box-shadow: 0 0 10px #7dd3fc;
+    }
+    .glow-text {
+      text-shadow: 0 0 10px rgba(125, 211, 252, 0.3);
+    }
+    .upload-zone {
+      background: rgba(125, 211, 252, 0.03);
+      border: 2px dashed rgba(125, 211, 252, 0.2);
+      transition: all 0.3s ease;
+    }
+    .upload-zone:hover {
+      background: rgba(125, 211, 252, 0.08);
+      border-color: rgba(125, 211, 252, 0.5);
+    }
+    .msg-bubble-sent {
+      background: rgba(125, 211, 252, 0.15);
+      border: 1px solid rgba(125, 211, 252, 0.2);
+      border-radius: 1.25rem 1.25rem 0 1.25rem;
+    }
+    .msg-bubble-received {
+      background: rgba(26, 36, 56, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1.25rem 1.25rem 1.25rem 0;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* Toast container */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+    }
+  </style>
+</head>
+<body class="font-body antialiased min-h-screen flex">
+  
+  <!-- ── SIDEBAR NAV ── -->
+  <nav class="bg-surface/60 backdrop-blur-xl h-screen w-72 flex-col fixed left-0 top-0 border-r border-primary/10 shadow-[0_0_30px_rgba(125,211,252,0.05)] flex py-6 z-20">
+    <div class="px-6 mb-8 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg glass-elevated flex items-center justify-center text-primary">
+        <span class="material-symbols-outlined">water_drop</span>
+      </div>
+      <div>
+        <div class="text-xl font-headline font-semibold tracking-tight text-primary">Glacier Portal</div>
+        <div class="text-xs text-on-surface-variant" id="sidebar-client-company">Enterprise Tier</div>
+      </div>
+    </div>
+    
+    <div class="flex-1 px-4 space-y-2" id="nav-tabs">
+      <button class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-primary bg-primary/10 font-semibold border-r-2 border-primary transition-all duration-200" data-tab="tab-overview">
+        <span class="material-symbols-outlined">account_tree</span>
+        <span>Projects</span>
+      </button>
+      <button class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all duration-200" data-tab="tab-files">
+        <span class="material-symbols-outlined">folder_shared</span>
+        <span>Files</span>
+      </button>
+      <button class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all duration-200" data-tab="tab-invoices">
+        <span class="material-symbols-outlined">payments</span>
+        <span>Invoices</span>
+      </button>
+      <button class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all duration-200" data-tab="tab-messages">
+        <span class="material-symbols-outlined">chat_bubble</span>
+        <span>Messages</span>
+      </button>
+      <button class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-on-surface-variant hover:text-on-surface hover:bg-primary/5 transition-all duration-200" data-tab="tab-support">
+        <span class="material-symbols-outlined">contact_support</span>
+        <span>Support</span>
+      </button>
+    </div>
+
+    <div class="px-6 mt-auto">
+      <button class="w-full py-3 px-4 glass-elevated text-primary font-semibold rounded-lg hover:bg-primary/10 transition-colors border border-primary/20 flex items-center justify-center gap-2" onclick="logoutClient()">
+        <span class="material-symbols-outlined text-sm">logout</span>
+        <span>Log Out</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── MAIN CONTAINER ── -->
+  <div class="flex-1 ml-72 flex flex-col min-h-screen">
+    
+    <!-- TopNavBar -->
+    <header class="bg-surface/60 backdrop-blur-xl fixed top-0 right-0 left-72 h-16 border-b border-primary/10 shadow-sm flex items-center justify-between px-8 w-full z-10">
+      <div class="flex items-center gap-4">
+        <a href="../index.html" class="flex items-center justify-center w-8 h-8 rounded-lg border border-primary/15 bg-primary/5 hover:bg-primary/15 hover:border-primary/30 text-primary transition-all duration-200 shadow-sm" title="Back to Agency Homepage">
+          <span class="material-symbols-outlined text-[18px]">home</span>
+        </a>
+        <div class="text-lg font-headline font-bold text-on-surface flex items-center gap-2">
+          Client Workspace
+          <span class="text-xs font-semibold text-primary/80 bg-primary/10 border border-primary/20 px-2.5 py-0.5 rounded-full" id="client-company-badge">Lumina Client</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="relative focus-within:ring-1 focus-within:ring-primary/30 transition-all rounded-full glass-panel flex items-center px-4 py-1.5 w-64">
+          <span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+          <input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-full placeholder-on-surface-variant/50" placeholder="Search workspace..." type="text">
+        </div>
+        <div class="flex items-center gap-4">
+          <!-- Notification Dropdown Container -->
+          <div class="relative">
+            <button id="notif-btn" onclick="toggleNotifDropdown()" class="text-on-surface-variant hover:text-primary transition-colors relative flex items-center">
+              <span class="material-symbols-outlined">notifications</span>
+              <span id="notif-badge" class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-red-500 rounded-full border border-[#0f1524]" style="display:none"></span>
+            </button>
+            
+            <!-- Dropdown Panel -->
+            <div id="notif-dropdown" class="hidden absolute right-0 mt-3 w-80 bg-[#141c2e]/95 backdrop-blur-2xl border border-primary/20 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 z-50">
+              <div class="flex items-center justify-between mb-3 pb-2 border-b border-primary/10">
+                <span class="text-xs font-bold text-on-surface uppercase tracking-wider">Alerts</span>
+                <button onclick="markAllNotificationsRead()" class="text-primary text-[10px] font-semibold hover:underline">Mark all read</button>
+              </div>
+              <div id="notif-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-1">
+                <!-- Notifications load here -->
+              </div>
+            </div>
+          </div>
+
+          <button class="text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <div class="hidden md:flex flex-col text-right">
+              <span class="text-xs font-semibold text-on-surface" id="header-client-name">Client User</span>
+              <span class="text-[9px] text-on-surface-variant" id="header-client-email">billing@client.com</span>
+            </div>
+            <div class="w-8 h-8 rounded-full border border-primary/20 overflow-hidden ml-1">
+              <img alt="Client User" class="w-full h-full object-cover" id="header-client-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCut3swCkpuGNpGCk53Tseb9mYnRR8s2DHUCkI7FtwZGPIcttEWrUVVwW3Po_uE9JNHcMl7oHWWPJKHz-9x1sM95nbvPC0AMdnICBwx8B4Fcz0_FeLiXJeYXW1-x-k_2yf5zJ8NOf_XgXSyEESuXdCZhiyCWbG2dAr9SefjyrtqkeNOoyDjrfC_CLYAWVvxUYg68hdwGy0ImlxdFpBjoanT-qhOSkVCaD8WPg6MyvTY-DPz7fBOCgcUxVoKHMNMJyj4WEcbVbpS">
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Canvas -->
+    <main class="flex-1 pt-24 px-8 pb-12 overflow-y-auto">
+      
+      <!-- ══ TAB 1: OVERVIEW & PROJECTS ══ -->
+      <div class="tab-content active" id="tab-overview">
+        <div class="mb-8 flex justify-between items-end">
+          <div>
+            <h1 class="text-3xl font-headline font-semibold tracking-tight text-on-surface mb-2">Active Projects</h1>
+            <p class="text-on-surface-variant">Tracking progress and milestones across all active initiatives.</p>
+          </div>
+          <div class="flex gap-3">
+            <button class="glass-panel px-4 py-2 rounded-lg text-sm text-on-surface flex items-center gap-2 hover:bg-white/5 transition-colors">
+              <span class="material-symbols-outlined text-sm">filter_list</span>
+              Filter
+            </button>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" id="projects-grid">
+          <!-- Dynamically filled by script -->
+        </div>
+      </div>
+
+      <!-- ══ TAB 2: SHARED FILES ══ -->
+      <div class="tab-content" id="tab-files">
+        <div class="mb-8 flex justify-between items-end">
+          <div>
+            <h1 class="text-3xl font-headline font-bold text-on-surface mb-2">Shared Files</h1>
+            <p class="text-on-surface-variant font-body">Manage and access your project assets</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="glass-panel flex rounded-lg p-1">
+              <button class="px-3 py-1.5 rounded-md bg-primary/10 text-primary text-sm font-semibold flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">grid_view</span>Grid
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload Zone -->
+        <div class="w-full rounded-xl upload-zone flex flex-col items-center justify-center py-10 cursor-pointer mb-8 group" id="upload-zone" onclick="triggerFileUpload()">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-115 transition-all duration-300">
+            <span class="material-symbols-outlined text-3xl text-primary">cloud_upload</span>
+          </div>
+          <h3 class="text-lg font-headline font-semibold text-on-surface mb-1">Upload New File</h3>
+          <p class="text-sm text-on-surface-variant font-body">Drag and drop files here or click to browse</p>
+          <input type="file" id="file-input" class="hidden" onchange="handleFileSelect(event)">
+        </div>
+
+        <!-- Folders Section -->
+        <section class="mb-8">
+          <h3 class="text-lg font-headline font-semibold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">folder</span>Folders
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="glass-panel rounded-xl p-5 hover:bg-surface/85 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 border border-primary/20">
+                <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings:'FILL' 1;">folder</span>
+              </div>
+              <h4 class="font-headline font-semibold text-on-surface mb-1">Brand Assets</h4>
+              <p class="text-xs text-on-surface-variant font-body">2 items • 20.4 MB</p>
+            </div>
+            <div class="glass-panel rounded-xl p-5 hover:bg-surface/85 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center mb-4 border border-tertiary/20">
+                <span class="material-symbols-outlined text-2xl text-tertiary" style="font-variation-settings:'FILL' 1;">folder</span>
+              </div>
+              <h4 class="font-headline font-semibold text-on-surface mb-1">Wireframes</h4>
+              <p class="text-xs text-on-surface-variant font-body">1 item • 45 KB</p>
+            </div>
+            <div class="glass-panel rounded-xl p-5 hover:bg-surface/85 transition-all cursor-pointer">
+              <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4 border border-secondary/20">
+                <span class="material-symbols-outlined text-2xl text-secondary" style="font-variation-settings:'FILL' 1;">folder</span>
+              </div>
+              <h4 class="font-headline font-semibold text-on-surface mb-1">Final Deliverables</h4>
+              <p class="text-xs text-on-surface-variant font-body">1 item • 142 MB</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Files Section -->
+        <section>
+          <h3 class="text-lg font-headline font-semibold text-on-surface mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">description</span>Shared Files
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="files-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+      </div>
+
+      <!-- ══ TAB 3: INVOICES & BILLING ══ -->
+      <div class="tab-content" id="tab-invoices">
+        <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h1 class="text-3xl font-display font-bold text-on-surface tracking-tight mb-2">Billing &amp; Invoices</h1>
+            <p class="text-on-surface-variant">Manage your billing history and upcoming payments.</p>
+          </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div class="glass-elevated rounded-xl p-6 relative overflow-hidden group">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-on-surface-variant text-sm font-medium">Total Paid</span>
+              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+              </div>
+            </div>
+            <div class="text-3xl font-display font-bold glow-text text-on-surface" id="invoice-paid-total">$0.00</div>
+          </div>
+          <div class="glass-elevated rounded-xl p-6 relative overflow-hidden group border-error/20">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-on-surface-variant text-sm font-medium">Payment Due</span>
+              <div class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center text-error">
+                <span class="material-symbols-outlined text-[18px]">event</span>
+              </div>
+            </div>
+            <div class="text-3xl font-display font-bold text-on-surface" id="invoice-due-total">$0.00</div>
+          </div>
+        </div>
+
+        <!-- Search, Sort & Filter Controls -->
+        <div class="glass-panel rounded-xl p-5 mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div class="relative w-full md:w-80">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+            <input type="text" id="invoice-search" oninput="filterAndRenderInvoices()" placeholder="Search project or invoice ID..." class="w-full pl-10 pr-4 py-2 rounded-lg bg-surface/50 border border-primary/10 text-on-surface text-sm outline-none focus:border-primary/30 transition-all"/>
+          </div>
+          
+          <div class="flex flex-wrap w-full md:w-auto gap-4 items-center justify-end">
+            <!-- Filter -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-on-surface-variant font-medium">Filter:</span>
+              <select id="invoice-filter" onchange="filterAndRenderInvoices()" class="rounded-lg bg-surface/50 border border-primary/10 text-on-surface text-xs px-3 py-1.5 focus:border-primary/30 outline-none">
+                <option value="all">All Invoices</option>
+                <option value="paid">Paid</option>
+                <option value="due">Due</option>
+                <option value="partially paid">Partially Paid</option>
+                <option value="overdue">Overdue</option>
+              </select>
+            </div>
+            
+            <!-- Sort -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-on-surface-variant font-medium">Sort:</span>
+              <select id="invoice-sort" onchange="filterAndRenderInvoices()" class="rounded-lg bg-surface/50 border border-primary/10 text-on-surface text-xs px-3 py-1.5 focus:border-primary/30 outline-none">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="amount-desc">Amount (High to Low)</option>
+                <option value="amount-asc">Amount (Low to High)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="glass-panel rounded-xl overflow-hidden flex flex-col">
+          <div class="p-5 border-b border-primary/10 bg-surface/30">
+            <h3 class="font-semibold text-lg">Invoice Ledger</h3>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-on-surface">
+              <thead class="text-xs text-on-surface-variant uppercase bg-surface-container-low/50">
+                <tr>
+                  <th class="px-6 py-4 font-medium tracking-wider">Invoice ID</th>
+                  <th class="px-6 py-4 font-medium tracking-wider">Project</th>
+                  <th class="px-6 py-4 font-medium tracking-wider text-right">Amount</th>
+                  <th class="px-6 py-4 font-medium tracking-wider">Status</th>
+                  <th class="px-6 py-4 font-medium tracking-wider text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-primary/5" id="invoices-table-body">
+                <!-- Dynamically filled -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 4: DIRECT MESSAGES ══ -->
+      <div class="tab-content" id="tab-messages">
+        <div class="flex h-[calc(100vh-12rem)] border border-primary/10 rounded-xl overflow-hidden glass-panel">
+          <!-- Threads list -->
+          <div class="w-80 border-r border-primary/10 flex flex-col bg-surface/30">
+            <div class="p-4 border-b border-primary/10">
+              <h3 class="font-semibold text-lg">Direct Messages</h3>
+            </div>
+            <div class="flex-1 overflow-y-auto p-2 space-y-2">
+              <div class="p-3 rounded-lg bg-primary/10 border border-primary/20 flex items-center gap-3 cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-primary/20 overflow-hidden flex-shrink-0">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcXg66X5OJXpu7Eu9AskzgzFimFS8pBIYmSmkYfQNrbip_0dyeH_vuiw9ktFvRf4wxhIzUrWQbQn9dDw0zOy6GcYkNkJ7ESGmk1O1L_FH1OWvxYiuc2gjJef27NCDyJtBHrTCRJcUXKKP1-zUkKShQ9Ou1sIN0G703_ZNV_aypNQ27GzTeHq07riRchKcR4Ch9FIhsnhuOY_-MLLmFPLYdNGMvnFKW1Xd645EMYHT5tUfmoxj-BzJtYFt0CtOhBLgwx7pBkGIA" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm">Sarah Jenkins</h4>
+                  <p class="text-xs text-on-surface-variant">Creative Director</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Chat box -->
+          <div class="flex-1 flex flex-col bg-surface-container-lowest/30">
+            <!-- Chat Messages -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-4 flex flex-col" id="chat-messages-container">
+              <!-- Rendered dynamically -->
+            </div>
+            
+            <!-- Chat Input -->
+            <div class="p-4 border-t border-primary/10 bg-surface/40">
+              <form id="chat-form" class="flex gap-2" onsubmit="sendChatMessage(event)">
+                <input type="text" id="chat-input" class="flex-1 bg-surface-container border border-primary/10 rounded-lg text-sm text-on-surface px-4 py-2.5 focus:ring-primary focus:border-primary placeholder-on-surface-variant/40" placeholder="Type a message...">
+                <button type="submit" class="bg-primary/20 hover:bg-primary hover:text-on-primary text-primary px-5 py-2.5 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(125,211,252,0.1)]">
+                  <span class="material-symbols-outlined text-[18px]">send</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB 5: SUPPORT TICKETS ══ -->
+      <div class="tab-content" id="tab-support">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div>
+            <h1 class="text-4xl font-headline font-bold tracking-tight text-on-surface mb-2 text-glow">Support Tickets</h1>
+            <p class="text-on-surface-variant text-sm">Manage your active inquiries and review resolved issues.</p>
+          </div>
+          <button class="py-2.5 px-5 rounded-lg bg-primary/20 border border-primary/30 text-primary font-semibold flex items-center justify-center gap-2 hover:bg-primary/30 transition-all duration-300" onclick="openTicketModal()">
+            <span class="material-symbols-outlined text-sm">add_circle</span>
+            New Ticket
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 mb-8">
+          <div class="glass-panel rounded-xl p-5 text-center">
+            <h4 class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mb-2">Total Tickets</h4>
+            <div class="text-3xl font-bold" id="ticket-total-count">0</div>
+          </div>
+          <div class="glass-panel rounded-xl p-5 text-center">
+            <h4 class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mb-2">Open</h4>
+            <div class="text-3xl font-bold text-primary" id="ticket-open-count">0</div>
+          </div>
+          <div class="glass-panel rounded-xl p-5 text-center">
+            <h4 class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mb-2">Resolved</h4>
+            <div class="text-3xl font-bold text-green-400" id="ticket-resolved-count">0</div>
+          </div>
+        </div>
+
+        <!-- Tickets List -->
+        <div class="space-y-4" id="tickets-list">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── NEW TICKET MODAL ── -->
+  <div id="ticket-modal" class="fixed inset-0 bg-background/80 backdrop-blur-md flex items-center justify-center z-50 hidden">
+    <div class="glass-elevated rounded-xl p-6 w-full max-w-lg mx-4">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-lg font-headline font-bold text-on-surface">Submit Support Ticket</h3>
+        <button class="text-on-surface-variant hover:text-on-surface" onclick="closeTicketModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="ticket-form" onsubmit="submitSupportTicket(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-widest mb-1">Subject</label>
+          <input type="text" id="ticket-subject" class="w-full bg-surface-container border border-primary/10 rounded-lg py-2.5 px-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Summarize your issue..." required>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-widest mb-1">Priority</label>
+          <select id="ticket-priority" class="w-full bg-surface-container border border-primary/10 rounded-lg py-2.5 px-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary">
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant uppercase tracking-widest mb-1">Description / Details</label>
+          <textarea id="ticket-details" class="w-full bg-surface-container border border-primary/10 rounded-lg py-2.5 px-4 text-on-surface focus:ring-1 focus:ring-primary focus:border-primary min-h-[120px] resize-none" placeholder="Provide detailed context..." required></textarea>
+        </div>
+        <button type="submit" class="w-full py-3 bg-primary text-on-primary font-bold rounded-lg shadow-xl hover:brightness-110 transition-all flex items-center justify-center gap-2">
+          <span>Create Ticket</span>
+          <span class="material-symbols-outlined text-sm">send</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══ INVOICE PREVIEW MODAL ══ -->
+  <div id="invoice-preview-modal" class="fixed inset-0 z-50 bg-[#020617]/80 backdrop-blur-md items-center justify-center p-4 hidden" style="display:none;">
+    <div class="glass-elevated border border-primary/15 rounded-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl relative mx-4">
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-primary/10 flex items-center justify-between bg-surface-container/40">
+        <h3 class="font-display font-bold text-lg text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">description</span> Invoice Details
+        </h3>
+        <div class="flex items-center gap-2">
+          <button id="modal-download-btn" class="px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/5 text-xs text-on-surface hover:bg-primary/10 transition-colors font-medium flex items-center gap-1.5" onclick="downloadPreviewInvoice()">
+            <span class="material-symbols-outlined text-sm">download</span> Download PDF
+          </button>
+          <button class="text-on-surface-variant hover:text-primary transition-colors ml-2 flex items-center" onclick="closeInvoicePreview()">
+            <span class="material-symbols-outlined text-[24px]">close</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Modal Scrollable Content -->
+      <div class="p-6 overflow-y-auto flex-1 space-y-6" id="modal-preview-content">
+        <!-- populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ INVOICE PAYMENT MODAL ══ -->
+  <div id="invoice-payment-modal" class="fixed inset-0 z-50 bg-[#020617]/90 backdrop-blur-md items-center justify-center p-4 hidden" style="display:none;">
+    <div class="glass-elevated border border-primary/15 rounded-2xl w-full max-w-md shadow-2xl relative mx-4">
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-primary/10 flex items-center justify-between">
+        <h3 class="font-display font-bold text-lg text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">credit_card</span> Pay Invoice
+        </h3>
+        <button class="text-on-surface-variant hover:text-primary transition-colors flex items-center" onclick="closePaymentModal()">
+          <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+      </div>
+      
+      <!-- Modal Content -->
+      <div class="p-6 space-y-4">
+        <div>
+          <p class="text-xs text-on-surface-variant mb-1">Invoice ID</p>
+          <p class="text-base font-bold text-primary" id="pay-invoice-id">INV-XXXX</p>
+        </div>
+        
+        <div>
+          <p class="text-xs text-on-surface-variant mb-1">Remaining Due Balance</p>
+          <p class="text-lg font-bold text-on-surface" id="pay-invoice-due">$0.00</p>
+        </div>
+        
+        <div class="space-y-1">
+          <label for="pay-amount" class="text-xs text-on-surface-variant font-medium">Payment Amount ($)</label>
+          <input type="number" id="pay-amount" class="w-full pl-3 pr-3 py-2 rounded-lg bg-surface/50 border border-primary/10 text-on-surface text-sm outline-none focus:border-primary/30 transition-all font-semibold" step="0.01"/>
+          <p class="text-[10px] text-on-surface-variant">Default amount is the remaining balance. You can make a partial payment.</p>
+        </div>
+        
+        <div class="space-y-1">
+          <span class="text-xs text-on-surface-variant font-medium block">Payment Method</span>
+          <div class="grid grid-cols-3 gap-2">
+            <button class="py-2.5 rounded-lg border border-primary/20 bg-primary/5 text-xs text-on-surface hover:bg-primary/10 transition-colors font-medium flex flex-col items-center justify-center gap-1" onclick="selectPaymentMethod(this, 'Card')">
+              <span class="material-symbols-outlined text-sm">credit_card</span>Card
+            </button>
+            <button class="py-2.5 rounded-lg border border-primary/10 bg-transparent text-xs text-on-surface-variant hover:bg-primary/5 transition-colors font-medium flex flex-col items-center justify-center gap-1" onclick="selectPaymentMethod(this, 'Bank Transfer')">
+              <span class="material-symbols-outlined text-sm">account_balance</span>Bank
+            </button>
+            <button class="py-2.5 rounded-lg border border-primary/10 bg-transparent text-xs text-on-surface-variant hover:bg-primary/5 transition-colors font-medium flex flex-col items-center justify-center gap-1" onclick="selectPaymentMethod(this, 'PayPal')">
+              <span class="material-symbols-outlined text-sm">payments</span>PayPal
+            </button>
+          </div>
+        </div>
+        
+        <div class="pt-4 border-t border-primary/10 flex gap-3">
+          <button class="flex-1 py-2.5 rounded-lg bg-surface border border-primary/20 text-on-surface text-xs font-semibold hover:bg-surface-container transition-colors" onclick="closePaymentModal()">
+            Cancel
+          </button>
+          <button id="submit-payment-btn" class="flex-1 py-2.5 rounded-lg bg-primary hover:brightness-110 text-surface text-xs font-bold shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2" onclick="submitInvoicePayment()">
+            Confirm Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container for updates -->
+  <div id="toast-container"></div>
+
+  <!-- ── SCRIPTS ── -->
+  <script>
+    // ── Automated CSRF & Credentials Injector ──
+    (function() {
+      const originalFetch = window.fetch;
+      window.fetch = async function(url, options = {}) {
+        options.credentials = options.credentials || 'include';
+        const method = (options.method || 'GET').toUpperCase();
+        if (!['GET', 'HEAD', 'OPTIONS'].includes(method)) {
+          options.headers = options.headers || {};
+          const cookies = document.cookie.split(';').reduce((acc, c) => {
+            const [name, val] = c.trim().split('=');
+            if (name) acc[name] = decodeURIComponent(val || '');
+            return acc;
+          }, {});
+          const csrfToken = cookies['lumina_csrf'];
+          if (csrfToken) {
+            options.headers['X-CSRF-Token'] = csrfToken;
+          }
+        }
+        return originalFetch(url, options);
+      };
+    })();
+
+    // Auth Guard — check server cookie first, fall back to sessionStorage
+    (async function() {
+      // Quick local check first (avoids flash on return visits)
+      if (sessionStorage.getItem('lumina_client_auth') === 'true') {
+        return; // Already known to be authed
+      }
+      // Verify with server (handles cookie-based sessions from fresh login)
+      try {
+        const res = await fetch('/api/client/session');
+        const data = await res.json();
+        if (data.authenticated) {
+          sessionStorage.setItem('lumina_client_auth', 'true');
+          sessionStorage.setItem('lumina_client_user', data.user);
+          return; // Auth confirmed
+        }
+      } catch (e) {}
+      // Not authenticated — redirect to login
+      window.location.href = 'index.html';
+    })();
+
+    // Shared functions for client actions
+    async function logoutClient() {
+      if (confirm('Are you sure you want to log out?')) {
+        try {
+          await fetch('/api/client/logout', { method: 'POST', credentials: 'include' });
+        } catch (err) {
+          console.warn('API logout failed, performing local logout.');
+        }
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.href = '/login';
+      }
+    }
+
+    // Toast triggers
+    function showToast(title, message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const colors = {
+        success: 'border-green-500/30 text-green-400 bg-green-500/5',
+        error: 'border-red-500/30 text-red-400 bg-red-500/5',
+        info: 'border-primary/30 text-primary bg-primary/5'
+      };
+      const toast = document.createElement('div');
+      toast.className = `p-4 border rounded-xl flex flex-col gap-1 backdrop-blur-md shadow-lg transition-all duration-300 transform translate-y-4 opacity-0 ${colors[type] || colors.info}`;
+      toast.innerHTML = `<h5 class="font-bold text-sm text-on-surface">${title}</h5><p class="text-xs text-on-surface-variant">${message}</p>`;
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-4', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Dynamic Tab Switching
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-btn').forEach(b => {
+          b.classList.remove('text-primary', 'bg-primary/10', 'font-semibold', 'border-r-2', 'border-primary');
+          b.classList.add('text-on-surface-variant');
+        });
+        btn.classList.add('text-primary', 'bg-primary/10', 'font-semibold', 'border-r-2', 'border-primary');
+        btn.classList.remove('text-on-surface-variant');
+        
+        const tabId = btn.getAttribute('data-tab');
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        
+        // Refresh specific tab data
+        if (tabId === 'tab-overview') loadProjects();
+        if (tabId === 'tab-files') loadFiles();
+        if (tabId === 'tab-invoices') loadInvoices();
+        if (tabId === 'tab-messages') loadChatMessages();
+        if (tabId === 'tab-support') loadTickets();
+      });
+    });
+
+    // ── DATA LOADING MODULES ──
+
+    // 1. Projects
+    async function loadProjects() {
+      try {
+        const res = await fetch('/api/projects');
+        const projects = await res.json();
+        const grid = document.getElementById('projects-grid');
+        grid.innerHTML = '';
+        
+        projects.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'glass-elevated rounded-xl p-6 lg:col-span-2 relative overflow-hidden group';
+          card.innerHTML = `
+            <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+              <span class="material-symbols-outlined text-6xl text-primary">web</span>
+            </div>
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <h2 class="text-xl font-headline font-semibold text-on-surface">${p.name}</h2>
+                  <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20 flex items-center gap-1.5">
+                    <div class="glow-dot"></div>
+                    ${p.stage}
+                  </span>
+                </div>
+                <p class="text-sm text-on-surface-variant">Client: ${p.client}</p>
+              </div>
+              <div class="text-right">
+                <div class="text-sm text-on-surface-variant mb-1">Target Date</div>
+                <div class="text-on-surface font-medium">${p.date}</div>
+              </div>
+            </div>
+            <div class="mb-6">
+              <div class="flex justify-between text-sm mb-2">
+                <span class="text-on-surface-variant">Progress</span>
+                <span class="text-primary font-semibold">${p.progress}%</span>
+              </div>
+              <div class="h-3 liquid-glass-track w-full">
+                <div class="liquid-glass-fill" style="width: ${p.progress}%;"></div>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Error loading projects:', err);
+      }
+    }
+
+    // 2. Shared Files
+    async function loadFiles() {
+      try {
+        const res = await fetch('/api/files');
+        const files = await res.json();
+        const grid = document.getElementById('files-grid');
+        grid.innerHTML = '';
+        
+        files.forEach(f => {
+          const typeColors = {
+            PDF: 'text-red-400 bg-red-400/10 border-red-400/20',
+            PNG: 'text-primary bg-primary/10 border-primary/20',
+            MP4: 'text-green-400 bg-green-400/10 border-green-400/20',
+            DOCX: 'text-secondary bg-secondary/10 border-secondary/20'
+          };
+          const colorClass = typeColors[f.type] || 'text-on-surface bg-surface-container border-outline/20';
+          const icon = f.type === 'PDF' ? 'picture_as_pdf' : f.type === 'MP4' ? 'videocam' : f.type === 'DOCX' ? 'article' : 'image';
+          
+          const card = document.createElement('div');
+          card.className = 'glass-panel rounded-xl p-4 hover:border-primary/30 transition-colors cursor-pointer group flex flex-col h-full';
+          card.innerHTML = `
+            <div class="w-full aspect-video rounded-lg bg-surface-container-high mb-4 flex items-center justify-center overflow-hidden border border-outline-variant/30 relative">
+              <div class="w-16 h-16 rounded-lg bg-primary/5 flex items-center justify-center">
+                <span class="material-symbols-outlined text-3xl text-primary/40">${icon}</span>
+              </div>
+              <div class="absolute bottom-2 right-2 px-2 py-0.5 rounded text-[10px] font-bold bg-background/80 text-on-surface backdrop-blur-sm border border-outline-variant/50">${f.type}</div>
+            </div>
+            <div class="flex items-start justify-between gap-2 mt-auto">
+              <div class="min-w-0">
+                <h4 class="font-headline font-medium text-sm text-on-surface truncate">${f.name}</h4>
+                <p class="text-xs text-on-surface-variant font-body mt-1">${f.size} • ${f.date}</p>
+              </div>
+              <button class="text-on-surface-variant hover:text-primary flex-shrink-0" onclick="showToast('Download Started', 'Downloading file ${f.name}...', 'info')">
+                <span class="material-symbols-outlined text-xl">download</span>
+              </button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Error loading files:', err);
+      }
+    }
+
+    function triggerFileUpload() {
+      document.getElementById('file-input').click();
+    }
+
+    async function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const fileType = file.name.split('.').pop().toUpperCase();
+      const fileSize = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+      
+      try {
+        const res = await fetch('/api/files/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: file.name,
+            size: fileSize,
+            folder: 'Brand Assets',
+            type: fileType
+          })
+        });
+        
+        if (res.ok) {
+          showToast('File Uploaded', `Successfully uploaded ${file.name} to shared workspace.`);
+          loadFiles();
+        }
+      } catch (err) {
+        console.error('Error uploading file:', err);
+      }
+    }
+
+    // 3. Invoices System (Upgrade)
+    let allInvoices = [];
+    let activePreviewInvoiceId = null;
+    let activePayInvoiceId = null;
+    let selectedPaymentMethod = 'Card';
+
+    // Helper to map and compute invoice fields (backward-compatible)
+    function mapInvoiceFields(inv) {
+      const amount = parseFloat(inv.amount) || 0;
+      const status = (inv.status || 'pending').toLowerCase();
+      
+      const amountPaid = parseFloat(inv.amountPaid) !== undefined 
+        ? parseFloat(inv.amountPaid) 
+        : (status === 'paid' ? amount : 0);
+        
+      const remainingDue = parseFloat(inv.remainingDue) !== undefined 
+        ? parseFloat(inv.remainingDue) 
+        : (status === 'paid' ? 0 : amount);
+        
+      const items = inv.items && inv.items.length > 0 ? inv.items : [
+        { description: inv.project || 'Project Services', quantity: 1, unitPrice: amount, amount: amount }
+      ];
+      
+      const paymentHistory = inv.paymentHistory || (status === 'paid' ? [
+        { amount: amount, date: inv.issueDate || 'N/A', method: 'Card', transactionId: 'TXN-' + inv.id }
+      ] : []);
+
+      let currentStatus = status;
+      if (status !== 'paid' && status !== 'partially paid') {
+        const dueDateObj = new Date(inv.dueDate);
+        if (!isNaN(dueDateObj.getTime()) && dueDateObj < new Date()) {
+          currentStatus = 'overdue';
+        } else {
+          currentStatus = 'due';
+        }
+      }
+
+      return {
+        ...inv,
+        amountPaid,
+        remainingDue,
+        items,
+        paymentHistory,
+        status: currentStatus,
+        tax: parseFloat(inv.tax) || 0,
+        discount: parseFloat(inv.discount) || 0,
+        clientEmail: inv.clientEmail || 'billing@acme.com',
+        clientAddress: inv.clientAddress || '123 Business Rd, Suite 100, Metropolis, NY 10001'
+      };
+    }
+
+    async function loadInvoices() {
+      try {
+        const res = await fetch('/api/invoices');
+        const data = await res.json();
+        allInvoices = data.map(mapInvoiceFields);
+        filterAndRenderInvoices();
+      } catch (err) {
+        console.error('Error loading invoices:', err);
+      }
+    }
+
+    function filterAndRenderInvoices() {
+      const search = (document.getElementById('invoice-search')?.value || '').trim().toLowerCase();
+      const filter = document.getElementById('invoice-filter')?.value || 'all';
+      const sort = document.getElementById('invoice-sort')?.value || 'newest';
+      
+      let filtered = [...allInvoices];
+      
+      // 1. Search Filter
+      if (search) {
+        filtered = filtered.filter(inv => 
+          inv.id.toLowerCase().includes(search) || 
+          (inv.project || '').toLowerCase().includes(search)
+        );
+      }
+      
+      // 2. Status Filter
+      if (filter !== 'all') {
+        filtered = filtered.filter(inv => inv.status === filter);
+      }
+      
+      // 3. Sorting
+      filtered.sort((a, b) => {
+        if (sort === 'newest') {
+          // Compare IDs/dates; since format is INV-YYYY-XXX, we parse or fall back to lexical
+          return b.id.localeCompare(a.id);
+        } else if (sort === 'oldest') {
+          return a.id.localeCompare(b.id);
+        } else if (sort === 'amount-desc') {
+          return b.amount - a.amount;
+        } else if (sort === 'amount-asc') {
+          return a.amount - b.amount;
+        }
+        return 0;
+      });
+      
+      // Update Summary Cards (from all invoices)
+      let paidTotal = 0;
+      let dueTotal = 0;
+      allInvoices.forEach(inv => {
+        paidTotal += inv.amountPaid;
+        dueTotal += inv.remainingDue;
+      });
+      
+      document.getElementById('invoice-paid-total').textContent = `$${paidTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+      document.getElementById('invoice-due-total').textContent = `$${dueTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+      
+      // Render Ledger Table
+      const tableBody = document.getElementById('invoices-table-body');
+      tableBody.innerHTML = '';
+      
+      if (filtered.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="5" class="px-6 py-12 text-center text-on-surface-variant/60">
+              <span class="material-symbols-outlined text-[36px] block mb-2 opacity-30">receipt_long</span>
+              <p class="font-medium">No invoices found matching criteria</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      filtered.forEach(inv => {
+        const isPaid = inv.status === 'paid';
+        const isPartiallyPaid = inv.status === 'partially paid';
+        const isOverdue = inv.status === 'overdue';
+        
+        let statusClass = 'bg-surface-container-highest text-on-surface-variant border-primary/10';
+        let indicator = 'bg-primary/50';
+        
+        if (isPaid) {
+          statusClass = 'bg-success/15 text-success border-success/25';
+          indicator = 'bg-success';
+        } else if (isPartiallyPaid) {
+          statusClass = 'bg-tertiary/15 text-tertiary border-tertiary/25';
+          indicator = 'bg-tertiary';
+        } else if (isOverdue) {
+          statusClass = 'bg-error/15 text-error border-error/25';
+          indicator = 'bg-error';
+        }
+        
+        const row = document.createElement('tr');
+        row.className = 'glass-hover hover:bg-primary/5 transition-colors group';
+        row.innerHTML = `
+          <td class="px-6 py-4 whitespace-nowrap font-semibold text-primary">${inv.id}</td>
+          <td class="px-6 py-4 font-medium text-on-surface">
+            <div>${inv.project}</div>
+            <div class="text-[10px] text-on-surface-variant/60 mt-0.5">Issued: ${inv.issueDate}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right font-medium text-on-surface">
+            <div>$${inv.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
+            ${inv.amountPaid > 0 ? `<div class="text-[10px] text-success mt-0.5">Paid: $${inv.amountPaid.toLocaleString()}</div>` : ''}
+            ${inv.remainingDue > 0 ? `<div class="text-[10px] text-error mt-0.5">Due: $${inv.remainingDue.toLocaleString()}</div>` : ''}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border ${statusClass}">
+              <span class="w-1.5 h-1.5 rounded-full ${indicator}"></span>
+              ${inv.status.toUpperCase()}
+            </span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right">
+            <div class="flex items-center justify-end gap-1">
+              <button class="p-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors inline-flex items-center justify-center" title="Preview Invoice" onclick="openInvoicePreview('${inv.id}')">
+                <span class="material-symbols-outlined text-[18px]">visibility</span>
+              </button>
+              <button class="p-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors inline-flex items-center justify-center" title="Download Invoice" onclick="downloadInvoicePDF('${inv.id}')">
+                <span class="material-symbols-outlined text-[18px]">download</span>
+              </button>
+              ${!isPaid ? `
+                <button class="px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/30 text-primary text-xs font-semibold hover:bg-primary/20 transition-all shadow-[0_0_15px_rgba(125,211,252,0.05)] ml-1" onclick="openPaymentModal('${inv.id}')">
+                  ${isPartiallyPaid ? 'Pay Due' : 'Pay Now'}
+                </button>
+              ` : ''}
+            </div>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Modal Control: Invoice Preview
+    function openInvoicePreview(invoiceId) {
+      activePreviewInvoiceId = invoiceId;
+      const inv = allInvoices.find(i => i.id === invoiceId);
+      if (!inv) return;
+      
+      const mapped = mapInvoiceFields(inv);
+      const container = document.getElementById('modal-preview-content');
+      
+      const isPaid = mapped.status === 'paid';
+      const isPartiallyPaid = mapped.status === 'partially paid';
+      const isOverdue = mapped.status === 'overdue';
+      
+      let statusStyle = 'background:rgba(125,211,252,0.15);border:1px solid rgba(125,211,252,0.25);color:#7dd3fc;';
+      if (isPaid) {
+        statusStyle = 'background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.25);color:#4ade80;';
+      } else if (isPartiallyPaid) {
+        statusStyle = 'background:rgba(200,160,240,0.15);border:1px solid rgba(200,160,240,0.25);color:#c8a0f0;';
+      } else if (isOverdue) {
+        statusStyle = 'background:rgba(255,107,107,0.15);border:1px solid rgba(255,107,107,0.25);color:#ff6b6b;';
+      }
+      
+      container.innerHTML = `
+        <!-- Invoice Layout -->
+        <div class="flex flex-col md:flex-row justify-between gap-6 pb-6 border-b border-primary/10">
+          <div>
+            <div class="text-2xl font-headline font-bold text-primary tracking-tight leading-none mb-1">LUMINA DIGITAL</div>
+            <p class="text-xs text-on-surface-variant leading-relaxed">100 Frost Avenue, Suite 400, Seattle, WA 98101<br>billing@lumina.digital | +1 (555) 999-8888</p>
+          </div>
+          <div class="md:text-right">
+            <h2 class="text-lg font-headline font-semibold text-on-surface mb-1">INVOICE</h2>
+            <p class="text-xl font-bold text-primary">${mapped.id}</p>
+            <p class="text-xs text-on-surface-variant mt-1">Issued: ${mapped.issueDate}</p>
+            <p class="text-xs text-on-surface-variant">Due Date: ${mapped.dueDate}</p>
+          </div>
+        </div>
+        
+        <!-- Billing Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5 font-semibold">Bill To</p>
+            <p class="text-sm font-bold text-on-surface">${mapped.client}</p>
+            <p class="text-xs text-on-surface-variant">${mapped.clientEmail}</p>
+            <p class="text-xs text-on-surface-variant leading-relaxed mt-1" style="max-width:280px">${mapped.clientAddress}</p>
+          </div>
+          <div class="md:text-right">
+            <p class="text-[10px] text-on-surface-variant uppercase tracking-widest mb-1.5 font-semibold">Status</p>
+            <span class="inline-flex px-3 py-1 rounded-full text-xs font-bold uppercase border" style="${statusStyle}">
+              ${mapped.status}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Items Table -->
+        <div class="overflow-x-auto border border-primary/5 rounded-xl bg-surface/20">
+          <table class="w-full text-left text-xs text-on-surface">
+            <thead class="bg-surface-container-high/40 uppercase text-[10px] text-on-surface-variant border-b border-primary/10">
+              <tr>
+                <th class="px-4 py-3 font-semibold">Description</th>
+                <th class="px-4 py-3 font-semibold text-center w-16">Qty</th>
+                <th class="px-4 py-3 font-semibold text-right w-28">Unit Price</th>
+                <th class="px-4 py-3 font-semibold text-right w-28">Total</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-primary/5">
+              ${mapped.items.map(item => `
+                <tr>
+                  <td class="px-4 py-3.5 font-medium text-on-surface">${item.description}</td>
+                  <td class="px-4 py-3.5 text-center text-on-surface-variant">${item.quantity}</td>
+                  <td class="px-4 py-3.5 text-right text-on-surface-variant">$${(parseFloat(item.unitPrice) || 0).toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                  <td class="px-4 py-3.5 text-right font-semibold text-on-surface">$${(parseFloat(item.amount) || 0).toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Calculation Blocks -->
+        <div class="flex flex-col md:flex-row justify-between gap-6 border-t border-primary/10 pt-6">
+          <div class="flex-1 text-xs text-on-surface-variant leading-relaxed">
+            <h4 class="font-bold text-on-surface mb-2">Payment History</h4>
+            ${mapped.paymentHistory.length === 0 ? '<p>No payments recorded.</p>' : `
+              <div class="space-y-2">
+                ${mapped.paymentHistory.map(h => `
+                  <div class="flex items-center justify-between py-1 border-b border-primary/5">
+                    <span>${h.date} — via ${h.method}</span>
+                    <span class="font-bold text-success">+$${h.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                  </div>
+                `).join('')}
+              </div>
+            `}
+          </div>
+          
+          <div class="w-full md:w-72 space-y-2 text-xs">
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Subtotal</span>
+              <span class="font-medium text-on-surface">$${mapped.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            ${mapped.tax > 0 ? `
+              <div class="flex justify-between text-on-surface-variant">
+                <span>Tax (${mapped.tax}%)</span>
+                <span class="font-medium text-on-surface">$${(mapped.amount * mapped.tax / 100).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+              </div>
+            ` : ''}
+            ${mapped.discount > 0 ? `
+              <div class="flex justify-between text-on-surface-variant">
+                <span>Discount (${mapped.discount}%)</span>
+                <span class="font-medium text-on-surface">-$${(mapped.amount * mapped.discount / 100).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+              </div>
+            ` : ''}
+            <div class="flex justify-between text-sm font-bold text-on-surface border-t border-primary/5 pt-2">
+              <span>Total Amount</span>
+              <span class="text-primary">$${mapped.amount.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="flex justify-between text-success font-semibold">
+              <span>Amount Paid</span>
+              <span>$${mapped.amountPaid.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+            <div class="flex justify-between text-error font-bold border-t border-dashed border-primary/10 pt-2 text-sm">
+              <span>Remaining Due</span>
+              <span>$${mapped.remainingDue.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Payment Block inside Preview Modal -->
+        ${mapped.remainingDue > 0 ? `
+          <div class="mt-6 p-5 border border-primary/10 bg-primary/5 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <h4 class="font-semibold text-sm mb-1 text-on-surface">Pay Invoice Online</h4>
+              <p class="text-xs text-on-surface-variant">Secure instant settlement using card or bank transfer.</p>
+            </div>
+            <button class="px-5 py-2.5 rounded-lg bg-primary hover:brightness-110 text-surface font-bold text-xs shadow-lg shadow-primary/20 transition-all" onclick="openPaymentModal('${mapped.id}')">
+              Make Payment ($${mapped.remainingDue.toLocaleString(undefined, {minimumFractionDigits: 2})})
+            </button>
+          </div>
+        ` : `
+          <div class="mt-6 p-4 border border-success/15 bg-success/5 rounded-xl flex items-center gap-3 text-success">
+            <span class="material-symbols-outlined">check_circle</span>
+            <div>
+              <h4 class="font-semibold text-sm">Invoice Settled</h4>
+              <p class="text-xs opacity-80">This invoice has been paid in full. Thank you for your partnership!</p>
+            </div>
+          </div>
+        `}
+      `;
+      
+      const modal = document.getElementById('invoice-preview-modal');
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+    }
+
+    function closeInvoicePreview() {
+      const modal = document.getElementById('invoice-preview-modal');
+      modal.style.display = 'none';
+      modal.classList.add('hidden');
+      activePreviewInvoiceId = null;
+    }
+
+    function downloadPreviewInvoice() {
+      if (activePreviewInvoiceId) {
+        downloadInvoicePDF(activePreviewInvoiceId);
+      }
+    }
+
+    // Modal Control: Invoice Payment
+    function openPaymentModal(invoiceId) {
+      activePayInvoiceId = invoiceId;
+      const inv = allInvoices.find(i => i.id === invoiceId);
+      if (!inv) return;
+      
+      const mapped = mapInvoiceFields(inv);
+      
+      document.getElementById('pay-invoice-id').textContent = mapped.id;
+      document.getElementById('pay-invoice-due').textContent = `$${mapped.remainingDue.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+      
+      const amtInput = document.getElementById('pay-amount');
+      amtInput.value = mapped.remainingDue.toFixed(2);
+      amtInput.max = mapped.remainingDue.toFixed(2);
+      amtInput.min = "1.00";
+      
+      // Close preview modal first to prevent modal stacking
+      closeInvoicePreview();
+      
+      const modal = document.getElementById('invoice-payment-modal');
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+      
+      // Set default payment method selection
+      const defaultMethodBtn = document.querySelector('#invoice-payment-modal button[onclick*="Card"]');
+      if (defaultMethodBtn) {
+        selectPaymentMethod(defaultMethodBtn, 'Card');
+      }
+    }
+
+    function closePaymentModal() {
+      const modal = document.getElementById('invoice-payment-modal');
+      modal.style.display = 'none';
+      modal.classList.add('hidden');
+      activePayInvoiceId = null;
+    }
+
+    function selectPaymentMethod(element, method) {
+      selectedPaymentMethod = method;
+      const buttons = document.querySelectorAll('#invoice-payment-modal button[onclick^="selectPaymentMethod"]');
+      buttons.forEach(btn => {
+        btn.classList.remove('border-primary/20', 'bg-primary/5', 'text-on-surface');
+        btn.classList.add('border-primary/10', 'bg-transparent', 'text-on-surface-variant');
+      });
+      element.classList.remove('border-primary/10', 'bg-transparent', 'text-on-surface-variant');
+      element.classList.add('border-primary/20', 'bg-primary/5', 'text-on-surface');
+    }
+
+    async function submitInvoicePayment() {
+      if (!activePayInvoiceId) return;
+      
+      const amtInput = document.getElementById('pay-amount');
+      const amount = parseFloat(amtInput.value);
+      
+      const inv = allInvoices.find(i => i.id === activePayInvoiceId);
+      if (!inv) return;
+      
+      const mapped = mapInvoiceFields(inv);
+      
+      if (isNaN(amount) || amount <= 0) {
+        showToast('Payment Error', 'Please enter a valid payment amount.', 'error');
+        return;
+      }
+      
+      if (amount > mapped.remainingDue + 0.01) {
+        showToast('Payment Error', `Amount exceeds remaining due of $${mapped.remainingDue.toLocaleString()}.`, 'error');
+        return;
+      }
+      
+      const submitBtn = document.getElementById('submit-payment-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">sync</span> Processing...`;
+      
+      try {
+        const res = await fetch(`/api/invoices/${activePayInvoiceId}/pay`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: amount,
+            method: selectedPaymentMethod
+          })
+        });
+        
+        const data = await res.json();
+        
+        if (res.ok && data.success) {
+          showToast('Payment Success', `Successfully paid $${amount.toLocaleString()} for ${activePayInvoiceId}!`, 'success');
+          closePaymentModal();
+          await loadInvoices();
+        } else {
+          showToast('Payment Failed', data.error || 'Could not process payment.', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        }
+      } catch (err) {
+        console.error('Payment Submission Error:', err);
+        showToast('Connection Error', 'Failed to communicate with payment server.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    }
+
+    // Direct pay wrapper (retains backward compatibility)
+    function payInvoice(id) {
+      openPaymentModal(id);
+    }
+
+    // Dynamic PDF Generator with html2pdf.js
+    function downloadInvoicePDF(invoiceId) {
+      const inv = allInvoices.find(i => i.id === invoiceId);
+      if (!inv) return;
+      
+      const mapped = mapInvoiceFields(inv);
+      
+      const element = document.createElement('div');
+      element.style.padding = '40px';
+      element.style.color = '#0f172a';
+      element.style.background = '#ffffff';
+      element.style.fontFamily = 'Inter, sans-serif';
+      element.style.width = '790px';
+      
+      element.innerHTML = `
+        <div style="display:flex;justify-content:between;align-items:start;margin-bottom:40px;border-bottom:2px solid #e2e8f0;padding-bottom:20px;">
+          <div>
+            <h1 style="font-size:28px;font-weight:800;color:#0ea5e9;margin:0;letter-spacing:-0.03em;">LUMINA DIGITAL</h1>
+            <p style="font-size:12px;color:#64748b;margin:4px 0 0 0;">100 Frost Avenue, Suite 400, Seattle, WA 98101</p>
+            <p style="font-size:12px;color:#64748b;margin:2px 0 0 0;">billing@lumina.digital | +1 (555) 999-8888</p>
+          </div>
+          <div style="text-align:right;margin-left:auto;">
+            <h2 style="font-size:20px;font-weight:700;color:#0f172a;margin:0;">INVOICE</h2>
+            <p style="font-size:14px;font-weight:600;color:#0ea5e9;margin:6px 0 0 0;">${mapped.id}</p>
+            <p style="font-size:12px;color:#64748b;margin:4px 0 0 0;">Date: ${mapped.issueDate}</p>
+            <p style="font-size:12px;color:#64748b;margin:2px 0 0 0;">Due: ${mapped.dueDate}</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;">
+          <div>
+            <h3 style="font-size:10px;color:#64748b;text-transform:uppercase;margin:0 0 8px 0;letter-spacing:0.05em;font-weight:600;">Bill To</h3>
+            <p style="font-size:14px;font-weight:700;color:#0f172a;margin:0 0 4px 0;">${mapped.client}</p>
+            <p style="font-size:12px;color:#64748b;margin:0 0 2px 0;">${mapped.clientEmail}</p>
+            <p style="font-size:12px;color:#64748b;margin:0;width:280px;line-height:1.4;">${mapped.clientAddress}</p>
+          </div>
+          <div style="text-align:right;margin-left:auto;">
+            <h3 style="font-size:10px;color:#64748b;text-transform:uppercase;margin:0 0 8px 0;letter-spacing:0.05em;font-weight:600;">Status</h3>
+            <span style="display:inline-block;padding:6px 12px;border-radius:9999px;font-size:12px;font-weight:700;text-transform:uppercase;
+              ${mapped.status === 'paid' ? 'background:#dcfce7;color:#15803d;' : 
+                mapped.status === 'partially paid' ? 'background:#fef9c3;color:#854d0e;' : 
+                mapped.status === 'overdue' ? 'background:#fee2e2;color:#b91c1c;' : 'background:#f1f5f9;color:#475569;'}">
+              ${mapped.status}
+            </span>
+          </div>
+        </div>
+        
+        <table style="width:100%;border-collapse:collapse;margin-bottom:30px;">
+          <thead>
+            <tr style="background:#f8fafc;border-bottom:2px solid #e2e8f0;">
+              <th style="padding:10px;text-align:left;font-size:12px;color:#475569;font-weight:600;">Description</th>
+              <th style="padding:10px;text-align:center;font-size:12px;color:#475569;font-weight:600;width:80px;">Qty</th>
+              <th style="padding:10px;text-align:right;font-size:12px;color:#475569;font-weight:600;width:120px;">Unit Price</th>
+              <th style="padding:10px;text-align:right;font-size:12px;color:#475569;font-weight:600;width:120px;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${mapped.items.map(item => `
+              <tr style="border-bottom:1px solid #f1f5f9;">
+                <td style="padding:12px 10px;font-size:13px;color:#0f172a;font-weight:500;">${item.description}</td>
+                <td style="padding:12px 10px;font-size:13px;color:#0f172a;text-align:center;">${item.quantity}</td>
+                <td style="padding:12px 10px;font-size:13px;color:#0f172a;text-align:right;">$${(parseFloat(item.unitPrice) || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:12px 10px;font-size:13px;color:#0f172a;text-align:right;font-weight:600;">$${(parseFloat(item.amount) || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        
+        <div style="display:flex;justify-content:between;align-items:start;margin-top:20px;border-top:1px solid #e2e8f0;padding-top:20px;">
+          <div style="width:400px;font-size:11px;color:#64748b;line-height:1.5;">
+            <h4 style="font-weight:700;color:#0f172a;margin:0 0 6px 0;">Payment Terms & Notes</h4>
+            <p style="margin:0;">Thank you for choosing Lumina Digital. Payment due within 14 days of invoice date.</p>
+          </div>
+          <div style="width:280px;margin-left:auto;text-align:right;">
+            <div style="display:flex;justify-content:between;margin-bottom:6px;font-size:12px;color:#64748b;">
+              <span style="display:inline-block;width:120px;text-align:left;">Subtotal</span>
+              <span style="font-weight:600;color:#0f172a;display:inline-block;width:120px;text-align:right;">$${(parseFloat(mapped.amount) || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
+            </div>
+            ${mapped.tax > 0 ? `
+              <div style="display:flex;justify-content:between;margin-bottom:6px;font-size:12px;color:#64748b;">
+                <span style="display:inline-block;width:120px;text-align:left;">Tax/VAT (${mapped.tax}%)</span>
+                <span style="font-weight:600;color:#0f172a;display:inline-block;width:120px;text-align:right;">$${((parseFloat(mapped.amount) || 0) * mapped.tax / 100).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
+              </div>
+            ` : ''}
+            ${mapped.discount > 0 ? `
+              <div style="display:flex;justify-content:between;margin-bottom:6px;font-size:12px;color:#64748b;">
+                <span style="display:inline-block;width:120px;text-align:left;">Discount (${mapped.discount}%)</span>
+                <span style="font-weight:600;color:#0f172a;display:inline-block;width:120px;text-align:right;">-$${((parseFloat(mapped.amount) || 0) * mapped.discount / 100).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
+              </div>
+            ` : ''}
+            <div style="display:flex;justify-content:between;margin-bottom:8px;font-size:14px;font-weight:700;color:#0f172a;border-top:1px solid #f1f5f9;padding-top:8px;">
+              <span style="display:inline-block;width:120px;text-align:left;">Total Amount</span>
+              <span style="color:#0ea5e9;display:inline-block;width:120px;text-align:right;">$${(parseFloat(mapped.amount) || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
+            </div>
+            <div style="display:flex;justify-content:between;margin-bottom:6px;font-size:12px;color:#16a34a;font-weight:600;">
+              <span style="display:inline-block;width:120px;text-align:left;">Amount Paid</span>
+              <span style="display:inline-block;width:120px;text-align:right;">$${(parseFloat(mapped.amountPaid) || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
+            </div>
+            <div style="display:flex;justify-content:between;font-size:13px;font-weight:700;color:#b91c1c;border-top:1px dashed #e2e8f0;padding-top:6px;">
+              <span style="display:inline-block;width:120px;text-align:left;">Remaining Due</span>
+              <span style="display:inline-block;width:120px;text-align:right;">$${(parseFloat(mapped.remainingDue) || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</span>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      const opt = {
+        margin:       15,
+        filename:     `Invoice-${mapped.id}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      
+      showToast('Download Started', `Compiling PDF for ${mapped.id}...`, 'info');
+      
+      html2pdf().from(element).set(opt).outputPdf('datauristring').then(function(pdfDataUri) {
+        const base64 = pdfDataUri.split(',')[1];
+        
+        // Construct hidden form for native attachment download triggers
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/api/invoices/download-helper';
+        form.style.display = 'none';
+        
+        const inputData = document.createElement('input');
+        inputData.type = 'hidden';
+        inputData.name = 'pdfBase64';
+        inputData.value = base64;
+        form.appendChild(inputData);
+        
+        const inputFilename = document.createElement('input');
+        inputFilename.type = 'hidden';
+        inputFilename.name = 'filename';
+        inputFilename.value = `Invoice-${mapped.id}.pdf`;
+        form.appendChild(inputFilename);
+        
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+        
+        showToast('Download Complete', `Invoice PDF downloaded successfully.`, 'success');
+      }).catch(err => {
+        console.error('PDF Download Error:', err);
+        showToast('Download Error', `Failed to download PDF locally.`, 'error');
+      });
+    }
+
+    // 4. Messages (DM Chat)
+    async function loadChatMessages() {
+      try {
+        const res = await fetch('/api/chat/messages');
+        const msgs = await res.json();
+        const container = document.getElementById('chat-messages-container');
+        container.innerHTML = '';
+        
+        msgs.forEach(m => {
+          const div = document.createElement('div');
+          if (m.isClient) {
+            div.className = 'flex flex-col items-end space-y-1 max-w-[80%] self-end';
+            div.innerHTML = `
+              <div class="msg-bubble-sent px-5 py-3 text-sm text-primary-fixed leading-relaxed shadow-sm">
+                ${m.text}
+              </div>
+              <div class="flex items-center space-x-1 mr-2 text-[10px] text-on-surface-variant/60">
+                <span>${m.timestamp}</span>
+                <span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">done_all</span>
+              </div>
+            `;
+          } else {
+            div.className = 'flex items-end space-x-3 max-w-[80%]';
+            div.innerHTML = `
+              <div class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0 mb-1 border border-primary/20 opacity-80">
+                <img class="w-full h-full object-cover" src="${m.avatar}">
+              </div>
+              <div class="flex flex-col space-y-1">
+                <div class="msg-bubble-received px-5 py-3 text-sm text-on-surface/90 leading-relaxed shadow-sm">
+                  ${m.text}
+                </div>
+                <span class="text-[10px] text-on-surface-variant/60 ml-2">${m.timestamp}</span>
+              </div>
+            `;
+          }
+          container.appendChild(div);
+        });
+        
+        // Auto scroll to bottom
+        container.scrollTop = container.scrollHeight;
+      } catch (err) {
+        console.error('Error loading chat messages:', err);
+      }
+    }
+
+    async function sendChatMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      
+      input.value = '';
+      
+      try {
+        const res = await fetch('/api/chat/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sender: 'Client User',
+            senderRole: 'Acme Corp',
+            text: text,
+            isClient: true
+          })
+        });
+        
+        if (res.ok) {
+          loadChatMessages();
+        }
+      } catch (err) {
+        console.error('Error sending chat message:', err);
+      }
+    }
+
+    // 5. Support Tickets
+    async function loadTickets() {
+      try {
+        const res = await fetch('/api/messages');
+        const msgs = await res.json();
+        const tickets = msgs.filter(m => m.type === 'support');
+        
+        const list = document.getElementById('tickets-list');
+        list.innerHTML = '';
+        
+        let openCount = 0;
+        let resolvedCount = 0;
+        
+        tickets.forEach(t => {
+          const isOpen = t.status === 'Open';
+          if (isOpen) openCount++;
+          else resolvedCount++;
+          
+          const priorityColors = {
+            High: 'bg-error/20 text-error border-error/30',
+            Medium: 'bg-tertiary/20 text-tertiary border-tertiary/30',
+            Low: 'bg-secondary/20 text-secondary border-secondary/30'
+          };
+          
+          const statusColors = isOpen 
+            ? 'bg-primary/10 text-primary border-primary/20'
+            : 'bg-surface-container-highest text-on-surface-variant border-outline-variant';
+            
+          const ticketCard = document.createElement('div');
+          ticketCard.className = 'glass-panel rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 group hover:border-primary/30 transition-all duration-300';
+          ticketCard.innerHTML = `
+            <div class="flex items-start md:items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-primary text-sm">${isOpen ? 'mail' : 'task_alt'}</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-3 mb-1 flex-wrap">
+                  <span class="text-sm font-semibold text-on-surface">${t.subject}</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${priorityColors[t.priority] || priorityColors.Low}">${t.priority}</span>
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${statusColors}">${t.status}</span>
+                </div>
+                <p class="text-xs text-on-surface-variant">${t.details}</p>
+                <div class="text-[10px] text-on-surface-variant mt-2">
+                  <span>${t.idNum || t.id}</span> • Reported on ${t.date}
+                </div>
+              </div>
+            </div>
+          `;
+          list.appendChild(ticketCard);
+        });
+        
+        document.getElementById('ticket-total-count').textContent = tickets.length;
+        document.getElementById('ticket-open-count').textContent = openCount;
+        document.getElementById('ticket-resolved-count').textContent = resolvedCount;
+      } catch (err) {
+        console.error('Error loading tickets:', err);
+      }
+    }
+
+    function openTicketModal() {
+      document.getElementById('ticket-modal').classList.remove('hidden');
+    }
+
+    function closeTicketModal() {
+      document.getElementById('ticket-modal').classList.add('hidden');
+    }
+
+    let clientInfo = null;
+
+    async function getSessionData() {
+      try {
+        const res = await fetch('/api/client/session');
+        const data = await res.json();
+        if (data.authenticated && data.clientInfo) {
+          clientInfo = data.clientInfo;
+          document.getElementById('client-company-badge').textContent = clientInfo.company;
+          document.getElementById('sidebar-client-company').textContent = clientInfo.company;
+          document.getElementById('header-client-name').textContent = clientInfo.name;
+          document.getElementById('header-client-email').textContent = clientInfo.email;
+          if (clientInfo.avatar) {
+            document.getElementById('header-client-avatar').src = clientInfo.avatar;
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching session:', err);
+      }
+    }
+
+    function startPresencePing() {
+      pingPresence();
+      setInterval(pingPresence, 15000);
+    }
+
+    async function pingPresence() {
+      const username = sessionStorage.getItem('lumina_client_user') || 'client';
+      try {
+        await fetch('/api/presence/ping', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: username })
+        });
+      } catch (err) {
+        console.warn('Presence ping failed:', err);
+      }
+    }
+
+    function toggleNotifDropdown() {
+      const dropdown = document.getElementById('notif-dropdown');
+      dropdown.classList.toggle('hidden');
+      if (!dropdown.classList.contains('hidden')) {
+        loadNotifications();
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('notif-dropdown');
+      const btn = document.getElementById('notif-btn');
+      if (dropdown && btn && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    async function loadNotifications() {
+      try {
+        const res = await fetch('/api/notifications');
+        if (!res.ok) throw new Error('API error');
+        const list = await res.json();
+        const listContainer = document.getElementById('notif-list');
+        const badge = document.getElementById('notif-badge');
+        
+        listContainer.innerHTML = '';
+        const unreadList = list.filter(n => !n.read);
+        
+        if (unreadList.length > 0) {
+          badge.style.display = 'block';
+        } else {
+          badge.style.display = 'none';
+        }
+        
+        if (list.length === 0) {
+          listContainer.innerHTML = `<div class="text-[11px] text-on-surface-variant/60 py-4 text-center">No notifications yet.</div>`;
+          return;
+        }
+        
+        list.slice(-10).reverse().forEach(n => {
+          const item = document.createElement('div');
+          item.className = `p-2.5 rounded-lg border text-xs flex flex-col gap-0.5 transition-all ${n.read ? 'border-primary/5 bg-primary/2 opacity-75' : 'border-primary/20 bg-primary/10 font-medium'}`;
+          item.innerHTML = `
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-on-surface">${n.text}</span>
+              <span class="text-[9px] text-on-surface-variant/60 flex-shrink-0">${n.time}</span>
+            </div>
+            <span class="text-[8px] text-primary/70">${n.date}</span>
+          `;
+          listContainer.appendChild(item);
+        });
+      } catch (err) {
+        console.error('Error loading notifications:', err);
+      }
+    }
+
+    async function markAllNotificationsRead() {
+      try {
+        const res = await fetch('/api/notifications/read', { method: 'PUT' });
+        if (res.ok) {
+          loadNotifications();
+          showToast('Alerts Cleared', 'All notifications marked as read.');
+        }
+      } catch (err) {
+        console.error('Error clearing notifications:', err);
+      }
+    }
+
+    async function submitSupportTicket(e) {
+      e.preventDefault();
+      const subject = document.getElementById('ticket-subject').value.trim();
+      const priority = document.getElementById('ticket-priority').value;
+      const details = document.getElementById('ticket-details').value.trim();
+      
+      try {
+        const res = await fetch('/api/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            client: clientInfo ? clientInfo.company : 'Acme Corp',
+            subject: subject,
+            details: details,
+            priority: priority,
+            type: 'support'
+          })
+        });
+        
+        if (res.ok) {
+          showToast('Ticket Filed', 'Your support ticket has been submitted to engineering.');
+          closeTicketModal();
+          document.getElementById('ticket-form').reset();
+          loadTickets();
+        }
+      } catch (err) {
+        console.error('Error submitting ticket:', err);
+      }
+    }
+
+    // Initial Loading
+    document.addEventListener('DOMContentLoaded', async () => {
+      await getSessionData();
+      startPresencePing();
+      loadNotifications();
+      setInterval(loadNotifications, 10000);
+      
+      loadProjects();
+      loadInvoices();
+    });
+  </script>
+</body>
+</html>

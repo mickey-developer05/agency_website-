@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Workspace — Lumina Admin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="admin-common.js"></script>
+  <script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#7dd3fc","surface":"#0f1524","surface-container":"#141c2e","surface-container-high":"#1a2438","on-surface":"#e0e8f0","on-surface-variant":"#a0b4c4","outline":"#4a6070","outline-variant":"#2a3a48","error":"#ff6b6b","tertiary":"#c8a0f0","secondary":"#88b4cc","success":"#4ade80"}}}}</script>
+  <link rel="stylesheet" href="admin.css"/>
+  <style>
+    /* ── Chat Layout ── */
+    .chat-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      flex: 1;
+      overflow: hidden;
+      gap: 0;
+      border: 1px solid rgba(125,211,252,0.1);
+      border-radius: 16px;
+      background: rgba(15,21,36,0.5);
+      backdrop-filter: blur(20px);
+    }
+
+    /* ── Client List Panel ── */
+    .clients-panel {
+      border-right: 1px solid rgba(125,211,252,0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .clients-panel-header {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(125,211,252,0.08);
+      flex-shrink: 0;
+    }
+    .client-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .client-list::-webkit-scrollbar { width: 4px; }
+    .client-list::-webkit-scrollbar-track { background: transparent; }
+    .client-list::-webkit-scrollbar-thumb { background: rgba(125,211,252,0.15); border-radius: 4px; }
+
+    .client-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .client-item:hover { background: rgba(125,211,252,0.06); }
+    .client-item.active {
+      background: rgba(125,211,252,0.1);
+      border-color: rgba(125,211,252,0.2);
+    }
+    .client-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(125,211,252,0.15);
+      border: 1px solid rgba(125,211,252,0.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .client-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .unread-badge {
+      min-width: 18px; height: 18px;
+      background: #7dd3fc;
+      border-radius: 9999px;
+      font-size: 10px; font-weight: 700;
+      color: #020617;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 4px;
+      margin-left: auto; flex-shrink: 0;
+    }
+
+    /* ── Chat Panel ── */
+    .chat-panel {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(125,211,252,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+      background: rgba(15,21,36,0.3);
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: rgba(125,211,252,0.12); border-radius: 4px; }
+
+    /* Message bubbles */
+    .msg-row { display: flex; gap: 10px; align-items: flex-end; max-width: 76%; }
+    .msg-row.from-client { align-self: flex-start; }
+    .msg-row.from-admin { align-self: flex-end; flex-direction: row-reverse; }
+
+    .msg-bubble {
+      padding: 10px 14px;
+      border-radius: 18px;
+      font-size: 13px;
+      line-height: 1.55;
+      max-width: 100%;
+      word-break: break-word;
+    }
+    .msg-bubble.client {
+      background: rgba(26,36,56,0.7);
+      border: 1px solid rgba(125,211,252,0.08);
+      border-radius: 18px 18px 18px 4px;
+      color: #e0e8f0;
+    }
+    .msg-bubble.admin {
+      background: rgba(125,211,252,0.15);
+      border: 1px solid rgba(125,211,252,0.25);
+      border-radius: 18px 18px 4px 18px;
+      color: #e0e8f0;
+    }
+    .msg-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(125,211,252,0.15);
+      border: 1px solid rgba(125,211,252,0.2);
+      overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .msg-meta {
+      font-size: 10px;
+      color: #4a6070;
+      margin-top: 3px;
+    }
+    .from-admin .msg-meta { text-align: right; }
+
+    /* Date separator */
+    .date-sep {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; color: #4a6070;
+      margin: 6px 0;
+    }
+    .date-sep::before, .date-sep::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(125,211,252,0.07);
+    }
+
+    /* ── Compose Bar ── */
+    .compose-bar {
+      padding: 14px 20px;
+      border-top: 1px solid rgba(125,211,252,0.08);
+      background: rgba(15,21,36,0.4);
+      display: flex; gap: 10px; align-items: flex-end;
+      flex-shrink: 0;
+    }
+    .compose-input {
+      flex: 1;
+      background: rgba(10,14,26,0.6);
+      border: 1px solid rgba(125,211,252,0.15);
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: #e0e8f0;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      resize: none;
+      max-height: 120px;
+      min-height: 40px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .compose-input:focus { border-color: rgba(125,211,252,0.4); }
+    .compose-input::placeholder { color: #4a6070; }
+    .send-btn {
+      width: 42px; height: 42px;
+      background: rgba(125,211,252,0.2);
+      border: 1px solid rgba(125,211,252,0.3);
+      border-radius: 12px;
+      color: #7dd3fc;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .send-btn:hover {
+      background: rgba(125,211,252,0.3);
+      box-shadow: 0 0 20px rgba(125,211,252,0.2);
+    }
+    .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── Empty State ── */
+    .empty-chat {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; color: #4a6070;
+    }
+
+    /* ── Typing indicator ── */
+    .typing-dots span {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #7dd3fc;
+      border-radius: 50%;
+      animation: bounce 1.2s infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes bounce {
+      0%,80%,100% { transform: scale(0.6); opacity: 0.5; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ── Live indicator ── */
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 8px #4ade80;
+      animation: pulse-live 2s infinite;
+    }
+    @keyframes pulse-live {
+      0%,100% { opacity: 0.6; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* Scrollbar for client panel */
+    .client-list::-webkit-scrollbar, .chat-messages::-webkit-scrollbar { width: 3px; }
+  </style>
+</head>
+<body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
+<div class="orb orb1"></div><div class="orb orb2"></div>
+
+<!-- ══ SIDEBAR ══ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">bubble</span></div>
+    <div>
+      <div class="text-sm font-bold text-primary tracking-tight leading-tight">Lumina Admin</div>
+      <div class="text-[10px] text-on-surface-variant">Management Suite</div>
+    </div>
+  </div>
+  <button class="new-project-btn" onclick="openPortalInNewTab()">
+    <span class="material-symbols-outlined text-sm">open_in_new</span> Open Client Portal
+  </button>
+  <nav class="sidebar-nav">
+    <p class="nav-label">Main</p>
+    <a href="dashboard.html" class="nav-link" id="nav-dashboard"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+    <a href="projects.html" class="nav-link" id="nav-projects"><span class="material-symbols-outlined">folder_open</span><span>Projects</span></a>
+    <a href="crm.html" class="nav-link" id="nav-crm"><span class="material-symbols-outlined">group_add</span><span>CRM Leads</span></a>
+    <a href="invoices.html" class="nav-link" id="nav-invoices"><span class="material-symbols-outlined">receipt_long</span><span>Invoices</span></a>
+    <a href="content.html" class="nav-link" id="nav-content"><span class="material-symbols-outlined">view_quilt</span><span>Website Content</span></a>
+    <p class="nav-label">Management</p>
+    <a href="team.html" class="nav-link" id="nav-team"><span class="material-symbols-outlined">badge</span><span>Team</span></a>
+    <a href="media.html" class="nav-link" id="nav-media"><span class="material-symbols-outlined">photo_library</span><span>Media Library</span></a>
+    <a href="inbox.html" class="nav-link" id="nav-inbox"><span class="material-symbols-outlined">mail</span><span>Inbox</span></a>
+    <a href="client-workspace.html" class="nav-link active" id="nav-client-workspace">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">forum</span>
+      <span>Client Workspace</span>
+      <span id="chat-unread-badge" style="display:none;background:#7dd3fc;color:#020617;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;margin-left:auto"></span>
+    </a>
+          <p class="nav-label">🤖 AI Automation</p>
+      <a href="ai-dashboard.html" class="nav-link" id="nav-ai-dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="ai-proposal-generator.html" class="nav-link" id="nav-ai-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>AI Proposal</span>
+      </a>
+      <a href="ai-content-writer.html" class="nav-link" id="nav-ai-content-writer">
+        <span class="material-symbols-outlined">edit_document</span>
+        <span>Content Writer</span>
+      </a>
+      <a href="ai-meeting-summary.html" class="nav-link" id="nav-ai-meeting">
+        <span class="material-symbols-outlined">forum</span>
+        <span>Meeting Summary</span>
+      </a>
+      <a href="ai-client-onboarding.html" class="nav-link" id="nav-ai-onboarding">
+        <span class="material-symbols-outlined">person_add</span>
+        <span>Client Onboarding</span>
+      </a>
+      <a href="ai-email-assistant.html" class="nav-link" id="nav-ai-email">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Email Assistant</span>
+      </a>
+      <a href="ai-google-calendar.html" class="nav-link" id="nav-ai-calendar">
+        <span class="material-symbols-outlined">event</span>
+        <span>Google Calendar</span>
+      </a>
+      <a href="ai-prompt-library.html" class="nav-link" id="nav-ai-prompt">
+        <span class="material-symbols-outlined">library_books</span>
+        <span>Prompt Library</span>
+      </a>
+      <a href="ai-templates.html" class="nav-link" id="nav-ai-templates">
+        <span class="material-symbols-outlined">widgets</span>
+        <span>AI Templates</span>
+      </a>
+      <a href="ai-knowledge-base.html" class="nav-link" id="nav-ai-kb">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Knowledge Base</span>
+      </a>
+      <a href="ai-settings.html" class="nav-link" id="nav-ai-settings">
+        <span class="material-symbols-outlined">settings_suggest</span>
+        <span>AI Settings</span>
+      </a>
+      <a href="ai-api-connections.html" class="nav-link" id="nav-ai-api">
+        <span class="material-symbols-outlined">api</span>
+        <span>API Connections</span>
+      </a>
+      <a href="ai-usage-logs.html" class="nav-link" id="nav-ai-logs">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Usage Logs</span>
+      </a>
+      <p class="nav-label">System</p>
+    <a href="settings.html" class="nav-link" id="nav-settings"><span class="material-symbols-outlined">settings</span><span>Settings</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="../portal/dashboard.html" target="_blank" class="nav-link text-sm" style="color:rgba(125,211,252,0.7)">
+      <span class="material-symbols-outlined text-sm">open_in_new</span><span>Client Portal</span>
+    </a>
+    <a href="#" class="nav-link text-sm" style="color:rgba(255,107,107,0.7)" onclick="adminLogout()">
+      <span class="material-symbols-outlined text-sm">logout</span><span>Logout</span>
+    </a>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══ -->
+<main class="admin-main">
+  <header class="admin-topbar">
+    <div class="flex items-center gap-4">
+      <button class="md:hidden" onclick="toggleSidebar()"><span class="material-symbols-outlined">menu</span></button>
+      <div class="breadcrumb">
+        <a href="dashboard.html" class="bc-item hover:text-primary transition-colors">Dashboard</a>
+        <span class="material-symbols-outlined bc-sep">chevron_right</span>
+        <span class="bc-item text-primary font-semibold">Client Workspace</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="flex items-center gap-2">
+        <div class="live-dot"></div>
+        <span style="font-size:11px;color:#4ade80;font-weight:600">Live</span>
+      </div>
+      <span style="font-size:11px;color:#4a6070;margin-left:4px" id="poll-status">Auto-refreshing every 5s</span>
+      <button class="topbar-icon-btn" onclick="manualRefresh()" title="Refresh now">
+        <span class="material-symbols-outlined" id="refresh-icon">refresh</span>
+      </button>
+      <button class="topbar-icon-btn"><span class="material-symbols-outlined">notifications</span><span class="notif-dot"></span></button>
+      <div class="topbar-avatar"><span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1">manage_accounts</span></div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="page-content" style="overflow:hidden;display:flex;flex-direction:column;gap:16px">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div>
+        <h2 class="page-title">Client Workspace</h2>
+        <p class="page-subtitle">Direct messaging channel with your clients. Replies appear instantly in the Client Portal.</p>
+      </div>
+      <div class="flex gap-3">
+        <button class="btn-outline" onclick="clearAllMessages()" id="clear-btn" style="color:rgba(255,107,107,0.8);border-color:rgba(255,107,107,0.3)">
+          <span class="material-symbols-outlined text-sm">delete_sweep</span> Clear History
+        </button>
+        <a href="../portal/dashboard.html" target="_blank" class="btn-primary" style="text-decoration:none;display:flex;align-items:center;gap:6px">
+          <span class="material-symbols-outlined text-sm">open_in_new</span> Open Client Portal
+        </a>
+      </div>
+    </div>
+
+    <!-- Chat Interface -->
+    <div class="chat-layout" style="min-height:0">
+
+      <!-- Left: Clients Panel -->
+      <div class="clients-panel">
+        <div class="clients-panel-header">
+          <p style="font-size:10px;font-weight:600;color:#4a6070;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:8px">Active Clients</p>
+          <div style="position:relative">
+            <span class="material-symbols-outlined" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:15px;color:#4a6070">search</span>
+            <input type="text" id="client-search" oninput="filterClients(this.value)" placeholder="Search clients..." style="width:100%;background:rgba(10,14,26,0.5);border:1px solid rgba(125,211,252,0.1);border-radius:8px;padding:7px 10px 7px 32px;font-size:12px;color:#e0e8f0;outline:none"/>
+          </div>
+        </div>
+        <div class="client-list" id="client-list">
+          <!-- Rendered dynamically -->
+          <div style="padding:24px 12px;text-align:center;color:#4a6070;font-size:12px">
+            <span class="material-symbols-outlined" style="font-size:28px;display:block;margin-bottom:6px;opacity:0.4">forum</span>
+            Loading clients...
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Chat Panel -->
+      <div class="chat-panel">
+        <!-- Chat header (active client) -->
+        <div class="chat-header" id="chat-header">
+          <div class="flex items-center gap-3">
+            <div class="client-avatar" id="chat-header-avatar" style="width:36px;height:36px">
+              <span class="material-symbols-outlined" style="font-size:18px;color:#7dd3fc">person</span>
+            </div>
+            <div>
+              <p style="font-size:14px;font-weight:600;color:#e0e8f0" id="chat-header-name">Select a client</p>
+              <div class="flex items-center gap-2">
+                <div class="live-dot" style="width:5px;height:5px"></div>
+                <p style="font-size:11px;color:#4ade80" id="chat-header-status">Online • Client Portal</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="topbar-icon-btn" onclick="manualRefresh()" title="Refresh messages">
+              <span class="material-symbols-outlined text-sm">refresh</span>
+            </button>
+            <button class="topbar-icon-btn" onclick="openPortalInNewTab()" title="View in Client Portal">
+              <span class="material-symbols-outlined text-sm">open_in_new</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Messages area -->
+        <div class="chat-messages" id="chat-messages">
+          <div class="empty-chat" id="empty-state">
+            <span class="material-symbols-outlined" style="font-size:48px;opacity:0.3">forum</span>
+            <p style="font-size:14px;font-weight:500">No client selected</p>
+            <p style="font-size:12px">Select a client from the left panel to view the conversation</p>
+          </div>
+        </div>
+
+        <!-- Compose bar -->
+        <div class="compose-bar" id="compose-bar">
+          <textarea
+            id="compose-input"
+            class="compose-input"
+            placeholder="Type a message to your client..."
+            rows="1"
+            onkeydown="handleComposeKey(event)"
+            oninput="autoResizeTextarea(this)"
+            disabled
+          ></textarea>
+          <button class="send-btn" id="send-btn" onclick="sendAdminMessage()" disabled title="Send message (Enter)">
+            <span class="material-symbols-outlined" style="font-size:18px">send</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  // ── State ──
+  let allMessages = [];
+  let selectedClient = null;
+  let clientGroups = {};
+  let pollInterval = null;
+
+  // ── Init ──
+  setActiveNav('nav-client-workspace');
+
+  // Load on startup
+  document.addEventListener('DOMContentLoaded', () => {
+    loadMessages();
+    startPolling();
+  });
+
+  // ── Polling ──
+  function startPolling() {
+    pollInterval = setInterval(() => {
+      if (selectedClient) loadMessages(false);
+    }, 5000);
+  }
+
+  function stopPolling() {
+    if (pollInterval) clearInterval(pollInterval);
+  }
+
+  async function manualRefresh() {
+    const icon = document.getElementById('refresh-icon');
+    icon.style.animation = 'spin 0.6s linear';
+    await loadMessages(true);
+    setTimeout(() => { icon.style.animation = ''; }, 700);
+  }
+
+  // ── Load Messages ──
+  let clientPresenceList = [];
+
+  async function loadPresence() {
+    try {
+      const res = await fetch('/api/presence');
+      if (res.ok) {
+        clientPresenceList = await res.json();
+      }
+    } catch (err) {
+      console.error('Error loading presence:', err);
+    }
+  }
+
+  async function loadMessages(showLoader = true) {
+    try {
+      await loadPresence();
+      const res = await fetch('/api/chat/messages');
+      if (!res.ok) throw new Error('API error');
+      allMessages = await res.json();
+      buildClientGroups();
+      renderClientList();
+      if (selectedClient) renderChat(selectedClient);
+    } catch (err) {
+      console.error('Error loading messages:', err);
+    }
+  }
+
+  // ── Group messages by client ──
+  function buildClientGroups() {
+    clientGroups = {};
+    allMessages.forEach(m => {
+      // Group by the senderRole of the client messages (company name)
+      const key = m.isClient ? m.senderRole : (m.senderRole + '-admin');
+      // Use the most recent client sender as the group key
+      const clientKey = m.isClient ? m.senderRole : null;
+      if (m.isClient) {
+        if (!clientGroups[m.senderRole]) {
+          clientGroups[m.senderRole] = {
+            name: m.sender,
+            company: m.senderRole,
+            avatar: m.avatar || '',
+            messages: [],
+            lastMsg: '',
+            lastTime: '',
+            unread: 0
+          };
+        }
+      }
+    });
+
+    // Assign all messages to appropriate client thread
+    allMessages.forEach(m => {
+      if (m.isClient) {
+        if (clientGroups[m.senderRole]) {
+          clientGroups[m.senderRole].messages.push(m);
+          clientGroups[m.senderRole].lastMsg = m.text;
+          clientGroups[m.senderRole].lastTime = m.timestamp;
+        }
+      } else {
+        // Admin replies should have senderRole set to the client's company name (e.g. 'Acme Corp')
+        if (clientGroups[m.senderRole]) {
+          clientGroups[m.senderRole].messages.push(m);
+          clientGroups[m.senderRole].lastMsg = 'You: ' + m.text;
+          clientGroups[m.senderRole].lastTime = m.timestamp;
+        } else {
+          // Fallback: attach to first client group
+          const keys = Object.keys(clientGroups);
+          if (keys.length > 0) {
+            const target = keys[0];
+            clientGroups[target].messages.push(m);
+            clientGroups[target].lastMsg = 'You: ' + m.text;
+            clientGroups[target].lastTime = m.timestamp;
+          }
+        }
+      }
+    });
+  }
+
+  // ── Render Client List ──
+  function renderClientList(filter = '') {
+    const list = document.getElementById('client-list');
+    const groups = Object.values(clientGroups).filter(g =>
+      !filter || g.company.toLowerCase().includes(filter.toLowerCase()) || g.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
+    if (groups.length === 0) {
+      list.innerHTML = `
+        <div style="padding:32px 12px;text-align:center;color:#4a6070;font-size:12px">
+          <span class="material-symbols-outlined" style="font-size:32px;display:block;margin-bottom:8px;opacity:0.3">forum</span>
+          <p style="font-weight:500;margin-bottom:4px">No messages yet</p>
+          <p>Messages from clients in the portal will appear here</p>
+        </div>
+      `;
+      return;
+    }
+
+    list.innerHTML = '';
+    groups.forEach(group => {
+      const presenceInfo = clientPresenceList.find(p => p.company === group.company);
+      const isOnline = presenceInfo ? presenceInfo.isOnline : false;
+      const isActive = selectedClient && selectedClient.company === group.company;
+      const item = document.createElement('div');
+      item.className = `client-item ${isActive ? 'active' : ''}`;
+      item.onclick = () => selectClient(group);
+
+      const avatarHtml = group.avatar
+        ? `<img src="${group.avatar}" alt="${group.name}"/>`
+        : `<span class="material-symbols-outlined" style="font-size:18px;color:#7dd3fc">person</span>`;
+
+      const presenceDot = isOnline 
+        ? `<span style="position:absolute;bottom:0;right:0;width:10px;height:10px;border-radius:50%;background:#4ade80;border:2px solid #141c2e;"></span>` 
+        : `<span style="position:absolute;bottom:0;right:0;width:10px;height:10px;border-radius:50%;background:#4a6070;border:2px solid #141c2e;"></span>`;
+
+      item.innerHTML = `
+        <div class="client-avatar" style="position:relative">${avatarHtml}${presenceDot}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:4px">
+            <p style="font-size:13px;font-weight:600;color:#e0e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${group.name}</p>
+            <span style="font-size:10px;color:#4a6070;flex-shrink:0">${group.lastTime}</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:4px">
+            <p style="font-size:11px;color:#a0b4c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${truncate(group.lastMsg, 30)}</p>
+            <span style="font-size:10px;color:#7dd3fc;font-weight:500;flex-shrink:0">${group.company}</span>
+          </div>
+        </div>
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  // ── Select Client ──
+  function selectClient(group) {
+    selectedClient = group;
+
+    const presenceInfo = clientPresenceList.find(p => p.company === group.company);
+    const isOnline = presenceInfo ? presenceInfo.isOnline : false;
+    const lastSeenStr = presenceInfo ? presenceInfo.lastSeen : 'Never';
+
+    // Update header
+    document.getElementById('chat-header-name').textContent = group.name + ' — ' + group.company;
+    
+    const statusEl = document.getElementById('chat-header-status');
+    if (isOnline) {
+      statusEl.textContent = 'Online • Client Portal';
+      statusEl.style.color = '#4ade80';
+    } else {
+      statusEl.textContent = `Offline • Last active ${lastSeenStr}`;
+      statusEl.style.color = '#a0b4c4';
+    }
+
+    const avatarEl = document.getElementById('chat-header-avatar');
+    if (group.avatar) {
+      avatarEl.innerHTML = `<img src="${group.avatar}" style="width:100%;height:100%;object-fit:cover"/>`;
+    } else {
+      avatarEl.innerHTML = `<span class="material-symbols-outlined" style="font-size:18px;color:#7dd3fc">person</span>`;
+    }
+
+    // Enable compose
+    const input = document.getElementById('compose-input');
+    const btn = document.getElementById('send-btn');
+    input.disabled = false;
+    btn.disabled = false;
+    input.placeholder = `Message ${group.name}...`;
+    input.focus();
+
+    renderClientList();
+    renderChat(group);
+  }
+
+  // ── Render Chat Thread ──
+  function renderChat(group) {
+    const container = document.getElementById('chat-messages');
+    const emptyState = document.getElementById('empty-state');
+
+    if (!group || group.messages.length === 0) {
+      container.innerHTML = `
+        <div class="empty-chat" id="empty-state">
+          <span class="material-symbols-outlined" style="font-size:40px;opacity:0.3">chat_bubble_outline</span>
+          <p style="font-size:14px;font-weight:500">No messages yet</p>
+          <p style="font-size:12px">Start the conversation by typing below</p>
+        </div>
+      `;
+      return;
+    }
+
+    // Group messages by date
+    const byDate = {};
+    group.messages.forEach(m => {
+      const day = m.date || 'Today';
+      if (!byDate[day]) byDate[day] = [];
+      byDate[day].push(m);
+    });
+
+    container.innerHTML = '';
+
+    Object.entries(byDate).forEach(([date, msgs]) => {
+      // Date separator
+      const sep = document.createElement('div');
+      sep.className = 'date-sep';
+      sep.textContent = date;
+      container.appendChild(sep);
+
+      msgs.forEach(m => {
+        const row = document.createElement('div');
+        const isAdmin = !m.isClient;
+        row.className = `msg-row ${isAdmin ? 'from-admin' : 'from-client'}`;
+
+        const avatarHtml = m.avatar
+          ? `<img src="${m.avatar}" style="width:100%;height:100%;object-fit:cover"/>`
+          : `<span class="material-symbols-outlined" style="font-size:14px;color:${isAdmin ? '#7dd3fc' : '#a0b4c4'}">${isAdmin ? 'manage_accounts' : 'person'}</span>`;
+
+        row.innerHTML = `
+          <div class="msg-avatar">${avatarHtml}</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div class="msg-bubble ${isAdmin ? 'admin' : 'client'}">${escapeHtml(m.text)}</div>
+            <div class="msg-meta">${m.sender} · ${m.timestamp}</div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    });
+
+    // Scroll to bottom
+    container.scrollTop = container.scrollHeight;
+  }
+
+  // ── Send Admin Message ──
+  async function sendAdminMessage() {
+    const input = document.getElementById('compose-input');
+    const text = input.value.trim();
+    if (!text || !selectedClient) return;
+
+    const btn = document.getElementById('send-btn');
+    btn.disabled = true;
+    input.value = '';
+    input.style.height = 'auto';
+
+    try {
+      const res = await fetch('/api/chat/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sender: 'Admin',
+          senderRole: selectedClient.company,
+          avatar: '',
+          text: text,
+          isClient: false
+        })
+      });
+
+      if (res.ok) {
+        showAdminToast('Sent', 'Message delivered to client portal', 'success');
+        await loadMessages(false);
+      } else {
+        showAdminToast('Error', 'Failed to send message', 'error');
+      }
+    } catch (err) {
+      showAdminToast('Error', 'Server connection failed', 'error');
+    } finally {
+      btn.disabled = false;
+      input.focus();
+    }
+  }
+
+  // ── Keyboard shortcut: Enter to send ──
+  function handleComposeKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendAdminMessage();
+    }
+  }
+
+  // ── Auto-resize textarea ──
+  function autoResizeTextarea(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  // ── Filter clients ──
+  function filterClients(val) {
+    renderClientList(val);
+  }
+
+  // ── Clear chat history ──
+  async function clearAllMessages() {
+    showConfirm('Clear Chat History', 'This will permanently delete all chat messages for all clients. This cannot be undone.', async () => {
+      try {
+        const res = await fetch('/api/chat/messages', { method: 'DELETE' });
+        if (res.ok) {
+          showAdminToast('Cleared', 'Chat history has been cleared', 'success');
+          loadMessages(true);
+        } else {
+          showAdminToast('Error', 'Failed to clear chat history', 'error');
+        }
+      } catch (err) {
+        showAdminToast('Error', 'Could not clear messages', 'error');
+      }
+    });
+  }
+
+  // ── Open portal ──
+  function openPortalInNewTab() {
+    window.open('../portal/dashboard.html', '_blank');
+  }
+
+  // ── Helpers ──
+  function truncate(str, n) {
+    return str && str.length > n ? str.slice(0, n) + '...' : (str || '');
+  }
+
+  function escapeHtml(str) {
+    const d = document.createElement('div');
+    d.appendChild(document.createTextNode(str));
+    return d.innerHTML;
+  }
+</script>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</body>
+</html>

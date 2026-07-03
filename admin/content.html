@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Content — Lumina Admin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="admin-common.js"></script>
+  <script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#7dd3fc","surface":"#0f1524","surface-container":"#141c2e","surface-container-high":"#1a2438","on-surface":"#e0e8f0","on-surface-variant":"#a0b4c4","outline":"#4a6070","outline-variant":"#2a3a48","error":"#ff6b6b","tertiary":"#c8a0f0","secondary":"#88b4cc"}}}}</script>
+  <link rel="stylesheet" href="admin.css"/>
+</head>
+<body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
+<div class="orb orb1"></div><div class="orb orb2"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><div class="sidebar-logo-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">bubble</span></div><div><div class="text-sm font-bold text-primary tracking-tight leading-tight">Lumina Admin</div><div class="text-[10px] text-on-surface-variant">Management Suite</div></div></div>
+  <button class="new-project-btn" onclick="publishChanges()"><span class="material-symbols-outlined text-sm">publish</span> Publish Changes</button>
+    <nav class="sidebar-nav">
+    <p class="nav-label">Main</p>
+    <a href="dashboard.html" class="nav-link" id="nav-dashboard">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="projects.html" class="nav-link" id="nav-projects">
+      <span class="material-symbols-outlined">folder_open</span>
+      <span>Projects</span>
+    </a>
+    <a href="crm.html" class="nav-link" id="nav-crm">
+      <span class="material-symbols-outlined">group_add</span>
+      <span>CRM Leads</span>
+    </a>
+    <a href="invoices.html" class="nav-link" id="nav-invoices">
+      <span class="material-symbols-outlined">receipt_long</span>
+      <span>Invoices</span>
+    </a>
+    <a href="content.html" class="nav-link" id="nav-content">
+      <span class="material-symbols-outlined">view_quilt</span>
+      <span>Website Content</span>
+    </a>
+    <p class="nav-label">Management</p>
+    <a href="team.html" class="nav-link" id="nav-team">
+      <span class="material-symbols-outlined">badge</span>
+      <span>Team</span>
+    </a>
+    <a href="media.html" class="nav-link" id="nav-media">
+      <span class="material-symbols-outlined">photo_library</span>
+      <span>Media Library</span>
+    </a>
+    <a href="inbox.html" class="nav-link" id="nav-inbox">
+      <span class="material-symbols-outlined">mail</span>
+      <span>Inbox</span>
+    </a>
+    <a href="client-workspace.html" class="nav-link" id="nav-client-workspace">
+      <span class="material-symbols-outlined">forum</span>
+      <span>Client Workspace</span>
+      <span id="chat-unread-badge" style="display:none;background:#7dd3fc;color:#020617;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;margin-left:auto"></span>
+    </a>
+              <p class="nav-label">🤖 AI Automation</p>
+      <a href="ai-dashboard.html" class="nav-link" id="nav-ai-dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="ai-proposal-generator.html" class="nav-link" id="nav-ai-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>AI Proposal</span>
+      </a>
+      <a href="ai-content-writer.html" class="nav-link" id="nav-ai-content-writer">
+        <span class="material-symbols-outlined">edit_document</span>
+        <span>Content Writer</span>
+      </a>
+      <a href="ai-meeting-summary.html" class="nav-link" id="nav-ai-meeting">
+        <span class="material-symbols-outlined">forum</span>
+        <span>Meeting Summary</span>
+      </a>
+      <a href="ai-client-onboarding.html" class="nav-link" id="nav-ai-onboarding">
+        <span class="material-symbols-outlined">person_add</span>
+        <span>Client Onboarding</span>
+      </a>
+      <a href="ai-email-assistant.html" class="nav-link" id="nav-ai-email">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Email Assistant</span>
+      </a>
+      <a href="ai-google-calendar.html" class="nav-link" id="nav-ai-calendar">
+        <span class="material-symbols-outlined">event</span>
+        <span>Google Calendar</span>
+      </a>
+      <a href="ai-prompt-library.html" class="nav-link" id="nav-ai-prompt">
+        <span class="material-symbols-outlined">library_books</span>
+        <span>Prompt Library</span>
+      </a>
+      <a href="ai-templates.html" class="nav-link" id="nav-ai-templates">
+        <span class="material-symbols-outlined">widgets</span>
+        <span>AI Templates</span>
+      </a>
+      <a href="ai-knowledge-base.html" class="nav-link" id="nav-ai-kb">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Knowledge Base</span>
+      </a>
+      <a href="ai-settings.html" class="nav-link" id="nav-ai-settings">
+        <span class="material-symbols-outlined">settings_suggest</span>
+        <span>AI Settings</span>
+      </a>
+      <a href="ai-api-connections.html" class="nav-link" id="nav-ai-api">
+        <span class="material-symbols-outlined">api</span>
+        <span>API Connections</span>
+      </a>
+      <a href="ai-usage-logs.html" class="nav-link" id="nav-ai-logs">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Usage Logs</span>
+      </a>
+      <p class="nav-label">System</p>
+    <a href="settings.html" class="nav-link" id="nav-settings">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="#" class="nav-link text-sm"><span class="material-symbols-outlined text-sm">help</span><span>Support</span></a>
+    <a href="#" class="nav-link text-sm" style="color:rgba(255,107,107,0.7)" onclick="adminLogout()"><span class="material-symbols-outlined text-sm">logout</span><span>Logout</span></a>
+  </div>
+</aside>
+
+<main class="admin-main">
+  <header class="admin-topbar">
+    <div class="flex items-center gap-4">
+      <button class="md:hidden" onclick="toggleSidebar()"><span class="material-symbols-outlined">menu</span></button>
+      <div class="breadcrumb"><a href="dashboard.html" class="bc-item hover:text-primary transition-colors">Dashboard</a><span class="material-symbols-outlined bc-sep">chevron_right</span><span class="bc-item text-primary font-semibold">Website Content</span></div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap"><span class="material-symbols-outlined search-icon">search</span><input type="text" placeholder="Search content..." class="topbar-search"/></div>
+      <button class="topbar-icon-btn"><span class="material-symbols-outlined">notifications</span><span class="notif-dot"></span></button>
+      <div class="topbar-avatar"><span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1">manage_accounts</span></div>
+    </div>
+  </header>
+
+  <div class="page-content" style="overflow:hidden;flex:1;display:flex;flex-direction:column;gap:16px">
+    <div class="page-header">
+      <div><h2 class="page-title">Website Content Manager</h2><p class="page-subtitle">Edit and manage all page content, sections, and media.</p></div>
+      <div class="flex gap-3">
+        <button class="btn-outline" onclick="showAdminToast('Saved','Draft changes saved','info')"><span class="material-symbols-outlined text-sm">save</span> Save Draft</button>
+        <button class="btn-primary" onclick="publishChanges()"><span class="material-symbols-outlined text-sm">publish</span> Publish</button>
+      </div>
+    </div>
+
+    <!-- 3-Panel Layout -->
+    <div style="flex:1;overflow:hidden;display:grid;grid-template-columns:220px 1fr 260px;gap:16px;min-height:0">
+      <!-- Left: Page Navigator -->
+      <div style="overflow-y:auto;display:flex;flex-direction:column;gap:12px">
+        <div class="glass-card" style="padding:14px">
+          <p style="font-size:10px;font-weight:600;color:#4a6070;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Pages</p>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <button class="page-btn active" onclick="selectPage(this,'Homepage')"><span class="material-symbols-outlined text-[16px]">home</span><span>Homepage</span><span class="badge-pill badge-success" style="font-size:9px;padding:1px 6px">Live</span></button>
+            <button class="page-btn" onclick="selectPage(this,'About Us')"><span class="material-symbols-outlined text-[16px]">info</span><span>About Us</span></button>
+            <button class="page-btn" onclick="selectPage(this,'Services')"><span class="material-symbols-outlined text-[16px]">design_services</span><span>Services</span><span class="badge-pill badge-draft" style="font-size:9px;padding:1px 6px">Draft</span></button>
+            <button class="page-btn" onclick="selectPage(this,'Portfolio')"><span class="material-symbols-outlined text-[16px]">grid_view</span><span>Portfolio</span></button>
+            <button class="page-btn" onclick="selectPage(this,'Pricing')"><span class="material-symbols-outlined text-[16px]">sell</span><span>Pricing</span></button>
+            <button class="page-btn" onclick="selectPage(this,'Contact')"><span class="material-symbols-outlined text-[16px]">mail</span><span>Contact</span></button>
+            <button class="page-btn" onclick="selectPage(this,'Blog')"><span class="material-symbols-outlined text-[16px]">article</span><span>Blog</span></button>
+          </div>
+        </div>
+        <div class="glass-card" style="padding:14px">
+          <p style="font-size:10px;font-weight:600;color:#4a6070;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px">Page Meta</p>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="form-group"><label class="form-label">Page Title</label><input type="text" class="form-input" value="Welcome to Lumina Digital" style="font-size:12px"/></div>
+            <div class="form-group"><label class="form-label">SEO Description</label><textarea class="form-input form-textarea" style="font-size:12px;min-height:70px">Premium digital solutions for modern businesses.</textarea></div>
+            <button class="btn-primary" style="width:100%;font-size:12px;padding:8px" onclick="showAdminToast('Updated','Page meta saved','success')">Update Meta</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle: Section Editor -->
+      <div style="overflow-y:auto;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+          <h3 id="page-name" style="font-size:16px;font-weight:700;color:#e0e8f0">Homepage Structure</h3>
+          <div style="display:flex;gap:8px">
+            <button class="btn-outline" style="font-size:11px;padding:5px 12px" onclick="showAddSectionModal()"><span class="material-symbols-outlined text-[14px]">add</span> Add Section</button>
+            <button class="btn-primary" style="font-size:11px;padding:5px 12px" onclick="publishChanges()"><span class="material-symbols-outlined text-[14px]">publish</span> Publish</button>
+          </div>
+        </div>
+
+        <!-- Dynamic sections container -->
+        <div id="sections-container" style="display:flex;flex-direction:column;gap:12px"></div>
+      </div>
+
+      <!-- Right: Live Preview -->
+      <div style="display:flex;flex-direction:column;gap:10px;overflow:hidden">
+        <p style="font-size:10px;font-weight:600;color:#4a6070;text-transform:uppercase;letter-spacing:0.06em;flex-shrink:0">Live Preview</p>
+        <div class="glass-card" style="flex:1;padding:0;overflow:hidden;display:flex;flex-direction:column;border-color:rgba(125,211,252,0.2)">
+          <!-- Browser chrome -->
+          <div style="height:32px;background:rgba(0,0,0,0.4);border-bottom:1px solid rgba(42,58,72,0.5);display:flex;align-items:center;padding:0 10px;gap:5px;flex-shrink:0">
+            <div style="width:9px;height:9px;border-radius:50%;background:rgba(255,107,107,0.6)"></div>
+            <div style="width:9px;height:9px;border-radius:50%;background:rgba(251,191,36,0.6)"></div>
+            <div style="width:9px;height:9px;border-radius:50%;background:rgba(74,222,128,0.6)"></div>
+            <div style="margin:0 auto;font-size:9px;color:#4a6070;background:rgba(0,0,0,0.3);padding:2px 8px;border-radius:4px;border:1px solid rgba(42,58,72,0.4)">lumina.digital</div>
+          </div>
+          <!-- Preview area -->
+          <div style="flex:1;overflow:hidden;position:relative;background:linear-gradient(to bottom,rgba(14,77,110,0.2),rgba(2,6,23,1))">
+            <div style="padding:18px 14px;text-align:center">
+              <div style="font-size:18px;font-weight:800;color:#e0e8f0;letter-spacing:-0.02em;line-height:1.2">Build. Launch.<br>Grow.</div>
+              <p style="font-size:9px;color:#7dd3fc;margin:6px 0 12px">Premium digital agency for ambitious brands.</p>
+              <div style="display:inline-flex;align-items:center;gap:4px;background:rgba(125,211,252,0.15);border:1px solid rgba(125,211,252,0.3);color:#7dd3fc;font-size:9px;padding:4px 12px;border-radius:9999px;font-weight:600">Book Consultation</div>
+            </div>
+            <div style="padding:0 12px;display:flex;flex-direction:column;gap:8px">
+              <div style="height:32px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(42,58,72,0.4)"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+                <div style="height:44px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(42,58,72,0.4)"></div>
+                <div style="height:44px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(42,58,72,0.4)"></div>
+                <div style="height:44px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(42,58,72,0.4)"></div>
+                <div style="height:44px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(42,58,72,0.4)"></div>
+              </div>
+              <div style="height:32px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(42,58,72,0.4)"></div>
+            </div>
+            <!-- Sync indicator -->
+            <div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(15,21,36,0.85);backdrop-filter:blur(8px);border:1px solid rgba(125,211,252,0.2);padding:3px 10px;border-radius:9999px;display:flex;align-items:center;gap:5px">
+              <div style="width:5px;height:5px;border-radius:50%;background:#7dd3fc;animation:pulse 1.5s infinite"></div>
+              <span style="font-size:9px;color:#7dd3fc">Syncing...</span>
+            </div>
+          </div>
+        </div>
+        <a href="../index.html" target="_blank" class="btn-outline" style="text-align:center;font-size:11px;padding:7px;text-decoration:none">
+          <span class="material-symbols-outlined text-[14px]">open_in_new</span> Open Live Site
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.page-btn{width:100%;display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:none;background:transparent;color:#a0b4c4;font-size:12px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:left}
+.page-btn:hover{background:rgba(125,211,252,0.06);color:#e0e8f0}
+.page-btn.active{background:rgba(125,211,252,0.1);color:#7dd3fc;border:1px solid rgba(125,211,252,0.15)}
+.toggle-switch{width:32px;height:18px;border-radius:9999px;cursor:pointer;position:relative;transition:background 0.25s;flex-shrink:0}
+.toggle-switch::after{content:'';position:absolute;width:13px;height:13px;background:#fff;border-radius:50%;top:2.5px;transition:left 0.25s}
+.toggle-switch.on{background:rgba(125,211,252,0.4);border:1px solid rgba(125,211,252,0.5)}
+.toggle-switch.on::after{left:calc(100% - 15.5px)}
+.toggle-switch.off{background:rgba(42,58,72,0.6);border:1px solid rgba(42,58,72,0.8)}
+.toggle-switch.off::after{left:2.5px}
+@keyframes pulse{0%,100%{opacity:0.5;transform:scale(0.9)}50%{opacity:1;transform:scale(1.1)}}
+</style>
+
+  <!-- ADD SECTION MODAL -->
+  <div id="add-section-modal" class="fixed inset-0 bg-[#0a0e1a]/85 backdrop-blur-md flex items-center justify-center z-[100] hidden">
+    <div class="glass-card" style="width:100%;max-width:480px;padding:24px;border: 1px solid rgba(125,211,252,0.2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h3 style="font-size:16px;font-weight:700;color:#e0e8f0">Add New Section</h3>
+        <button style="background:transparent;border:none;color:#a0b4c4;cursor:pointer" onclick="closeAddSectionModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="add-section-form" onsubmit="submitAddSection(event)" style="display:flex;flex-direction:column;gap:14px">
+        <div class="form-group">
+          <label class="form-label">Section ID/Name (e.g. intro)</label>
+          <input type="text" id="new-section-name" class="form-input" placeholder="intro" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Headline / Title</label>
+          <input type="text" id="new-section-title" class="form-input" placeholder="Our Mission" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Body Text / Paragraph</label>
+          <textarea id="new-section-text" class="form-input form-textarea" style="min-height:80px" placeholder="Describe the section content..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%">Add Section</button>
+      </form>
+    </div>
+  </div>
+
+<script>
+let contentData = {};
+let activePage = "Homepage";
+
+// Load content on launch
+async function loadContent() {
+  try {
+    const res = await fetch('/api/content');
+    contentData = await res.json();
+    renderPageSections();
+  } catch (err) {
+    console.error("Error loading content:", err);
+  }
+}
+
+// Select a page from the left navigator
+function selectPage(btn, name){
+  document.querySelectorAll('.page-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  activePage = name;
+  document.getElementById('page-name').textContent = name + ' Structure';
+  renderPageSections();
+  showAdminToast('Page Selected', 'Now editing: '+name, 'info');
+}
+
+// Render the sections for the selected page
+function renderPageSections() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = '';
+  
+  const pageData = contentData[activePage];
+  if (!pageData) {
+    container.innerHTML = '<p class="text-xs text-on-surface-variant italic p-4">No sections defined for this page.</p>';
+    return;
+  }
+  
+  Object.keys(pageData).forEach(sectionKey => {
+    const section = pageData[sectionKey];
+    const card = document.createElement('div');
+    card.className = `glass-card ${!section.active ? 'opacity-55' : ''}`;
+    card.style.padding = '0';
+    card.style.overflow = 'hidden';
+    card.id = `card-${sectionKey}`;
+    
+    let fieldsHtml = '';
+    
+    if (sectionKey === 'hero') {
+      fieldsHtml = `
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group"><label class="form-label">Headline</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+          <div class="form-group"><label class="form-label">Subheadline</label><textarea class="form-input form-textarea" data-field="subtitle" style="font-size:12px;min-height:50px">${section.subtitle || ''}</textarea></div>
+        </div>
+        ${section.ctaText !== undefined ? `<div class="form-group"><label class="form-label">CTA Button Text</label><input type="text" class="form-input" data-field="ctaText" value="${section.ctaText}" style="font-size:12px"/></div>` : ''}
+      `;
+    } else if (sectionKey === 'services' || sectionKey === 'showcase' || sectionKey === 'form') {
+      fieldsHtml = `
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group"><label class="form-label">Section Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+          <div class="form-group"><label class="form-label">Subtitle</label><input type="text" class="form-input" data-field="subtitle" value="${section.subtitle || ''}" style="font-size:12px"/></div>
+        </div>
+      `;
+    } else if (sectionKey === 'testimonials') {
+      fieldsHtml = `
+        <div class="form-group"><label class="form-label">Section Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+        <div class="form-group"><label class="form-label">Subtitle</label><input type="text" class="form-input" data-field="subtitle" value="${section.subtitle || ''}" style="font-size:12px"/></div>
+        <div class="space-y-3 mt-3">
+          <div class="flex justify-between items-center">
+            <label class="form-label uppercase tracking-widest text-[10px] text-primary">Reviews List</label>
+            <button class="btn-outline" style="font-size:10px;padding:2px 8px;display:flex;align-items:center;gap:3px" onclick="addReviewItem('${sectionKey}')"><span class="material-symbols-outlined text-[12px]">add</span> Add Review</button>
+          </div>
+          ${(section.reviews || []).map((r, i) => `
+            <div class="p-3 bg-surface-container/40 rounded-lg border border-primary/5 space-y-2 relative">
+              <div class="flex justify-between items-center gap-2">
+                <div class="grid grid-cols-2 gap-2 flex-grow">
+                  <input type="text" class="form-input" data-review-author="${i}" value="${r.author || ''}" placeholder="Author Name" style="font-size:11px;padding:6px 10px"/>
+                  <input type="text" class="form-input" data-review-company="${i}" value="${r.company || ''}" placeholder="Company" style="font-size:11px;padding:6px 10px"/>
+                </div>
+                <button class="text-error hover:text-red-400 p-1 flex-shrink-0" onclick="removeReviewItem('${sectionKey}', ${i})" title="Remove Review">
+                  <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
+              </div>
+              <textarea class="form-input form-textarea" data-review-text="${i}" placeholder="Review content..." style="font-size:11px;min-height:40px;padding:6px 10px">${r.text || ''}</textarea>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else if (sectionKey === 'stats') {
+      fieldsHtml = `
+        <div class="form-group"><label class="form-label">Section Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+        <div class="space-y-3 mt-3">
+          <div class="flex justify-between items-center">
+            <label class="form-label uppercase tracking-widest text-[10px] text-primary">Stat Items</label>
+            <button class="btn-outline" style="font-size:10px;padding:2px 8px;display:flex;align-items:center;gap:3px" onclick="addListItem('${sectionKey}')"><span class="material-symbols-outlined text-[12px]">add</span> Add Stat</button>
+          </div>
+          ${(section.items || []).map((item, i) => `
+            <div class="grid grid-cols-12 gap-2 p-2 bg-surface-container/40 rounded-lg border border-primary/5 items-center">
+              <div class="col-span-5">
+                <input type="text" class="form-input w-full" data-stat-value="${i}" value="${item.value || ''}" placeholder="Value (e.g. 150+)" style="font-size:11px;padding:6px 10px"/>
+              </div>
+              <div class="col-span-6">
+                <input type="text" class="form-input w-full" data-stat-label="${i}" value="${item.label || ''}" placeholder="Label" style="font-size:11px;padding:6px 10px"/>
+              </div>
+              <div class="col-span-1 flex justify-end">
+                <button class="text-error hover:text-red-400 p-1" onclick="removeListItem('${sectionKey}', ${i})" title="Remove Stat">
+                  <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else if (sectionKey === 'ctaBanner') {
+      fieldsHtml = `
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+          <div class="form-group"><label class="form-label">Subtitle</label><textarea class="form-input form-textarea" data-field="subtitle" style="font-size:12px;min-height:50px">${section.subtitle || ''}</textarea></div>
+        </div>
+        <div class="form-group"><label class="form-label">CTA Button Text</label><input type="text" class="form-input" data-field="ctaText" value="${section.ctaText || ''}" style="font-size:12px"/></div>
+      `;
+    } else if (sectionKey === 'story') {
+      fieldsHtml = `
+        <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+        <div class="form-group"><label class="form-label">Text Content</label><textarea class="form-input form-textarea" data-field="text" style="font-size:12px;min-height:80px">${section.text || ''}</textarea></div>
+      `;
+    } else if (sectionKey === 'values' || sectionKey === 'features') {
+      fieldsHtml = `
+        <div class="form-group"><label class="form-label">Section Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+        <div class="space-y-3 mt-3">
+          <div class="flex justify-between items-center">
+            <label class="form-label uppercase tracking-widest text-[10px] text-primary">Items</label>
+            <button class="btn-outline" style="font-size:10px;padding:2px 8px;display:flex;align-items:center;gap:3px" onclick="addListItem('${sectionKey}')"><span class="material-symbols-outlined text-[12px]">add</span> Add Item</button>
+          </div>
+          <div style="font-size:10px;color:#a0b4c4;margin-bottom:6px">Tip: Start lines in Description with "-" to format as bullet points on the website!</div>
+          ${(section.items || []).map((item, i) => `
+            <div class="p-3 bg-surface-container/40 rounded-lg border border-primary/5 space-y-2 relative">
+              <div class="flex justify-between items-center gap-2">
+                <input type="text" class="form-input flex-grow" data-item-title="${i}" value="${item.title || ''}" placeholder="Item Title" style="font-size:11px;padding:6px 10px"/>
+                <button class="text-error hover:text-red-400 p-1 flex-shrink-0" onclick="removeListItem('${sectionKey}', ${i})" title="Remove Item">
+                  <span class="material-symbols-outlined text-[16px]">delete</span>
+                </button>
+              </div>
+              <textarea class="form-input form-textarea" data-item-desc="${i}" placeholder="Item Description..." style="font-size:11px;min-height:40px;padding:6px 10px">${item.desc || ''}</textarea>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else if (sectionKey === 'packages') {
+      fieldsHtml = `
+        <div class="form-group"><label class="form-label">Section Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+        <div class="space-y-3 mt-3">
+          <div class="flex justify-between items-center">
+            <label class="form-label uppercase tracking-widest text-[10px] text-primary">Pricing Packages</label>
+            <button class="btn-outline" style="font-size:10px;padding:2px 8px;display:flex;align-items:center;gap:3px" onclick="addListItem('${sectionKey}')"><span class="material-symbols-outlined text-[12px]">add</span> Add Package</button>
+          </div>
+          <div style="font-size:10px;color:#a0b4c4;margin-bottom:6px">Tip: Start lines in Description with "-" to format as bullet points on the website!</div>
+          ${(section.items || []).map((item, i) => `
+            <div class="p-3 bg-surface-container/40 rounded-lg border border-primary/5 space-y-2 relative">
+              <div class="grid grid-cols-12 gap-2 items-center">
+                <div class="col-span-6">
+                  <input type="text" class="form-input w-full" data-package-name="${i}" value="${item.name || ''}" placeholder="Package Name" style="font-size:11px;padding:6px 10px"/>
+                </div>
+                <div class="col-span-5">
+                  <input type="text" class="form-input w-full" data-package-price="${i}" value="${item.price || ''}" placeholder="Price (e.g. $2,500)" style="font-size:11px;padding:6px 10px"/>
+                </div>
+                <div class="col-span-1 flex justify-end">
+                  <button class="text-error hover:text-red-400 p-1" onclick="removeListItem('${sectionKey}', ${i})" title="Remove Package">
+                    <span class="material-symbols-outlined text-[16px]">delete</span>
+                  </button>
+                </div>
+              </div>
+              <textarea class="form-input form-textarea" data-package-desc="${i}" placeholder="Description..." style="font-size:11px;min-height:40px;padding:6px 10px">${item.desc || ''}</textarea>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else {
+      fieldsHtml = `
+        <div class="form-group"><label class="form-label">Section Title</label><input type="text" class="form-input" data-field="title" value="${section.title || ''}" style="font-size:12px"/></div>
+        <div class="form-group"><label class="form-label">Content Text</label><textarea class="form-input form-textarea" data-field="text" style="font-size:12px;min-height:60px">${section.text || ''}</textarea></div>
+      `;
+    }
+
+    const friendlyName = sectionKey.charAt(0).toUpperCase() + sectionKey.slice(1).replace(/([A-Z])/g, ' $1');
+    
+    card.innerHTML = `
+      <div style="padding:12px 14px;border-bottom:1px solid rgba(42,58,72,0.5);display:flex;align-items:center;justify-content:space-between;background:rgba(125,211,252,0.04);cursor:pointer" onclick="toggleSectionCollapse('${sectionKey}')">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="material-symbols-outlined" style="color:#a0b4c4;cursor:grab;font-size:18px">drag_indicator</span>
+          <div><p style="font-size:13px;font-weight:600;color:#e0e8f0">${friendlyName}</p><p style="font-size:10px;color:#7dd3fc">${section.active ? 'Active Section' : 'Hidden'}</p></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px" onclick="event.stopPropagation()">
+          <div class="toggle-switch ${section.active ? 'on' : 'off'}" onclick="toggleSectionActive('${sectionKey}')"></div>
+          <span class="material-symbols-outlined" id="collapse-icon-${sectionKey}" style="color:#a0b4c4;font-size:18px">expand_less</span>
+        </div>
+      </div>
+      <div id="body-${sectionKey}" style="padding:14px;display:flex;flex-direction:column;gap:12px">
+        ${fieldsHtml}
+        <div style="display:flex;justify-content:flex-end;gap:8px">
+          <button class="btn-outline" style="font-size:11px;padding:5px 12px" onclick="renderPageSections()">Discard</button>
+          <button class="btn-primary" style="font-size:11px;padding:5px 12px" onclick="saveSection('${sectionKey}')">Save Section</button>
+        </div>
+      </div>
+    `;
+    
+    container.appendChild(card);
+  });
+}
+
+function toggleSectionCollapse(sectionKey) {
+  const el = document.getElementById(`body-${sectionKey}`);
+  const icon = document.getElementById(`collapse-icon-${sectionKey}`);
+  if (el.style.display === 'none') {
+    el.style.display = 'flex';
+    el.style.flexDirection = 'column';
+    el.style.gap = '12px';
+    icon.textContent = 'expand_less';
+  } else {
+    el.style.display = 'none';
+    icon.textContent = 'expand_more';
+  }
+}
+
+function toggleSectionActive(sectionKey) {
+  const section = contentData[activePage][sectionKey];
+  section.active = !section.active;
+  renderPageSections();
+}
+
+function syncInputsToCache(sectionKey) {
+  const pageData = contentData[activePage];
+  const section = pageData[sectionKey];
+  const card = document.getElementById(`card-${sectionKey}`);
+  if (!card || !section) return;
+
+  // Read scalar fields
+  const scalarInputs = card.querySelectorAll('input[data-field], textarea[data-field]');
+  scalarInputs.forEach(input => {
+    const field = input.getAttribute('data-field');
+    section[field] = input.value;
+  });
+
+  // Read testimonials reviews
+  if (sectionKey === 'testimonials') {
+    section.reviews = section.reviews || [];
+    const newReviews = [];
+    section.reviews.forEach((r, i) => {
+      const authorEl = card.querySelector(`input[data-review-author="${i}"]`);
+      const companyEl = card.querySelector(`input[data-review-company="${i}"]`);
+      const textEl = card.querySelector(`textarea[data-review-text="${i}"]`);
+      if (authorEl && companyEl && textEl) {
+        newReviews.push({ author: authorEl.value, company: companyEl.value, text: textEl.value });
+      }
+    });
+    section.reviews = newReviews;
+  }
+
+  // Read stats items
+  if (sectionKey === 'stats') {
+    section.items = section.items || [];
+    const newItems = [];
+    section.items.forEach((item, i) => {
+      const valueEl = card.querySelector(`input[data-stat-value="${i}"]`);
+      const labelEl = card.querySelector(`input[data-stat-label="${i}"]`);
+      if (valueEl && labelEl) {
+        newItems.push({ value: valueEl.value, label: labelEl.value });
+      }
+    });
+    section.items = newItems;
+  }
+
+  // Read values / features items
+  if (sectionKey === 'values' || sectionKey === 'features') {
+    section.items = section.items || [];
+    const newItems = [];
+    section.items.forEach((item, i) => {
+      const titleEl = card.querySelector(`input[data-item-title="${i}"]`);
+      const descEl = card.querySelector(`textarea[data-item-desc="${i}"]`);
+      if (titleEl && descEl) {
+        newItems.push({ title: titleEl.value, desc: descEl.value });
+      }
+    });
+    section.items = newItems;
+  }
+
+  // Read packages
+  if (sectionKey === 'packages') {
+    section.items = section.items || [];
+    const newItems = [];
+    section.items.forEach((item, i) => {
+      const nameEl = card.querySelector(`input[data-package-name="${i}"]`);
+      const priceEl = card.querySelector(`input[data-package-price="${i}"]`);
+      const descEl = card.querySelector(`textarea[data-package-desc="${i}"]`);
+      if (nameEl && priceEl && descEl) {
+        newItems.push({ name: nameEl.value, price: priceEl.value, desc: descEl.value });
+      }
+    });
+    section.items = newItems;
+  }
+}
+
+function saveSection(sectionKey) {
+  syncInputsToCache(sectionKey);
+  showAdminToast('Section Saved', `${sectionKey.toUpperCase()} section cache updated locally. Publish to save.`, 'success');
+}
+
+function addListItem(sectionKey) {
+  syncInputsToCache(sectionKey);
+  const section = contentData[activePage][sectionKey];
+  section.items = section.items || [];
+  if (sectionKey === 'packages') {
+    section.items.push({ name: '', price: '', desc: '' });
+  } else if (sectionKey === 'stats') {
+    section.items.push({ value: '', label: '' });
+  } else {
+    section.items.push({ title: '', desc: '' });
+  }
+  renderPageSections();
+}
+
+function removeListItem(sectionKey, index) {
+  syncInputsToCache(sectionKey);
+  const section = contentData[activePage][sectionKey];
+  if (section && section.items) {
+    section.items.splice(index, 1);
+  }
+  renderPageSections();
+}
+
+function addReviewItem(sectionKey) {
+  syncInputsToCache(sectionKey);
+  const section = contentData[activePage][sectionKey];
+  section.reviews = section.reviews || [];
+  section.reviews.push({ author: '', company: '', text: '' });
+  renderPageSections();
+}
+
+function removeReviewItem(sectionKey, index) {
+  syncInputsToCache(sectionKey);
+  const section = contentData[activePage][sectionKey];
+  if (section && section.reviews) {
+    section.reviews.splice(index, 1);
+  }
+  renderPageSections();
+}
+
+async function publishChanges() {
+  try {
+    const res = await fetch('/api/content', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(contentData)
+    });
+    if (res.ok) {
+      showAdminToast('Published!', 'All changes are now live on the website.', 'success');
+    } else {
+      showAdminToast('Error', 'Failed to publish changes.', 'error');
+    }
+  } catch (err) {
+    console.error("Error publishing content:", err);
+    showAdminToast('Error', 'Server connection failure.', 'error');
+  }
+}
+
+// Add Section Modal handlers
+function showAddSectionModal() {
+  document.getElementById('add-section-modal').classList.remove('hidden');
+}
+
+function closeAddSectionModal() {
+  document.getElementById('add-section-modal').classList.add('hidden');
+}
+
+function submitAddSection(e) {
+  e.preventDefault();
+  const name = document.getElementById('new-section-name').value.trim();
+  const title = document.getElementById('new-section-title').value.trim();
+  const text = document.getElementById('new-section-text').value.trim();
+  
+  if (!name || !title) return;
+  
+  const sectionKey = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+  
+  contentData[activePage] = contentData[activePage] || {};
+  contentData[activePage][sectionKey] = {
+    title: title,
+    text: text,
+    active: true
+  };
+  
+  renderPageSections();
+  closeAddSectionModal();
+  document.getElementById('add-section-form').reset();
+  showAdminToast('Section Added', `Successfully added section: ${title}`, 'success');
+}
+
+document.addEventListener('DOMContentLoaded', loadContent);
+</script>
+</body>
+</html>

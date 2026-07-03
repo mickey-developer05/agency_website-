@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team Management — Lumina Admin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="admin-common.js"></script>
+  <script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#7dd3fc","surface":"#0f1524","surface-container":"#141c2e","surface-container-high":"#1a2438","on-surface":"#e0e8f0","on-surface-variant":"#a0b4c4","outline":"#4a6070","outline-variant":"#2a3a48","error":"#ff6b6b","tertiary":"#c8a0f0","secondary":"#88b4cc","success":"#4ade80"}}}}</script>
+  <link rel="stylesheet" href="admin.css"/>
+  <style>
+    .member-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .member-card:hover { transform: translateY(-3px); border-color: rgba(125,211,252,0.3); box-shadow: 0 12px 40px rgba(125,211,252,0.08); }
+    .tab-btn { padding: 8px 16px; font-size: 12px; font-weight: 500; color: #a0b4c4; background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; margin-bottom: -1px; }
+    .tab-btn.active { color: #7dd3fc; border-bottom-color: #7dd3fc; }
+    .tab-btn:hover { color: #e0e8f0; }
+  </style>
+</head>
+<body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
+<div class="orb orb1"></div><div class="orb orb2"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><div class="sidebar-logo-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">bubble</span></div><div><div class="text-sm font-bold text-primary tracking-tight leading-tight">Lumina Admin</div><div class="text-[10px] text-on-surface-variant">Management Suite</div></div></div>
+  <button class="new-project-btn" onclick="openMemberModal()"><span class="material-symbols-outlined text-sm">person_add</span> Add Member</button>
+  <nav class="sidebar-nav">
+    <p class="nav-label">Main</p>
+    <a href="dashboard.html" class="nav-link" id="nav-dashboard"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+    <a href="projects.html" class="nav-link" id="nav-projects"><span class="material-symbols-outlined">folder_open</span><span>Projects</span></a>
+    <a href="crm.html" class="nav-link" id="nav-crm"><span class="material-symbols-outlined">group_add</span><span>CRM Leads</span></a>
+    <a href="invoices.html" class="nav-link" id="nav-invoices"><span class="material-symbols-outlined">receipt_long</span><span>Invoices</span></a>
+    <a href="content.html" class="nav-link" id="nav-content"><span class="material-symbols-outlined">view_quilt</span><span>Website Content</span></a>
+    <p class="nav-label">Management</p>
+    <a href="team.html" class="nav-link active" id="nav-team"><span class="material-symbols-outlined">badge</span><span>Team</span></a>
+    <a href="media.html" class="nav-link" id="nav-media"><span class="material-symbols-outlined">photo_library</span><span>Media Library</span></a>
+    <a href="inbox.html" class="nav-link" id="nav-inbox"><span class="material-symbols-outlined">mail</span><span>Inbox</span></a>
+    <a href="client-workspace.html" class="nav-link" id="nav-client-workspace">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">forum</span>
+      <span>Client Workspace</span>
+      <span id="chat-unread-badge" style="display:none;background:#7dd3fc;color:#020617;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;margin-left:auto"></span>
+    </a>
+              <p class="nav-label">🤖 AI Automation</p>
+      <a href="ai-dashboard.html" class="nav-link" id="nav-ai-dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="ai-proposal-generator.html" class="nav-link" id="nav-ai-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>AI Proposal</span>
+      </a>
+      <a href="ai-content-writer.html" class="nav-link" id="nav-ai-content-writer">
+        <span class="material-symbols-outlined">edit_document</span>
+        <span>Content Writer</span>
+      </a>
+      <a href="ai-meeting-summary.html" class="nav-link" id="nav-ai-meeting">
+        <span class="material-symbols-outlined">forum</span>
+        <span>Meeting Summary</span>
+      </a>
+      <a href="ai-client-onboarding.html" class="nav-link" id="nav-ai-onboarding">
+        <span class="material-symbols-outlined">person_add</span>
+        <span>Client Onboarding</span>
+      </a>
+      <a href="ai-email-assistant.html" class="nav-link" id="nav-ai-email">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Email Assistant</span>
+      </a>
+      <a href="ai-google-calendar.html" class="nav-link" id="nav-ai-calendar">
+        <span class="material-symbols-outlined">event</span>
+        <span>Google Calendar</span>
+      </a>
+      <a href="ai-prompt-library.html" class="nav-link" id="nav-ai-prompt">
+        <span class="material-symbols-outlined">library_books</span>
+        <span>Prompt Library</span>
+      </a>
+      <a href="ai-templates.html" class="nav-link" id="nav-ai-templates">
+        <span class="material-symbols-outlined">widgets</span>
+        <span>AI Templates</span>
+      </a>
+      <a href="ai-knowledge-base.html" class="nav-link" id="nav-ai-kb">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Knowledge Base</span>
+      </a>
+      <a href="ai-settings.html" class="nav-link" id="nav-ai-settings">
+        <span class="material-symbols-outlined">settings_suggest</span>
+        <span>AI Settings</span>
+      </a>
+      <a href="ai-api-connections.html" class="nav-link" id="nav-ai-api">
+        <span class="material-symbols-outlined">api</span>
+        <span>API Connections</span>
+      </a>
+      <a href="ai-usage-logs.html" class="nav-link" id="nav-ai-logs">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Usage Logs</span>
+      </a>
+      <p class="nav-label">System</p>
+    <a href="settings.html" class="nav-link" id="nav-settings"><span class="material-symbols-outlined">settings</span><span>Settings</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="#" class="nav-link text-sm"><span class="material-symbols-outlined text-sm">help</span><span>Support</span></a>
+    <a href="#" class="nav-link text-sm" style="color:rgba(255,107,107,0.7)" onclick="adminLogout()"><span class="material-symbols-outlined text-sm">logout</span><span>Logout</span></a>
+  </div>
+</aside>
+
+<main class="admin-main">
+  <header class="admin-topbar">
+    <div class="flex items-center gap-4">
+      <button class="md:hidden" onclick="toggleSidebar()"><span class="material-symbols-outlined">menu</span></button>
+      <div class="breadcrumb"><a href="dashboard.html" class="bc-item hover:text-primary transition-colors">Dashboard</a><span class="material-symbols-outlined bc-sep">chevron_right</span><span class="bc-item text-primary font-semibold">Team Management</span></div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap"><span class="material-symbols-outlined search-icon">search</span><input type="text" placeholder="Search team..." class="topbar-search" oninput="searchTeam(this.value)"/></div>
+      <button class="topbar-icon-btn"><span class="material-symbols-outlined">notifications</span><span class="notif-dot"></span></button>
+      <div class="topbar-avatar"><span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1">manage_accounts</span></div>
+    </div>
+  </header>
+
+  <div class="page-content">
+    <div class="page-header">
+      <div><h2 class="page-title">Team Management</h2><p class="page-subtitle">Configure your digital agency roles and team member cards.</p></div>
+      <button class="btn-primary" onclick="openMemberModal()"><span class="material-symbols-outlined text-sm">person_add</span> Add Member</button>
+    </div>
+
+    <!-- Tab Bar -->
+    <div style="display:flex;gap:6px;border-bottom:1px solid rgba(42,58,72,0.4);padding-bottom:0">
+      <button class="tab-btn active" onclick="switchTab(this,'members')">Team Members</button>
+      <button class="tab-btn" onclick="switchTab(this,'roles')">Roles &amp; Permissions</button>
+    </div>
+
+    <!-- Tab Content: Team Members -->
+    <div id="tab-content-members" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="team-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Tab Content: Roles & Permissions -->
+    <div id="tab-content-roles" style="display:none">
+      <div class="glass-card" style="padding:0;overflow:hidden">
+        <div style="overflow-x:auto">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>Content Editor</th>
+                <th>CRM Leads</th>
+                <th>Financial Invoices</th>
+                <th>System Settings</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-title">Super Admin</td>
+                <td><input type="checkbox" checked disabled class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" checked disabled class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" checked disabled class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" checked disabled class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><span class="badge-pill badge-info">Full Access</span></td>
+              </tr>
+              <tr>
+                <td class="td-title">Editor</td>
+                <td><input type="checkbox" checked class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" checked class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><button class="btn-outline" style="font-size:10px;padding:2px 8px" onclick="showAdminToast('Saved','Editor permissions updated','success')">Save</button></td>
+              </tr>
+              <tr>
+                <td class="td-title">Designer</td>
+                <td><input type="checkbox" checked class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><button class="btn-outline" style="font-size:10px;padding:2px 8px" onclick="showAdminToast('Saved','Designer permissions updated','success')">Save</button></td>
+              </tr>
+              <tr>
+                <td class="td-title">Contributor</td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><input type="checkbox" class="rounded bg-slate-900 border-outline-variant text-sky-400 focus:ring-sky-400/20"/></td>
+                <td><button class="btn-outline" style="font-size:10px;padding:2px 8px" onclick="showAdminToast('Saved','Contributor permissions updated','success')">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Member Add/Edit Modal -->
+<div id="member-modal" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,0.75);backdrop-filter:blur(10px);z-index:9000;align-items:center;justify-content:center;">
+  <div style="background:rgba(15,21,36,0.95);border:1px solid rgba(125,211,252,0.15);border-radius:20px;padding:28px;width:95%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,0.5)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h3 style="font-size:18px;font-weight:700;color:#e0e8f0" id="modal-title">Add Team Member</h3>
+      <button onclick="closeMemberModal()" style="background:none;border:none;color:#a0b4c4;cursor:pointer"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    
+    <input type="hidden" id="member-id"/>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="member-name" placeholder="e.g. Elena Rostova"/></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="member-email" placeholder="e.g. elena@lumina.digital"/></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label class="form-label">Role / Job Title</label><input type="text" class="form-input" id="member-role" placeholder="e.g. Head of Engineering"/></div>
+        <div class="form-group"><label class="form-label">Specialty</label><input type="text" class="form-input" id="member-specialty" placeholder="e.g. Fintech, WebGL"/></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group">
+          <label class="form-label">Availability Status</label>
+          <select class="form-select" id="member-status">
+            <option>Active</option>
+            <option>Away</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Avatar URL (Optional)</label><input type="url" class="form-input" id="member-avatar" placeholder="https://image-url.com"/></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label class="form-label">LinkedIn URL</label><input type="url" class="form-input" id="member-linkedin" placeholder="https://linkedin.com/..."/></div>
+        <div class="form-group"><label class="form-label">Twitter / X URL</label><input type="url" class="form-input" id="member-twitter" placeholder="https://twitter.com/..."/></div>
+      </div>
+      <div class="form-group"><label class="form-label">Short Biography</label><textarea class="form-input form-textarea" id="member-bio" style="min-height:70px" placeholder="Elena has spent 15 years guiding visual narratives..."></textarea></div>
+    </div>
+    
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:20px">
+      <button class="btn-outline" onclick="closeMemberModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveMember()"><span class="material-symbols-outlined text-sm">save</span> Save Member</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let teamData = [];
+  const apiBase = '/api/team';
+
+  async function loadTeam() {
+    try {
+      const res = await fetch(apiBase);
+      if (res.ok) {
+        teamData = await res.json();
+      } else {
+        throw new Error('API failure');
+      }
+    } catch (err) {
+      console.warn('Backend team API error, reading from localStorage fallback');
+      const local = localStorage.getItem('lumina_team');
+      if (local) {
+        teamData = JSON.parse(local);
+      } else {
+        // Mock fallback default data
+        teamData = [
+          {
+            "id": "elena",
+            "name": "Elena Rostova",
+            "role": "CEO & Creative Director",
+            "status": "Active",
+            "email": "elena@lumina.digital",
+            "bio": "Elena has spent over 15 years guiding visual narratives for world-class luxury brands. She believes that visual design is not just a coat of paint, but a fundamental pillar of user experience and brand integrity.",
+            "specialty": "Creative Direction, Design System Strategy, Luxury Branding",
+            "linkedin": "https://linkedin.com/in/elena-rostova",
+            "twitter": "https://twitter.com/elena_rostova",
+            "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBP9HdPA83IJQULUKeQowPp8wCeDu-_ttUoMJPEujp8Cn_a6LY2l1NogLXg9-ZIT1M_xf0KSY3NGMozRasyShvYJ9cPj9qkkD0NfGF5J5NBOia-cB1-C0h0CZ7_rw0OB_uY0X1nHH5gy5mbuuficKSOsfQHOibDlaTK7eODvnl-6YisrwiyQeavXmrqs1Qqmc4EPY5NkFcnKfxzE28YRlhcf7COQwQb2IoVQOMhw_risB5JShVXO4n-nomg7KD57uUOR4n-3rqU"
+          },
+          {
+            "id": "marcus",
+            "name": "Marcus Chen",
+            "role": "Head of Engineering",
+            "status": "Active",
+            "email": "marcus@lumina.digital",
+            "bio": "Marcus is a full-stack engineer specializing in sub-millisecond data pipelines and headless architecture. Prior to Lumina, he scaled web platforms for key financial corporations in Silicon Valley.",
+            "specialty": "Next.js Engine Optimization, Canvas Pipelines, GraphQL Specs",
+            "linkedin": "https://linkedin.com/in/marcuschen",
+            "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuDnY8qAyXynYJkJwx6bELLoLFZO7YcYuwc1sFq3yvQMCO9D71FDJ0I7QKSHTXpNpWjhUmLIBwkYoV5-DuUzRM0MNXhVXT1gfD99Uol744l_AEz1_YRSKaKvHUt9UM1hLz_agBB1TbZbEdeHFLg4vmXc17qIhTh3nYfmtvNtKsmkwAgkAYFfB3YWZpRIjxEQ0KQA6N9206do0Sy1mIzXVMUjnOjJNyDiBbx6K__OGIPecZbPmK3kCInuFrYvSzlLCpBWkxWO-GwA"
+          },
+          {
+            "id": "jordan",
+            "name": "Jordan Vance",
+            "role": "Lead UX/UI Designer",
+            "status": "Active",
+            "email": "jordan@lumina.digital",
+            "bio": "Jordan focuses on the micro-interactions that make interfaces feel responsive and alive. With background in cognitive sciences and visual arts, they design layouts that reduce cognitive load and delight users.",
+            "specialty": "Interactive Prototyping, Glassmorphism Aesthetics, Micro-animations",
+            "linkedin": "https://linkedin.com/in/jordanvance",
+            "twitter": "https://twitter.com/jordanvance",
+            "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBbWGs7K4nauyFFNvpgycXZaaLG6yc4CLVaqgCi-SSLj5fjtvzZ_-p13xKwn6XQfNl2yH44Yp49kpl7X55kf-xghjovJ5mV9LUpWrvN2e8574lcX35f81x6mTPIkYlR-y83F-PKSG39HdxbBoagUh7bPc--HUgV8UufXCg_d0mGiq18M-sw9Ko07kw-krGHA3PRpqNxPKisqjOBQGL4AeihWkGLIAI-3_FUBnKXWsju6c_NMb0vmTWRd4BO9XBd_a9cy0BwdJF8"
+          }
+        ];
+        localStorage.setItem('lumina_team', JSON.stringify(teamData));
+      }
+    }
+    renderTeam(teamData);
+  }
+
+  function renderTeam(list) {
+    const grid = document.getElementById('team-grid');
+    grid.innerHTML = '';
+    
+    list.forEach(m => {
+      const isAway = m.status === 'Away';
+      const statusBadge = isAway 
+        ? `<span class="badge-pill badge-warn" style="font-size: 10px;">Away</span>`
+        : `<span class="badge-pill badge-success" style="font-size: 10px;">Active</span>`;
+      
+      const avatarHTML = m.avatar 
+        ? `<img class="w-full h-full object-cover" src="${m.avatar}"/>`
+        : `<span class="material-symbols-outlined text-primary text-3xl">person</span>`;
+
+      const card = document.createElement('div');
+      card.className = 'glass-card member-card relative group flex flex-col justify-between';
+      card.innerHTML = `
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+            <div style="width:52px;height:52px;border-radius:50%;overflow:hidden;background:rgba(125,211,252,0.1);border:1px solid rgba(125,211,252,0.25);display:flex;align-items:center;justify-content:center">
+              ${avatarHTML}
+            </div>
+            ${statusBadge}
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-on-surface">${m.name}</h4>
+            <p class="text-xs text-primary font-medium mt-0.5">${m.role}</p>
+            <p class="text-[11px] text-on-surface-variant font-medium mt-1">📧 ${m.email || 'No email'}</p>
+            <p class="text-xs text-on-surface-variant mt-3 leading-relaxed">${m.bio ? m.bio.substring(0, 100) + '...' : 'No biography.'}</p>
+            <div style="display:flex;gap:6px;margin-top:10px">
+              ${m.linkedin ? `<a href="${m.linkedin}" target="_blank" class="badge-pill badge-info">LinkedIn</a>` : ''}
+              ${m.twitter ? `<a href="${m.twitter}" target="_blank" class="badge-pill badge-purple">Twitter</a>` : ''}
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px;border-top:1px solid rgba(42,58,72,0.3);padding-top:12px">
+          <button class="btn-outline" style="flex:1;font-size:11px;padding:6px" onclick="editMember('${m.id}')">Edit</button>
+          <button class="btn-danger" style="font-size:11px;padding:6px" onclick="deleteMember('${m.id}')">Delete</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    document.getElementById('tab-content-members').style.display = tab === 'members' ? '' : 'none';
+    document.getElementById('tab-content-roles').style.display = tab === 'roles' ? '' : 'none';
+  }
+
+  function searchTeam(q) {
+    q = q.toLowerCase();
+    const filtered = teamData.filter(m => 
+      m.name.toLowerCase().includes(q) || 
+      m.role.toLowerCase().includes(q) || 
+      m.specialty.toLowerCase().includes(q)
+    );
+    renderTeam(filtered);
+  }
+
+  function openMemberModal(id = '') {
+    document.getElementById('member-id').value = id;
+    if (id) {
+      document.getElementById('modal-title').textContent = 'Edit Team Member';
+      const m = teamData.find(mem => mem.id === id);
+      if (m) {
+        document.getElementById('member-name').value = m.name || '';
+        document.getElementById('member-email').value = m.email || '';
+        document.getElementById('member-role').value = m.role || '';
+        document.getElementById('member-specialty').value = m.specialty || '';
+        document.getElementById('member-status').value = m.status || 'Active';
+        document.getElementById('member-avatar').value = m.avatar || '';
+        document.getElementById('member-linkedin').value = m.linkedin || '';
+        document.getElementById('member-twitter').value = m.twitter || '';
+        document.getElementById('member-bio').value = m.bio || '';
+      }
+    } else {
+      document.getElementById('modal-title').textContent = 'Add Team Member';
+      document.getElementById('member-name').value = '';
+      document.getElementById('member-email').value = '';
+      document.getElementById('member-role').value = '';
+      document.getElementById('member-specialty').value = '';
+      document.getElementById('member-status').value = 'Active';
+      document.getElementById('member-avatar').value = '';
+      document.getElementById('member-linkedin').value = '';
+      document.getElementById('member-twitter').value = '';
+      document.getElementById('member-bio').value = '';
+    }
+    document.getElementById('member-modal').style.display = 'flex';
+  }
+
+  function closeMemberModal() {
+    document.getElementById('member-modal').style.display = 'none';
+  }
+
+  async function saveMember() {
+    const id = document.getElementById('member-id').value;
+    const data = {
+      name: document.getElementById('member-name').value.trim(),
+      email: document.getElementById('member-email').value.trim(),
+      role: document.getElementById('member-role').value.trim(),
+      specialty: document.getElementById('member-specialty').value.trim(),
+      status: document.getElementById('member-status').value,
+      avatar: document.getElementById('member-avatar').value.trim(),
+      linkedin: document.getElementById('member-linkedin').value.trim(),
+      twitter: document.getElementById('member-twitter').value.trim(),
+      bio: document.getElementById('member-bio').value.trim()
+    };
+
+    if (!data.name || !data.role) {
+      alert('Name and Role are required.');
+      return;
+    }
+
+    try {
+      let res;
+      if (id) {
+        // Edit
+        res = await fetch(`${apiBase}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } else {
+        // Add
+        res = await fetch(apiBase, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      }
+      
+      if (!res.ok) throw new Error('API save failed');
+    } catch (err) {
+      console.warn('API save error, writing to localStorage fallback');
+      if (id) {
+        const idx = teamData.findIndex(m => m.id === id);
+        if (idx !== -1) {
+          teamData[idx] = { ...teamData[idx], ...data };
+        }
+      } else {
+        const newMember = { id: 'mem-' + Date.now(), ...data };
+        teamData.push(newMember);
+      }
+      localStorage.setItem('lumina_team', JSON.stringify(teamData));
+    }
+    
+    closeMemberModal();
+    await loadTeam();
+    showAdminToast(id ? 'Updated' : 'Added', id ? 'Member updated successfully' : 'Member added to team', 'success');
+  }
+
+  function editMember(id) {
+    openMemberModal(id);
+  }
+
+  function deleteMember(id) {
+    showConfirm('Delete Member', 'Are you sure you want to remove this member from the team?', async () => {
+      try {
+        const res = await fetch(`${apiBase}/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error('API delete failed');
+      } catch (err) {
+        console.warn('API delete error, deleting from localStorage fallback');
+        teamData = teamData.filter(m => m.id !== id);
+        localStorage.setItem('lumina_team', JSON.stringify(teamData));
+      }
+      await loadTeam();
+      showAdminToast('Deleted', 'Member removed from team', 'error');
+    });
+  }
+
+  // Load Team OnInit
+  loadTeam();
+  setActiveNav('nav-team');
+</script>
+</body>
+</html>

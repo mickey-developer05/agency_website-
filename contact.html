@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Contact Us | Lumina Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Sora:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Local CSS link -->
+    <link rel="stylesheet" href="css/styles.css?v=1.2">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#7dd3fc",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Sora"],
+                        "display-lg-mobile": ["Sora"],
+                        "subheading-lg": ["Outfit"],
+                        "headline-lg": ["Sora"],
+                        "headline-xl": ["Sora"],
+                        "label-md": ["Outfit"],
+                        "label-sm": ["Outfit"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "subheading-sm": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "subheading-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "subheading-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 antialiased overflow-x-hidden bg-pattern selection:bg-sky-500/30">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
+        <div class="flex items-center justify-between max-w-container-max mx-auto px-gutter py-3 gap-4">
+
+            <!-- Logo -->
+            <a href="index.html" class="flex-shrink-0 font-display-lg text-display-lg-mobile md:text-2xl font-bold tracking-tight text-white hover:text-sky-300 transition-colors">
+                Lumina Digital
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="services.html" class="text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm whitespace-nowrap">Services</a>
+
+                <!-- More dropdown trigger -->
+                <div class="relative">
+                    <button id="more-dropdown-btn" class="flex items-center gap-1 text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Explore
+                        <span id="more-dropdown-icon" class="material-symbols-outlined transition-transform duration-200 leading-none" style="font-size:18px">expand_more</span>
+                    </button>
+
+                    <!-- Dropdown panel -->
+                    <div id="more-dropdown-panel"
+                         class="hidden absolute left-1/2 -translate-x-1/2 w-[420px] opacity-0 translate-y-2 pointer-events-none transition-all duration-200 z-50"
+                         style="top: calc(100% + 12px)"
+                         role="menu">
+                        <div class="bg-slate-900/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-3 relative">
+                            <!-- Arrow pointer -->
+                            <div class="absolute -top-[7px] left-1/2 -translate-x-1/2 w-[14px] h-[14px] bg-slate-900 border-t border-l border-white/10 rotate-45 rounded-sm"></div>
+                            <div class="grid grid-cols-2 gap-1">
+                                <a href="portfolio.html"    role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">grid_view</span><div><div class="font-semibold text-white text-sm">Portfolio</div><div class="text-slate-500 text-xs mt-0.5">Our best work</div></div></a>
+                                <a href="case-studies.html" role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">analytics</span><div><div class="font-semibold text-white text-sm">Case Studies</div><div class="text-slate-500 text-xs mt-0.5">Deep-dive results</div></div></a>
+                                <a href="team.html"         role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">group</span><div><div class="font-semibold text-white text-sm">Team</div><div class="text-slate-500 text-xs mt-0.5">Meet the creators</div></div></a>
+                                <a href="process.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">alt_route</span><div><div class="font-semibold text-white text-sm">Process</div><div class="text-slate-500 text-xs mt-0.5">How we work</div></div></a>
+                                <a href="pricing.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">payments</span><div><div class="font-semibold text-white text-sm">Pricing</div><div class="text-slate-500 text-xs mt-0.5">Transparent plans</div></div></a>
+                                <a href="blog.html"         role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">article</span><div><div class="font-semibold text-white text-sm">Blog</div><div class="text-slate-500 text-xs mt-0.5">Digital insights</div></div></a>
+                                <a href="faq.html"          role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">help_outline</span><div><div class="font-semibold text-white text-sm">FAQ</div><div class="text-slate-500 text-xs mt-0.5">Common questions</div></div></a>
+                                <a href="contact.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">mail</span><div><div class="font-semibold text-white text-sm">Contact</div><div class="text-slate-500 text-xs mt-0.5">Get in touch</div></div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="careers.html" class="text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm whitespace-nowrap">Careers</a>
+            </div>
+
+            <!-- Right side: CTA + Mobile burger -->
+            <div class="flex items-center gap-3">
+                <a href="book-consultation.html" class="hidden sm:inline-flex items-center bg-sky-400/10 text-sky-300 border border-sky-400/30 px-5 py-2 rounded-full text-sm font-semibold hover:bg-sky-400/20 hover:scale-105 transition-all shadow-glow whitespace-nowrap">
+                    Book Consultation
+                </a>
+                <!-- Mobile only burger -->
+                <button id="mobile-menu-btn" class="flex md:hidden p-2 text-slate-300 hover:text-white transition-colors focus:outline-none" aria-label="Open menu">
+                    <span class="material-symbols-outlined" style="font-size:26px">menu</span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Dropdown styles -->
+    <style>
+        .nav-dropdown-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:12px; transition:background 0.15s; text-decoration:none; cursor:pointer; }
+        .nav-dropdown-item:hover { background:rgba(125,211,252,0.08); }
+        .nav-dropdown-item:hover .material-symbols-outlined { color:#7dd3fc; }
+    </style>
+
+    <main class="pt-[100px]">
+        <!-- Hero Section -->
+        <section class="relative pt-xl pb-lg overflow-hidden">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="max-w-container-max mx-auto px-gutter relative z-10 text-center">
+                <div class="inline-flex items-center gap-xs liquid-glass px-sm py-xs rounded-full w-max mb-md">
+                    <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                    <span class="font-label-sm text-label-sm text-slate-300 uppercase tracking-wider">Get in Touch</span>
+                </div>
+                <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-sm">
+                    Start Your <span class="text-gradient">Upgrade</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-slate-400 max-w-2xl mx-auto">
+                    Have an upcoming scope, a question, or a creative proposal? Drop a line and our partners will respond within one business day.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Content Section -->
+        <section class="pb-xl relative z-10">
+            <div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 lg:grid-cols-12 gap-xl">
+                
+                <!-- Column 1: Info & Interactive Simulated Map -->
+                <div class="lg:col-span-5 flex flex-col gap-lg">
+                    <div class="flex flex-col gap-md">
+                        <h2 class="font-headline-lg text-headline-lg text-white">Contact Info</h2>
+                        <p class="text-slate-400 font-body-md">
+                            Feel free to check our office coordinates, email us directly, or trigger a chat notification.
+                        </p>
+                    </div>
+
+                    <!-- Direct Connect Channels -->
+                    <div class="flex flex-col gap-sm">
+                        <!-- Email -->
+                        <div class="liquid-glass p-sm rounded-xl flex items-center gap-sm">
+                            <div class="w-10 h-10 rounded-lg bg-sky-400/10 border border-sky-400/20 flex items-center justify-center text-sky-300">
+                                <span class="material-symbols-outlined text-[20px]">mail</span>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 font-label-sm uppercase">General Inquiry</div>
+                                <a href="mailto:hello@luminadigital.com" class="text-slate-200 font-semibold font-body-md hover:text-sky-300 transition-colors">hello@luminadigital.com</a>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="liquid-glass p-sm rounded-xl flex items-center gap-sm">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-400/10 border border-indigo-400/20 flex items-center justify-center text-indigo-300">
+                                <span class="material-symbols-outlined text-[20px]">call</span>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-500 font-label-sm uppercase">Direct Hotline</div>
+                                <a href="tel:+18005550199" class="text-slate-200 font-semibold font-body-md hover:text-sky-300 transition-colors">+1 (800) 555-0199</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Maps (Simulated tabs) -->
+                    <div class="liquid-glass rounded-xl overflow-hidden p-sm flex flex-col gap-sm">
+                        <div class="flex justify-between items-center px-xs pt-xs">
+                            <span class="text-xs font-semibold text-slate-400 font-label-sm uppercase tracking-wide">Office Grid</span>
+                            <!-- Tabs -->
+                            <div class="flex gap-1.5 bg-slate-950/60 p-0.5 rounded-full border border-white/5">
+                                <button id="tab-sf" class="px-3 py-1 rounded-full text-[10px] font-semibold font-label-sm bg-sky-400/20 text-sky-300 focus:outline-none transition-all">San Francisco</button>
+                                <button id="tab-london" class="px-3 py-1 rounded-full text-[10px] font-semibold font-label-sm text-slate-500 hover:text-slate-300 focus:outline-none transition-all">London</button>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Map Display Block -->
+                        <div class="relative w-full aspect-[16/10] bg-slate-950/80 rounded-lg border border-white/5 overflow-hidden flex items-center justify-center">
+                            <!-- Matrix dotted grid inside map -->
+                            <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 1.5px 1.5px, #7dd3fc 1px, transparent 0); background-size: 16px 16px;"></div>
+                            
+                            <!-- Map Data Details SF -->
+                            <div id="map-sf-info" class="absolute bottom-3 left-3 bg-slate-900/90 border border-white/10 p-2.5 rounded-lg backdrop-blur-md transition-opacity duration-300 z-10">
+                                <div class="text-[10px] font-bold text-sky-300 font-label-sm uppercase tracking-wider">San Francisco HQ</div>
+                                <div class="text-[11px] text-slate-400 mt-0.5 font-body-md">600 Montgomery St, CA 94111</div>
+                            </div>
+
+                            <!-- Map Data Details London (Hidden initially) -->
+                            <div id="map-london-info" class="absolute bottom-3 left-3 bg-slate-900/90 border border-white/10 p-2.5 rounded-lg backdrop-blur-md transition-opacity duration-300 z-10 opacity-0 pointer-events-none">
+                                <div class="text-[10px] font-bold text-sky-300 font-label-sm uppercase tracking-wider">London Bridge Office</div>
+                                <div class="text-[11px] text-slate-400 mt-0.5 font-body-md">32 London Bridge St, SE1 9SG</div>
+                            </div>
+
+                            <!-- Interactive Pulsing Location Nodes -->
+                            <!-- SF node -->
+                            <div id="marker-sf" class="absolute transition-opacity duration-300" style="top: 45%; left: 40%;">
+                                <span class="absolute inline-flex h-6 w-6 rounded-full bg-sky-400/30 animate-ping"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-400 border border-white/50 shadow-glow"></span>
+                            </div>
+
+                            <!-- London node -->
+                            <div id="marker-london" class="absolute opacity-0 pointer-events-none transition-opacity duration-300" style="top: 35%; left: 65%;">
+                                <span class="absolute inline-flex h-6 w-6 rounded-full bg-indigo-400/30 animate-ping"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-400 border border-white/50 shadow-glow"></span>
+                            </div>
+
+                            <!-- Decorative Coordinates Overlay -->
+                            <div class="absolute top-3 right-3 text-[10px] font-mono text-slate-500 select-none z-10" id="map-coords">
+                                LAT: 37.7952° N | LON: 122.4029° W
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Elegant Form -->
+                <div class="lg:col-span-7">
+                    <div class="liquid-glass rounded-[24px] p-md md:p-lg border border-white/10 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-sky-500/5 to-transparent pointer-events-none"></div>
+                        
+                        <h2 class="font-headline-lg text-headline-lg text-white mb-sm relative z-10">Send a Message</h2>
+                        <p class="font-body-md text-body-md text-slate-400 mb-lg relative z-10">Fill out the fields below, and our partners will prepare a project briefing document.</p>
+
+                        <form id="contact-inquiry-form" class="flex flex-col gap-md relative z-10">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <!-- Name -->
+                                <div>
+                                    <label for="contact-name" class="block font-label-sm text-label-sm uppercase tracking-wider text-slate-400 mb-xs">Your Name *</label>
+                                    <div class="relative">
+                                        <input type="text" id="contact-name" required placeholder="John Doe" class="w-full px-sm py-2.5 bg-slate-900 border border-white/10 rounded-lg text-slate-200 focus:outline-none focus:border-sky-400 font-body-md transition-all">
+                                        <span class="validation-indicator absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-sm hidden font-bold"></span>
+                                    </div>
+                                    <span class="text-[10px] text-rose-400 mt-1 hidden" id="err-name">Name is too short (min 2 characters)</span>
+                                </div>
+
+                                <!-- Email -->
+                                <div>
+                                    <label for="contact-email" class="block font-label-sm text-label-sm uppercase tracking-wider text-slate-400 mb-xs">Email Address *</label>
+                                    <div class="relative">
+                                        <input type="email" id="contact-email" required placeholder="john@company.com" class="w-full px-sm py-2.5 bg-slate-900 border border-white/10 rounded-lg text-slate-200 focus:outline-none focus:border-sky-400 font-body-md transition-all">
+                                        <span class="validation-indicator absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-sm hidden font-bold"></span>
+                                    </div>
+                                    <span class="text-[10px] text-rose-400 mt-1 hidden" id="err-email">Please enter a valid business email address</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+                                <!-- Subject -->
+                                <div>
+                                    <label for="contact-subject" class="block font-label-sm text-label-sm uppercase tracking-wider text-slate-400 mb-xs">Subject *</label>
+                                    <input type="text" id="contact-subject" required placeholder="Project Proposal" class="w-full px-sm py-2.5 bg-slate-900 border border-white/10 rounded-lg text-slate-200 focus:outline-none focus:border-sky-400 font-body-md transition-all">
+                                </div>
+
+                                <!-- Budget Tier -->
+                                <div>
+                                    <label for="contact-budget" class="block font-label-sm text-label-sm uppercase tracking-wider text-slate-400 mb-xs">Estimated Project Scope</label>
+                                    <select id="contact-budget" class="w-full px-sm py-2.5 bg-slate-900 border border-white/10 rounded-lg text-slate-400 focus:outline-none focus:border-sky-400 font-body-md focus:text-slate-200 transition-all">
+                                        <option value="startup">Startup Retainer ($3,000/mo)</option>
+                                        <option value="growth" selected>Growth Retainer ($6,500/mo)</option>
+                                        <option value="enterprise">Enterprise Custom Tier ($12,000+/mo)</option>
+                                        <option value="not_sure">Not Sure (Scope First)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Details -->
+                            <div>
+                                <label for="contact-details" class="block font-label-sm text-label-sm uppercase tracking-wider text-slate-400 mb-xs">Project Specifications *</label>
+                                <div class="relative">
+                                    <textarea id="contact-details" required rows="4" placeholder="Describe the layout parameters, integrations, and milestones..." class="w-full px-sm py-2.5 bg-slate-900 border border-white/10 rounded-lg text-slate-200 focus:outline-none focus:border-sky-400 font-body-md transition-all"></textarea>
+                                    <span class="validation-indicator absolute right-3 top-4 material-symbols-outlined text-sm hidden font-bold"></span>
+                                </div>
+                                <span class="text-[10px] text-rose-400 mt-1 hidden" id="err-details">Please enter at least 15 characters describing your scope</span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="submit-btn" class="mt-xs bg-sky-300 text-slate-950 py-sm rounded-lg font-label-md text-label-md font-semibold hover:bg-sky-200 hover:scale-105 transition-all shadow-glow flex items-center justify-center gap-xs">
+                                <span id="btn-text">Submit Inquiry</span>
+                                <span class="material-symbols-outlined text-sm" id="btn-icon">send</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+        <!-- Dynamic Modal Confirmation Dialog Overlay -->
+        <div id="contact-success-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-gutter">
+            <div class="liquid-glass w-full max-w-md rounded-2xl p-lg text-center flex flex-col items-center gap-md shadow-2xl relative">
+                <!-- Glowing Check Icon -->
+                <div class="w-16 h-16 rounded-full bg-emerald-400/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.3)] animate-pulse">
+                    <span class="material-symbols-outlined text-4xl">celebrate</span>
+                </div>
+
+                <h3 class="font-headline-lg text-headline-lg text-white">Congratulations! 🎉</h3>
+                <h4 class="text-sky-300 font-semibold font-subheading-sm -mt-xs">Inquiry Submitted Successfully</h4>
+                
+                <p class="text-slate-300 font-body-md text-sm leading-relaxed">
+                    Thank you for reaching out to Lumina Digital. Your message has been successfully received and our team will review it shortly.
+                </p>
+                <p class="text-slate-400 font-body-md text-xs">
+                    Our team is already reviewing your project specifications. We will get in touch with you at <span id="success-email-display" class="text-sky-300 font-semibold">your email</span> within one business day.
+                </p>
+
+                <button id="close-success-modal-btn" class="w-full bg-sky-300 text-slate-950 py-2.5 rounded-lg font-label-md text-label-md font-semibold hover:bg-sky-200 transition-all mt-sm shadow-glow">
+                    Return to Workspace
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="site-footer" class="relative z-10 mt-20 bg-[#05080f] border-t border-white/5 overflow-hidden">
+
+        <!-- Ambient glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-sky-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <!-- Top band -->
+        <div class="max-w-container-max mx-auto px-gutter pt-16 pb-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+                <!-- Brand column (4/12) -->
+                <div class="md:col-span-4 flex flex-col gap-5">
+                    <div>
+                        <a href="index.html" class="inline-block">
+                            <span class="text-3xl font-bold tracking-tight text-white drop-shadow-[0_0_14px_rgba(125,211,252,0.25)]">Lumina<span class="text-sky-400">.</span></span>
+                        </a>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed max-w-xs">
+                            We craft premium digital experiences at the intersection of stunning aesthetics and enterprise reliability.
+                        </p>
+                    </div>
+
+                    <!-- Social row -->
+                    <div class="flex items-center gap-3 mt-1">
+                        <a href="mailto:hello@luminadigital.com" class="footer-social-btn" title="Email us">
+                            <span class="material-symbols-outlined" style="font-size:18px">mail</span>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="LinkedIn">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.97 0-1.75-.79-1.75-1.76S5.53 3.2 6.5 3.2s1.75.79 1.75 1.77-.78 1.76-1.75 1.76zM20 19h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V19h-3V8h2.88v1.51h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59V19z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="Twitter / X">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.743l7.73-8.835L1.254 2.25H8.08l4.261 5.633 5.903-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="Dribbble">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm7.369 5.297a10.01 10.01 0 0 1 2.24 5.703c-1.118-.24-3.37-.609-5.64-.264-.126-.303-.245-.608-.375-.91-.325-.773-.681-1.536-1.059-2.278 2.535-.941 4.343-2.39 4.834-3.251zm-1.396-1.278c-.427.774-2.089 2.167-4.508 3.025C12.186 5.126 10.814 3.356 9.7 1.858A10.1 10.1 0 0 1 12 1.6c2.19 0 4.21.706 5.973 1.419zM8.005 2.467c1.14 1.489 2.535 3.254 3.27 5.131-3.064.863-6.22.863-7.063.863a10.09 10.09 0 0 1 3.793-5.994zM1.6 12c0-.063 0-.126.002-.189.756.016 4.704.046 8.063-.929.226.443.436.892.641 1.339C6.98 13.24 4.48 15.98 3.126 18.236A10.03 10.03 0 0 1 1.6 12zm2.937 7.401c1.271-2.165 3.658-4.79 6.924-5.927.931 2.413 1.438 4.737 1.57 5.981A10.065 10.065 0 0 1 12 19.6a9.996 9.996 0 0 1-7.463-3.199zm9.195 2.09c-.153-1.192-.64-3.41-1.525-5.759 2.138-.32 4.134.187 5.285.481-.518 2.378-1.895 4.426-3.76 5.278z"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- CTA mini pill -->
+                    <a href="book-consultation.html" class="mt-2 inline-flex items-center gap-2 bg-sky-400/10 text-sky-300 border border-sky-400/25 px-4 py-2 rounded-full text-sm font-semibold hover:bg-sky-400/20 hover:scale-105 transition-all w-max shadow-[0_0_18px_rgba(125,211,252,0.15)]">
+                        <span class="material-symbols-outlined" style="font-size:16px">calendar_month</span>
+                        Book a Consultation
+                    </a>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-1"></div>
+
+                <!-- Work column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Work</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Studio column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Studio</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="process.html" class="footer-process-link">Our Process</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="book-consultation.html">Book Consultation</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="max-w-container-max mx-auto px-gutter py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-xs text-slate-600">© 2026 Lumina Digital Agency. All rights reserved.</p>
+            <div class="flex items-center gap-4 text-xs text-slate-600">
+                <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <span class="text-white/10">|</span>
+                <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                <span class="text-white/10">|</span>
+                <span class="text-sky-600">Crafted with precision ✦</span>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Footer styles -->
+    <style>
+        .footer-heading {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+        .footer-link-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .footer-link-list a {
+            font-size: 14px;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.15s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .footer-link-list a:hover { color: #7dd3fc; transform: translateX(3px); }
+        .footer-social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            color: #64748b;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .footer-social-btn:hover {
+            color: #7dd3fc;
+            border-color: rgba(125,211,252,0.3);
+            background: rgba(125,211,252,0.07);
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <!-- Shared Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/api-client.js"></script>
+
+    <!-- Page Specific Script for Map Tabbing and Instant Field Validation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Map Tabbing Selector
+            const tabSf = document.getElementById("tab-sf");
+            const tabLondon = document.getElementById("tab-london");
+            
+            const markerSf = document.getElementById("marker-sf");
+            const markerLondon = document.getElementById("marker-london");
+
+            const infoSf = document.getElementById("map-sf-info");
+            const infoLondon = document.getElementById("map-london-info");
+
+            const mapCoords = document.getElementById("map-coords");
+
+            tabSf.addEventListener("click", () => {
+                // SF Tab Active Styling
+                tabSf.className = "px-3 py-1 rounded-full text-[10px] font-semibold font-label-sm bg-sky-400/20 text-sky-300 focus:outline-none transition-all";
+                tabLondon.className = "px-3 py-1 rounded-full text-[10px] font-semibold font-label-sm text-slate-500 hover:text-slate-300 focus:outline-none transition-all";
+
+                // Show SF marker & details
+                markerSf.classList.remove("opacity-0", "pointer-events-none");
+                infoSf.classList.remove("opacity-0", "pointer-events-none");
+
+                // Hide London marker & details
+                markerLondon.classList.add("opacity-0", "pointer-events-none");
+                infoLondon.classList.add("opacity-0", "pointer-events-none");
+
+                mapCoords.textContent = "LAT: 37.7952° N | LON: 122.4029° W";
+            });
+
+            tabLondon.addEventListener("click", () => {
+                // London Tab Active Styling
+                tabLondon.className = "px-3 py-1 rounded-full text-[10px] font-semibold font-label-sm bg-indigo-400/20 text-indigo-300 focus:outline-none transition-all";
+                tabSf.className = "px-3 py-1 rounded-full text-[10px] font-semibold font-label-sm text-slate-500 hover:text-slate-300 focus:outline-none transition-all";
+
+                // Show London marker & details
+                markerLondon.classList.remove("opacity-0", "pointer-events-none");
+                infoLondon.classList.remove("opacity-0", "pointer-events-none");
+
+                // Hide SF marker & details
+                markerSf.classList.add("opacity-0", "pointer-events-none");
+                infoSf.classList.add("opacity-0", "pointer-events-none");
+
+                mapCoords.textContent = "LAT: 51.5045° N | LON: 0.0865° W";
+            });
+
+            // Instant Validation Indicators
+            const inputName = document.getElementById("contact-name");
+            const inputEmail = document.getElementById("contact-email");
+            const inputDetails = document.getElementById("contact-details");
+
+            const errName = document.getElementById("err-name");
+            const errEmail = document.getElementById("err-email");
+            const errDetails = document.getElementById("err-details");
+
+            function showValidity(input, errSpan, isValid) {
+                const indicator = input.parentElement.querySelector(".validation-indicator");
+                if (input.value.trim() === "") {
+                    // Reset to neutral if empty
+                    input.classList.remove("border-emerald-500/50", "border-rose-500/50");
+                    input.classList.add("border-white/10");
+                    indicator.classList.add("hidden");
+                    errSpan.classList.add("hidden");
+                    return;
+                }
+
+                if (isValid) {
+                    input.classList.remove("border-white/10", "border-rose-500/50");
+                    input.classList.add("border-emerald-500/50");
+                    indicator.className = "validation-indicator absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-emerald-400 text-sm";
+                    if (input.tagName === "TEXTAREA") {
+                        indicator.className = "validation-indicator absolute right-3 top-4 material-symbols-outlined text-emerald-400 text-sm";
+                    }
+                    indicator.textContent = "check_circle";
+                    indicator.classList.remove("hidden");
+                    errSpan.classList.add("hidden");
+                } else {
+                    input.classList.remove("border-white/10", "border-emerald-500/50");
+                    input.classList.add("border-rose-500/50");
+                    indicator.className = "validation-indicator absolute right-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-rose-400 text-sm";
+                    if (input.tagName === "TEXTAREA") {
+                        indicator.className = "validation-indicator absolute right-3 top-4 material-symbols-outlined text-rose-400 text-sm";
+                    }
+                    indicator.textContent = "cancel";
+                    indicator.classList.remove("hidden");
+                    errSpan.classList.remove("hidden");
+                }
+            }
+
+            // Validators
+            function validateName() {
+                const val = inputName.value.trim();
+                const isValid = val.length >= 2;
+                showValidity(inputName, errName, isValid);
+                return isValid;
+            }
+
+            function validateEmail() {
+                const val = inputEmail.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const isValid = emailRegex.test(val);
+                showValidity(inputEmail, errEmail, isValid);
+                return isValid;
+            }
+
+            function validateDetails() {
+                const val = inputDetails.value.trim();
+                const isValid = val.length >= 15;
+                showValidity(inputDetails, errDetails, isValid);
+                return isValid;
+            }
+
+            // Real-time Event Listeners
+            inputName.addEventListener("input", validateName);
+            inputEmail.addEventListener("input", validateEmail);
+            inputDetails.addEventListener("input", validateDetails);
+
+            // Form Submit handler
+            const form = document.getElementById("contact-inquiry-form");
+            const submitBtn = document.getElementById("submit-btn");
+            const btnText = document.getElementById("btn-text");
+            const btnIcon = document.getElementById("btn-icon");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Trigger final validation checks
+                const nOk = validateName();
+                const eOk = validateEmail();
+                const dOk = validateDetails();
+
+                if (!nOk || !eOk || !dOk) {
+                    window.showToast("Verification Failed", "Please fix the highlighted errors before submitting.", "error");
+                    return;
+                }
+
+                // Show loading spinner status
+                submitBtn.disabled = true;
+                btnText.textContent = "Processing Inquiry...";
+                btnIcon.textContent = "sync";
+                btnIcon.classList.add("animate-spin");
+
+                // Submit to backend database
+                LuminaAPI.submitContactInquiry({
+                    name: inputName.value.trim(),
+                    email: inputEmail.value.trim(),
+                    subject: document.getElementById("contact-subject").value.trim(),
+                    budget: document.getElementById("contact-budget").value,
+                    details: inputDetails.value.trim()
+                }).then(() => {
+                    // Populate success modal email display
+                    document.getElementById("success-email-display").textContent = inputEmail.value.trim();
+
+                    // Show success modal
+                    const contactModal = document.getElementById("contact-success-modal");
+                    contactModal.classList.remove("hidden");
+                    document.body.classList.add("overflow-hidden");
+
+                    // Fire toast notification
+                    window.showToast("Inquiry Submitted", "Congratulations! Your request has been successfully registered.", "success");
+
+                    // Reset form and UI indicators
+                    form.reset();
+                    submitBtn.disabled = false;
+                    btnText.textContent = "Submit Inquiry";
+                    btnIcon.textContent = "send";
+                    btnIcon.classList.remove("animate-spin");
+
+                    // Hide indicators
+                    document.querySelectorAll(".validation-indicator").forEach(el => el.classList.add("hidden"));
+                    document.querySelectorAll("input, textarea").forEach(el => {
+                        el.classList.remove("border-emerald-500/50", "border-rose-500/50");
+                        el.classList.add("border-white/10");
+                    });
+                }).catch(err => {
+                    console.error(err);
+                    submitBtn.disabled = false;
+                    btnText.textContent = "Submit Inquiry";
+                    btnIcon.textContent = "send";
+                    btnIcon.classList.remove("animate-spin");
+                    window.showToast("Error", "Could not submit inquiry. Please try again.", "error");
+                });
+            });
+
+            // Close success overlay callback
+            const closeSuccessModalBtn = document.getElementById("close-success-modal-btn");
+            const contactModal = document.getElementById("contact-success-modal");
+            closeSuccessModalBtn.addEventListener("click", () => {
+                contactModal.classList.add("hidden");
+                document.body.classList.remove("overflow-hidden");
+            });
+        });
+
+    </script>
+</body>
+</html>

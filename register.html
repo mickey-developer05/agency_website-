@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumina Digital — Create Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <style>
+    :root { color-scheme: dark; --bg:#020617; --surface:rgba(15,23,42,0.72); --text:#e2e8f0; --muted:#94a3b8; --primary:#7dd3fc; --danger:#f87171; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:'Inter',sans-serif; color:var(--text); background:radial-gradient(circle at top left, rgba(125,211,252,0.14), transparent 35%), radial-gradient(circle at bottom right, rgba(56,189,248,0.14), transparent 40%), var(--bg); display:grid; place-items:center; padding:24px; }
+    .bg-orb { position:fixed; inset:auto; border-radius:50%; filter:blur(90px); opacity:0.55; pointer-events:none; }
+    .orb-a { top:-80px; left:-60px; width:240px; height:240px; background:rgba(125,211,252,0.12); }
+    .orb-b { right:-80px; bottom:-70px; width:280px; height:280px; background:rgba(56,189,248,0.1); }
+    .card { width:min(100%, 520px); background:var(--surface); border:1px solid rgba(125,211,252,0.18); border-radius:26px; box-shadow:0 24px 80px rgba(2,6,23,0.45); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); padding:28px; position:relative; z-index:1; }
+    .brand { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+    .brand-badge { width:44px; height:44px; border-radius:14px; display:grid; place-items:center; background:rgba(125,211,252,0.12); border:1px solid rgba(125,211,252,0.2); color:var(--primary); }
+    h1 { margin:0; font-size:1.4rem; }
+    .subtitle { margin:5px 0 0; color:var(--muted); font-size:0.95rem; }
+    .alert { margin:16px 0 0; padding:12px 14px; border-radius:12px; border:1px solid transparent; display:none; font-size:0.95rem; }
+    .alert.error { display:flex; align-items:center; gap:8px; color:#fecaca; background:rgba(248,113,113,0.1); border-color:rgba(248,113,113,0.2); }
+    .alert.success { display:flex; align-items:center; gap:8px; color:#bbf7d0; background:rgba(74,222,128,0.1); border-color:rgba(74,222,128,0.2); }
+    .field { margin-top:14px; }
+    label { display:block; font-size:0.86rem; margin-bottom:8px; color:var(--muted); }
+    .input-wrap { position:relative; }
+    input { width:100%; border-radius:14px; border:1px solid rgba(125,211,252,0.14); background:rgba(2,6,23,0.4); color:var(--text); padding:12px 44px 12px 14px; font-size:0.95rem; outline:none; transition:180ms ease; }
+    input:focus { border-color:rgba(125,211,252,0.45); box-shadow:0 0 0 3px rgba(125,211,252,0.12); }
+    .toggle { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:transparent; border:0; color:var(--muted); cursor:pointer; }
+    button[type="submit"] { width:100%; margin-top:18px; border:0; border-radius:14px; background:linear-gradient(135deg, rgba(125,211,252,0.3), rgba(56,189,248,0.45)); color:white; padding:13px 16px; font-weight:700; cursor:pointer; }
+    button[disabled] { opacity:0.8; cursor:wait; }
+    .foot { margin-top:16px; font-size:0.92rem; color:var(--muted); text-align:center; }
+    .foot a { color:var(--primary); text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="card">
+    <div class="brand">
+      <div class="brand-badge"><span class="material-symbols-outlined">bubble</span></div>
+      <div>
+        <h1>Create your workspace</h1>
+        <p class="subtitle">Launch a secure client portal for your Lumina project.</p>
+      </div>
+    </div>
+    <div class="alert error" id="error-box"></div>
+    <div class="alert success" id="success-box"></div>
+    <form id="registerForm">
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <div class="input-wrap"><input id="fullName" name="fullName" type="text" placeholder="Jordan Rivera" required /></div>
+      </div>
+      <div class="field">
+        <label for="companyName">Company Name</label>
+        <div class="input-wrap"><input id="companyName" name="companyName" type="text" placeholder="Northstar Labs" required /></div>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="input-wrap"><input id="email" name="email" type="email" placeholder="you@company.com" required /></div>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap"><input id="password" name="password" type="password" placeholder="Create a strong password" required /><button class="toggle" type="button" data-target="password" aria-label="Show password">visibility_off</button></div>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-wrap"><input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm password" required /><button class="toggle" type="button" data-target="confirmPassword" aria-label="Show password">visibility_off</button></div>
+      </div>
+      <button type="submit" id="submitButton">Create account</button>
+    </form>
+    <div class="foot">Already registered? <a href="/login">Sign in</a></div>
+  </div>
+  <script>
+    let csrfToken='';
+    const errorBox=document.getElementById('error-box');
+    const successBox=document.getElementById('success-box');
+    const form=document.getElementById('registerForm');
+    const submitButton=document.getElementById('submitButton');
+    function setMessage(type, message) { errorBox.style.display='none'; successBox.style.display='none'; if(!message) return; const box=type==='error'?errorBox:successBox; box.textContent=message; box.style.display='flex'; }
+    async function initCsrf(){ const res=await fetch('/api/auth/csrf',{credentials:'include'}); const data=await res.json(); csrfToken=data.csrfToken||''; }
+    document.querySelectorAll('.toggle').forEach((button)=>button.addEventListener('click',()=>{const input=document.getElementById(button.getAttribute('data-target')); const show=input.type==='password'; input.type=show?'text':'password'; button.textContent=show?'visibility':'visibility_off'; }));
+    form.addEventListener('submit', async (event)=>{ event.preventDefault(); setMessage(''); submitButton.disabled=true; submitButton.textContent='Creating account...'; const payload={ fullName: document.getElementById('fullName').value.trim(), companyName: document.getElementById('companyName').value.trim(), email: document.getElementById('email').value.trim(), password: document.getElementById('password').value, confirmPassword: document.getElementById('confirmPassword').value }; try { await initCsrf(); const res=await fetch('/api/auth/register',{method:'POST',credentials:'include',headers:{'Content-Type':'application/json','X-CSRF-Token':csrfToken},body:JSON.stringify(payload)}); const data=await res.json(); if(!res.ok) throw new Error(data.error||'Unable to create account.'); setMessage('success','Account created. Redirecting to your workspace...'); window.location.href='/client-workspace'; } catch(error){ setMessage('error', error.message||'Unable to create account.'); submitButton.disabled=false; submitButton.textContent='Create account'; }});
+    initCsrf().catch(()=>{});
+  </script>
+</body>
+</html>

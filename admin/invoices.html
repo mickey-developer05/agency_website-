@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invoices — Lumina Admin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="admin-common.js"></script>
+  <script>tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#7dd3fc","surface":"#0f1524","surface-container":"#141c2e","surface-container-high":"#1a2438","on-surface":"#e0e8f0","on-surface-variant":"#a0b4c4","outline":"#4a6070","outline-variant":"#2a3a48","error":"#ff6b6b","tertiary":"#c8a0f0","secondary":"#88b4cc"}}}}</script>
+  <link rel="stylesheet" href="admin.css"/>
+  <style>
+    .invoice-row td { vertical-align: middle; }
+    .invoice-preview { background: rgba(255,255,255,0.03); border: 1px solid rgba(125,211,252,0.1); border-radius: 12px; padding: 20px; }
+    .inv-header { border-bottom: 1px solid rgba(42,58,72,0.6); padding-bottom: 16px; margin-bottom: 16px; }
+    .inv-table th { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4a6070; padding: 6px 8px; border-bottom: 1px solid rgba(42,58,72,0.5); }
+    .inv-table td { font-size: 12px; color: #e0e8f0; padding: 8px; border-bottom: 1px solid rgba(42,58,72,0.2); }
+    .inv-total { font-size: 18px; font-weight: 700; color: #7dd3fc; }
+  </style>
+</head>
+<body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
+<div class="orb orb1"></div><div class="orb orb2"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><div class="sidebar-logo-icon"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">bubble</span></div><div><div class="text-sm font-bold text-primary tracking-tight leading-tight">Lumina Admin</div><div class="text-[10px] text-on-surface-variant">Management Suite</div></div></div>
+  <button class="new-project-btn" onclick="showCreateInvoice()"><span class="material-symbols-outlined text-sm">add</span> Create Invoice</button>
+    <nav class="sidebar-nav">
+    <p class="nav-label">Main</p>
+    <a href="dashboard.html" class="nav-link" id="nav-dashboard">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">dashboard</span>
+      <span>Dashboard</span>
+    </a>
+    <a href="projects.html" class="nav-link" id="nav-projects">
+      <span class="material-symbols-outlined">folder_open</span>
+      <span>Projects</span>
+    </a>
+    <a href="crm.html" class="nav-link" id="nav-crm">
+      <span class="material-symbols-outlined">group_add</span>
+      <span>CRM Leads</span>
+    </a>
+    <a href="invoices.html" class="nav-link" id="nav-invoices">
+      <span class="material-symbols-outlined">receipt_long</span>
+      <span>Invoices</span>
+    </a>
+    <a href="content.html" class="nav-link" id="nav-content">
+      <span class="material-symbols-outlined">view_quilt</span>
+      <span>Website Content</span>
+    </a>
+    <p class="nav-label">Management</p>
+    <a href="team.html" class="nav-link" id="nav-team">
+      <span class="material-symbols-outlined">badge</span>
+      <span>Team</span>
+    </a>
+    <a href="media.html" class="nav-link" id="nav-media">
+      <span class="material-symbols-outlined">photo_library</span>
+      <span>Media Library</span>
+    </a>
+    <a href="inbox.html" class="nav-link" id="nav-inbox">
+      <span class="material-symbols-outlined">mail</span>
+      <span>Inbox</span>
+    </a>
+    <a href="client-workspace.html" class="nav-link" id="nav-client-workspace">
+      <span class="material-symbols-outlined">forum</span>
+      <span>Client Workspace</span>
+      <span id="chat-unread-badge" style="display:none;background:#7dd3fc;color:#020617;font-size:10px;font-weight:700;padding:1px 6px;border-radius:9999px;margin-left:auto"></span>
+    </a>
+              <p class="nav-label">🤖 AI Automation</p>
+      <a href="ai-dashboard.html" class="nav-link" id="nav-ai-dashboard">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="ai-proposal-generator.html" class="nav-link" id="nav-ai-proposal">
+        <span class="material-symbols-outlined">description</span>
+        <span>AI Proposal</span>
+      </a>
+      <a href="ai-content-writer.html" class="nav-link" id="nav-ai-content-writer">
+        <span class="material-symbols-outlined">edit_document</span>
+        <span>Content Writer</span>
+      </a>
+      <a href="ai-meeting-summary.html" class="nav-link" id="nav-ai-meeting">
+        <span class="material-symbols-outlined">forum</span>
+        <span>Meeting Summary</span>
+      </a>
+      <a href="ai-client-onboarding.html" class="nav-link" id="nav-ai-onboarding">
+        <span class="material-symbols-outlined">person_add</span>
+        <span>Client Onboarding</span>
+      </a>
+      <a href="ai-email-assistant.html" class="nav-link" id="nav-ai-email">
+        <span class="material-symbols-outlined">mail</span>
+        <span>Email Assistant</span>
+      </a>
+      <a href="ai-google-calendar.html" class="nav-link" id="nav-ai-calendar">
+        <span class="material-symbols-outlined">event</span>
+        <span>Google Calendar</span>
+      </a>
+      <a href="ai-prompt-library.html" class="nav-link" id="nav-ai-prompt">
+        <span class="material-symbols-outlined">library_books</span>
+        <span>Prompt Library</span>
+      </a>
+      <a href="ai-templates.html" class="nav-link" id="nav-ai-templates">
+        <span class="material-symbols-outlined">widgets</span>
+        <span>AI Templates</span>
+      </a>
+      <a href="ai-knowledge-base.html" class="nav-link" id="nav-ai-kb">
+        <span class="material-symbols-outlined">menu_book</span>
+        <span>Knowledge Base</span>
+      </a>
+      <a href="ai-settings.html" class="nav-link" id="nav-ai-settings">
+        <span class="material-symbols-outlined">settings_suggest</span>
+        <span>AI Settings</span>
+      </a>
+      <a href="ai-api-connections.html" class="nav-link" id="nav-ai-api">
+        <span class="material-symbols-outlined">api</span>
+        <span>API Connections</span>
+      </a>
+      <a href="ai-usage-logs.html" class="nav-link" id="nav-ai-logs">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <span>Usage Logs</span>
+      </a>
+      <p class="nav-label">System</p>
+    <a href="settings.html" class="nav-link" id="nav-settings">
+      <span class="material-symbols-outlined">settings</span>
+      <span>Settings</span>
+    </a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="#" class="nav-link text-sm"><span class="material-symbols-outlined text-sm">help</span><span>Support</span></a>
+    <a href="#" class="nav-link text-sm" style="color:rgba(255,107,107,0.7)" onclick="adminLogout()"><span class="material-symbols-outlined text-sm">logout</span><span>Logout</span></a>
+  </div>
+</aside>
+
+<main class="admin-main">
+  <header class="admin-topbar">
+    <div class="flex items-center gap-4">
+      <button class="md:hidden" onclick="toggleSidebar()"><span class="material-symbols-outlined">menu</span></button>
+      <div class="breadcrumb"><a href="dashboard.html" class="bc-item hover:text-primary transition-colors">Dashboard</a><span class="material-symbols-outlined bc-sep">chevron_right</span><span class="bc-item text-primary font-semibold">Invoices</span></div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap"><span class="material-symbols-outlined search-icon">search</span><input type="text" placeholder="Search invoices..." class="topbar-search" oninput="filterTable(this.value)"/></div>
+      <button class="topbar-icon-btn"><span class="material-symbols-outlined">notifications</span><span class="notif-dot"></span></button>
+      <div class="topbar-avatar"><span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings:'FILL' 1">manage_accounts</span></div>
+    </div>
+  </header>
+
+  <!-- Page: List View (default) -->
+  <div class="page-content" id="page-list">
+    <div class="page-header">
+      <div><h2 class="page-title">All Invoices</h2><p class="page-subtitle">Manage, track, and send invoices to your clients.</p></div>
+      <div class="flex gap-3">
+        <button class="btn-outline"><span class="material-symbols-outlined text-sm">download</span> Export</button>
+        <button class="btn-primary" onclick="showCreateInvoice()"><span class="material-symbols-outlined text-sm">add</span> Create Invoice</button>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass-card-sm"><p class="text-xs text-on-surface-variant mb-1">Total Billed</p><p class="text-2xl font-bold text-on-surface">$148,400</p><p class="text-[10px]" style="color:#4ade80;margin-top:4px">↑ +18% this month</p></div>
+      <div class="glass-card-sm"><p class="text-xs text-on-surface-variant mb-1">Outstanding</p><p class="text-2xl font-bold" style="color:#fbbf24">$23,900</p><p class="text-[10px] text-on-surface-variant mt-1">4 invoices</p></div>
+      <div class="glass-card-sm"><p class="text-xs text-on-surface-variant mb-1">Paid</p><p class="text-2xl font-bold" style="color:#4ade80">$115,200</p><p class="text-[10px] text-on-surface-variant mt-1">18 invoices</p></div>
+      <div class="glass-card-sm"><p class="text-xs text-on-surface-variant mb-1">Overdue</p><p class="text-2xl font-bold text-error">$9,300</p><p class="text-[10px] text-on-surface-variant mt-1">2 invoices</p></div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div style="display:flex;gap:6px;border-bottom:1px solid rgba(42,58,72,0.4);padding-bottom:0">
+      <button class="filter-tab active" onclick="setFilter(this,'all')">All (24)</button>
+      <button class="filter-tab" onclick="setFilter(this,'paid')">Paid (18)</button>
+      <button class="filter-tab" onclick="setFilter(this,'pending')">Pending (4)</button>
+      <button class="filter-tab" onclick="setFilter(this,'overdue')">Overdue (2)</button>
+    </div>
+
+    <!-- Invoices Table -->
+    <div class="glass-card" style="padding:0;overflow:hidden">
+      <div style="overflow-x:auto">
+        <table class="data-table" id="invoices-table">
+          <thead><tr><th>Invoice #</th><th>Client</th><th>Project</th><th>Issue Date</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr class="invoice-row" data-status="paid"><td class="td-title">INV-2024-091</td><td>Nexus Corp</td><td>Brand Overhaul</td><td style="color:#a0b4c4">Jun 01, 2024</td><td style="color:#a0b4c4">Jun 15, 2024</td><td style="font-weight:700;color:#e0e8f0">$6,200</td><td><span class="badge-pill badge-success">Paid</span></td><td><div style="display:flex;gap:4px"><button class="topbar-icon-btn" style="width:26px;height:26px" title="View" onclick="viewInvoice('INV-2024-091','Nexus Corp','$6,200','Jun 01, 2024','Jun 15, 2024','Paid')"><span class="material-symbols-outlined text-[14px]">open_in_new</span></button><button class="topbar-icon-btn" style="width:26px;height:26px" title="Download"><span class="material-symbols-outlined text-[14px]">download</span></button><button class="topbar-icon-btn" style="width:26px;height:26px;color:#ff6b6b" onclick="showConfirm('Delete Invoice','Delete INV-2024-091?',()=>showAdminToast('Deleted','Invoice removed','error'))"><span class="material-symbols-outlined text-[14px]">delete</span></button></div></td></tr>
+            <tr class="invoice-row" data-status="pending"><td class="td-title">INV-2024-090</td><td>Prism Studio</td><td>Content Strategy</td><td style="color:#a0b4c4">Jun 05, 2024</td><td style="color:#a0b4c4">Jun 20, 2024</td><td style="font-weight:700;color:#e0e8f0">$3,800</td><td><span class="badge-pill badge-warn">Pending</span></td><td><div style="display:flex;gap:4px"><button class="topbar-icon-btn" style="width:26px;height:26px" onclick="viewInvoice('INV-2024-090','Prism Studio','$3,800','Jun 05, 2024','Jun 20, 2024','Pending')"><span class="material-symbols-outlined text-[14px]">open_in_new</span></button><button class="topbar-icon-btn" style="width:26px;height:26px"><span class="material-symbols-outlined text-[14px]">send</span></button><button class="topbar-icon-btn" style="width:26px;height:26px;color:#ff6b6b" onclick="showConfirm('Delete Invoice','Delete this invoice?',()=>showAdminToast('Deleted','Invoice removed','error'))"><span class="material-symbols-outlined text-[14px]">delete</span></button></div></td></tr>
+            <tr class="invoice-row" data-status="paid"><td class="td-title">INV-2024-089</td><td>Apex Digital</td><td>E-commerce Platform</td><td style="color:#a0b4c4">May 28, 2024</td><td style="color:#a0b4c4">Jun 12, 2024</td><td style="font-weight:700;color:#e0e8f0">$4,500</td><td><span class="badge-pill badge-success">Paid</span></td><td><div style="display:flex;gap:4px"><button class="topbar-icon-btn" style="width:26px;height:26px" onclick="viewInvoice('INV-2024-089','Apex Digital','$4,500','May 28, 2024','Jun 12, 2024','Paid')"><span class="material-symbols-outlined text-[14px]">open_in_new</span></button><button class="topbar-icon-btn" style="width:26px;height:26px"><span class="material-symbols-outlined text-[14px]">download</span></button><button class="topbar-icon-btn" style="width:26px;height:26px;color:#ff6b6b" onclick="showConfirm('Delete Invoice','Delete this invoice?',()=>showAdminToast('Deleted','Invoice removed','error'))"><span class="material-symbols-outlined text-[14px]">delete</span></button></div></td></tr>
+            <tr class="invoice-row" data-status="overdue"><td class="td-title">INV-2024-088</td><td>Horizon Labs</td><td>Dashboard SaaS</td><td style="color:#a0b4c4">May 15, 2024</td><td style="color:#ff6b6b;font-weight:600">May 30, 2024 ⚠</td><td style="font-weight:700;color:#e0e8f0">$9,100</td><td><span class="badge-pill badge-error">Overdue</span></td><td><div style="display:flex;gap:4px"><button class="topbar-icon-btn" style="width:26px;height:26px" onclick="viewInvoice('INV-2024-088','Horizon Labs','$9,100','May 15, 2024','May 30, 2024','Overdue')"><span class="material-symbols-outlined text-[14px]">open_in_new</span></button><button class="topbar-icon-btn" style="width:26px;height:26px;color:#fbbf24" title="Send Reminder"><span class="material-symbols-outlined text-[14px]">notification_important</span></button><button class="topbar-icon-btn" style="width:26px;height:26px;color:#ff6b6b" onclick="showConfirm('Delete Invoice','Delete this invoice?',()=>showAdminToast('Deleted','Invoice removed','error'))"><span class="material-symbols-outlined text-[14px]">delete</span></button></div></td></tr>
+            <tr class="invoice-row" data-status="paid"><td class="td-title">INV-2024-087</td><td>Lumen Corp</td><td>CMS Migration</td><td style="color:#a0b4c4">May 10, 2024</td><td style="color:#a0b4c4">May 25, 2024</td><td style="font-weight:700;color:#e0e8f0">$12,000</td><td><span class="badge-pill badge-success">Paid</span></td><td><div style="display:flex;gap:4px"><button class="topbar-icon-btn" style="width:26px;height:26px"><span class="material-symbols-outlined text-[14px]">open_in_new</span></button><button class="topbar-icon-btn" style="width:26px;height:26px"><span class="material-symbols-outlined text-[14px]">download</span></button><button class="topbar-icon-btn" style="width:26px;height:26px;color:#ff6b6b" onclick="showConfirm('Delete Invoice','Delete this invoice?',()=>showAdminToast('Deleted','Invoice removed','error'))"><span class="material-symbols-outlined text-[14px]">delete</span></button></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page: Create Invoice -->
+  <div class="page-content" id="page-create" style="display:none">
+    <div class="page-header">
+      <div><button class="btn-outline" style="margin-bottom:8px" onclick="showList()"><span class="material-symbols-outlined text-sm">arrow_back</span> All Invoices</button><h2 class="page-title">Create Invoice</h2></div>
+      <div class="flex gap-3">
+        <button class="btn-outline"><span class="material-symbols-outlined text-sm">visibility</span> Preview</button>
+        <button class="btn-primary" onclick="saveInvoice()"><span class="material-symbols-outlined text-sm">send</span> Send Invoice</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+      <!-- Form -->
+      <div class="glass-card" style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group"><label class="form-label">Invoice #</label><input type="text" class="form-input" value="INV-2024-092" id="inv-num"/></div>
+          <div class="form-group"><label class="form-label">Issue Date</label><input type="date" class="form-input" id="inv-issue"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Bill To (Client)</label><select class="form-select" id="inv-client" onchange="updatePreview()"><option>Nexus Corp</option><option>Prism Studio</option><option>Apex Digital</option><option>Horizon Labs</option><option>Lumen Corp</option></select></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group"><label class="form-label">Due Date</label><input type="date" class="form-input" id="inv-due"/></div>
+          <div class="form-group"><label class="form-label">Tax (%)</label><input type="number" class="form-input" value="10" id="inv-tax" oninput="calcTotal()"/></div>
+        </div>
+
+        <!-- Line Items -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <label class="form-label" style="margin:0">Line Items</label>
+            <button class="btn-outline" style="padding:4px 10px;font-size:11px" onclick="addLineItem()">+ Add Item</button>
+          </div>
+          <div id="line-items" style="display:flex;flex-direction:column;gap:8px">
+            <div class="line-item" style="display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center">
+              <input type="text" class="form-input" value="UI/UX Design — Homepage" style="font-size:12px"/>
+              <input type="number" class="form-input qty" value="1" style="width:60px;font-size:12px" oninput="calcTotal()"/>
+              <input type="number" class="form-input price" value="3500" style="width:90px;font-size:12px" oninput="calcTotal()"/>
+              <button style="background:none;border:none;color:#ff6b6b;cursor:pointer" onclick="this.closest('.line-item').remove();calcTotal()"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+            <div class="line-item" style="display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center">
+              <input type="text" class="form-input" value="Brand Identity Package" style="font-size:12px"/>
+              <input type="number" class="form-input qty" value="1" style="width:60px;font-size:12px" oninput="calcTotal()"/>
+              <input type="number" class="form-input price" value="2200" style="width:90px;font-size:12px" oninput="calcTotal()"/>
+              <button style="background:none;border:none;color:#ff6b6b;cursor:pointer" onclick="this.closest('.line-item').remove();calcTotal()"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid rgba(42,58,72,0.5);padding-top:12px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:12px;color:#a0b4c4">Subtotal</span><span id="subtotal" style="font-size:12px;font-weight:600;color:#e0e8f0">$5,700</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-size:12px;color:#a0b4c4">Tax</span><span id="tax-amount" style="font-size:12px;color:#a0b4c4">$570</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:14px;font-weight:700;color:#e0e8f0">Total</span><span id="total-amount" class="inv-total">$6,270</span></div>
+        </div>
+        <div class="form-group"><label class="form-label">Notes</label><textarea class="form-input form-textarea" style="min-height:60px">Thank you for choosing Lumina Digital. Payment due within 14 days of invoice date.</textarea></div>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="glass-card invoice-preview" style="position:sticky;top:20px">
+        <div class="inv-header" style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="font-size:20px;font-weight:800;color:#7dd3fc;letter-spacing:-0.02em">LUMINA</div>
+            <div style="font-size:10px;color:#a0b4c4">Digital Agency</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:14px;font-weight:700;color:#e0e8f0" id="prev-num">INV-2024-092</div>
+            <div style="font-size:10px;color:#a0b4c4" id="prev-date">Issued: —</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+          <div><p style="font-size:9px;color:#4a6070;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px">Bill To</p><p style="font-size:12px;font-weight:600;color:#e0e8f0" id="prev-client">Nexus Corp</p></div>
+          <div style="text-align:right"><p style="font-size:9px;color:#4a6070;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px">Due Date</p><p style="font-size:12px;font-weight:600;color:#fbbf24" id="prev-due">—</p></div>
+        </div>
+        <table class="inv-table" style="width:100%;margin-bottom:12px">
+          <thead><tr><th style="text-align:left">Description</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead>
+          <tbody id="prev-items">
+            <tr><td>UI/UX Design — Homepage</td><td style="text-align:center">1</td><td style="text-align:right">$3,500</td><td style="text-align:right">$3,500</td></tr>
+            <tr><td>Brand Identity Package</td><td style="text-align:center">1</td><td style="text-align:right">$2,200</td><td style="text-align:right">$2,200</td></tr>
+          </tbody>
+        </table>
+        <div style="border-top:1px solid rgba(42,58,72,0.5);padding-top:10px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:10px;color:#a0b4c4">Subtotal</span><span style="font-size:10px;color:#e0e8f0" id="prev-sub">$5,700</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:10px;color:#a0b4c4">Tax (10%)</span><span style="font-size:10px;color:#a0b4c4" id="prev-tax">$570</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="font-size:13px;font-weight:700;color:#e0e8f0">Total Due</span><span style="font-size:16px;font-weight:800;color:#7dd3fc" id="prev-total">$6,270</span></div>
+        </div>
+        <div style="margin-top:12px;padding:10px;background:rgba(125,211,252,0.05);border-radius:8px;border:1px solid rgba(125,211,252,0.1)">
+          <p style="font-size:10px;color:#a0b4c4">Thank you for choosing Lumina Digital. Payment due within 14 days of invoice date.</p>
+        </div>
+        <div style="margin-top:12px;text-align:center"><span class="badge-pill badge-warn" id="prev-status">Draft</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+.filter-tab{padding:8px 16px;font-size:12px;font-weight:500;color:#a0b4c4;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;margin-bottom:-1px}
+.filter-tab.active{color:#7dd3fc;border-bottom-color:#7dd3fc}
+.filter-tab:hover{color:#e0e8f0}
+</style>
+
+<script>
+function showCreateInvoice(){ document.getElementById('page-list').style.display='none'; document.getElementById('page-create').style.display=''; setDate(); calcTotal(); }
+function showList(){ document.getElementById('page-create').style.display='none'; document.getElementById('page-list').style.display=''; }
+function setDate(){
+  const d=new Date(); const fmt=d.toISOString().split('T')[0];
+  document.getElementById('inv-issue').value=fmt;
+  const due=new Date(d); due.setDate(due.getDate()+14);
+  document.getElementById('inv-due').value=due.toISOString().split('T')[0];
+  document.getElementById('prev-date').textContent='Issued: '+d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  document.getElementById('prev-due').textContent=due.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+function calcTotal(){
+  let sub=0;
+  document.querySelectorAll('.line-item').forEach(li=>{
+    const q=parseFloat(li.querySelector('.qty').value)||0;
+    const p=parseFloat(li.querySelector('.price').value)||0;
+    sub+=q*p;
+  });
+  const tax=parseFloat(document.getElementById('inv-tax').value)||0;
+  const taxAmt=sub*(tax/100);
+  const total=sub+taxAmt;
+  document.getElementById('subtotal').textContent='$'+sub.toLocaleString();
+  document.getElementById('tax-amount').textContent='$'+taxAmt.toLocaleString();
+  document.getElementById('total-amount').textContent='$'+total.toLocaleString();
+  document.getElementById('prev-sub').textContent='$'+sub.toLocaleString();
+  document.getElementById('prev-tax').textContent='$'+taxAmt.toLocaleString();
+  document.getElementById('prev-total').textContent='$'+total.toLocaleString();
+}
+function addLineItem(){
+  const div=document.createElement('div');
+  div.className='line-item';
+  div.style='display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center';
+  div.innerHTML='<input type="text" class="form-input" placeholder="Item description" style="font-size:12px"/><input type="number" class="form-input qty" value="1" style="width:60px;font-size:12px" oninput="calcTotal()"/><input type="number" class="form-input price" value="0" style="width:90px;font-size:12px" oninput="calcTotal()"/><button style="background:none;border:none;color:#ff6b6b;cursor:pointer" onclick="this.closest(\'.line-item\').remove();calcTotal()"><span class="material-symbols-outlined text-[16px]">delete</span></button>';
+  document.getElementById('line-items').appendChild(div);
+}
+function saveInvoice(){ showList(); showAdminToast('Invoice Sent','Invoice sent to client successfully','success'); }
+function setFilter(btn,f){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.invoice-row').forEach(r=>{
+    r.style.display = f==='all'||r.dataset.status===f ? '' : 'none';
+  });
+}
+function filterTable(q){ q=q.toLowerCase(); document.querySelectorAll('.invoice-row').forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q)||q===''?'':'none'}); }
+function viewInvoice(num,client,amount,issued,due,status){
+  showAdminToast('Invoice '+num,'Client: '+client+' | Amount: '+amount,'info');
+}
+function updatePreview(){ document.getElementById('prev-client').textContent=document.getElementById('inv-client').value; }
+// Auto-show create form if ?action=create
+if(new URLSearchParams(window.location.search).get('action')==='create') showCreateInvoice();
+</script>
+</body>
+</html>

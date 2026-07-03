@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Pricing &amp; RET-Retainers | Lumina Digital</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Sora:wght@400;600;700&amp;family=Inter:wght@400;500;600;700;850&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/styles.css?v=1.2">
+    
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "primary": "#7dd3fc",
+              "background": "#0a0e1a",
+              "surface-container": "#141c2e",
+              "surface-dim": "#0f1524",
+              "secondary": "#88b4cc",
+              "surface": "#0f1524",
+              "on-surface-variant": "#a0b4c4",
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "xl": "80px",
+              "md": "24px",
+              "sm": "16px",
+              "base": "4px",
+              "xs": "8px",
+              "container-max": "1280px",
+              "gutter": "24px",
+              "lg": "48px"
+            },
+            "fontFamily": {
+              "display-lg": ["Sora"],
+              "display-lg-mobile": ["Sora"],
+              "subheading-lg": ["Outfit"],
+              "headline-lg": ["Sora"],
+              "headline-xl": ["Sora"],
+              "label-md": ["Outfit"],
+              "label-sm": ["Outfit"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "subheading-sm": ["Outfit"]
+            },
+            "fontSize": {
+              "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+              "subheading-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+              "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+              "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+              "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+              "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+              "subheading-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 font-body min-h-screen flex flex-col antialiased bg-pattern">
+    <!-- Ambient Background Lighting -->
+    <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sky-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+    </div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
+        <div class="flex items-center justify-between max-w-container-max mx-auto px-gutter py-3 gap-4">
+
+            <!-- Logo -->
+            <a href="index.html" class="flex-shrink-0 font-display-lg text-display-lg-mobile md:text-2xl font-bold tracking-tight text-white hover:text-sky-300 transition-colors">
+                Lumina Digital
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="services.html" class="text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm whitespace-nowrap">Services</a>
+
+                <!-- More dropdown trigger -->
+                <div class="relative">
+                    <button id="more-dropdown-btn" class="flex items-center gap-1 text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm focus:outline-none" aria-haspopup="true" aria-expanded="false">
+                        Explore
+                        <span id="more-dropdown-icon" class="material-symbols-outlined transition-transform duration-200 leading-none" style="font-size:18px">expand_more</span>
+                    </button>
+
+                    <!-- Dropdown panel -->
+                    <div id="more-dropdown-panel"
+                         class="hidden absolute left-1/2 -translate-x-1/2 w-[420px] opacity-0 translate-y-2 pointer-events-none transition-all duration-200 z-50"
+                         style="top: calc(100% + 12px)"
+                         role="menu">
+                        <div class="bg-slate-900/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-3 relative">
+                            <!-- Arrow pointer -->
+                            <div class="absolute -top-[7px] left-1/2 -translate-x-1/2 w-[14px] h-[14px] bg-slate-900 border-t border-l border-white/10 rotate-45 rounded-sm"></div>
+                            <div class="grid grid-cols-2 gap-1">
+                                <a href="portfolio.html"    role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">grid_view</span><div><div class="font-semibold text-white text-sm">Portfolio</div><div class="text-slate-500 text-xs mt-0.5">Our best work</div></div></a>
+                                <a href="case-studies.html" role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">analytics</span><div><div class="font-semibold text-white text-sm">Case Studies</div><div class="text-slate-500 text-xs mt-0.5">Deep-dive results</div></div></a>
+                                <a href="team.html"         role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">group</span><div><div class="font-semibold text-white text-sm">Team</div><div class="text-slate-500 text-xs mt-0.5">Meet the creators</div></div></a>
+                                <a href="process.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">alt_route</span><div><div class="font-semibold text-white text-sm">Process</div><div class="text-slate-500 text-xs mt-0.5">How we work</div></div></a>
+                                <a href="pricing.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">payments</span><div><div class="font-semibold text-white text-sm">Pricing</div><div class="text-slate-500 text-xs mt-0.5">Transparent plans</div></div></a>
+                                <a href="blog.html"         role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">article</span><div><div class="font-semibold text-white text-sm">Blog</div><div class="text-slate-500 text-xs mt-0.5">Digital insights</div></div></a>
+                                <a href="faq.html"          role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">help_outline</span><div><div class="font-semibold text-white text-sm">FAQ</div><div class="text-slate-500 text-xs mt-0.5">Common questions</div></div></a>
+                                <a href="contact.html"      role="menuitem" class="nav-dropdown-item"><span class="material-symbols-outlined text-sky-400" style="font-size:18px">mail</span><div><div class="font-semibold text-white text-sm">Contact</div><div class="text-slate-500 text-xs mt-0.5">Get in touch</div></div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="careers.html" class="text-slate-400 font-medium hover:text-sky-300 transition-colors duration-200 text-sm whitespace-nowrap">Careers</a>
+            </div>
+
+            <!-- Right side: CTA + Mobile burger -->
+            <div class="flex items-center gap-3">
+                <a href="book-consultation.html" class="hidden sm:inline-flex items-center bg-sky-400/10 text-sky-300 border border-sky-400/30 px-5 py-2 rounded-full text-sm font-semibold hover:bg-sky-400/20 hover:scale-105 transition-all shadow-glow whitespace-nowrap">
+                    Book Consultation
+                </a>
+                <!-- Mobile only burger -->
+                <button id="mobile-menu-btn" class="flex md:hidden p-2 text-slate-300 hover:text-white transition-colors focus:outline-none" aria-label="Open menu">
+                    <span class="material-symbols-outlined" style="font-size:26px">menu</span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Dropdown styles -->
+    <style>
+        .nav-dropdown-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:12px; transition:background 0.15s; text-decoration:none; cursor:pointer; }
+        .nav-dropdown-item:hover { background:rgba(125,211,252,0.08); }
+        .nav-dropdown-item:hover .material-symbols-outlined { color:#7dd3fc; }
+    </style>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto w-full relative z-10">
+        <!-- Hero Section -->
+        <section class="text-center mb-16 relative">
+            <h1 class="text-5xl md:text-7xl font-headline font-bold text-white mb-6 tracking-tight">
+                Invest in <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-indigo-400">Excellence</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Transparent, value-driven retainers for modern enterprises ready to scale. No hidden fees, just pure impact.
+            </p>
+
+            <!-- Toggle Switch -->
+            <div class="flex justify-center items-center gap-sm mt-md">
+                <span id="label-monthly" class="text-sm font-semibold text-sky-300">Monthly</span>
+                <button onclick="toggleBillingPeriod()" class="w-14 h-8 bg-white/5 border border-white/10 rounded-full p-1 relative flex items-center transition-colors hover:border-sky-400/30">
+                    <span id="billing-dot" class="w-6 h-6 bg-sky-300 rounded-full absolute left-1 transition-all"></span>
+                </button>
+                <span id="label-annual" class="text-sm font-semibold text-slate-400 flex items-center gap-1">Yearly <span class="bg-emerald-500/20 text-emerald-400 text-[10px] px-1.5 py-0.5 rounded-full uppercase tracking-wider">Save 20%</span></span>
+            </div>
+        </section>
+
+        <!-- Pricing Grid -->
+        <section id="pricing-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 relative z-20">
+            
+            <!-- Essential Plan -->
+            <div class="glass-card rounded-xl p-8 flex flex-col transition-all duration-300 hover:border-sky-400/30 hover:shadow-[0_25px_50px_-12px_rgba(125,211,252,0.15)] group relative overflow-hidden text-left">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/5 rounded-bl-full blur-2xl transition-all duration-500 group-hover:bg-sky-500/10"></div>
+                <h3 class="text-2xl font-headline font-semibold text-white mb-2">Essential</h3>
+                <p class="text-slate-400 text-sm mb-6">Standard retainer for startups &amp; SMBs establishing a foundation.</p>
+                <div class="mb-8">
+                    <span id="price-essential" class="text-4xl font-headline font-bold text-sky-300">$2,500</span>
+                    <span class="text-slate-400 text-sm">/mo</span>
+                </div>
+                <ul class="space-y-4 mb-8 flex-grow">
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Custom Web Design (up to 5 pages)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Basic SEO Optimization</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Standard Analytics Dashboard</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Email Support (48h response)</span>
+                    </li>
+                </ul>
+                <a href="book-consultation.html" class="w-full text-center bg-white/5 text-white border border-white/10 hover:border-sky-300/30 py-3 rounded-lg font-semibold transition-all duration-300 block">Select Essential</a>
+            </div>
+
+            <!-- Elite Plan (Featured) -->
+            <div class="glass-card rounded-xl p-8 flex flex-col transition-all duration-300 transform md:-translate-y-4 relative overflow-hidden ring-1 ring-sky-400/30 shadow-[0_0_40px_rgba(125,211,252,0.1)] text-left hover:border-sky-400/50">
+                <!-- Most Popular Badge -->
+                <div class="absolute top-0 right-0 bg-sky-400/20 text-sky-300 text-xs font-bold px-4 py-1 rounded-bl-lg border-b border-l border-white/10">
+                    MOST POPULAR
+                </div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sky-500/10 rounded-full blur-[80px] pointer-events-none mix-blend-screen"></div>
+                <h3 class="text-2xl font-headline font-semibold text-white mb-2 relative z-10">Elite</h3>
+                <p class="text-slate-400 text-sm mb-6 relative z-10">Comprehensive growth engine for scaling enterprises.</p>
+                <div class="mb-8 relative z-10">
+                    <span id="price-elite" class="text-4xl font-headline font-bold text-sky-300">$5,500</span>
+                    <span class="text-slate-400 text-sm">/mo</span>
+                </div>
+                <ul class="space-y-4 mb-8 flex-grow relative z-10">
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Advanced Web Platform &amp; CMS</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Comprehensive SEO Strategy</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Content Marketing (4 posts/mo)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Priority Support (24h response)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-indigo-300 mr-3 text-lg">star</span>
+                        <span class="text-slate-300 text-sm font-semibold">Dedicated Account Manager</span>
+                    </li>
+                </ul>
+                <a href="book-consultation.html" class="w-full text-center bg-sky-300 text-slate-950 hover:bg-sky-200 py-3 rounded-lg font-semibold transition-all duration-300 relative z-10 shadow-[0_0_20px_rgba(125,211,252,0.15)] block">Get Started</a>
+            </div>
+
+            <!-- Custom Plan -->
+            <div class="glass-card rounded-xl p-8 flex flex-col transition-all duration-300 hover:border-sky-400/30 hover:shadow-[0_25px_50px_-12px_rgba(125,211,252,0.15)] group relative overflow-hidden text-left">
+                <div class="absolute bottom-0 left-0 w-32 h-32 bg-indigo-500/5 rounded-tr-full blur-2xl transition-all duration-500 group-hover:bg-indigo-500/10"></div>
+                <h3 class="text-2xl font-headline font-semibold text-white mb-2">Custom</h3>
+                <p class="text-slate-400 text-sm mb-6">Tailored architecture for large-scale digital transformations.</p>
+                <div class="mb-8">
+                    <span class="text-4xl font-headline font-bold text-white">Let's Talk</span>
+                </div>
+                <ul class="space-y-4 mb-8 flex-grow">
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Bespoke Software Development</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Enterprise System Integration</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">Global CDN &amp; Security Setup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="material-symbols-outlined text-sky-300 mr-3 text-lg">check_circle</span>
+                        <span class="text-slate-300 text-sm">24/7 SLA Support</span>
+                    </li>
+                </ul>
+                <a href="contact.html" class="w-full text-center bg-white/5 text-white border border-white/10 hover:border-sky-300/30 py-3 rounded-lg font-semibold transition-all duration-300 block">Contact Sales</a>
+            </div>
+        </section>
+
+        <!-- Retainer Features Matrix -->
+        <section class="max-w-4xl mx-auto glass-card rounded-[32px] p-lg border border-white/10 relative overflow-hidden mb-32">
+            <h3 class="font-headline-lg text-headline-lg text-white text-center mb-lg">Retainer Comparison Matrix</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm text-slate-300">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="py-4 font-semibold text-white">Feature Scope</th>
+                            <th class="py-4 font-semibold text-white text-center">Essential</th>
+                            <th class="py-4 font-semibold text-white text-center">Elite</th>
+                            <th class="py-4 font-semibold text-white text-center">Custom</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr>
+                            <td class="py-4">Custom Layout Designs</td>
+                            <td class="py-4 text-center">Up to 5 Pages</td>
+                            <td class="py-4 text-center">Unlimited</td>
+                            <td class="py-4 text-center">Tailored</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4">Tech Stack</td>
+                            <td class="py-4 text-center">Templates / Static</td>
+                            <td class="py-4 text-center">Next.js Headless</td>
+                            <td class="py-4 text-center">Bespoke Frameworks</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4">Support SLA</td>
+                            <td class="py-4 text-center">48h Email</td>
+                            <td class="py-4 text-center">24h Priority</td>
+                            <td class="py-4 text-center">24/7 Dedicated Slack</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4">SEO Audit & Implementation</td>
+                            <td class="py-4 text-center">Standard</td>
+                            <td class="py-4 text-center">Complete Core Setup</td>
+                            <td class="py-4 text-center">Advanced Continuous SEO</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer id="site-footer" class="relative z-10 mt-20 bg-[#05080f] border-t border-white/5 overflow-hidden">
+
+        <!-- Ambient glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-sky-500/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <!-- Top band -->
+        <div class="max-w-container-max mx-auto px-gutter pt-16 pb-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+
+                <!-- Brand column (4/12) -->
+                <div class="md:col-span-4 flex flex-col gap-5">
+                    <div>
+                        <a href="index.html" class="inline-block">
+                            <span class="text-3xl font-bold tracking-tight text-white drop-shadow-[0_0_14px_rgba(125,211,252,0.25)]">Lumina<span class="text-sky-400">.</span></span>
+                        </a>
+                        <p class="mt-3 text-sm text-slate-400 leading-relaxed max-w-xs">
+                            We craft premium digital experiences at the intersection of stunning aesthetics and enterprise reliability.
+                        </p>
+                    </div>
+
+                    <!-- Social row -->
+                    <div class="flex items-center gap-3 mt-1">
+                        <a href="mailto:hello@luminadigital.com" class="footer-social-btn" title="Email us">
+                            <span class="material-symbols-outlined" style="font-size:18px">mail</span>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="LinkedIn">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.97 0-1.75-.79-1.75-1.76S5.53 3.2 6.5 3.2s1.75.79 1.75 1.77-.78 1.76-1.75 1.76zM20 19h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V19h-3V8h2.88v1.51h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59V19z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="Twitter / X">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.743l7.73-8.835L1.254 2.25H8.08l4.261 5.633 5.903-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" class="footer-social-btn" title="Dribbble">
+                            <svg style="width:17px;height:17px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm7.369 5.297a10.01 10.01 0 0 1 2.24 5.703c-1.118-.24-3.37-.609-5.64-.264-.126-.303-.245-.608-.375-.91-.325-.773-.681-1.536-1.059-2.278 2.535-.941 4.343-2.39 4.834-3.251zm-1.396-1.278c-.427.774-2.089 2.167-4.508 3.025C12.186 5.126 10.814 3.356 9.7 1.858A10.1 10.1 0 0 1 12 1.6c2.19 0 4.21.706 5.973 1.419zM8.005 2.467c1.14 1.489 2.535 3.254 3.27 5.131-3.064.863-6.22.863-7.063.863a10.09 10.09 0 0 1 3.793-5.994zM1.6 12c0-.063 0-.126.002-.189.756.016 4.704.046 8.063-.929.226.443.436.892.641 1.339C6.98 13.24 4.48 15.98 3.126 18.236A10.03 10.03 0 0 1 1.6 12zm2.937 7.401c1.271-2.165 3.658-4.79 6.924-5.927.931 2.413 1.438 4.737 1.57 5.981A10.065 10.065 0 0 1 12 19.6a9.996 9.996 0 0 1-7.463-3.199zm9.195 2.09c-.153-1.192-.64-3.41-1.525-5.759 2.138-.32 4.134.187 5.285.481-.518 2.378-1.895 4.426-3.76 5.278z"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- CTA mini pill -->
+                    <a href="book-consultation.html" class="mt-2 inline-flex items-center gap-2 bg-sky-400/10 text-sky-300 border border-sky-400/25 px-4 py-2 rounded-full text-sm font-semibold hover:bg-sky-400/20 hover:scale-105 transition-all w-max shadow-[0_0_18px_rgba(125,211,252,0.15)]">
+                        <span class="material-symbols-outlined" style="font-size:16px">calendar_month</span>
+                        Book a Consultation
+                    </a>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden md:block md:col-span-1"></div>
+
+                <!-- Work column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Work</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <!-- Studio column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Studio</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="process.html" class="footer-process-link">Our Process</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support column (2/12) -->
+                <div class="md:col-span-2">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="book-consultation.html">Book Consultation</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="max-w-container-max mx-auto px-gutter py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p class="text-xs text-slate-600">© 2026 Lumina Digital Agency. All rights reserved.</p>
+            <div class="flex items-center gap-4 text-xs text-slate-600">
+                <a href="#" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                <span class="text-white/10">|</span>
+                <a href="#" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                <span class="text-white/10">|</span>
+                <span class="text-sky-600">Crafted with precision ✦</span>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Footer styles -->
+    <style>
+        .footer-heading {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+        .footer-link-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+        .footer-link-list a {
+            font-size: 14px;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.15s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .footer-link-list a:hover { color: #7dd3fc; transform: translateX(3px); }
+        .footer-social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+            color: #64748b;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .footer-social-btn:hover {
+            color: #7dd3fc;
+            border-color: rgba(125,211,252,0.3);
+            background: rgba(125,211,252,0.07);
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <!-- Shared Javascript -->
+    <script src="js/main.js"></script>
+
+    <!-- Page Specific Script -->
+    <script>
+        /* Billing Period Toggle Logic */
+        let isAnnual = false;
+
+        function toggleBillingPeriod() {
+            isAnnual = !isAnnual;
+            const dot = document.getElementById("billing-dot");
+            const labelMonthly = document.getElementById("label-monthly");
+            const labelAnnual = document.getElementById("label-annual");
+
+            const priceEssential = document.getElementById("price-essential");
+            const priceElite = document.getElementById("price-elite");
+
+            if (isAnnual) {
+                // Toggle switch alignment
+                dot.style.left = "auto";
+                dot.style.right = "4px";
+                dot.classList.add("translate-x-full");
+
+                // Toggle labels color
+                labelMonthly.classList.remove("text-sky-300");
+                labelMonthly.classList.add("text-slate-400");
+                labelAnnual.classList.remove("text-slate-400");
+                labelAnnual.classList.add("text-sky-300");
+
+                // Recalculate price (20% off)
+                priceEssential.textContent = "$2,000";
+                priceElite.textContent = "$4,400";
+            } else {
+                // Toggle switch alignment
+                dot.style.right = "auto";
+                dot.style.left = "4px";
+                dot.classList.remove("translate-x-full");
+
+                // Toggle labels color
+                labelMonthly.classList.remove("text-slate-400");
+                labelMonthly.classList.add("text-sky-300");
+                labelAnnual.classList.remove("text-sky-300");
+                labelAnnual.classList.add("text-slate-400");
+
+                // Reset standard price
+                priceEssential.textContent = "$2,500";
+                priceElite.textContent = "$5,500";
+            }
+        }
+    </script>
+</body>
+</html>
