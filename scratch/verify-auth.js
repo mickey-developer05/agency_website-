@@ -14,22 +14,36 @@ async function main() {
       confirmPassword: 'StrongPass123!'
     })
   });
-  console.log('register', registerRes.status, registerRes.headers.get('set-cookie'));
+  console.log('register', registerRes.status, registerRes.headers.getSetCookie().join(', '));
+
+  const cookies = registerRes.headers.getSetCookie().join('; ');
+  const csrfToken = cookies.match(/lumina_csrf=([^;]+)/)?.[1] || '';
 
   const loginRes = await fetch(`${base}/api/auth/login`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
     body: JSON.stringify({ email: 'ava@example.com', password: 'StrongPass123!' })
   });
-  console.log('login', loginRes.status, loginRes.headers.get('set-cookie'));
+  console.log('login', loginRes.status, loginRes.headers.getSetCookie().join(', '));
 
-  const cookie = loginRes.headers.get('set-cookie') || '';
+  const cookie = loginRes.headers.getSetCookie().join('; ');
+  const loginCsrf = cookie.match(/lumina_csrf=([^;]+)/)?.[1] || '';
+  
   const sessionRes = await fetch(`${base}/api/auth/session`, { headers: { cookie } });
   const sessionData = await sessionRes.json();
-  console.log('session', sessionRes.status, sessionData.authenticated, sessionData.user && sessionData.user.email);
+  console.log('session', sessionRes.status, sessionData.success, sessionData.data?.authenticated, sessionData.data?.user?.email);
 
-  const logoutRes = await fetch(`${base}/api/auth/logout`, { method: 'POST', headers: { cookie } });
-  console.log('logout', logoutRes.status, logoutRes.headers.get('set-cookie'));
+  const logoutRes = await fetch(`${base}/api/auth/logout`, { 
+    method: 'POST', 
+    headers: { 
+      cookie,
+      'X-CSRF-Token': loginCsrf
+    } 
+  });
+  console.log('logout', logoutRes.status, logoutRes.headers.getSetCookie().join(', '));
   server.close();
 }
 

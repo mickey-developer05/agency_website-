@@ -8,7 +8,12 @@ const { createAuthGuard } = require('./backend/middleware/auth-guard');
 const { authApiRouter } = require('./backend/routes/api-auth');
 const { aiApiRouter } = require('./backend/routes/api-ai');
 const { coreApiRouter } = require('./backend/routes/api-core');
-const { parseCookies } = require('./backend/utils/auth');
+const { healthRouter } = require('./backend/routes/health');
+
+const requestId = require('./backend/middleware/requestId');
+const securityHeaders = require('./backend/middleware/security');
+const enforceCsrf = require('./backend/middleware/csrf');
+const errorHandler = require('./backend/middleware/errorHandler');
 
 const app = express();
 const PORT = config.PORT;
@@ -28,6 +33,12 @@ app.use(cors({
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
+// Security Headers Injection
+app.use(securityHeaders);
+
+// Request ID tagger
+app.use(requestId);
+
 // Rate Limiter for API endpoints
 const rateLimitMap = new Map();
 function getClientIp(req) {
@@ -36,7 +47,6 @@ function getClientIp(req) {
 }
 
 function rateLimit(req, res, next) {
-  // Only apply rate limiting to /api endpoints to prevent blocking static files
   if (!req.path.startsWith('/api')) {
     return next();
   }
@@ -58,37 +68,17 @@ function rateLimit(req, res, next) {
 }
 app.use(rateLimit);
 
-// CSRF Protection Middleware
-function enforceCsrf(req, res, next) {
-  if (['GET', 'HEAD', 'OPTIONS'].includes(req.method)) return next();
-  
-  // Skip CSRF for login, register, reset, refresh, and public contact requests
-  if ([
-    '/api/auth/login', 
-    '/api/auth/register', 
-    '/api/auth/forgot-password', 
-    '/api/auth/reset-password', 
-    '/api/auth/refresh', 
-    '/api/auth/csrf', 
-    '/api/admin/login',
-    '/api/login',
-    '/api/client/login',
-    '/api/client/register'
-  ].includes(req.path)) {
-    return next();
-  }
+// Expose Health & Readiness routes (unauthenticated, bypasses CSRF/guards)
+healthRouter(app);
 
-  const cookies = parseCookies(req);
-  const token = req.headers['x-csrf-token'] || req.headers['x-csrftoken'] || req.headers['csrf-token'];
-  
-  if (!token || token !== cookies.lumina_csrf) {
-    return res.status(403).json({ success: false, error: 'CSRF token missing.' });
-  }
-  next();
-}
+// Robots.txt & Sitemap.xml
+app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'robots.txt')));
+app.get('/sitemap.xml', (req, res) => res.sendFile(path.join(__dirname, 'sitemap.xml')));
+
+// CSRF Protection Middleware
 app.use(enforceCsrf);
 
-// Unified Authentication & Route Protection Guard
+// Unified Authentication & Route Protection Guard (HTML Redirects)
 const authGuard = createAuthGuard({
   loginPath: '/login',
   adminLoginPath: '/admin/index.html',
@@ -102,7 +92,6 @@ aiApiRouter(app);
 coreApiRouter(app);
 
 // ── Secure Static Routing ──
-// Serve frontend folders explicitly to prevent traversal and leakage of backend .js/.json source files
 app.use('/admin', express.static(path.join(__dirname, 'admin')));
 app.use('/portal', express.static(path.join(__dirname, 'portal')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
@@ -119,7 +108,6 @@ const rootHtmlFiles = [
 
 rootHtmlFiles.forEach(file => {
   const route = `/${file.replace('.html', '')}`;
-  // Support both clean URLs (e.g. /login) and explicit files (e.g. /login.html)
   app.get(route, (req, res) => res.sendFile(path.join(__dirname, file)));
   app.get(`/${file}`, (req, res) => res.sendFile(path.join(__dirname, file)));
 });
@@ -130,9 +118,30 @@ app.get('/client', (req, res) => res.redirect('/client-workspace'));
 // Default root redirect
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
+// Global Error Handler Middleware
+app.use(errorHandler);
+
 // Start Server
 const server = app.listen(PORT, () => {
   console.log(`Lumina Backend running at http://localhost:${PORT}`);
 });
+
+// Graceful Shutdown Handler
+function handleGracefulShutdown(signal) {
+  console.log(`[Shutdown] Received ${signal}. Starting graceful shutdown...`);
+  server.close(() => {
+    console.log('[Shutdown] HTTP server closed.');
+    process.exit(0);
+  });
+  
+  // Force exit after 10 seconds if connections refuse to close
+  setTimeout(() => {
+    console.error('[Shutdown] Forceful shutdown triggered: graceful shutdown timed out.');
+    process.exit(1);
+  }, 10000);
+}
+
+process.on('SIGTERM', () => handleGracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => handleGracefulShutdown('SIGINT'));
 
 module.exports = { app, server };

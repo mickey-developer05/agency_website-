@@ -821,29 +821,8 @@
     </div><!-- /glass-card -->
   </div><!-- /portal-container -->
 
+  <script src="/js/api-client.js"></script>
   <script>
-    // ── Automated CSRF & Credentials Injector ──
-    (function() {
-      const originalFetch = window.fetch;
-      window.fetch = async function(url, options = {}) {
-        options.credentials = options.credentials || 'include';
-        const method = (options.method || 'GET').toUpperCase();
-        if (!['GET', 'HEAD', 'OPTIONS'].includes(method)) {
-          options.headers = options.headers || {};
-          const cookies = document.cookie.split(';').reduce((acc, c) => {
-            const [name, val] = c.trim().split('=');
-            if (name) acc[name] = decodeURIComponent(val || '');
-            return acc;
-          }, {});
-          const csrfToken = cookies['lumina_csrf'];
-          if (csrfToken) {
-            options.headers['X-CSRF-Token'] = csrfToken;
-          }
-        }
-        return originalFetch(url, options);
-      };
-    })();
-
     /* ═══════════════════════════════════
        FLOATING PARTICLES
     ═══════════════════════════════════ */

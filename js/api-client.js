@@ -1,6 +1,70 @@
 /* Lumina Digital Agency — Unified API Client with LocalStorage Fallback */
 
-const API_ROOT = 'http://localhost:3000/api';
+// ── Automated CSRF, Credentials Injector & Response Unwrapper ──
+(function() {
+  const originalFetch = window.fetch;
+  window.fetch = async function(url, options = {}) {
+    options.credentials = options.credentials || 'include';
+    const method = (options.method || 'GET').toUpperCase();
+    if (!['GET', 'HEAD', 'OPTIONS'].includes(method)) {
+      options.headers = options.headers || {};
+      const cookies = document.cookie.split(';').reduce((acc, c) => {
+        const [name, val] = c.trim().split('=');
+        if (name) acc[name] = decodeURIComponent(val || '');
+        return acc;
+      }, {});
+      const csrfToken = cookies['lumina_csrf'];
+      if (csrfToken) {
+        options.headers['X-CSRF-Token'] = csrfToken;
+        options.headers['x-csrf-token'] = csrfToken;
+      }
+    }
+    
+    // Automatically retrieve CSRF token if we don't have one and this is not a csrf query itself
+    if (!document.cookie.includes('lumina_csrf=') && !url.includes('/api/auth/csrf')) {
+      try {
+        await originalFetch('/api/auth/csrf');
+      } catch (e) {
+        console.warn('Auto-CSRF retrieval failed:', e);
+      }
+    }
+    
+    const response = await originalFetch(url, options);
+    
+    const originalJson = response.json;
+    response.json = async function() {
+      const json = await originalJson.call(response);
+      if (json && typeof json === 'object' && 'success' in json && 'status' in json && 'data' in json) {
+        const unwrapped = json.data;
+        if (unwrapped !== null && unwrapped !== undefined && typeof unwrapped === 'object') {
+          Object.defineProperties(unwrapped, {
+            success: { value: json.success, enumerable: true },
+            status: { value: json.status, enumerable: true },
+            message: { value: json.message, enumerable: true },
+            errors: { value: json.errors, enumerable: true },
+            timestamp: { value: json.timestamp, enumerable: true },
+            requestId: { value: json.requestId, enumerable: true }
+          });
+          if (!Array.isArray(unwrapped)) {
+            Object.assign(unwrapped, {
+              success: json.success,
+              status: json.status,
+              message: json.message,
+              errors: json.errors,
+              timestamp: json.timestamp,
+              requestId: json.requestId
+            });
+          }
+          return unwrapped;
+        }
+      }
+      return json;
+    };
+    return response;
+  };
+})();
+
+const API_ROOT = window.location.origin + '/api';
 
 // Helper to make fetch requests, with fallback logic
 async function apiRequest(endpoint, options = {}) {

@@ -1258,6 +1258,139 @@
       "level": "INFO",
       "message": "System cache cleared manually by admin",
       "timestamp": "Jul 1, 2026 04:38 PM"
+    },
+    {
+      "id": "log-1783875117631-103",
+      "level": "ERROR",
+      "message": "POST /api/client/register failed: Validation failed : Validation failed",
+      "timestamp": "Jul 12, 2026 10:51 PM",
+      "requestId": "4c0fe4b5-fc0d-44be-b186-aa37b74478d4"
+    },
+    {
+      "id": "log-1783875528168-756",
+      "level": "ERROR",
+      "message": "POST /api/client/register failed: Validation failed : Validation failed",
+      "timestamp": "Jul 12, 2026 10:58 PM",
+      "requestId": "a2119fea-94fa-4412-aad9-379169557620"
+    },
+    {
+      "id": "log-1783885490690-937",
+      "level": "INFO",
+      "message": "Successful login for client: ava@example.com",
+      "timestamp": "Jul 13, 2026 01:44 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885492671-135",
+      "level": "INFO",
+      "message": "New client registered: ava_1783885492529_529@example.com",
+      "timestamp": "Jul 13, 2026 01:44 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885492765-958",
+      "level": "INFO",
+      "message": "Successful login for client: ava_1783885492529_529@example.com",
+      "timestamp": "Jul 13, 2026 01:44 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501149-683",
+      "level": "INFO",
+      "message": "New client registered: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501245-836",
+      "level": "WARN",
+      "message": "Failed login attempt (1/5) for client: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501330-965",
+      "level": "WARN",
+      "message": "Failed login attempt (2/5) for client: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501420-505",
+      "level": "WARN",
+      "message": "Failed login attempt (3/5) for client: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501504-399",
+      "level": "WARN",
+      "message": "Failed login attempt (4/5) for client: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501582-983",
+      "level": "WARN",
+      "message": "Account locked out due to brute force: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885501605-640",
+      "level": "WARN",
+      "message": "Locked out user login attempt: lock_1783885501027@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885516778-355",
+      "level": "INFO",
+      "message": "New client registered: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885516868-656",
+      "level": "WARN",
+      "message": "Failed login attempt (1/5) for client: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885516951-576",
+      "level": "WARN",
+      "message": "Failed login attempt (2/5) for client: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885517035-695",
+      "level": "WARN",
+      "message": "Failed login attempt (3/5) for client: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885517119-70",
+      "level": "WARN",
+      "message": "Failed login attempt (4/5) for client: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885517199-749",
+      "level": "WARN",
+      "message": "Account locked out due to brute force: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783885517219-518",
+      "level": "WARN",
+      "message": "Locked out user login attempt: lock_1783885516643@example.com",
+      "timestamp": "Jul 13, 2026 01:45 AM",
+      "requestId": "system"
     }
   ],
   "files": [
@@ -1847,6 +1980,126 @@
       "createdAt": "Jul 1, 2026",
       "status": "active",
       "passwordHash": "120000$7e528af013b11f7080cc7334a26a6d4d$c69a8e0e735cafab502cdd2b6f3723ca47da007af60ded6c19f6d1cbf7de086a3a48c4d0262f15b15c2ef941eae7c59e2d3de7b5d00b83523f8dac3a003aa212"
+    },
+    {
+      "id": "user_1783873937084",
+      "username": "ava@example.com",
+      "passwordHash": "120000$531976e6ef909a3c753957e1cca175ed$4485615a90f83d4266093c7bff79de70ab93c67683f1509f54de8261c6d304196a86eb33587ca413b2e1f13075da0bf0dd0f054f9b100c36fa0c0e68b2132c63",
+      "company": "Northstar Labs",
+      "name": "Ava Example",
+      "email": "ava@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783874369873",
+      "username": "ava_1783874369766_625@example.com",
+      "passwordHash": "120000$bffda3a0681f4a8550b39477f26a6e79$9ffafa2ed8d9cbe9ecec7ef82c073ada21f6d9bdcbb204856ffb4da0f494e760254f72c99e1a3da3204c3996c35b90db86a84e1738307c122a6c515bc569763a",
+      "company": "Northstar Labs",
+      "name": "Ava Example",
+      "email": "ava_1783874369766_625@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783874469359",
+      "username": "jane_test_20260712@example.com",
+      "passwordHash": "120000$51e6e4bc3086d5b29233680e573dec87$f8e0a7d380fd3db65626dd52ca0c6fc039278f24cb52e849c6db0e9dac3ae3481464adbf3195e3ab695cc3d06344c02cbdc53a8db1036baef59a2ced223cade6",
+      "company": "Doe Corp",
+      "name": "Jane Doe",
+      "email": "jane_test_20260712@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783874560087",
+      "username": "jane_test_new_unique_1a2b3c@example.com",
+      "passwordHash": "120000$cdab3d94c9ec34a4cbd6f94059f8c67b$de79f1ac7b7a45f19b4fec20ff1c3d25a2d5ca7402900f90adc5be798e7e320ae749e9a9f3df06d5adcdd674352a29ade98f0bc8c8eed58a2f78b1ffcd78a14e",
+      "company": "Doe Corp",
+      "name": "Jane Doe",
+      "email": "jane_test_new_unique_1a2b3c@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783874662371",
+      "username": "jane_test_debug_1@example.com",
+      "passwordHash": "120000$ec7386271eab7ff23df0d7433519a854$581debff2a0d81b282076d66845d4d91c47ca47a6f5879c9495ec66c484bd50f5c4ce9b8ed0233f7f9b19ecab4ea890b0190f455c488a470f3143256c629947d",
+      "company": "Doe Corp",
+      "name": "Jane Doe",
+      "email": "jane_test_debug_1@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783874874292",
+      "username": "test_user_unique_999@example.com",
+      "passwordHash": "120000$aec0a0744ffe7da960eae068e5343fd8$515eab3c3a72713153bd7789fbaac875257cc442cb8c254f75a429deda4ae3f209b4084efccdb34ff4b68dec0a444a322ed74889c255e1076c5dfc6c45573bfc",
+      "company": "Test Corp",
+      "name": "Test User",
+      "email": "test_user_unique_999@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783878965328",
+      "username": "ava_1783878965213_229@example.com",
+      "passwordHash": "120000$9f53e4c35a11364ab12edc4d5e727eb1$279d54c8f2471eac8b2ef39ed1c632b028d196d48dda79dd6ab8c9da5b098aff6d8d10a40f4feb6855adbcc4106f63f78380e2f13fc756e16089f4bc14f4fc91",
+      "company": "Northstar Labs",
+      "name": "Ava Example",
+      "email": "ava_1783878965213_229@example.com",
+      "avatar": "",
+      "createdAt": "Jul 12, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783885492642",
+      "username": "ava_1783885492529_529@example.com",
+      "passwordHash": "120000$35f0ddea70d391e288f4af09f670981a$92ffab91fcb0eb0ea5bd251ad9dc288c419349b7868edf1310ced7d89934d9d13c148a74fd28d4ea3cb809b55a122d5a5ced6b684a69c04a3c6f64be942892dd",
+      "company": "Northstar Labs",
+      "name": "Ava Example",
+      "email": "ava_1783885492529_529@example.com",
+      "avatar": "",
+      "createdAt": "Jul 13, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783885501117",
+      "username": "lock_1783885501027@example.com",
+      "passwordHash": "120000$f5202b7890732cf6c5031da45df25292$7309bcd4210b0a49c82774babb552f7dbfb8dea33d4bd2729ea96f384719d5d372e00918fc6f9673562cf78f77092fc5de3c7d5f8368036c62be5cc6503cb8f3",
+      "company": "Lock Corp",
+      "name": "Lock Test",
+      "email": "lock_1783885501027@example.com",
+      "avatar": "",
+      "createdAt": "Jul 13, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783885516745",
+      "username": "lock_1783885516643@example.com",
+      "passwordHash": "120000$543f65a3625416afe5dc417b4789c9a9$9ef2d57ebd3d49a5a4e14955c22d2f72e3a2fe6ff661d2c7637f189389807e7a669b1bd17fefcc9c7c9ece109eddb3743c6d70b107c0c6a0c4512c9732c9f6c5",
+      "company": "Lock Corp",
+      "name": "Lock Test",
+      "email": "lock_1783885516643@example.com",
+      "avatar": "",
+      "createdAt": "Jul 13, 2026",
+      "status": "active",
+      "role": "client"
     }
   ],
   "activityLog": [
@@ -2309,6 +2562,452 @@
         "companyName": "Lumina Digital Agency",
         "role": "admin"
       }
+    },
+    {
+      "id": "sess_1783873937107_75aea2d2be52",
+      "userId": "user_1783873937084",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODczOTM3MTA3Xzc1YWVhMmQyYmU1MiIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzQ4Mzd9.45efQYjXOAPd_hawc8wZi2CKMJ2dKP7QuQrL_-UPwt4",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODczOTM3MTA3Xzc1YWVhMmQyYmU1MiIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc4NzM3fQ.KSDM_po2YzwntRy0HD5Mdasd89QGLho8tXmNlPpAjKw",
+      "createdAt": "2026-07-12T16:32:17.107Z",
+      "expiresAt": "2026-07-12T16:47:17.107Z",
+      "refreshExpiresAt": "2026-07-19T16:32:17.107Z",
+      "userAgent": "node",
+      "fingerprint": "::ffff:127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783873937084",
+        "email": "ava@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783873937193_49e07cd6f5a6",
+      "userId": "user_1783873937084",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODczOTM3MTkzXzQ5ZTA3Y2Q2ZjVhNiIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzQ4Mzd9.wq5D_HTvwsw9Njl96Rs9bWMxzSSC7VoT-8GFWKYFeaM",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODczOTM3MTkzXzQ5ZTA3Y2Q2ZjVhNiIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc4NzM3fQ.bDx2pX_d-kHtkF9goVC3GKbwksiyn7bQL6KKr9DgIAU",
+      "createdAt": "2026-07-12T16:32:17.194Z",
+      "expiresAt": "2026-07-12T16:47:17.194Z",
+      "refreshExpiresAt": "2026-07-19T16:32:17.194Z",
+      "userAgent": "node",
+      "fingerprint": "::ffff:127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783873937084",
+        "email": "ava@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874334066_e0cfa2567690",
+      "userId": "user_1783873937084",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0MzM0MDY2X2UwY2ZhMjU2NzY5MCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzUyMzR9.7o68_Rgutb4iQPA9rGwoIHqE6X2fqeN8NrsX1uuovFc",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0MzM0MDY2X2UwY2ZhMjU2NzY5MCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5MTM0fQ.iQx30Z9v7X5w9pT9w6DWqe-eAOS2X9WPZWEQh3_Ge3g",
+      "createdAt": "2026-07-12T16:38:54.066Z",
+      "expiresAt": "2026-07-12T16:53:54.066Z",
+      "refreshExpiresAt": "2026-07-19T16:38:54.066Z",
+      "userAgent": "node",
+      "fingerprint": "::ffff:127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783873937084",
+        "email": "ava@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-12T16:38:54.082Z"
+    },
+    {
+      "id": "sess_1783874369899_a949dc161ff9",
+      "userId": "user_1783874369873",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQzNjk4NzMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0MzY5ODk5X2E5NDlkYzE2MWZmOSIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzUyNjl9.4GCTHNRmt-NGBPbAylGqE8UZ_Lgo8CANstuT0EoxxEs",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQzNjk4NzMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0MzY5ODk5X2E5NDlkYzE2MWZmOSIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5MTY5fQ.xmfUENaySr5p1tDtmkN8Dfq_KzocZU00iuAnRMhoOS0",
+      "createdAt": "2026-07-12T16:39:29.899Z",
+      "expiresAt": "2026-07-12T16:54:29.899Z",
+      "refreshExpiresAt": "2026-07-19T16:39:29.899Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783874369873",
+        "email": "ava_1783874369766_625@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874369987_caf8617cb58c",
+      "userId": "user_1783874369873",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQzNjk4NzMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0MzY5OTg3X2NhZjg2MTdjYjU4YyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzUyNjl9.JHfH1fvSt07meSQ1coNYJRiiPe0lg47YTZ1D_mq_RG8",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQzNjk4NzMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0MzY5OTg3X2NhZjg2MTdjYjU4YyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5MTY5fQ.9lLMsbEF-dZJuW2wkvmxidF1k3Qf1022AuCu0acamIs",
+      "createdAt": "2026-07-12T16:39:29.987Z",
+      "expiresAt": "2026-07-12T16:54:29.987Z",
+      "refreshExpiresAt": "2026-07-19T16:39:29.987Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783874369873",
+        "email": "ava_1783874369766_625@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-12T16:39:30.026Z"
+    },
+    {
+      "id": "sess_1783874469409_08f83c910709",
+      "userId": "user_1783874469359",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ0NjkzNTkiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NDY5NDA5XzA4ZjgzYzkxMDcwOSIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzUzNjl9.-_DkIlq_dKOWE0g6PzmPLu8ADKLF9Bd5AQ5JiAAyz5g",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ0NjkzNTkiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NDY5NDA5XzA4ZjgzYzkxMDcwOSIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5MjY5fQ.mYuBdpxqxrLmLzjx1Ryb3IrN4a-VIXAtDxDXzxr_YFQ",
+      "createdAt": "2026-07-12T16:41:09.410Z",
+      "expiresAt": "2026-07-12T16:56:09.410Z",
+      "refreshExpiresAt": "2026-07-19T16:41:09.410Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874469359",
+        "email": "jane_test_20260712@example.com",
+        "fullName": "Jane Doe",
+        "companyName": "Doe Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874498887_bde49e22df9a",
+      "userId": "user_1783874469359",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ0NjkzNTkiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NDk4ODg3X2JkZTQ5ZTIyZGY5YSIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzUzOTh9.vEPqcSXIeGRSgcEeAmIHaKgDax5szIqGrnpPzWI2Stk",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ0NjkzNTkiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NDk4ODg3X2JkZTQ5ZTIyZGY5YSIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5Mjk4fQ.fgAOwYA7jEmNmxnn_r0vUW76TS0qHd5keGHehTAAT_o",
+      "createdAt": "2026-07-12T16:41:38.887Z",
+      "expiresAt": "2026-07-12T16:56:38.887Z",
+      "refreshExpiresAt": "2026-07-19T16:41:38.887Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874469359",
+        "email": "jane_test_20260712@example.com",
+        "fullName": "Jane Doe",
+        "companyName": "Doe Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874560101_757310787666",
+      "userId": "user_1783874560087",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ1NjAwODciLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NTYwMTAxXzc1NzMxMDc4NzY2NiIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzU0NjB9.o7bnMBOLCTu6wSwTZ1cHyjgaRB4T_SPPrvHGZpcJT2Y",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ1NjAwODciLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NTYwMTAxXzc1NzMxMDc4NzY2NiIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5MzYwfQ.lzq1PsZCyoGG-1upBSpu7VMuEZoxumvTr1Y6L4eD-vQ",
+      "createdAt": "2026-07-12T16:42:40.102Z",
+      "expiresAt": "2026-07-12T16:57:40.102Z",
+      "refreshExpiresAt": "2026-07-19T16:42:40.102Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874560087",
+        "email": "jane_test_new_unique_1a2b3c@example.com",
+        "fullName": "Jane Doe",
+        "companyName": "Doe Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874595552_94fa89b49b33",
+      "userId": "user_1783874560087",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ1NjAwODciLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NTk1NTUyXzk0ZmE4OWI0OWIzMyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzU0OTV9.-OvXGY474Ck5Jy0BkfIitO-KA6PEaRz20AgMGriPtO0",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ1NjAwODciLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NTk1NTUyXzk0ZmE4OWI0OWIzMyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5Mzk1fQ.IvT622cjSEQRf94CUBYXJpDccVWXloYSngEEUyVL-RI",
+      "createdAt": "2026-07-12T16:43:15.552Z",
+      "expiresAt": "2026-07-12T16:58:15.552Z",
+      "refreshExpiresAt": "2026-07-19T16:43:15.552Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874560087",
+        "email": "jane_test_new_unique_1a2b3c@example.com",
+        "fullName": "Jane Doe",
+        "companyName": "Doe Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874662382_ac6c6af9f05c",
+      "userId": "user_1783874662371",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ2NjIzNzEiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NjYyMzgyX2FjNmM2YWY5ZjA1YyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzU1NjJ9.9SXyWMGU0G8r1TW2KAgfCxMz_kdEw-vUUcQfafgjIlc",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ2NjIzNzEiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NjYyMzgyX2FjNmM2YWY5ZjA1YyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5NDYyfQ.o3a5DU23EhQOKp7bbOWVMRgxeiH7oWWtaM946wkHEOQ",
+      "createdAt": "2026-07-12T16:44:22.382Z",
+      "expiresAt": "2026-07-12T16:59:22.382Z",
+      "refreshExpiresAt": "2026-07-19T16:44:22.382Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874662371",
+        "email": "jane_test_debug_1@example.com",
+        "fullName": "Jane Doe",
+        "companyName": "Doe Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874690365_d386230023f7",
+      "userId": "user_1783874662371",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ2NjIzNzEiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NjkwMzY1X2QzODYyMzAwMjNmNyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzU1OTB9.lpOCw9iWfKYsWXsCAm61JBm6dflZGBYSGr7xDR6oeIM",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ2NjIzNzEiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0NjkwMzY1X2QzODYyMzAwMjNmNyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5NDkwfQ.Brd4QrI7vCYuNPENjKgQ4aYgW0nKxNb7-cBmpG2YtZ8",
+      "createdAt": "2026-07-12T16:44:50.366Z",
+      "expiresAt": "2026-07-12T16:59:50.366Z",
+      "refreshExpiresAt": "2026-07-19T16:44:50.366Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874662371",
+        "email": "jane_test_debug_1@example.com",
+        "fullName": "Jane Doe",
+        "companyName": "Doe Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874733848_bc941b3aa9de",
+      "userId": "client-seed-1",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtc2VlZC0xIiwicm9sZSI6ImNsaWVudCIsInNlc3Npb25JZCI6InNlc3NfMTc4Mzg3NDczMzg0OF9iYzk0MWIzYWE5ZGUiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzgzODc1NjMzfQ.kfD-GUhTuFqGlX1xjiBcPeFai5HrOmCLdEv2niyIsa8",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGllbnQtc2VlZC0xIiwicm9sZSI6ImNsaWVudCIsInNlc3Npb25JZCI6InNlc3NfMTc4Mzg3NDczMzg0OF9iYzk0MWIzYWE5ZGUiLCJ0eXBlIjoicmVmcmVzaCIsImV4cCI6MTc4NDQ3OTUzM30.J16rQBOr_ISRfoCnXCDx2_wzpZrch8B7H0m7fV6QJK4",
+      "createdAt": "2026-07-12T16:45:33.848Z",
+      "expiresAt": "2026-07-12T17:00:33.848Z",
+      "refreshExpiresAt": "2026-07-19T16:45:33.848Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "client-seed-1",
+        "email": "billing@acme.com",
+        "fullName": "Client User",
+        "companyName": "Acme Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874874307_86569e9f3420",
+      "userId": "user_1783874874292",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ4NzQyOTIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0ODc0MzA3Xzg2NTY5ZTlmMzQyMCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzU3NzR9.qdzUovzBCM7O6b22LIyAP3uZUgvX-QF7LP6F0prBlIc",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ4NzQyOTIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0ODc0MzA3Xzg2NTY5ZTlmMzQyMCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5Njc0fQ.DFPmPfN3pvsaSgdusg36aRNoe380ftIczPajgJ41XKg",
+      "createdAt": "2026-07-12T16:47:54.307Z",
+      "expiresAt": "2026-07-12T17:02:54.307Z",
+      "refreshExpiresAt": "2026-07-19T16:47:54.307Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874874292",
+        "email": "test_user_unique_999@example.com",
+        "fullName": "Test User",
+        "companyName": "Test Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783874936571_e37a1a724e2c",
+      "userId": "user_1783874874292",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ4NzQyOTIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0OTM2NTcxX2UzN2ExYTcyNGUyYyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4NzU4MzZ9.vkN4Kc-Rvw-j7FzDMWuiQpsumv19P16SQT5WSJRQSLo",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzQ4NzQyOTIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc0OTM2NTcxX2UzN2ExYTcyNGUyYyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDc5NzM2fQ.8XZZQUyA7sUM7c9pvvRo_A10deNoMBuRJMZh-iE6TLI",
+      "createdAt": "2026-07-12T16:48:56.571Z",
+      "expiresAt": "2026-07-12T17:03:56.571Z",
+      "refreshExpiresAt": "2026-07-19T16:48:56.571Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783874874292",
+        "email": "test_user_unique_999@example.com",
+        "fullName": "Test User",
+        "companyName": "Test Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783878956494_459b84d59964",
+      "userId": "user_1783873937084",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc4OTU2NDk0XzQ1OWI4NGQ1OTk2NCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4Nzk4NTZ9.WgkTcopEDm3-8DDs3X1L3DKcP0TZ5K0cPivP5RNJJDI",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc4OTU2NDk0XzQ1OWI4NGQ1OTk2NCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDgzNzU2fQ.kBkgmL_aYr9uZ8NpL47rjXM2eP3mmYW0mULGEYOG25s",
+      "createdAt": "2026-07-12T17:55:56.494Z",
+      "expiresAt": "2026-07-12T18:10:56.494Z",
+      "refreshExpiresAt": "2026-07-19T17:55:56.494Z",
+      "userAgent": "node",
+      "fingerprint": "::ffff:127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783873937084",
+        "email": "ava@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-12T17:55:56.517Z"
+    },
+    {
+      "id": "sess_1783878965354_1441de661458",
+      "userId": "user_1783878965328",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4Nzg5NjUzMjgiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc4OTY1MzU0XzE0NDFkZTY2MTQ1OCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4Nzk4NjV9.VOYzqoE-oCzMdsIAaYqEG5f0lCvY7Yk_YU1Oe9LSxWE",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4Nzg5NjUzMjgiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc4OTY1MzU0XzE0NDFkZTY2MTQ1OCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDgzNzY1fQ.t1LZQ-sHiMUHdgo2b1r9kJo1W0YyDmWAnShHpcD8Gpw",
+      "createdAt": "2026-07-12T17:56:05.354Z",
+      "expiresAt": "2026-07-12T18:11:05.354Z",
+      "refreshExpiresAt": "2026-07-19T17:56:05.354Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783878965328",
+        "email": "ava_1783878965213_229@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783878965440_966b69622130",
+      "userId": "user_1783878965328",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4Nzg5NjUzMjgiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc4OTY1NDQwXzk2NmI2OTYyMjEzMCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4Nzk4NjV9.kmkKgvEwOpaea7ntZOOa9YYiCLZIgekFFcpDjmUatQo",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4Nzg5NjUzMjgiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODc4OTY1NDQwXzk2NmI2OTYyMjEzMCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDgzNzY1fQ.DU-z5c5mhogXy-6fPOwom4d_gqke2rKLn-djZbj1iNE",
+      "createdAt": "2026-07-12T17:56:05.440Z",
+      "expiresAt": "2026-07-12T18:11:05.440Z",
+      "refreshExpiresAt": "2026-07-19T17:56:05.440Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783878965328",
+        "email": "ava_1783878965213_229@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-12T17:56:05.479Z"
+    },
+    {
+      "id": "sess_1783885490712_f88cd0139f14",
+      "userId": "user_1783873937084",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NDkwNzEyX2Y4OGNkMDEzOWYxNCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4ODYzOTB9.ReTZdiRxy9pNz6V7C-VXjp9gPyDCf_EPP4BLtk3UxOk",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4NzM5MzcwODQiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NDkwNzEyX2Y4OGNkMDEzOWYxNCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDkwMjkwfQ.lys010OuqGTDnU2noIwcVusXxX4ho7s6uOzszTfx1kQ",
+      "createdAt": "2026-07-12T19:44:50.712Z",
+      "expiresAt": "2026-07-12T19:59:50.712Z",
+      "refreshExpiresAt": "2026-07-19T19:44:50.712Z",
+      "userAgent": "node",
+      "fingerprint": "::ffff:127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783873937084",
+        "email": "ava@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-12T19:44:50.727Z"
+    },
+    {
+      "id": "sess_1783885492674_e24e54e4ceec",
+      "userId": "user_1783885492642",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU0OTI2NDIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NDkyNjc0X2UyNGU1NGU0Y2VlYyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4ODYzOTJ9.tL7Ia9UgyyScDayf7UH3IYp9fajP40_Nz6SDXt7KoRk",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU0OTI2NDIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NDkyNjc0X2UyNGU1NGU0Y2VlYyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDkwMjkyfQ.4YfdvFUdUyQimA3elI2-QL5DVMqdkFh40vOion6tnaE",
+      "createdAt": "2026-07-12T19:44:52.674Z",
+      "expiresAt": "2026-07-12T19:59:52.674Z",
+      "refreshExpiresAt": "2026-07-19T19:44:52.674Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783885492642",
+        "email": "ava_1783885492529_529@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783885492768_845136795d4d",
+      "userId": "user_1783885492642",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU0OTI2NDIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NDkyNzY4Xzg0NTEzNjc5NWQ0ZCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4ODYzOTJ9.EIrJm_kv2QbbTdCfiQEweYQTL_WxSiQFdGBxeWtiJEk",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU0OTI2NDIiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NDkyNzY4Xzg0NTEzNjc5NWQ0ZCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDkwMjkyfQ.N1P92sz7wyZefkKnqsdVqIAyBPSeSpehaVQdGPq_cbs",
+      "createdAt": "2026-07-12T19:44:52.769Z",
+      "expiresAt": "2026-07-12T19:59:52.769Z",
+      "refreshExpiresAt": "2026-07-19T19:44:52.769Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783885492642",
+        "email": "ava_1783885492529_529@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-12T19:44:52.798Z"
+    },
+    {
+      "id": "sess_1783885501154_f7584a1f2552",
+      "userId": "user_1783885501117",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU1MDExMTciLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NTAxMTU0X2Y3NTg0YTFmMjU1MiIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4ODY0MDF9.vzTMvAbbExu3tH_hCIAOfRLic4yqpSrKCJu6Voit-9k",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU1MDExMTciLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NTAxMTU0X2Y3NTg0YTFmMjU1MiIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDkwMzAxfQ.7ld1MPXtFHM5cNQ6jTGGRXx_8n63LLPrU9OiE3doKZk",
+      "createdAt": "2026-07-12T19:45:01.154Z",
+      "expiresAt": "2026-07-12T20:00:01.154Z",
+      "refreshExpiresAt": "2026-07-19T19:45:01.154Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783885501117",
+        "email": "lock_1783885501027@example.com",
+        "fullName": "Lock Test",
+        "companyName": "Lock Corp",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783885516781_046ddbbefb5b",
+      "userId": "user_1783885516745",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU1MTY3NDUiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NTE2NzgxXzA0NmRkYmJlZmI1YiIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM4ODY0MTZ9.dOxtwS9genEkLDaXn5jrKBKIBySJsHS9PBaaHKOwlqg",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM4ODU1MTY3NDUiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzODg1NTE2NzgxXzA0NmRkYmJlZmI1YiIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NDkwMzE2fQ.J-WGR5mgkqLjZIp_Jd0ifx_iIT3OK6gHmsBpjXuwg7s",
+      "createdAt": "2026-07-12T19:45:16.781Z",
+      "expiresAt": "2026-07-12T20:00:16.781Z",
+      "refreshExpiresAt": "2026-07-19T19:45:16.781Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783885516745",
+        "email": "lock_1783885516643@example.com",
+        "fullName": "Lock Test",
+        "companyName": "Lock Corp",
+        "role": "client"
+      }
     }
   ],
   "authUsers": [
@@ -2467,6 +3166,134 @@
       "status": "active",
       "createdAt": "2026-07-03T09:28:59.795Z",
       "updatedAt": "2026-07-03T09:28:59.795Z"
+    },
+    {
+      "id": "user_1783873937084",
+      "fullName": "Ava Example",
+      "companyName": "Northstar Labs",
+      "email": "ava@example.com",
+      "passwordHash": "120000$531976e6ef909a3c753957e1cca175ed$4485615a90f83d4266093c7bff79de70ab93c67683f1509f54de8261c6d304196a86eb33587ca413b2e1f13075da0bf0dd0f054f9b100c36fa0c0e68b2132c63",
+      "salt": "531976e6ef909a3c753957e1cca175ed",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T16:32:17.084Z",
+      "updatedAt": "2026-07-12T16:32:17.085Z",
+      "loginAttempts": 0,
+      "lockUntil": null
+    },
+    {
+      "id": "user_1783874369873",
+      "fullName": "Ava Example",
+      "companyName": "Northstar Labs",
+      "email": "ava_1783874369766_625@example.com",
+      "passwordHash": "120000$bffda3a0681f4a8550b39477f26a6e79$9ffafa2ed8d9cbe9ecec7ef82c073ada21f6d9bdcbb204856ffb4da0f494e760254f72c99e1a3da3204c3996c35b90db86a84e1738307c122a6c515bc569763a",
+      "salt": "bffda3a0681f4a8550b39477f26a6e79",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T16:39:29.873Z",
+      "updatedAt": "2026-07-12T16:39:29.874Z"
+    },
+    {
+      "id": "user_1783874469359",
+      "fullName": "Jane Doe",
+      "companyName": "Doe Corp",
+      "email": "jane_test_20260712@example.com",
+      "passwordHash": "120000$51e6e4bc3086d5b29233680e573dec87$f8e0a7d380fd3db65626dd52ca0c6fc039278f24cb52e849c6db0e9dac3ae3481464adbf3195e3ab695cc3d06344c02cbdc53a8db1036baef59a2ced223cade6",
+      "salt": "51e6e4bc3086d5b29233680e573dec87",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T16:41:09.359Z",
+      "updatedAt": "2026-07-12T16:41:09.360Z"
+    },
+    {
+      "id": "user_1783874560087",
+      "fullName": "Jane Doe",
+      "companyName": "Doe Corp",
+      "email": "jane_test_new_unique_1a2b3c@example.com",
+      "passwordHash": "120000$cdab3d94c9ec34a4cbd6f94059f8c67b$de79f1ac7b7a45f19b4fec20ff1c3d25a2d5ca7402900f90adc5be798e7e320ae749e9a9f3df06d5adcdd674352a29ade98f0bc8c8eed58a2f78b1ffcd78a14e",
+      "salt": "cdab3d94c9ec34a4cbd6f94059f8c67b",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T16:42:40.087Z",
+      "updatedAt": "2026-07-12T16:42:40.087Z"
+    },
+    {
+      "id": "user_1783874662371",
+      "fullName": "Jane Doe",
+      "companyName": "Doe Corp",
+      "email": "jane_test_debug_1@example.com",
+      "passwordHash": "120000$ec7386271eab7ff23df0d7433519a854$581debff2a0d81b282076d66845d4d91c47ca47a6f5879c9495ec66c484bd50f5c4ce9b8ed0233f7f9b19ecab4ea890b0190f455c488a470f3143256c629947d",
+      "salt": "ec7386271eab7ff23df0d7433519a854",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T16:44:22.371Z",
+      "updatedAt": "2026-07-12T16:44:22.371Z"
+    },
+    {
+      "id": "user_1783874874292",
+      "fullName": "Test User",
+      "companyName": "Test Corp",
+      "email": "test_user_unique_999@example.com",
+      "passwordHash": "120000$aec0a0744ffe7da960eae068e5343fd8$515eab3c3a72713153bd7789fbaac875257cc442cb8c254f75a429deda4ae3f209b4084efccdb34ff4b68dec0a444a322ed74889c255e1076c5dfc6c45573bfc",
+      "salt": "aec0a0744ffe7da960eae068e5343fd8",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T16:47:54.293Z",
+      "updatedAt": "2026-07-12T16:47:54.293Z"
+    },
+    {
+      "id": "user_1783878965328",
+      "fullName": "Ava Example",
+      "companyName": "Northstar Labs",
+      "email": "ava_1783878965213_229@example.com",
+      "passwordHash": "120000$9f53e4c35a11364ab12edc4d5e727eb1$279d54c8f2471eac8b2ef39ed1c632b028d196d48dda79dd6ab8c9da5b098aff6d8d10a40f4feb6855adbcc4106f63f78380e2f13fc756e16089f4bc14f4fc91",
+      "salt": "9f53e4c35a11364ab12edc4d5e727eb1",
+      "role": "client",
+      "status": "active",
+      "createdAt": "2026-07-12T17:56:05.328Z",
+      "updatedAt": "2026-07-12T17:56:05.328Z"
+    },
+    {
+      "id": "user_1783885492642",
+      "fullName": "Ava Example",
+      "companyName": "Northstar Labs",
+      "email": "ava_1783885492529_529@example.com",
+      "passwordHash": "120000$35f0ddea70d391e288f4af09f670981a$92ffab91fcb0eb0ea5bd251ad9dc288c419349b7868edf1310ced7d89934d9d13c148a74fd28d4ea3cb809b55a122d5a5ced6b684a69c04a3c6f64be942892dd",
+      "salt": "35f0ddea70d391e288f4af09f670981a",
+      "role": "client",
+      "status": "active",
+      "loginAttempts": 0,
+      "lockUntil": null,
+      "createdAt": "2026-07-12T19:44:52.642Z",
+      "updatedAt": "2026-07-12T19:44:52.643Z"
+    },
+    {
+      "id": "user_1783885501117",
+      "fullName": "Lock Test",
+      "companyName": "Lock Corp",
+      "email": "lock_1783885501027@example.com",
+      "passwordHash": "120000$f5202b7890732cf6c5031da45df25292$7309bcd4210b0a49c82774babb552f7dbfb8dea33d4bd2729ea96f384719d5d372e00918fc6f9673562cf78f77092fc5de3c7d5f8368036c62be5cc6503cb8f3",
+      "salt": "f5202b7890732cf6c5031da45df25292",
+      "role": "client",
+      "status": "active",
+      "loginAttempts": 0,
+      "lockUntil": "2026-07-12T20:00:01.581Z",
+      "createdAt": "2026-07-12T19:45:01.117Z",
+      "updatedAt": "2026-07-12T19:45:01.117Z"
+    },
+    {
+      "id": "user_1783885516745",
+      "fullName": "Lock Test",
+      "companyName": "Lock Corp",
+      "email": "lock_1783885516643@example.com",
+      "passwordHash": "120000$543f65a3625416afe5dc417b4789c9a9$9ef2d57ebd3d49a5a4e14955c22d2f72e3a2fe6ff661d2c7637f189389807e7a669b1bd17fefcc9c7c9ece109eddb3743c6d70b107c0c6a0c4512c9732c9f6c5",
+      "salt": "543f65a3625416afe5dc417b4789c9a9",
+      "role": "client",
+      "status": "active",
+      "loginAttempts": 0,
+      "lockUntil": "2026-07-12T20:00:17.197Z",
+      "createdAt": "2026-07-12T19:45:16.745Z",
+      "updatedAt": "2026-07-12T19:45:16.745Z"
     }
   ]
 }

@@ -1,16 +1,21 @@
 const { sanitizeInput, isStrongPassword, createHash, verifyPassword, createSalt, createToken } = require('../utils/auth');
-const { createSessionRecord, destroyAllSessionsForUser, validateRefreshToken, rotateSession, destroySession } = require('../utils/session-manager');
-const { readDb, writeDb } = require('../database/db');
+const { createSessionRecord, validateRefreshToken, rotateSession, destroySession } = require('../utils/session-manager');
+const userRepository = require('../repositories/user-repository');
+const sessionRepository = require('../repositories/session-repository');
+const db = require('../database/db');
+const logger = require('../utils/logger');
 
-function ensureUsersDb(db) {
-  db.authUsers = db.authUsers || [];
-  db.clients = db.clients || [];
-  db.activityLog = db.activityLog || [];
-  return db;
+const adminAttempts = new Map();
+const adminLockUntil = new Map();
+
+function ensureUsersDb(dbData) {
+  dbData.authUsers = dbData.authUsers || [];
+  dbData.clients = dbData.clients || [];
+  dbData.activityLog = dbData.activityLog || [];
+  return dbData;
 }
 
-function createUserRecord(user) {
-  const db = ensureUsersDb(readDb());
+async function createUserRecord(user) {
   const salt = createSalt();
   const passwordHash = createHash(user.password, salt);
   const normalizedEmail = user.email.toLowerCase();
@@ -23,11 +28,16 @@ function createUserRecord(user) {
     salt,
     role: 'client',
     status: 'active',
+    loginAttempts: 0,
+    lockUntil: null,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
   };
-  db.authUsers.push(userRecord);
-  db.clients.push({
+  await userRepository.create(userRecord);
+
+  // Sync with clients array
+  const dbData = ensureUsersDb(db.readDb());
+  dbData.clients.push({
     id: userRecord.id,
     username: normalizedEmail,
     passwordHash,
@@ -39,21 +49,20 @@ function createUserRecord(user) {
     status: 'active',
     role: 'client'
   });
-  writeDb(db);
+  db.writeDb(dbData);
+
   return userRecord;
 }
 
-function findUserByEmail(email) {
-  const db = ensureUsersDb(readDb());
-  return db.authUsers.find((item) => item.email.toLowerCase() === String(email || '').toLowerCase());
+async function findUserByEmail(email) {
+  return userRepository.getByEmail(email);
 }
 
-function findUserById(userId) {
-  const db = ensureUsersDb(readDb());
-  return db.authUsers.find((item) => item.id === userId);
+async function findUserById(userId) {
+  return userRepository.getById(userId);
 }
 
-function registerClient({ fullName, companyName, email, password, confirmPassword }) {
+async function registerClient({ fullName, companyName, email, password, confirmPassword }) {
   const normalizedEmail = String(email || '').trim().toLowerCase();
   if (!fullName || !companyName || !normalizedEmail || !password || !confirmPassword) {
     return { error: 'All fields are required.', status: 400 };
@@ -64,64 +73,114 @@ function registerClient({ fullName, companyName, email, password, confirmPasswor
   if (!isStrongPassword(password)) {
     return { error: 'Use at least 10 characters, including uppercase, a number, and a symbol.', status: 400 };
   }
-  if (findUserByEmail(normalizedEmail)) {
+  const existing = await findUserByEmail(normalizedEmail);
+  if (existing) {
     return { error: 'This email is already registered.', status: 409 };
   }
-  const user = createUserRecord({ fullName, companyName, email: normalizedEmail, password });
+  const user = await createUserRecord({ fullName, companyName, email: normalizedEmail, password });
+  logger.info(`New client registered: ${normalizedEmail}`);
   return { user, status: 201 };
 }
 
-function authenticateClient({ email, password }) {
-  const db = ensureUsersDb(readDb());
+async function authenticateClient({ email, password }) {
   const searchKey = String(email || '').trim().toLowerCase();
   
-  // Find client by username or email
-  const client = (db.clients || []).find(c => 
+  const dbData = ensureUsersDb(db.readDb());
+  const client = (dbData.clients || []).find(c => 
     (c.username && c.username.toLowerCase() === searchKey) || 
     (c.email && c.email.toLowerCase() === searchKey)
   );
   
   if (!client) {
+    logger.warn(`Login attempt with non-existent client email: ${searchKey}`);
     return { error: 'Invalid credentials.', status: 401 };
   }
   
-  const user = db.authUsers.find(u => u.id === client.id && u.role === 'client');
-  if (!user) {
+  const user = await findUserById(client.id);
+  if (!user || user.role !== 'client') {
+    logger.warn(`Login attempt with invalid user mapping for client: ${searchKey}`);
     return { error: 'Invalid credentials.', status: 401 };
+  }
+
+  // Check lockout
+  if (user.lockUntil && new Date(user.lockUntil) > new Date()) {
+    logger.warn(`Locked out user login attempt: ${searchKey}`);
+    return { error: 'Account temporarily locked out due to multiple failed attempts. Please try again in 15 minutes.', status: 423 };
   }
   
   const valid = verifyPassword(password, user.passwordHash);
-  if (!valid) return { error: 'Invalid credentials.', status: 401 };
+  if (!valid) {
+    user.loginAttempts = (user.loginAttempts || 0) + 1;
+    if (user.loginAttempts >= 5) {
+      user.lockUntil = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+      user.loginAttempts = 0;
+      logger.warn(`Account locked out due to brute force: ${searchKey}`);
+      await userRepository.update(user.id, user);
+      return { error: 'Account temporarily locked out due to multiple failed attempts. Please try again in 15 minutes.', status: 423 };
+    }
+    await userRepository.update(user.id, user);
+    logger.warn(`Failed login attempt (${user.loginAttempts}/5) for client: ${searchKey}`);
+    return { error: 'Invalid credentials.', status: 401 };
+  }
+
+  // Reset lockout
+  user.loginAttempts = 0;
+  user.lockUntil = null;
+  await userRepository.update(user.id, user);
+  
+  logger.info(`Successful login for client: ${searchKey}`);
   return { user, status: 200 };
 }
 
-function authenticateAdmin({ username, password }) {
+async function authenticateAdmin({ username, password }) {
   const normalizedUsername = String(username || '').trim().toLowerCase();
+
+  // Check lockout
+  if (adminLockUntil.has(normalizedUsername) && adminLockUntil.get(normalizedUsername) > Date.now()) {
+    logger.warn(`Locked out admin login attempt: ${normalizedUsername}`);
+    return { error: 'Account temporarily locked out due to multiple failed attempts. Please try again in 15 minutes.', status: 423 };
+  }
+  
   if (normalizedUsername === 'admin' && password === 'admin123') {
+    adminAttempts.delete(normalizedUsername);
+    adminLockUntil.delete(normalizedUsername);
     const user = { id: 'admin', email: 'admin@luminadigital.com', fullName: 'Lumina Admin', companyName: 'Lumina Digital Agency', role: 'admin' };
+    logger.info(`Successful login for admin: ${normalizedUsername}`);
     return { user, status: 200 };
   }
+
+  const attempts = (adminAttempts.get(normalizedUsername) || 0) + 1;
+  adminAttempts.set(normalizedUsername, attempts);
+  if (attempts >= 5) {
+    adminLockUntil.set(normalizedUsername, Date.now() + 15 * 60 * 1000);
+    adminAttempts.delete(normalizedUsername);
+    logger.warn(`Admin account locked out due to brute force: ${normalizedUsername}`);
+    return { error: 'Account temporarily locked out due to multiple failed attempts. Please try again in 15 minutes.', status: 423 };
+  }
+
+  logger.warn(`Failed login attempt (${attempts}/5) for admin: ${normalizedUsername}`);
   return { error: 'Invalid admin credentials.', status: 401 };
 }
 
-function createResetToken(email) {
+async function createResetToken(email) {
   const normalizedEmail = String(email || '').trim().toLowerCase();
-  const db = ensureUsersDb(readDb());
-  const user = db.authUsers.find((item) => item.email.toLowerCase() === normalizedEmail);
+  const user = await findUserByEmail(normalizedEmail);
   if (!user) return null;
   const token = createToken({ sub: user.id, type: 'reset', exp: Math.floor(Date.now() / 1000) + 1800 });
+  
   user.resetToken = token;
   user.resetTokenExpiresAt = new Date(Date.now() + 30 * 60 * 1000).toISOString();
-  writeDb(db);
+  await userRepository.update(user.id, user);
   return { token, user };
 }
 
-function resetPassword(token, newPassword) {
+async function resetPassword(token, newPassword) {
   const payload = require('../utils/auth').verifyToken(token);
   if (!payload || payload.type !== 'reset') return { error: 'Invalid or expired reset token.', status: 400 };
-  const db = ensureUsersDb(readDb());
-  const user = db.authUsers.find((item) => item.id === payload.sub);
+  
+  const user = await findUserById(payload.sub);
   if (!user || user.resetToken !== token) return { error: 'Invalid or expired reset token.', status: 400 };
+  
   if (!isStrongPassword(newPassword)) {
     return { error: 'Use at least 10 characters, including uppercase, a number, and a symbol.', status: 400 };
   }
@@ -131,11 +190,16 @@ function resetPassword(token, newPassword) {
   user.resetToken = null;
   user.resetTokenExpiresAt = null;
   user.updatedAt = new Date().toISOString();
-  const client = db.clients.find((item) => item.email === user.email);
+  await userRepository.update(user.id, user);
+
+  // Sync clients collection
+  const dbData = ensureUsersDb(db.readDb());
+  const client = dbData.clients.find((item) => item.email === user.email);
   if (client) {
     client.passwordHash = user.passwordHash;
+    db.writeDb(dbData);
   }
-  writeDb(db);
+  
   return { success: true };
 }
 
@@ -144,15 +208,15 @@ function finishAuth(user, role, req, csrfToken) {
   return { session, accessToken, refreshToken, csrfToken };
 }
 
-function logoutSession(sessionId) {
+async function logoutSession(sessionId) {
   return destroySession(sessionId);
 }
 
-function logoutAll(userId) {
-  destroyAllSessionsForUser(userId);
+async function logoutAll(userId) {
+  await sessionRepository.deactivateAllForUser(userId);
 }
 
-function refreshSession(token, req, user) {
+async function refreshSession(token, req, user) {
   const payload = validateRefreshToken(token);
   if (!payload) return { error: 'Session expired.', status: 401 };
   const rotated = rotateSession(payload.sessionId, req, user);
@@ -161,11 +225,11 @@ function refreshSession(token, req, user) {
 }
 
 function migrateLegacyClients() {
-  const db = ensureUsersDb(readDb());
+  const dbData = ensureUsersDb(db.readDb());
   let migratedCount = 0;
   
-  db.clients.forEach(client => {
-    let authUser = db.authUsers.find(u => u.id === client.id || u.email.toLowerCase() === client.email.toLowerCase());
+  dbData.clients.forEach(client => {
+    let authUser = dbData.authUsers.find(u => u.id === client.id || u.email.toLowerCase() === client.email.toLowerCase());
     
     if (!authUser) {
       const plainPassword = client.password || 'Password123!';
@@ -186,7 +250,7 @@ function migrateLegacyClients() {
       };
       
       client.id = authUser.id;
-      db.authUsers.push(authUser);
+      dbData.authUsers.push(authUser);
       migratedCount++;
     }
     
@@ -197,7 +261,7 @@ function migrateLegacyClients() {
   });
   
   if (migratedCount > 0) {
-    writeDb(db);
+    db.writeDb(dbData);
     console.log(`[Migration] Migrated ${migratedCount} legacy clients to secure JWT system.`);
   }
 }

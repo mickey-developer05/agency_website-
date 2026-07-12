@@ -1,176 +1,219 @@
-const { readDb, writeDb } = require('../database/db');
+const db = require('../database/db');
+const proposalService = require('./ai/proposal-service');
+const contentService = require('./ai/content-service');
+const meetingService = require('./ai/meeting-service');
+const futureService = require('./ai/future-service');
+const emailService = require('./ai/email-service');
+const calendarService = require('./ai/calendar-service');
 
-function ensureAiDb(db) {
-  db.ai_settings = db.ai_settings || {};
-  db.ai_api_connections = db.ai_api_connections || [];
-  db.ai_prompts = db.ai_prompts || [];
-  db.ai_templates = db.ai_templates || [];
-  db.ai_knowledge_base = db.ai_knowledge_base || [];
-  db.ai_usage_logs = db.ai_usage_logs || [];
-  db.ai_generated_documents = db.ai_generated_documents || [];
-  db.ai_email_history = db.ai_email_history || [];
-  db.ai_meeting_history = db.ai_meeting_history || [];
-  db.ai_content_history = db.ai_content_history || [];
-  db.ai_proposal_history = db.ai_proposal_history || [];
-  return db;
+function ensureAiDb(dbData) {
+  dbData.ai_settings = dbData.ai_settings || {};
+  dbData.ai_api_connections = dbData.ai_api_connections || [];
+  dbData.ai_prompts = dbData.ai_prompts || [];
+  dbData.ai_templates = dbData.ai_templates || [];
+  dbData.ai_knowledge_base = dbData.ai_knowledge_base || [];
+  dbData.ai_usage_logs = dbData.ai_usage_logs || [];
+  dbData.ai_generated_documents = dbData.ai_generated_documents || [];
+  return dbData;
 }
 
 // Global Settings
 function getAiSettings() {
-  const db = ensureAiDb(readDb());
-  return db.ai_settings;
+  const dbData = ensureAiDb(db.readDb());
+  return dbData.ai_settings;
 }
 
 function updateAiSettings(settings) {
-  const db = ensureAiDb(readDb());
-  db.ai_settings = { ...db.ai_settings, ...settings, updatedAt: new Date().toISOString() };
-  writeDb(db);
-  return db.ai_settings;
+  const dbData = ensureAiDb(db.readDb());
+  dbData.ai_settings = { ...dbData.ai_settings, ...settings, updatedAt: new Date().toISOString() };
+  db.writeDb(dbData);
+  return dbData.ai_settings;
 }
 
 // API Connections
 function getApiConnections() {
-  const db = ensureAiDb(readDb());
-  return db.ai_api_connections;
+  const dbData = ensureAiDb(db.readDb());
+  return dbData.ai_api_connections;
 }
 
 function saveApiConnection(connection) {
-  const db = ensureAiDb(readDb());
-  const index = db.ai_api_connections.findIndex(c => c.provider === connection.provider);
+  const dbData = ensureAiDb(db.readDb());
+  const index = dbData.ai_api_connections.findIndex(c => c.provider === connection.provider);
   if (index >= 0) {
-    db.ai_api_connections[index] = { ...db.ai_api_connections[index], ...connection, updatedAt: new Date().toISOString() };
+    dbData.ai_api_connections[index] = { ...dbData.ai_api_connections[index], ...connection, updatedAt: new Date().toISOString() };
   } else {
-    db.ai_api_connections.push({ ...connection, id: `conn_${Date.now()}`, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+    dbData.ai_api_connections.push({ ...connection, id: `conn_${Date.now()}`, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
   }
-  writeDb(db);
+  db.writeDb(dbData);
   return true;
 }
 
 function testApiConnection(provider, apiKey) {
-  // Placeholder for real API testing
   return { success: true, message: `Successfully connected to ${provider} (Simulated)` };
 }
 
 // Prompts
 function getPrompts() {
-  const db = ensureAiDb(readDb());
-  return db.ai_prompts;
+  const dbData = ensureAiDb(db.readDb());
+  return dbData.ai_prompts;
 }
 
+// Save Prompt
 function savePrompt(prompt) {
-  const db = ensureAiDb(readDb());
+  const dbData = ensureAiDb(db.readDb());
   if (prompt.id) {
-    const index = db.ai_prompts.findIndex(p => p.id === prompt.id);
+    const index = dbData.ai_prompts.findIndex(p => p.id === prompt.id);
     if (index >= 0) {
-      db.ai_prompts[index] = { ...db.ai_prompts[index], ...prompt, updatedAt: new Date().toISOString() };
+      dbData.ai_prompts[index] = { ...dbData.ai_prompts[index], ...prompt, updatedAt: new Date().toISOString() };
     }
   } else {
     prompt.id = `prompt_${Date.now()}`;
     prompt.createdAt = new Date().toISOString();
     prompt.updatedAt = prompt.createdAt;
-    db.ai_prompts.push(prompt);
+    dbData.ai_prompts.push(prompt);
   }
-  writeDb(db);
+  db.writeDb(dbData);
   return prompt;
 }
 
 function deletePrompt(id) {
-  const db = ensureAiDb(readDb());
-  db.ai_prompts = db.ai_prompts.filter(p => p.id !== id);
-  writeDb(db);
+  const dbData = ensureAiDb(db.readDb());
+  dbData.ai_prompts = dbData.ai_prompts.filter(p => p.id !== id);
+  db.writeDb(dbData);
   return true;
 }
 
 // Templates
 function getTemplates() {
-  const db = ensureAiDb(readDb());
-  return db.ai_templates;
+  const dbData = ensureAiDb(db.readDb());
+  return dbData.ai_templates;
 }
 
 function saveTemplate(template) {
-  const db = ensureAiDb(readDb());
+  const dbData = ensureAiDb(db.readDb());
   if (template.id) {
-    const index = db.ai_templates.findIndex(t => t.id === template.id);
+    const index = dbData.ai_templates.findIndex(t => t.id === template.id);
     if (index >= 0) {
-      db.ai_templates[index] = { ...db.ai_templates[index], ...template, updatedAt: new Date().toISOString() };
+      dbData.ai_templates[index] = { ...dbData.ai_templates[index], ...template, updatedAt: new Date().toISOString() };
     }
   } else {
     template.id = `tpl_${Date.now()}`;
     template.createdAt = new Date().toISOString();
     template.updatedAt = template.createdAt;
-    db.ai_templates.push(template);
+    dbData.ai_templates.push(template);
   }
-  writeDb(db);
+  db.writeDb(dbData);
   return template;
 }
 
-// Delete Template
 function deleteTemplate(id) {
-  const db = ensureAiDb(readDb());
-  db.ai_templates = db.ai_templates.filter(t => t.id !== id);
-  writeDb(db);
+  const dbData = ensureAiDb(db.readDb());
+  dbData.ai_templates = dbData.ai_templates.filter(t => t.id !== id);
+  db.writeDb(dbData);
   return true;
 }
 
 // Knowledge Base
 function getKnowledgeBaseItems() {
-  const db = ensureAiDb(readDb());
-  return db.ai_knowledge_base;
+  const dbData = ensureAiDb(db.readDb());
+  return dbData.ai_knowledge_base;
 }
 
 function saveKnowledgeBaseItem(item) {
-  const db = ensureAiDb(readDb());
+  const dbData = ensureAiDb(db.readDb());
   if (item.id) {
-    const index = db.ai_knowledge_base.findIndex(k => k.id === item.id);
+    const index = dbData.ai_knowledge_base.findIndex(k => k.id === item.id);
     if (index >= 0) {
-      db.ai_knowledge_base[index] = { ...db.ai_knowledge_base[index], ...item, updatedAt: new Date().toISOString() };
+      dbData.ai_knowledge_base[index] = { ...dbData.ai_knowledge_base[index], ...item, updatedAt: new Date().toISOString() };
     }
   } else {
     item.id = `kb_${Date.now()}`;
     item.createdAt = new Date().toISOString();
     item.updatedAt = item.createdAt;
-    db.ai_knowledge_base.push(item);
+    dbData.ai_knowledge_base.push(item);
   }
-  writeDb(db);
+  db.writeDb(dbData);
   return item;
 }
 
 function deleteKnowledgeBaseItem(id) {
-  const db = ensureAiDb(readDb());
-  db.ai_knowledge_base = db.ai_knowledge_base.filter(k => k.id !== id);
-  writeDb(db);
+  const dbData = ensureAiDb(db.readDb());
+  dbData.ai_knowledge_base = dbData.ai_knowledge_base.filter(k => k.id !== id);
+  db.writeDb(dbData);
   return true;
 }
 
 // Logging
 function getUsageLogs() {
-  const db = ensureAiDb(readDb());
-  return db.ai_usage_logs;
+  const dbData = ensureAiDb(db.readDb());
+  return dbData.ai_usage_logs;
 }
 
 function logUsage(logEntry) {
-  const db = ensureAiDb(readDb());
-  db.ai_usage_logs.push({
+  const dbData = ensureAiDb(db.readDb());
+  dbData.ai_usage_logs.push({
     ...logEntry,
     id: `log_${Date.now()}`,
     createdAt: new Date().toISOString()
   });
-  writeDb(db);
+  db.writeDb(dbData);
   return true;
 }
 
-// Dashboards Stats
+// Dashboard Stats
 function getDashboardStats() {
-  const db = ensureAiDb(readDb());
+  const dbData = ensureAiDb(db.readDb());
   return {
-    totalRequests: db.ai_usage_logs.length,
-    activeProviders: db.ai_api_connections.filter(c => c.status === 'active').length,
-    connectedApis: db.ai_api_connections.length,
-    generatedContent: (db.ai_content_history || []).length,
-    generatedProposals: (db.ai_proposal_history || []).length,
-    meetingSummaries: (db.ai_meeting_history || []).length,
-    emailsGenerated: (db.ai_email_history || []).length,
+    totalRequests: dbData.ai_usage_logs.length,
+    activeProviders: dbData.ai_api_connections.filter(c => c.status === 'active').length,
+    connectedApis: dbData.ai_api_connections.length,
+    generatedContent: (dbData.ai_content_history || []).length,
+    generatedProposals: (dbData.ai_proposal_history || []).length,
+    meetingSummaries: (dbData.ai_meeting_history || []).length,
+    emailsGenerated: (dbData.ai_email_history || []).length,
   };
+}
+
+// Generation Delegate
+async function generateContent(feature, promptId, templateId, input, user = 'admin') {
+  let content = '';
+  if (feature === 'Proposal Generator') {
+    content = await proposalService.generate(input);
+  } else if (feature === 'Content Writer') {
+    content = await contentService.generate(input);
+  } else if (feature === 'Meeting Summary') {
+    content = await meetingService.generate(input);
+  } else if (feature === 'Email Assistant') {
+    content = await emailService.generateEmail(input);
+  } else {
+    content = await futureService.generate(feature || 'General Generation', input);
+  }
+
+  // Log simulated usage
+  logUsage({
+    feature: feature || 'General Generation',
+    user,
+    provider: 'Simulated Provider',
+    model: 'Placeholder-Model-1.0',
+    tokens: Math.floor(Math.random() * 500) + 100,
+    estimatedCost: 0.001,
+    status: 'success'
+  });
+
+  return content;
+}
+
+// Calendar integrations
+async function getCalendarEvents() {
+  return calendarService.getEvents();
+}
+
+async function bookCalendarEvent(data) {
+  return calendarService.bookEvent(data);
+}
+
+async function deleteCalendarEvent(id) {
+  return calendarService.deleteEvent(id);
 }
 
 module.exports = {
@@ -190,5 +233,9 @@ module.exports = {
   deleteKnowledgeBaseItem,
   getUsageLogs,
   logUsage,
-  getDashboardStats
+  getDashboardStats,
+  generateContent,
+  getCalendarEvents,
+  bookCalendarEvent,
+  deleteCalendarEvent
 };
