@@ -342,4 +342,60 @@ document.addEventListener('DOMContentLoaded', () => {
       wrapper.appendChild(table);
     }
   });
+
+  // ── Mobile: Inject hamburger button into admin topbar ──
+  const topbar = document.querySelector('.admin-topbar');
+  if (topbar && window.innerWidth <= 768) {
+    const existingHamburger = topbar.querySelector('.admin-mobile-menu-btn');
+    if (!existingHamburger) {
+      const hamburgerBtn = document.createElement('button');
+      hamburgerBtn.className = 'admin-mobile-menu-btn';
+      hamburgerBtn.setAttribute('aria-label', 'Open navigation menu');
+      hamburgerBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:22px">menu</span>';
+      hamburgerBtn.addEventListener('click', toggleSidebar);
+      topbar.insertBefore(hamburgerBtn, topbar.firstChild);
+    }
+  }
+
+  // Also inject hamburger via resize listener
+  function ensureAdminHamburger() {
+    const topbar = document.querySelector('.admin-topbar');
+    if (!topbar) return;
+    const existing = topbar.querySelector('.admin-mobile-menu-btn');
+    if (window.innerWidth <= 768 && !existing) {
+      const btn = document.createElement('button');
+      btn.className = 'admin-mobile-menu-btn';
+      btn.setAttribute('aria-label', 'Open navigation menu');
+      btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:22px">menu</span>';
+      btn.addEventListener('click', toggleSidebar);
+      topbar.insertBefore(btn, topbar.firstChild);
+    } else if (window.innerWidth > 768 && existing) {
+      existing.remove();
+    }
+  }
+  window.addEventListener('resize', ensureAdminHamburger);
+  ensureAdminHamburger();
+
+  // ── Mobile: Create sidebar overlay ──
+  if (!document.querySelector('.sidebar-overlay')) {
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    overlay.addEventListener('click', () => {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar) sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+    });
+    document.body.appendChild(overlay);
+  }
+
+  // Hook toggleSidebar to also show/hide overlay
+  const origToggleSidebar = window.toggleSidebar;
+  window.toggleSidebar = function() {
+    origToggleSidebar();
+    const overlay = document.querySelector('.sidebar-overlay');
+    const sidebar = document.getElementById('sidebar');
+    if (overlay && sidebar) {
+      overlay.classList.toggle('visible', sidebar.classList.contains('open'));
+    }
+  };
 });
