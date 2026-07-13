@@ -458,6 +458,12 @@ body {
 
 /* ── Responsive Inline Grids Overrides ── */
 @media (max-width: 768px) {
+  /* Allow body, main content, and page wrappers to scroll on mobile */
+  body, html, .admin-main, .page-content {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   /* Settings page main grid */
   div[style*="grid-template-columns:220px 1fr"],
   div[style*="grid-template-columns: 220px 1fr"] {

@@ -1454,6 +1454,34 @@
       "message": "Locked out user login attempt: lock_1783950573709@example.com",
       "timestamp": "Jul 13, 2026 07:49 PM",
       "requestId": "system"
+    },
+    {
+      "id": "log-1783953080797-345",
+      "level": "WARN",
+      "message": "Login attempt with non-existent client email: billing@acme.comadmin",
+      "timestamp": "Jul 13, 2026 08:31 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783953227054-906",
+      "level": "INFO",
+      "message": "New client registered: client@lumina.com",
+      "timestamp": "Jul 13, 2026 08:33 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783953370260-194",
+      "level": "WARN",
+      "message": "Login attempt with non-existent client email: admin@lumina.digital",
+      "timestamp": "Jul 13, 2026 08:36 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783953375559-931",
+      "level": "WARN",
+      "message": "Login attempt with non-existent client email: admin@lumina.digital",
+      "timestamp": "Jul 13, 2026 08:36 PM",
+      "requestId": "system"
     }
   ],
   "files": [
@@ -2183,6 +2211,18 @@
       "company": "Lock Corp",
       "name": "Lock Test",
       "email": "lock_1783950573709@example.com",
+      "avatar": "",
+      "createdAt": "Jul 13, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783953227028",
+      "username": "client@lumina.com",
+      "passwordHash": "120000$53362fa93777925893f82647e04e6377$c1d5a34331376184e2f828df102c07bee370321796ace29496b6d254e3222c8da1782f9540f3c90a3a9ce8b3ebb51b72efa6d5ba9c64da5956efb9faff0847a3",
+      "company": "Lumina Test",
+      "name": "Client Test",
+      "email": "client@lumina.com",
       "avatar": "",
       "createdAt": "Jul 13, 2026",
       "status": "active",
@@ -3156,6 +3196,26 @@
         "companyName": "Lock Corp",
         "role": "client"
       }
+    },
+    {
+      "id": "sess_1783953227064_64ee8e3f720d",
+      "userId": "user_1783953227028",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTMyMjcwMjgiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUzMjI3MDY0XzY0ZWU4ZTNmNzIwZCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM5NTQxMjd9.x6dpP1E1QDItDyAMemGpgvHKgvhZjK7bK9-Cj66_78Q",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTMyMjcwMjgiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUzMjI3MDY0XzY0ZWU4ZTNmNzIwZCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NTU4MDI3fQ.GH3TZ0S5JG64nqzv1Ok4IbF_CAaI8eZd7sECpAIUzLg",
+      "createdAt": "2026-07-13T14:33:47.065Z",
+      "expiresAt": "2026-07-13T14:48:47.065Z",
+      "refreshExpiresAt": "2026-07-20T14:33:47.065Z",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "fingerprint": "::1:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "active": true,
+      "user": {
+        "id": "user_1783953227028",
+        "email": "client@lumina.com",
+        "fullName": "Client Test",
+        "companyName": "Lumina Test",
+        "role": "client"
+      }
     }
   ],
   "authUsers": [
@@ -3470,6 +3530,20 @@
       "lockUntil": "2026-07-13T14:04:34.277Z",
       "createdAt": "2026-07-13T13:49:33.804Z",
       "updatedAt": "2026-07-13T13:49:33.804Z"
+    },
+    {
+      "id": "user_1783953227028",
+      "fullName": "Client Test",
+      "companyName": "Lumina Test",
+      "email": "client@lumina.com",
+      "passwordHash": "120000$53362fa93777925893f82647e04e6377$c1d5a34331376184e2f828df102c07bee370321796ace29496b6d254e3222c8da1782f9540f3c90a3a9ce8b3ebb51b72efa6d5ba9c64da5956efb9faff0847a3",
+      "salt": "53362fa93777925893f82647e04e6377",
+      "role": "client",
+      "status": "active",
+      "loginAttempts": 0,
+      "lockUntil": null,
+      "createdAt": "2026-07-13T14:33:47.028Z",
+      "updatedAt": "2026-07-13T14:33:47.028Z"
     }
   ]
 }
