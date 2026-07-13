@@ -103,7 +103,7 @@ function initMobileMenu() {
                 <a href="faq.html"              class="nav-drawer-link"><span class="material-symbols-outlined text-[18px]">help_outline</span>FAQ</a>
                 <a href="careers.html"          class="nav-drawer-link"><span class="material-symbols-outlined text-[18px]">work</span>Careers</a>
                 <a href="contact.html"          class="nav-drawer-link"><span class="material-symbols-outlined text-[18px]">mail</span>Contact</a>
-                <a href="portal/index.html"     class="nav-drawer-link text-sky-300 font-semibold"><span class="material-symbols-outlined text-[18px] text-sky-400">login</span>Client Login</a>
+                <a id="mobile-portal-entry-btn" href="portal/index.html" class="nav-drawer-link text-sky-300 font-semibold"><span class="material-symbols-outlined text-[18px] text-sky-400">login</span>Login</a>
             </nav>
 
             <a href="book-consultation.html"

@@ -1774,6 +1774,7 @@
         const data = await res.json();
         
         const entryBtn = document.getElementById('portal-entry-btn');
+        const mobileEntryBtn = document.getElementById('mobile-portal-entry-btn');
         
         if (data.authenticated) {
           sessionStorage.setItem('lumina_client_auth', 'true');
@@ -1783,6 +1784,10 @@
             entryBtn.textContent = 'Go to Workspace';
             entryBtn.href = 'portal/dashboard.html';
             entryBtn.classList.remove('hidden');
+          }
+          if (mobileEntryBtn) {
+            mobileEntryBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-sky-400">login</span>Go to Workspace';
+            mobileEntryBtn.href = 'portal/dashboard.html';
           }
           
           // Update Get Started link
@@ -1799,6 +1804,10 @@
             entryBtn.textContent = 'Login';
             entryBtn.href = 'portal/index.html';
             entryBtn.classList.remove('hidden');
+          }
+          if (mobileEntryBtn) {
+            mobileEntryBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-sky-400">login</span>Login';
+            mobileEntryBtn.href = 'portal/index.html';
           }
         }
       } catch (err) {

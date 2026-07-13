@@ -151,6 +151,9 @@ html, body {
     justify-content: center !important;
     cursor: pointer !important;
   }
+  #portal-entry-btn {
+    display: none !important;
+  }
 
   /* Hero */
   #hero-section { padding-top: 80px !important; padding-bottom: 44px !important; }
@@ -379,7 +382,8 @@ html, body {
 
   .pt-xl { padding-top: 32px !important; }
   .pb-xl { padding-bottom: 32px !important; }
-  #site-footer .grid { grid-template-columns: 1fr !important; }
+  #site-footer .grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+  #site-footer .md\:col-span-4 { grid-column: 1 / -1 !important; }
 }
 
 /* --------------------------------------------------------------------------
