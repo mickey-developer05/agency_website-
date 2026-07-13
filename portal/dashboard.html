@@ -173,6 +173,31 @@
       gap: 10px;
       max-width: 320px;
     }
+
+    /* ── Responsive Client Portal ── */
+    @media (max-width: 1023px) {
+      nav.fixed.left-0.top-0 {
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 100;
+      }
+      nav.fixed.left-0.top-0.open {
+        transform: translateX(0);
+      }
+      .ml-72 {
+        margin-left: 0 !important;
+      }
+      header.fixed.left-72 {
+        left: 0 !important;
+      }
+      /* Top bar search container */
+      .w-64 {
+        width: 100px !important;
+      }
+      .w-64:focus-within {
+        width: 160px !important;
+      }
+    }
   </style>
 </head>
 <body class="font-body antialiased min-h-screen flex">
@@ -226,6 +251,9 @@
     <!-- TopNavBar -->
     <header class="bg-surface/60 backdrop-blur-xl fixed top-0 right-0 left-72 h-16 border-b border-primary/10 shadow-sm flex items-center justify-between px-8 w-full z-10">
       <div class="flex items-center gap-4">
+        <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors flex items-center mr-1" onclick="toggleClientSidebar()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
         <a href="../index.html" class="flex items-center justify-center w-8 h-8 rounded-lg border border-primary/15 bg-primary/5 hover:bg-primary/15 hover:border-primary/30 text-primary transition-all duration-200 shadow-sm" title="Back to Agency Homepage">
           <span class="material-symbols-outlined text-[18px]">home</span>
         </a>
@@ -674,6 +702,24 @@
       // Not authenticated — redirect to login
       window.location.href = 'index.html';
     })();
+
+    window.toggleClientSidebar = function() {
+      const nav = document.querySelector('nav');
+      if (nav) {
+        nav.classList.toggle('open');
+        if (nav.classList.contains('open')) {
+          setTimeout(() => {
+            const closeNav = (e) => {
+              if (!nav.contains(e.target) && !e.target.closest('button[onclick="toggleClientSidebar()"]')) {
+                nav.classList.remove('open');
+                document.removeEventListener('click', closeNav);
+              }
+            };
+            document.addEventListener('click', closeNav);
+          }, 50);
+        }
+      }
+    };
 
     // Shared functions for client actions
     async function logoutClient() {

@@ -1391,6 +1391,69 @@
       "message": "Locked out user login attempt: lock_1783885516643@example.com",
       "timestamp": "Jul 13, 2026 01:45 AM",
       "requestId": "system"
+    },
+    {
+      "id": "log-1783950570822-69",
+      "level": "INFO",
+      "message": "New client registered: ava_1783950570674_595@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950570939-939",
+      "level": "INFO",
+      "message": "Successful login for client: ava_1783950570674_595@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950573840-79",
+      "level": "INFO",
+      "message": "New client registered: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950573932-490",
+      "level": "WARN",
+      "message": "Failed login attempt (1/5) for client: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950574014-76",
+      "level": "WARN",
+      "message": "Failed login attempt (2/5) for client: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950574095-293",
+      "level": "WARN",
+      "message": "Failed login attempt (3/5) for client: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950574191-590",
+      "level": "WARN",
+      "message": "Failed login attempt (4/5) for client: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950574279-335",
+      "level": "WARN",
+      "message": "Account locked out due to brute force: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
+    },
+    {
+      "id": "log-1783950574293-156",
+      "level": "WARN",
+      "message": "Locked out user login attempt: lock_1783950573709@example.com",
+      "timestamp": "Jul 13, 2026 07:49 PM",
+      "requestId": "system"
     }
   ],
   "files": [
@@ -2096,6 +2159,30 @@
       "company": "Lock Corp",
       "name": "Lock Test",
       "email": "lock_1783885516643@example.com",
+      "avatar": "",
+      "createdAt": "Jul 13, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783950570793",
+      "username": "ava_1783950570674_595@example.com",
+      "passwordHash": "120000$cc117a934e65c3cd2886ab82059c6a87$678d745de6c920c0b3e60191823d329301b460bf3658233bc456c4f0df12e85098c1d98109ce8294d779f50dc2544c3c4357337e7d7fbf55f57845d1603575a2",
+      "company": "Northstar Labs",
+      "name": "Ava Example",
+      "email": "ava_1783950570674_595@example.com",
+      "avatar": "",
+      "createdAt": "Jul 13, 2026",
+      "status": "active",
+      "role": "client"
+    },
+    {
+      "id": "user_1783950573803",
+      "username": "lock_1783950573709@example.com",
+      "passwordHash": "120000$adcb4c5d1a29a4636b2ea35727c176d5$7aaa3bb28e865451e740bd540791e97147abeb19ed503860ac6f4d21970e61c8004ad3d7047a2b0f68ff7323ab7d5775c0563d9bc64294dc9e4766554942156d",
+      "company": "Lock Corp",
+      "name": "Lock Test",
+      "email": "lock_1783950573709@example.com",
       "avatar": "",
       "createdAt": "Jul 13, 2026",
       "status": "active",
@@ -3008,6 +3095,67 @@
         "companyName": "Lock Corp",
         "role": "client"
       }
+    },
+    {
+      "id": "sess_1783950570827_83269369f66d",
+      "userId": "user_1783950570793",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTA1NzA3OTMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUwNTcwODI3XzgzMjY5MzY5ZjY2ZCIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM5NTE0NzB9.-Za_6wuZWHO_wGH-RmpnBkwgDI8v1Mpahr1fQjP9B9A",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTA1NzA3OTMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUwNTcwODI3XzgzMjY5MzY5ZjY2ZCIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NTU1MzcwfQ.-MBxXBvozq48wpp4J3Jm3mSeRPfsasV-ZhyJ8L1wtqc",
+      "createdAt": "2026-07-13T13:49:30.827Z",
+      "expiresAt": "2026-07-13T14:04:30.827Z",
+      "refreshExpiresAt": "2026-07-20T13:49:30.827Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783950570793",
+        "email": "ava_1783950570674_595@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      }
+    },
+    {
+      "id": "sess_1783950570943_e6774ca2cf29",
+      "userId": "user_1783950570793",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTA1NzA3OTMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUwNTcwOTQzX2U2Nzc0Y2EyY2YyOSIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM5NTE0NzB9.UOITp-p8WRmDEdZ8CXGg5Nv0CM285uJgv7z87V73Kgc",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTA1NzA3OTMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUwNTcwOTQzX2U2Nzc0Y2EyY2YyOSIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NTU1MzcwfQ.izk_fUPymnrf1wQ9hTMBFU5KCPlKKJadm9MzIS8b4M4",
+      "createdAt": "2026-07-13T13:49:30.943Z",
+      "expiresAt": "2026-07-13T14:04:30.943Z",
+      "refreshExpiresAt": "2026-07-20T13:49:30.943Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": false,
+      "user": {
+        "id": "user_1783950570793",
+        "email": "ava_1783950570674_595@example.com",
+        "fullName": "Ava Example",
+        "companyName": "Northstar Labs",
+        "role": "client"
+      },
+      "destroyedAt": "2026-07-13T13:49:30.976Z"
+    },
+    {
+      "id": "sess_1783950573844_138dab5ae627",
+      "userId": "user_1783950573803",
+      "role": "client",
+      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTA1NzM4MDMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUwNTczODQ0XzEzOGRhYjVhZTYyNyIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE3ODM5NTE0NzN9.t2XumYSap2Y5p71qeVcnRZdNdJoeDiw8A10LKFKRH84",
+      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzE3ODM5NTA1NzM4MDMiLCJyb2xlIjoiY2xpZW50Iiwic2Vzc2lvbklkIjoic2Vzc18xNzgzOTUwNTczODQ0XzEzOGRhYjVhZTYyNyIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNzg0NTU1MzczfQ.CnUPoUJAI1dOElpkrlvxoXzOh4fm_s1yivH1-PcLAT0",
+      "createdAt": "2026-07-13T13:49:33.844Z",
+      "expiresAt": "2026-07-13T14:04:33.844Z",
+      "refreshExpiresAt": "2026-07-20T13:49:33.844Z",
+      "userAgent": "node",
+      "fingerprint": "127.0.0.1:node",
+      "active": true,
+      "user": {
+        "id": "user_1783950573803",
+        "email": "lock_1783950573709@example.com",
+        "fullName": "Lock Test",
+        "companyName": "Lock Corp",
+        "role": "client"
+      }
     }
   ],
   "authUsers": [
@@ -3294,6 +3442,34 @@
       "lockUntil": "2026-07-12T20:00:17.197Z",
       "createdAt": "2026-07-12T19:45:16.745Z",
       "updatedAt": "2026-07-12T19:45:16.745Z"
+    },
+    {
+      "id": "user_1783950570793",
+      "fullName": "Ava Example",
+      "companyName": "Northstar Labs",
+      "email": "ava_1783950570674_595@example.com",
+      "passwordHash": "120000$cc117a934e65c3cd2886ab82059c6a87$678d745de6c920c0b3e60191823d329301b460bf3658233bc456c4f0df12e85098c1d98109ce8294d779f50dc2544c3c4357337e7d7fbf55f57845d1603575a2",
+      "salt": "cc117a934e65c3cd2886ab82059c6a87",
+      "role": "client",
+      "status": "active",
+      "loginAttempts": 0,
+      "lockUntil": null,
+      "createdAt": "2026-07-13T13:49:30.793Z",
+      "updatedAt": "2026-07-13T13:49:30.794Z"
+    },
+    {
+      "id": "user_1783950573803",
+      "fullName": "Lock Test",
+      "companyName": "Lock Corp",
+      "email": "lock_1783950573709@example.com",
+      "passwordHash": "120000$adcb4c5d1a29a4636b2ea35727c176d5$7aaa3bb28e865451e740bd540791e97147abeb19ed503860ac6f4d21970e61c8004ad3d7047a2b0f68ff7323ab7d5775c0563d9bc64294dc9e4766554942156d",
+      "salt": "adcb4c5d1a29a4636b2ea35727c176d5",
+      "role": "client",
+      "status": "active",
+      "loginAttempts": 0,
+      "lockUntil": "2026-07-13T14:04:34.277Z",
+      "createdAt": "2026-07-13T13:49:33.804Z",
+      "updatedAt": "2026-07-13T13:49:33.804Z"
     }
   ]
 }

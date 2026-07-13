@@ -100,7 +100,20 @@ async function adminLogout() {
 // ── Sidebar Toggle (mobile) ──
 function toggleSidebar() {
   const s = document.getElementById('sidebar');
-  s && s.classList.toggle('open');
+  if (s) {
+    s.classList.toggle('open');
+    if (s.classList.contains('open')) {
+      setTimeout(() => {
+        const closeOnOutsideClick = (e) => {
+          if (!s.contains(e.target) && !e.target.closest('button[onclick="toggleSidebar()"]')) {
+            s.classList.remove('open');
+            document.removeEventListener('click', closeOnOutsideClick);
+          }
+        };
+        document.addEventListener('click', closeOnOutsideClick);
+      }, 50);
+    }
+  }
 }
 
 // ── Set Active Nav ──
@@ -319,4 +332,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateSidebarUnreadBadge();
   setInterval(updateSidebarUnreadBadge, 15000);
+
+  // Auto-wrap all tables to make them responsive
+  document.querySelectorAll('table').forEach(table => {
+    if (!table.parentElement.classList.contains('table-container') && !table.closest('.inv-preview')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-container';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+  });
 });

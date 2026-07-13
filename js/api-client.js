@@ -492,3 +492,19 @@ const LuminaAPI = {
 
 // Export to window
 window.LuminaAPI = LuminaAPI;
+
+// Auto-wrap all tables inside client pages on load to make them responsive
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('table').forEach(table => {
+    if (!table.parentElement.classList.contains('table-container') && !table.closest('.inv-preview') && !table.closest('.inv-table')) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-container';
+      wrapper.style.width = '100%';
+      wrapper.style.overflowX = 'auto';
+      wrapper.style.webkitOverflowScrolling = 'touch';
+      wrapper.style.marginBottom = '1rem';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    }
+  });
+});

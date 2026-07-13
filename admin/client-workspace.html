@@ -238,6 +238,26 @@
 
     /* Scrollbar for client panel */
     .client-list::-webkit-scrollbar, .chat-messages::-webkit-scrollbar { width: 3px; }
+
+    /* ── Responsive Chat Workspace ── */
+    @media (max-width: 768px) {
+      .chat-layout {
+        grid-template-columns: 1fr !important;
+        height: calc(100vh - 140px) !important;
+      }
+      .clients-panel {
+        display: flex !important;
+      }
+      .chat-panel {
+        display: none !important;
+      }
+      .chat-layout.active-chat-open .clients-panel {
+        display: none !important;
+      }
+      .chat-layout.active-chat-open .chat-panel {
+        display: flex !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-[#020617] text-on-surface font-[Inter] antialiased h-screen overflow-hidden flex">
@@ -406,6 +426,9 @@
         <!-- Chat header (active client) -->
         <div class="chat-header" id="chat-header">
           <div class="flex items-center gap-3">
+            <button class="md:hidden text-primary flex items-center mr-1" onclick="closeChatPanel()" style="background:none;border:none;cursor:pointer">
+              <span class="material-symbols-outlined" style="font-size:20px">arrow_back</span>
+            </button>
             <div class="client-avatar" id="chat-header-avatar" style="width:36px;height:36px">
               <span class="material-symbols-outlined" style="font-size:18px;color:#7dd3fc">person</span>
             </div>
@@ -458,6 +481,11 @@
 </main>
 
 <script>
+  window.closeChatPanel = function() {
+    const layout = document.querySelector('.chat-layout');
+    if (layout) layout.classList.remove('active-chat-open');
+  };
+
   // ── State ──
   let allMessages = [];
   let selectedClient = null;
@@ -625,6 +653,8 @@
   // ── Select Client ──
   function selectClient(group) {
     selectedClient = group;
+    const layout = document.querySelector('.chat-layout');
+    if (layout) layout.classList.add('active-chat-open');
 
     const presenceInfo = clientPresenceList.find(p => p.company === group.company);
     const isOnline = presenceInfo ? presenceInfo.isOnline : false;
