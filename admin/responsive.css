@@ -1,7 +1,7 @@
-/* --------------------------------------------------------------------------
-   LUMINA DIGITAL — ENTERPRISE RESPONSIVE SYSTEM v2.0
-   Architecture: Desktop First ? Tablet 1024 ? Tablet-SM 768 ? Phone 600 ? Phone-SM 480 ? XS 360
-   DO NOT add ad-hoc media queries elsewhere. All responsive rules live HERE.
+ï»¿/* --------------------------------------------------------------------------
+   LUMINA DIGITAL - RESPONSIVE SYSTEM v2.1
+   Architecture: Desktop First -> Tablet 1024 -> Tablet-SM 768 -> Phone 600 -> Phone-SM 480 -> XS 360
+   Single source of truth for all responsive rules.
    -------------------------------------------------------------------------- */
 
 /* -- DESIGN TOKENS ------------------------------------------------------- */
@@ -26,12 +26,10 @@
   --type-h2-phone: clamp(1.2rem, 5vw, 1.5rem);
   --type-h3-phone: clamp(1.05rem, 4.5vw, 1.25rem);
   --type-body-phone: clamp(0.875rem, 3.5vw, 1rem);
-  --nav-height: 64px;
-  --nav-height-phone: 60px;
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 1 — BASE FIXES
+   SECTION 1 - BASE FIXES
    -------------------------------------------------------------------------- */
 html, body {
   max-width: 100%;
@@ -39,7 +37,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 2 — TABLET (max-width: 1024px)
+   SECTION 2 - TABLET (max-width: 1024px)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .max-w-container-max {
@@ -48,8 +46,6 @@ html, body {
   }
   #hero-section {
     min-height: auto !important;
-    padding-top: 56px !important;
-    padding-bottom: 56px !important;
   }
   body.admin-layout .sidebar {
     position: fixed;
@@ -63,7 +59,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 3 — TABLET SMALL (max-width: 768px)
+   SECTION 3 - TABLET SMALL (max-width: 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
 
@@ -73,8 +69,8 @@ html, body {
     padding-right: var(--container-pad-phone) !important;
   }
 
-  /* Sections: no fixed heights */
-  section { min-height: auto !important; height: auto !important; }
+  /* Sections: only remove min-height; do NOT force height:auto (breaks canvas-backed sections) */
+  section { min-height: auto !important; }
   .pt-xl  { padding-top: var(--space-section-tablet) !important; }
   .pb-xl  { padding-bottom: var(--space-section-tablet) !important; }
   .py-xl  { padding-top: var(--space-section-tablet) !important; padding-bottom: var(--space-section-tablet) !important; }
@@ -92,7 +88,7 @@ html, body {
   .admin-mobile-menu-btn { display: flex !important; }
   .page-header { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
 
-  /* Inline style grid overrides */
+  /* Inline style grid overrides for admin pages */
   div[style*="grid-template-columns:220px 1fr"],
   div[style*="grid-template-columns: 220px 1fr"] {
     grid-template-columns: 1fr !important;
@@ -115,15 +111,14 @@ html, body {
   .table-container, .data-table-wrap { width: 100% !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
   .data-table { min-width: 540px !important; }
 
-  /* Navigation */
-  nav.fixed.top-0 { height: var(--nav-height-phone) !important; min-height: unset !important; }
+  /* Navigation: drawer sizing */
   #mobile-menu-drawer {
     padding-top: 80px !important; padding-bottom: 24px !important;
     gap: 0 !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch !important;
   }
 
   /* Hero */
-  #hero-section { min-height: auto !important; padding-top: 80px !important; padding-bottom: 44px !important; }
+  #hero-section { padding-top: 80px !important; padding-bottom: 44px !important; }
   .sticky { position: relative !important; top: auto !important; min-height: auto !important; margin-bottom: 20px !important; }
 
   /* Section padding */
@@ -133,7 +128,7 @@ html, body {
   }
   .my-20, .my-24 { margin-top: 32px !important; margin-bottom: 32px !important; }
 
-  /* Cards */
+  /* Cards: remove fixed heights only */
   .glass-card, .liquid-glass, .glass-card-sm { height: auto !important; min-height: auto !important; }
   .p-lg { padding: var(--space-card-tablet) !important; }
   .p-xl { padding: 24px !important; }
@@ -153,24 +148,15 @@ html, body {
   #cal-month-title { width: auto !important; min-width: 100px !important; font-size: 12px !important; }
   .liquid-glass.sticky { position: relative !important; top: auto !important; }
 
-  /* Modals */
-  #article-modal,
-  #bio-modal,
-  div.fixed[id$="-modal"],
-  div.fixed[class*="backdrop-blur-md"] {
-    padding: 12px !important; align-items: flex-end !important;
-  }
+  /* Modals: keep centered at tablet; scroll long content */
   #article-modal .glass-card,
   #bio-modal .glass-card,
-  div.fixed[id$="-modal"] .glass-card,
-  div.fixed[class*="backdrop-blur-md"] .glass-card {
+  div.fixed[id$="-modal"] .glass-card {
     max-height: 92vh !important; overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    padding: 20px !important; border-radius: 20px 20px 12px 12px !important;
-    margin: 0 auto !important; width: 100% !important;
   }
 
-  /* Forms: prevent iOS zoom */
+  /* Forms: only font-size to prevent iOS auto-zoom; padding/radius from glassmorphism styles */
   input[type="text"],
   input[type="email"],
   input[type="password"],
@@ -178,23 +164,12 @@ html, body {
   input[type="time"],
   textarea,
   select {
-    font-size: 16px !important; border-radius: 12px !important;
+    font-size: 16px !important;
   }
 
-  /* Portal sidebar off-canvas */
-  aside[class*="w-64"],
-  aside[class*="w-60"],
-  aside[class*="w-72"] {
-    position: fixed !important; left: 0; top: 0;
-    height: 100vh !important; z-index: 50;
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  aside[class*="w-64"].open,
-  aside[class*="w-60"].open,
-  aside[class*="w-72"].open { transform: translateX(0) !important; }
+  /* Portal sidebar: handled by portal's own inline responsive CSS at 1023px */
 
-  /* Portal main content */
+  /* Portal main content margin */
   [class*="ml-64"], [class*="ml-60"], [class*="ml-72"] { margin-left: 0 !important; }
 
   /* Footer */
@@ -208,7 +183,7 @@ html, body {
   /* Flex wrap */
   .flex.gap-lg, .flex.gap-xl { flex-wrap: wrap !important; }
 
-  /* Sidebar overlay */
+  /* Sidebar overlay (admin) */
   .sidebar-overlay {
     position: fixed; inset: 0;
     background: rgba(2, 6, 23, 0.7);
@@ -226,13 +201,14 @@ html, body {
   }
   .admin-mobile-menu-btn:hover { background: rgba(125, 211, 252, 0.08); color: #7dd3fc; }
 
-  /* Performance */
+  /* Performance: disable float animation on mobile */
   .animate-float { animation: none !important; }
+  /* Reveal animations: show immediately on mobile (no JS-driven entrance needed) */
   .reveal-left, .reveal-right, .reveal-up, .reveal-down {
     transform: none !important; opacity: 1 !important; pointer-events: auto !important;
   }
 
-  /* Portal tabs */
+  /* Portal tabs: horizontal scroll */
   .portal-tab-bar {
     overflow-x: auto !important; -webkit-overflow-scrolling: touch !important;
     white-space: nowrap !important; scrollbar-width: none !important;
@@ -240,11 +216,8 @@ html, body {
   .portal-tab-bar::-webkit-scrollbar { display: none !important; }
   .portal-chat-area { height: 50vh !important; min-height: 300px !important; max-height: 60vh !important; }
 
-  /* Pricing */
+  /* Pricing comparison table */
   .comparison-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
-
-  /* Blog modal */
-  #article-modal { align-items: flex-end !important; padding: 0 !important; }
 
   /* AI console */
   .ai-console-chat { height: calc(100vh - 220px) !important; min-height: 300px !important; }
@@ -252,7 +225,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 4 — PHONE (max-width: 600px)
+   SECTION 4 - PHONE (max-width: 600px)
    -------------------------------------------------------------------------- */
 @media (max-width: 600px) {
 
@@ -262,13 +235,13 @@ html, body {
   /* Hero */
   #hero-section { padding-top: 88px !important; padding-bottom: 36px !important; min-height: auto !important; }
 
-  /* Sections */
-  section, .py-20, .py-24, .py-28, .py-32 {
+  /* Sections: compress spacing. Do NOT target bare `section` (too broad). */
+  .py-20, .py-24, .py-28, .py-32 {
     padding-top: var(--space-section-phone) !important;
     padding-bottom: var(--space-section-phone) !important;
   }
-  .pt-xl, section.pt-xl { padding-top: var(--space-section-phone) !important; }
-  .pb-xl, section.pb-xl { padding-bottom: var(--space-section-phone) !important; }
+  .pt-xl { padding-top: var(--space-section-phone) !important; }
+  .pb-xl { padding-bottom: var(--space-section-phone) !important; }
 
   /* Typography */
   h1 { font-size: var(--type-display-phone) !important; line-height: 1.2 !important; }
@@ -297,9 +270,6 @@ html, body {
   }
   .stats-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
 
-  /* Nav logo */
-  nav a.font-display-lg { font-size: 1.1rem !important; }
-
   /* Calendar */
   #cal-month-title { font-size: 11px !important; min-width: 80px !important; }
   #calendar-days-grid { gap: 2px !important; }
@@ -309,13 +279,13 @@ html, body {
 
   /* Modals */
   #article-modal .glass-card, #bio-modal .glass-card,
-  div.fixed[id$="-modal"] .glass-card, div.fixed[class*="backdrop-blur-md"] .glass-card {
+  div.fixed[id$="-modal"] .glass-card {
     max-height: 95vh !important; padding: 16px !important;
     border-radius: 20px 20px 0 0 !important; width: 100% !important; max-width: 100% !important;
   }
 
-  /* Forms */
-  input, select, textarea { font-size: 16px !important; padding: 10px 12px !important; border-radius: 10px !important; }
+  /* Forms: only font-size (iOS zoom fix); leave padding/radius to glassmorphism styles */
+  input, select, textarea { font-size: 16px !important; }
   button[type="submit"], .btn-primary, .btn-outline { width: 100% !important; justify-content: center !important; }
 
   /* Admin phone */
@@ -330,22 +300,22 @@ html, body {
   #site-footer .md\:col-span-4 { grid-column: 1 / -1 !important; }
   #site-footer [class*="pt-16"] { padding-top: 36px !important; }
 
-  /* Orbs: hide for perf */
+  /* Ambient orbs: hide for performance */
   .orb1, .orb2 { display: none !important; }
 
-  /* Overflow clip fix */
-  nav.fixed.top-0, div.fixed[id$="-modal"], div.fixed[class*="backdrop-blur-md"] { overflow: hidden !important; }
+  /* Keep nav and modals overflow:hidden */
+  nav.fixed.top-0, div.fixed[id$="-modal"] { overflow: hidden !important; }
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 5 — PHONE SMALL (max-width: 480px)
+   SECTION 5 - PHONE SMALL (max-width: 480px)
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
   h1 { font-size: clamp(1.5rem, 6.5vw, 1.875rem) !important; line-height: 1.2 !important; }
   h2, .text-headline-xl { font-size: clamp(1.25rem, 5.5vw, 1.625rem) !important; line-height: 1.25 !important; }
   h3 { font-size: clamp(1rem, 4.5vw, 1.25rem) !important; }
 
-  /* Hero CTA buttons: stack */
+  /* Hero CTA buttons: stack vertically */
   #hero-section .flex.flex-wrap.gap-sm {
     flex-direction: column !important; align-items: flex-start !important; gap: 10px !important;
   }
@@ -358,12 +328,12 @@ html, body {
   #calendar-days-grid button { font-size: 9px !important; min-height: 28px !important; padding: 4px 1px !important; border-radius: 4px !important; }
   .stats-grid { grid-template-columns: 1fr !important; }
 
-  /* Modals: bottom sheet */
-  #article-modal, #bio-modal, div.fixed[id$="-modal"], div.fixed[class*="backdrop-blur-md"] {
+  /* Modals: bottom-sheet at 480px */
+  #article-modal, #bio-modal, div.fixed[id$="-modal"] {
     align-items: flex-end !important; padding: 0 !important;
   }
   #article-modal .glass-card, #bio-modal .glass-card,
-  div.fixed[id$="-modal"] .glass-card, div.fixed[class*="backdrop-blur-md"] .glass-card {
+  div.fixed[id$="-modal"] .glass-card {
     border-radius: 24px 24px 0 0 !important; margin: 0 !important;
     width: 100% !important; max-width: 100% !important; max-height: 90vh !important; padding: 20px 16px !important;
   }
@@ -374,7 +344,7 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 6 — PHONE XS (max-width: 360px)
+   SECTION 6 - PHONE XS (max-width: 360px)
    -------------------------------------------------------------------------- */
 @media (max-width: 360px) {
   h1 { font-size: 1.4rem !important; line-height: 1.2 !important; }
@@ -391,15 +361,13 @@ html, body {
 }
 
 /* --------------------------------------------------------------------------
-   SECTION 7 — TOUCH TARGETS (min 44x44px)
+   SECTION 7 - TOUCH TARGETS
+   IMPORTANT: Do NOT use broad selectors like a[class*="rounded"] here.
+   That matches every link on the site and breaks the layout.
+   Only size explicit calendar controls.
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  button:not(.time-slot-btn):not(.quick-action-btn),
-  a[class*="rounded"],
-  input[type="checkbox"],
-  input[type="radio"] { min-height: 44px; min-width: 44px; }
-
-  .topbar-icon-btn, #cal-prev, #cal-next {
+  #cal-prev, #cal-next {
     min-height: 36px !important; min-width: 36px !important;
   }
   .time-slot-btn { min-height: 36px !important; min-width: unset !important; }
