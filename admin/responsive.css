@@ -1,4 +1,4 @@
-﻿/* --------------------------------------------------------------------------
+/* --------------------------------------------------------------------------
    LUMINA DIGITAL - RESPONSIVE SYSTEM v2.1
    Architecture: Desktop First -> Tablet 1024 -> Tablet-SM 768 -> Phone 600 -> Phone-SM 480 -> XS 360
    Single source of truth for all responsive rules.
@@ -201,12 +201,7 @@ html, body {
   }
   .admin-mobile-menu-btn:hover { background: rgba(125, 211, 252, 0.08); color: #7dd3fc; }
 
-  /* Performance: disable float animation on mobile */
-  .animate-float { animation: none !important; }
-  /* Reveal animations: show immediately on mobile (no JS-driven entrance needed) */
-  .reveal-left, .reveal-right, .reveal-up, .reveal-down {
-    transform: none !important; opacity: 1 !important; pointer-events: auto !important;
-  }
+  /* Performance: animations restored on mobile */
 
   /* Portal tabs: horizontal scroll */
   .portal-tab-bar {
