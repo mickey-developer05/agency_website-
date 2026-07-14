@@ -1,0 +1,400 @@
+﻿/**
+ * sticky-stack-animation.js  v2.0
+ * =============================================================
+ * Premium Sticky-Stack Scroll Animation — Lumina Digital
+ * =============================================================
+ *
+ * HOW IT WORKS
+ * ------------
+ * The Our Process section already uses CSS `position:sticky` with
+ * increasing top offsets and z-index values so cards naturally stack.
+ * This module adds the premium "slide up from below" entry animation
+ * driven by scroll position, without touching any HTML or CSS.
+ *
+ * For each card i (0-based):
+ *   - We calculate the scroll position at which the card "arrives"
+ *     at its sticky point (scrollY = cardNaturalTop - stickyTop - navH)
+ *   - Below that point: card is offset downward (translateY positive)
+ *   - At that point: card has fully arrived (translateY = 0)
+ *   - Cards that haven't arrived yet slide upward as you scroll
+ *
+ * For the Team section this same engine runs only on mobile (<= 768px),
+ * using an IntersectionObserver-driven version since the team cards are
+ * NOT using CSS sticky (they are in a CSS Grid).
+ *
+ * SAFETY
+ * ------
+ * - Zero HTML modifications
+ * - Zero CSS file modifications
+ * - Only adds inline `transform`, `opacity`, `willChange` styles on cards
+ * - All inline styles are fully removed when animation is stopped
+ * - No conflicts with existing CSS transitions (they target other props)
+ * =============================================================
+ */
+(function () {
+  'use strict';
+
+  /* ═══════════════════════════════════════════════════════════
+   * CONFIG
+   * ═══════════════════════════════════════════════════════════ */
+  var CFG = {
+    NAV_HEIGHT:     88,    // px - fixed nav height
+    SLIDE_DISTANCE: 120,   // px - how far below cards start before animating in
+    LERP_SPEED:     0.10,  // scroll smoothing factor (0→1, lower = smoother)
+    SCALE_START:    0.97,  // initial scale when card enters
+    CARD_PEEK:      12,    // px offset between stacked cards (visual depth)
+    TRANSITION_PX:  260,   // px of scroll dedicated to each card's entry
+    // Team section (mobile stack): separate because no CSS sticky base
+    TEAM_SLIDE:     100,   // px slide distance for team cards
+    TEAM_TRANS_PX:  240,   // px per team card
+  };
+
+  /* ═══════════════════════════════════════════════════════════
+   * UTILS
+   * ═══════════════════════════════════════════════════════════ */
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+  /* ═══════════════════════════════════════════════════════════
+   * ENGINE A — PROCESS SECTION
+   * Works WITH existing CSS sticky. Drives "slide-in from below"
+   * animation for each card as it arrives at its sticky position.
+   * ═══════════════════════════════════════════════════════════ */
+  function initProcessAnim(section) {
+    if (!section) return null;
+
+    /* Find the stacking container (the .max-w-5xl div) */
+    var container = section.querySelector('.max-w-5xl');
+    if (!container) return null;
+
+    /* Get all direct-child card divs */
+    var cards = Array.prototype.slice.call(
+      container.querySelectorAll(':scope > div')
+    );
+    if (cards.length < 2) return null;
+
+    var cardCount = cards.length;
+
+    /* Per-card sticky offsets (extracted from Tailwind sticky classes) */
+    var stickyTops = cards.map(function (card) {
+      /* Read from the class: sticky top-[130px] → 130, top-[140px] → 140 … */
+      var m = card.className.match(/top-\[(\d+)px\]/);
+      return m ? parseInt(m[1], 10) : CFG.NAV_HEIGHT;
+    });
+
+    /* State */
+    var measurements = [];
+    var curY = window.pageYOffset;
+    var tgtY = curY;
+    var raf  = null;
+    var live = false;
+
+    /* ── Measure card natural positions ── */
+    function measure() {
+      /* Temporarily remove our transforms to get true layout positions */
+      cards.forEach(function (c) { c.style.transform = 'none'; });
+
+      measurements = cards.map(function (card, i) {
+        var rect = card.getBoundingClientRect();
+        var top  = rect.top + window.pageYOffset;
+        /* The scroll Y at which this card "arrives" at its sticky pin */
+        var arrivalY = top - stickyTops[i];
+        return { arrivalY: arrivalY, stickyTop: stickyTops[i] };
+      });
+
+      /* Restore transforms */
+      applyState(window.pageYOffset);
+    }
+
+    /* ── Core render function ── */
+    function applyState(scrollY) {
+      if (!measurements.length) return;
+
+      cards.forEach(function (card, i) {
+        var m = measurements[i];
+        /* How far past arrival are we? (-) = not arrived, (+) = past */
+        var delta = scrollY - m.arrivalY;
+
+        if (i === 0) {
+          /* Card 1: drives straight in with no translateY shift — it's the anchor */
+          var phase0 = clamp((delta + CFG.TRANSITION_PX) / CFG.TRANSITION_PX, 0, 1);
+          var e0     = easeOutCubic(phase0);
+          var ty0    = lerp(CFG.SLIDE_DISTANCE, 0, e0);
+          var sc0    = lerp(CFG.SCALE_START, 1, e0);
+          var op0    = clamp(phase0 * 1.5, 0, 1);
+          card.style.transform = 'translateY(' + ty0.toFixed(2) + 'px) scale(' + sc0.toFixed(4) + ')';
+          card.style.opacity   = op0.toFixed(3);
+          card.style.zIndex    = '10';
+          return;
+        }
+
+        /* Cards 2+: slide up from below as they arrive at their sticky point */
+        var phase = clamp(delta / CFG.TRANSITION_PX, 0, 1);
+        var eased = easeOutQuart(phase);
+
+        /* Start position: SLIDE_DISTANCE px below card's natural resting point */
+        var ty  = lerp(CFG.SLIDE_DISTANCE, 0, eased);
+        var sc  = lerp(CFG.SCALE_START, 1.0, eased);
+        var op  = clamp(phase * 2.0, 0, 1);
+
+        card.style.transform = 'translateY(' + ty.toFixed(2) + 'px) scale(' + sc.toFixed(4) + ')';
+        card.style.opacity   = op.toFixed(3);
+        card.style.zIndex    = String(10 + i);
+      });
+    }
+
+    /* ── rAF loop with lerp smoothing ── */
+    function onScroll() {
+      tgtY = window.pageYOffset;
+      if (!live) { live = true; raf = requestAnimationFrame(tick); }
+    }
+
+    function tick() {
+      curY = lerp(curY, tgtY, CFG.LERP_SPEED);
+      applyState(curY);
+      if (Math.abs(curY - tgtY) > 0.2) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        curY = tgtY; applyState(curY); live = false;
+      }
+    }
+
+    function onResize() {
+      /* Re-measure after a brief debounce */
+      clearTimeout(onResize._t);
+      onResize._t = setTimeout(function () {
+        measure();
+        curY = window.pageYOffset;
+        tgtY = curY;
+        applyState(curY);
+      }, 120);
+    }
+
+    function start() {
+      /* Mark cards for GPU compositing */
+      cards.forEach(function (c) { c.style.willChange = 'transform, opacity'; });
+      measure();
+      curY = window.pageYOffset;
+      tgtY = curY;
+      applyState(curY);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize, { passive: true });
+    }
+
+    function stop() {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      live = false;
+      cards.forEach(function (c) {
+        c.style.transform  = '';
+        c.style.opacity    = '';
+        c.style.zIndex     = '';
+        c.style.willChange = '';
+      });
+      measurements = [];
+    }
+
+    return { start: start, stop: stop };
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+   * ENGINE B — TEAM SECTION (mobile only)
+   * Team cards are in a CSS Grid (no CSS sticky base).
+   * We implement a virtual scroll-driven stacking by:
+   *   1. Computing how much scroll "room" is needed (N-1 transitions)
+   *   2. Reading the section's scroll position progress
+   *   3. Translating each card relative to a stacking baseline
+   * ═══════════════════════════════════════════════════════════ */
+  function initTeamAnim(section) {
+    if (!section) return null;
+
+    var grid = section.querySelector('#homepage-team-grid');
+    if (!grid) return null;
+
+    var cards = Array.prototype.slice.call(
+      grid.querySelectorAll(':scope > div')
+    );
+    if (cards.length < 2) return null;
+
+    var cardCount  = cards.length;
+    var totalRange = CFG.TEAM_TRANS_PX * (cardCount - 1);
+
+    /* Saved grid style to restore on stop */
+    var savedGridDisplay = '';
+
+    var pinStart   = 0;
+    var cardH      = 0;
+    var curY       = window.pageYOffset;
+    var tgtY       = curY;
+    var raf        = null;
+    var live       = false;
+
+    function measure() {
+      cardH    = cards[0].offsetHeight;
+      var rect = section.getBoundingClientRect();
+      /* Pin starts when section header clears the nav */
+      var hdr  = section.querySelector('.mb-20');
+      var hdrH = hdr ? hdr.offsetHeight + 24 : 80;
+      pinStart = rect.top + window.pageYOffset + hdrH;
+    }
+
+    function applyState(scrollY) {
+      var raw = scrollY - pinStart;
+
+      /* Before section: show all cards normally */
+      if (raw <= 0) {
+        cards.forEach(function (c, i) {
+          c.style.transform = 'translateY(0px) scale(1)';
+          c.style.opacity   = '1';
+          c.style.zIndex    = String(10 + i);
+          c.style.position  = '';
+          c.style.top       = '';
+        });
+        return;
+      }
+
+      /* After full stack complete: all settled */
+      if (raw >= totalRange) {
+        cards.forEach(function (c, i) {
+          var endY = -(i * CFG.CARD_PEEK);
+          c.style.transform = 'translateY(' + endY + 'px) scale(1)';
+          c.style.opacity   = '1';
+          c.style.zIndex    = String(10 + i);
+        });
+        return;
+      }
+
+      /* Active stacking phase */
+      var progress = raw / CFG.TEAM_TRANS_PX; // 0 → cardCount-1
+
+      cards.forEach(function (c, i) {
+        var zBase = 10 + i;
+
+        if (i === 0) {
+          /* Anchor card: fixed in place */
+          c.style.transform = 'translateY(0px) scale(1)';
+          c.style.opacity   = '1';
+          c.style.zIndex    = '10';
+          return;
+        }
+
+        var phase = clamp(progress - (i - 1), 0, 1);
+        var eased = easeOutQuart(phase);
+
+        var startY = CFG.TEAM_SLIDE;
+        var endY   = -(i * CFG.CARD_PEEK);
+        var ty     = lerp(startY, endY, eased);
+        var sc     = lerp(0.96, 1.0, eased);
+        var op     = clamp(phase * 2.2, 0, 1);
+
+        c.style.transform = 'translateY(' + ty.toFixed(2) + 'px) scale(' + sc.toFixed(4) + ')';
+        c.style.opacity   = op.toFixed(3);
+        c.style.zIndex    = String(zBase);
+      });
+    }
+
+    function onScroll() {
+      tgtY = window.pageYOffset;
+      if (!live) { live = true; raf = requestAnimationFrame(tick); }
+    }
+
+    function tick() {
+      curY = lerp(curY, tgtY, CFG.LERP_SPEED);
+      applyState(curY);
+      if (Math.abs(curY - tgtY) > 0.2) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        curY = tgtY; applyState(curY); live = false;
+      }
+    }
+
+    function onResize() {
+      clearTimeout(onResize._t);
+      onResize._t = setTimeout(function () {
+        measure();
+        curY = window.pageYOffset;
+        tgtY = curY;
+        applyState(curY);
+      }, 120);
+    }
+
+    function start() {
+      cards.forEach(function (c) { c.style.willChange = 'transform, opacity'; });
+      measure();
+      curY = window.pageYOffset;
+      tgtY = curY;
+      applyState(curY);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize, { passive: true });
+    }
+
+    function stop() {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      live = false;
+      cards.forEach(function (c) {
+        c.style.transform  = '';
+        c.style.opacity    = '';
+        c.style.zIndex     = '';
+        c.style.willChange = '';
+        c.style.position   = '';
+        c.style.top        = '';
+      });
+    }
+
+    return { start: start, stop: stop };
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+   * BOOTSTRAP
+   * ═══════════════════════════════════════════════════════════ */
+  function init() {
+
+    /* ── SECTION 1: Our Process — ALL viewports ── */
+    var procSec  = document.getElementById('process-sec');
+    var procAnim = initProcessAnim(procSec);
+    if (procAnim) procAnim.start();
+
+    /* ── SECTION 2: Meet the Team — MOBILE ONLY ── */
+    var teamSec  = document.getElementById('team-sec');
+    var teamAnim = null;
+    var teamMQ   = window.matchMedia('(max-width: 768px)');
+
+    function onMQChange(e) {
+      var isMobile = typeof e.matches !== 'undefined' ? e.matches : !!e;
+      if (isMobile) {
+        if (!teamAnim) {
+          teamAnim = initTeamAnim(teamSec);
+          if (teamAnim) teamAnim.start();
+        }
+      } else {
+        if (teamAnim) {
+          teamAnim.stop();
+          teamAnim = null;
+        }
+      }
+    }
+
+    /* Listen for viewport changes */
+    if (teamMQ.addEventListener) {
+      teamMQ.addEventListener('change', onMQChange);
+    } else if (teamMQ.addListener) {
+      teamMQ.addListener(onMQChange); /* Safari < 14 */
+    }
+
+    /* Apply immediately based on current viewport */
+    onMQChange(teamMQ);
+  }
+
+  /* Run after DOM ready */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();

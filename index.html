@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
     <meta charset="utf-8">
@@ -623,45 +623,111 @@
                     </div>
                 </div>
 
-                <!-- Testimonials Carousel -->
-                <div class="max-w-3xl mx-auto relative px-gutter mt-20">
-                    <div id="testimonial-slider" class="relative overflow-hidden min-h-[200px]">
-                        <!-- Slide 1 -->
-                        <div class="testimonial-slide opacity-100 transition-opacity duration-500 flex flex-col items-center text-center gap-md">
-                            <span class="material-symbols-outlined text-4xl text-sky-300 drop-shadow-[0_0_8px_rgba(125,211,252,0.4)]">format_quote</span>
-                            <p class="font-body-lg text-body-lg text-slate-200 italic max-w-2xl">
-                                "Lumina Digital delivered the Aura dashboard ahead of schedule and with a level of fidelity we didn't think was possible in a browser."
-                            </p>
-                            <div>
-                                <h4 class="font-subheading-sm text-subheading-sm text-white">Sophia Reynolds</h4>
-                                <p class="text-xs text-slate-500 font-label-sm uppercase tracking-wider mt-0.5">VP of Product, Aura Fintech</p>
+                <!-- Testimonials Marquee Section -->
+                <div class="relative flex w-full flex-col items-center justify-center overflow-hidden mt-16 py-4">
+                    <div class="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused] cursor-pointer">
+                        <!-- Group 1 -->
+                        <div class="flex gap-6 pr-6 shrink-0">
+                            <!-- Card 1 -->
+                            <div class="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] backdrop-blur-xl p-6 text-left w-[320px] hover:border-sky-400/30 hover:from-white/10 hover:to-white/5 transition-all duration-300 relative group/card whitespace-normal">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden border border-sky-400/10">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" alt="Emma Thompson" class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <h3 class="text-md font-semibold leading-none text-white">Emma Thompson</h3>
+                                        <p class="text-sm text-slate-500">@emmaai</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-400 mt-4 leading-relaxed">
+                                    "Using this AI platform has transformed how we handle data analysis. The speed and accuracy are unprecedented."
+                                </p>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] backdrop-blur-xl p-6 text-left w-[320px] hover:border-sky-400/30 hover:from-white/10 hover:to-white/5 transition-all duration-300 relative group/card whitespace-normal">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden border border-sky-400/10">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="David Park" class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <h3 class="text-md font-semibold leading-none text-white">David Park</h3>
+                                        <p class="text-sm text-slate-500">@davidtech</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-400 mt-4 leading-relaxed">
+                                    "The API integration is flawless. We've reduced our development time by 60% since implementing this solution."
+                                </p>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] backdrop-blur-xl p-6 text-left w-[320px] hover:border-sky-400/30 hover:from-white/10 hover:to-white/5 transition-all duration-300 relative group/card whitespace-normal">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden border border-sky-400/10">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sofia Rodriguez" class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <h3 class="text-md font-semibold leading-none text-white">Sofia Rodriguez</h3>
+                                        <p class="text-sm text-slate-500">@sofiaml</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-400 mt-4 leading-relaxed">
+                                    "Finally, an AI tool that actually understands context! The accuracy in natural language processing is impressive."
+                                </p>
                             </div>
                         </div>
-                        <!-- Slide 2 -->
-                        <div class="testimonial-slide hidden opacity-0 transition-opacity duration-500 flex flex-col items-center text-center gap-md">
-                            <span class="material-symbols-outlined text-4xl text-sky-300 drop-shadow-[0_0_8px_rgba(125,211,252,0.4)]">format_quote</span>
-                            <p class="font-body-lg text-body-lg text-slate-200 italic max-w-2xl">
-                                "The speed optimization on our checkout pipeline was phenomenal. Pulse feels instant, and our abandonment rates have reached an all-time low."
-                            </p>
-                            <div>
-                                <h4 class="font-subheading-sm text-subheading-sm text-white">David Chen</h4>
-                                <p class="text-xs text-slate-500 font-label-sm uppercase tracking-wider mt-0.5">CTO, Pulse Retail Group</p>
+
+                        <!-- Group 2 (Duplicate) -->
+                        <div class="flex gap-6 pr-6 shrink-0" aria-hidden="true">
+                            <!-- Card 1 -->
+                            <div class="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] backdrop-blur-xl p-6 text-left w-[320px] hover:border-sky-400/30 hover:from-white/10 hover:to-white/5 transition-all duration-300 relative group/card whitespace-normal">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden border border-sky-400/10">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" alt="Emma Thompson" class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <h3 class="text-md font-semibold leading-none text-white">Emma Thompson</h3>
+                                        <p class="text-sm text-slate-500">@emmaai</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-400 mt-4 leading-relaxed">
+                                    "Using this AI platform has transformed how we handle data analysis. The speed and accuracy are unprecedented."
+                                </p>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] backdrop-blur-xl p-6 text-left w-[320px] hover:border-sky-400/30 hover:from-white/10 hover:to-white/5 transition-all duration-300 relative group/card whitespace-normal">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden border border-sky-400/10">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="David Park" class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <h3 class="text-md font-semibold leading-none text-white">David Park</h3>
+                                        <p class="text-sm text-slate-500">@davidtech</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-400 mt-4 leading-relaxed">
+                                    "The API integration is flawless. We've reduced our development time by 60% since implementing this solution."
+                                </p>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.01] backdrop-blur-xl p-6 text-left w-[320px] hover:border-sky-400/30 hover:from-white/10 hover:to-white/5 transition-all duration-300 relative group/card whitespace-normal">
+                                <div class="flex items-center gap-3">
+                                    <div class="h-12 w-12 rounded-full overflow-hidden border border-sky-400/10">
+                                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face" alt="Sofia Rodriguez" class="h-full w-full object-cover">
+                                    </div>
+                                    <div class="flex flex-col items-start">
+                                        <h3 class="text-md font-semibold leading-none text-white">Sofia Rodriguez</h3>
+                                        <p class="text-sm text-slate-500">@sofiaml</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-400 mt-4 leading-relaxed">
+                                    "Finally, an AI tool that actually understands context! The accuracy in natural language processing is impressive."
+                                </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Carousel Controls -->
-                    <button id="prev-btn" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 hover:border-sky-300 bg-slate-900/50 hover:bg-sky-500/10 flex items-center justify-center text-slate-400 hover:text-white transition-all focus:outline-none">
-                        <span class="material-symbols-outlined text-lg">chevron_left</span>
-                    </button>
-                    <button id="next-btn" class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-white/10 hover:border-sky-300 bg-slate-900/50 hover:bg-sky-500/10 flex items-center justify-center text-slate-400 hover:text-white transition-all focus:outline-none">
-                        <span class="material-symbols-outlined text-lg">chevron_right</span>
-                    </button>
-                    <!-- Indicators -->
-                    <div class="flex justify-center gap-2 mt-md">
-                        <span class="dot w-2 h-2 rounded-full bg-sky-300 cursor-pointer active-dot" data-slide="0"></span>
-                        <span class="dot w-2 h-2 rounded-full bg-slate-700 cursor-pointer" data-slide="1"></span>
-                    </div>
+                    <!-- Fading Edges Gradient Overlays -->
+                    <div class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-slate-950 to-transparent"></div>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-slate-950 to-transparent"></div>
                 </div>
 
             </div>
@@ -1284,6 +1350,11 @@
             background: rgba(125,211,252,0.07);
             transform: translateY(-2px);
         }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee { animation: marquee 30s linear infinite; }
     </style>
 
     <!-- Shared Javascript -->
@@ -1384,7 +1455,7 @@
             portfolioSearch.addEventListener("input", applyPortfolioFilters);
 
             // ==========================================
-            // 3. Case Studies & Testimonials Slider
+            // 3. Case Studies & Testimonials
             // ==========================================
             const accBtns = document.querySelectorAll(".study-acc-btn");
             accBtns.forEach(btn => {
@@ -1400,45 +1471,7 @@
                         targetContent.classList.add("hidden");
                         icon.style.transform = "rotate(0deg)";
                     }
-                });
-            });
-
-            // Slider Logic
-            const slides = document.querySelectorAll(".testimonial-slide");
-            const dots = document.querySelectorAll(".dot");
-            const prevBtn = document.getElementById("prev-btn");
-            const nextBtn = document.getElementById("next-btn");
-            let activeIndex = 0;
-
-            function updateCarousel(newIndex) {
-                slides[activeIndex].classList.add("opacity-0");
-                slides[activeIndex].classList.remove("opacity-100");
-                setTimeout(() => {
-                    slides[activeIndex].classList.add("hidden");
-                    slides[newIndex].classList.remove("hidden");
-                    setTimeout(() => {
-                        slides[newIndex].classList.remove("opacity-0");
-                        slides[newIndex].classList.add("opacity-100");
-                    }, 50);
-                }, 300);
-
-                dots[activeIndex].classList.remove("bg-sky-300", "active-dot");
-                dots[activeIndex].classList.add("bg-slate-700");
-                dots[newIndex].classList.remove("bg-slate-700");
-                dots[newIndex].classList.add("bg-sky-300", "active-dot");
-                activeIndex = newIndex;
-            }
-
-            prevBtn.addEventListener("click", () => {
-                updateCarousel((activeIndex - 1 + slides.length) % slides.length);
-            });
-            nextBtn.addEventListener("click", () => {
-                updateCarousel((activeIndex + 1) % slides.length);
-            });
-            dots.forEach(dot => {
-                dot.addEventListener("click", () => {
-                    const idx = parseInt(dot.getAttribute("data-slide"));
-                    if (idx !== activeIndex) updateCarousel(idx);
+               // Slider Logic Removed (Marquee Active)
                 });
             });
 
@@ -1817,5 +1850,8 @@
     
     document.addEventListener('DOMContentLoaded', checkActiveSession);
   </script>
+
+    <!-- Sticky Stack Scroll Animation -->
+    <script src="js/sticky-stack-animation.js"></script>
 </body>
 </html>

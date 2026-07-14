@@ -1,0 +1,243 @@
+﻿/**
+ * sticky-stack-animation.js  v1.0
+ * Premium Sticky Stack Scroll Animation
+ *
+ * Section 1 — #process-sec  : all viewports
+ * Section 2 — #team-sec     : mobile only (<= 768px)
+ *
+ * Pure vanilla JS. No GSAP required. rAF + lerp for butter-smooth stacking.
+ * HTML is NOT modified. CSS sticky preserved.
+ */
+(function () {
+  'use strict';
+
+  /* ─── Config ──────────────────────────────── */
+  var CARD_PEEK       = 10;   // px each stacked card peeks above previous
+  var LERP_FACTOR     = 0.09; // scroll smoothing (lower = smoother)
+  var SCROLL_PER_CARD = 280;  // extra scroll-px per card entry
+  var NAV_HEIGHT      = 90;   // fixed nav offset
+
+  /* ─── Utils ───────────────────────────────── */
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+  /* ─── Core engine ─────────────────────────── */
+  function initStackSection(section) {
+    if (!section) return null;
+    var container = section.querySelector('.lsa-container');
+    if (!container) return null;
+    var cards = Array.prototype.slice.call(
+      container.querySelectorAll('.lsa-card')
+    );
+    if (cards.length < 2) return null;
+
+    var cardCount = cards.length;
+    var pinStart  = 0;
+    var totalRange = 0;
+    var cardH = 0;
+
+    function measure() {
+      cardH = cards[0].offsetHeight;
+      var rect   = section.getBoundingClientRect();
+      var secTop = rect.top + window.pageYOffset;
+      var hdrEl  = section.querySelector('.lsa-header');
+      var hdrH   = hdrEl ? hdrEl.offsetHeight + 40 : NAV_HEIGHT;
+      pinStart   = secTop + hdrH;
+      totalRange = SCROLL_PER_CARD * (cardCount - 1);
+    }
+
+    function applyState(scrollY) {
+      var raw = scrollY - pinStart;
+
+      /* Before section starts */
+      if (raw <= 0) {
+        cards.forEach(function (c, i) {
+          c.style.transform = 'translateY(0px) scale(1)';
+          c.style.opacity   = '1';
+          c.style.zIndex    = String(10 + i);
+        });
+        return;
+      }
+
+      /* After all cards stacked */
+      if (raw >= totalRange) {
+        cards.forEach(function (c, i) {
+          c.style.transform = 'translateY(' + (-i * CARD_PEEK) + 'px) scale(1)';
+          c.style.opacity   = '1';
+          c.style.zIndex    = String(10 + i);
+        });
+        return;
+      }
+
+      var progress = raw / SCROLL_PER_CARD; // 0 → cardCount-1
+
+      cards.forEach(function (c, i) {
+        if (i === 0) {
+          /* Card 1 is the anchor — never moves */
+          c.style.transform = 'translateY(0px) scale(1)';
+          c.style.opacity   = '1';
+          c.style.zIndex    = '10';
+          return;
+        }
+        /* phase: 0 = not started, 1 = fully stacked */
+        var phase = clamp(progress - (i - 1), 0, 1);
+        /* Ease-out cubic for Apple/Stripe feel */
+        var eased = 1 - Math.pow(1 - phase, 3);
+
+        var startY = cardH * 0.38;          // slide up from below
+        var endY   = -(i * CARD_PEEK);       // final stacked peek
+
+        var ty  = lerp(startY, endY, eased);
+        var sc  = lerp(0.96, 1.0, eased);
+        var op  = clamp(phase * 2.5, 0, 1); // fade in quickly
+
+        c.style.transform = 'translateY(' + ty.toFixed(2) + 'px) scale(' + sc.toFixed(4) + ')';
+        c.style.opacity   = op.toFixed(3);
+        c.style.zIndex    = String(10 + i);
+      });
+    }
+
+    /* rAF loop */
+    var curY  = window.pageYOffset;
+    var tgtY  = curY;
+    var raf   = null;
+    var alive = false;
+
+    function onScroll() {
+      tgtY = window.pageYOffset;
+      if (!alive) { alive = true; raf = requestAnimationFrame(tick); }
+    }
+
+    function tick() {
+      curY = lerp(curY, tgtY, LERP_FACTOR);
+      applyState(curY);
+      if (Math.abs(curY - tgtY) > 0.25) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        curY = tgtY; applyState(curY); alive = false;
+      }
+    }
+
+    function onResize() { measure(); applyState(window.pageYOffset); }
+
+    function start() {
+      measure();
+      curY = window.pageYOffset;
+      tgtY = curY;
+      applyState(curY);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize, { passive: true });
+    }
+
+    function stop() {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      alive = false;
+      cards.forEach(function (c) {
+        c.style.transform = '';
+        c.style.opacity   = '';
+        c.style.zIndex    = '';
+      });
+    }
+
+    return { start: start, stop: stop };
+  }
+
+  /* ─── Tag helpers (no HTML edits) ─────────── */
+  /**
+   * Finds the container within a section using a querySelector,
+   * adds .lsa-container and tags direct child divs as .lsa-card.
+   * Returns true if ready, false if not found.
+   */
+  function tagSection(section, findContainer, cardChildSel) {
+    if (!section) return false;
+
+    var con;
+    if (typeof findContainer === 'string') {
+      con = section.querySelector(findContainer);
+    } else if (typeof findContainer === 'function') {
+      con = findContainer(section);
+    }
+    if (!con) return false;
+
+    con.classList.add('lsa-container');
+
+    /* Tag the header block (everything before the cards container) */
+    var hdrEl = section.querySelector('.lsa-header-source');
+    if (hdrEl) hdrEl.classList.add('lsa-header');
+
+    var cds = Array.prototype.slice.call(
+      con.querySelectorAll(cardChildSel || ':scope > div')
+    );
+    if (cds.length < 2) return false;
+
+    cds.forEach(function (c) {
+      c.classList.add('lsa-card');
+      c.style.willChange = 'transform, opacity';
+    });
+    return true;
+  }
+
+  /* ─── Init ─────────────────────────────────── */
+  function init() {
+
+    /* === SECTION 1: Our Process — ALL viewports =================== */
+    var procSec = document.getElementById('process-sec');
+
+    /* Container selector: the only .max-w-5xl inside process-sec */
+    var procOk = tagSection(procSec, function (sec) {
+      return sec.querySelector('.max-w-5xl');
+    }, ':scope > div');
+
+    /* Also mark the header div so measure() can use it */
+    if (procSec) {
+      var hdrDiv = procSec.querySelector('.text-center.max-w-3xl');
+      if (hdrDiv) hdrDiv.classList.add('lsa-header');
+    }
+
+    var procAnim = procOk ? initStackSection(procSec) : null;
+    if (procAnim) procAnim.start();
+
+    /* === SECTION 2: Meet the Team — MOBILE ONLY =================== */
+    var teamSec = document.getElementById('team-sec');
+
+    var teamOk = tagSection(teamSec, '#homepage-team-grid', ':scope > div');
+
+    if (teamSec) {
+      var teamHdr = teamSec.querySelector('.mb-20');
+      if (teamHdr) teamHdr.classList.add('lsa-header');
+    }
+
+    var teamAnim = null;
+    var teamMQ   = window.matchMedia('(max-width: 768px)');
+
+    function handleMQ(mq) {
+      var matches = typeof mq.matches !== 'undefined' ? mq.matches : mq;
+      if (matches) {
+        if (teamOk && !teamAnim) {
+          teamAnim = initStackSection(teamSec);
+          if (teamAnim) teamAnim.start();
+        }
+      } else {
+        if (teamAnim) { teamAnim.stop(); teamAnim = null; }
+      }
+    }
+
+    if (teamMQ.addEventListener) {
+      teamMQ.addEventListener('change', handleMQ);
+    } else if (teamMQ.addListener) {
+      teamMQ.addListener(handleMQ); /* Safari < 14 fallback */
+    }
+
+    handleMQ(teamMQ);
+  }
+
+  /* ─── Bootstrap ─────────────────────────────── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
